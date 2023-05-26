@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'Verdana';
+    src: url('Verdana.eot');
+    src: url('Verdana.eot?#iefix') format('embedded-opentype'),
+        url('Verdana.woff2') format('woff2'),
+        url('Verdana.woff') format('woff'),
+        url('Verdana.ttf') format('truetype'),
+        url('Verdana.svg#Verdana') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Verdana';
+    src: url('Verdana_1.eot');
+    src: url('Verdana_1.eot?#iefix') format('embedded-opentype'),
+        url('Verdana_1.woff2') format('woff2'),
+        url('Verdana_1.woff') format('woff'),
+        url('Verdana_1.ttf') format('truetype'),
+        url('Verdana_1.svg#Verdana') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Verdana';
+    src: url('Verdana-Bold.eot');
+    src: url('Verdana-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Verdana-Bold.woff2') format('woff2'),
+        url('Verdana-Bold.woff') format('woff'),
+        url('Verdana-Bold.ttf') format('truetype'),
+        url('Verdana-Bold.svg#Verdana-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Verdana';
+    src: url('Verdana-Bold_1.eot');
+    src: url('Verdana-Bold_1.eot?#iefix') format('embedded-opentype'),
+        url('Verdana-Bold_1.woff2') format('woff2'),
+        url('Verdana-Bold_1.woff') format('woff'),
+        url('Verdana-Bold_1.ttf') format('truetype'),
+        url('Verdana-Bold_1.svg#Verdana-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
