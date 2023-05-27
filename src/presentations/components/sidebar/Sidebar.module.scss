@@ -1,0 +1,245 @@
+$header-sidebar-height: 65px;
+$bckgrColor-header-sidebar: #1a1a27;
+$btn-icon-size: 22px;
+$color-iconArr: #494b74;
+$color-iconArr-hover: #5d78ff;
+$color-title: #a2a3b7;
+
+// Header
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  height: $header-sidebar-height;
+  background-color: $bckgrColor-header-sidebar;
+  // background-color: red;
+}
+
+.header-active {
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.btn-header {
+  background-color: transparent;
+  height: $btn-icon-size;
+  cursor: pointer;
+  color: $color-iconArr;
+
+  &:hover {
+    color: $color-iconArr-hover;
+  }
+}
+
+.logo {
+  width: 135px;
+  height: 100%;
+  transition: all 0.5s ease;
+}
+
+// Body
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 14px 0 14px;
+}
+
+.btn-list-active {
+  background-color: var(--white-color);
+  color: var(--sidebar-color);
+}
+
+.list-wrap {
+  height: 50px;
+  width: 100%;
+  list-style: none;
+  line-height: 50px;
+
+  margin: 5px 5px 0 5px;
+
+  .list-link {
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: var(--white-color);
+    }
+
+    &:hover .btn-list,
+    &:hover .title,
+    &:hover span {
+      color: var(--black-color);
+      font-weight: 600;
+    }
+  }
+
+  .btn-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 50px;
+    min-width: 50px;
+    line-height: 50px;
+    background-color: transparent;
+    color: $color-title;
+
+    cursor: pointer;
+
+    svg {
+      width: $btn-icon-size;
+      height: $btn-icon-size;
+    }
+  }
+
+  .btn-list-hide {
+    width: 100%;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    width: 100%;
+    color: $color-title;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+
+    color: $color-title;
+    margin: 0 4px 4px 0;
+
+    svg {
+      width: calc($btn-icon-size - 2px);
+      height: calc($btn-icon-size - 2px);
+    }
+  }
+
+  .down-icon {
+    font-size: 1.6rem;
+  }
+}
+
+.dropdown-menu {
+  width: 100%;
+  transition: all 0.3s ease 0s;
+
+  .dropdown-menu-link {
+    display: flex;
+    align-items: center;
+    height: 45px;
+
+    padding-left: 36px;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--white-color);
+
+      &:hover .dropdown-menu-icon,
+      &:hover .dropdown-menu-title {
+        color: var(--black-color);
+        font-weight: 600;
+      }
+    }
+  }
+
+  .dropdown-menu-icon {
+    display: flex;
+    align-items: center;
+
+    color: $color-title;
+  }
+
+  .dropdown-menu-title {
+    font-size: 1.1rem;
+    color: $color-title;
+    text-transform: uppercase;
+    margin-left: 8px;
+    white-space: nowrap;
+    transition: all 0.5s ease;
+  }
+}
+
+// Footer
+.profile_content {
+  width: 100%;
+  color: $color-title;
+
+  margin-top: 65px;
+}
+
+.profile {
+  position: relative;
+  height: 60px;
+  background: $bckgrColor-header-sidebar;
+
+  padding: 10px 6px 0 6px;
+  transition: all 0.4 ease;
+}
+
+.profile_details {
+  display: flex;
+  align-items: center;
+
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.name_job {
+  margin-left: 10px;
+}
+
+.name {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.job {
+  font-size: 1.2rem;
+}
+
+.log-out-btn {
+  width: 100%;
+
+  .log-out-icon {
+    position: absolute;
+    top: 22%;
+    right: 8px;
+
+    height: 40px;
+    min-width: 50px;
+    font-size: 2rem;
+    color: $color-title;
+    border-radius: 8px;
+
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.4s ease;
+
+    &:hover {
+      background-color: var(--white-color);
+      color: var(--black-color);
+    }
+  }
+
+  .log-out-icon-hide {
+    left: 15px;
+  }
+}

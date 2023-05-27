@@ -1,5 +1,5 @@
 @import "normalize.css";
-// Font Verdana
+// Embeded Font Verdana
 @font-face {
   font-family: "Verdana";
   src: url("../../../assets/fonts/Verdana.eot");
@@ -58,7 +58,28 @@
 
 :root {
   // --primary-color: ;
-  --text-color: #333;
+  --text-color: #595d6e;
+  --white-color: #fff;
+  --second-color: #fd397a;
+  --pink-hover-color: #e53670;
+  --yellow-color: #ffc107;
+  --gray-color: #ebecf0;
+  --primary-color: #0abb87;
+  // --primary-color: #ec94fb;
+  --green-hover-color: #06a173;
+  // --green-hover-color: #ec94fb;
+  --blue-color: #1976d2;
+  --blue-hover-color: #2669ad;
+  --shadow-color: #babecc;
+  --bgr-body-content-app: #f1f2f7;
+  --border-color: #e2e5ec;
+  --hover-black: #4d59950f;
+  --sidebar-color: #1e1e2d;
+
+  --primary-size: 1.6rem;
+  --header-height: 65px;
+  --width-sidebar-small: 96px;
+  --width-sidebar-large: 266px;
   --font-family: "Verdana";
 }
 
@@ -74,8 +95,64 @@ html {
 
 body {
   font-family: var(--font-family);
-  font-size: 1.6rem;
+  font-size: var(--primary-size);
   line-height: 1.5;
   text-rendering: optimizespeed;
   color: var(--text-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+button,
+input,
+[tabindex] {
+  outline: none;
+  border: none;
+}
+
+li {
+  list-style: none;
+}
+
+// Custom scrollbar
+html *::-webkit-scrollbar {
+  border-radius: 0;
+  width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+html *::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+// Custom tippy tooltip
+
+body {
+  .tippy-box {
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    background-color: rgba(84, 84, 84, 0.92);
+  }
+
+  .tippy-arrow {
+    color: rgba(84, 84, 84, 0.92);
+  }
+
+  .tippy-content {
+    padding: 8px 9px;
+  }
+
+  .tippy-box[data-placement^="bottom"] > .tippy-arrow:before {
+    top: -8px;
+  }
 }

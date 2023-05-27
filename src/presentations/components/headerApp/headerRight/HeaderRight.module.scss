@@ -1,0 +1,265 @@
+@mixin d-flx-al-item {
+  display: flex;
+  align-items: center;
+}
+
+$icon-color: #63646b;
+$welcome-color: #959cb6;
+$username-color: #6c7293;
+$color-noti: #fd397a;
+$green-color: #0abb87;
+
+.wrapper {
+  @include d-flx-al-item;
+  padding-right: 15px;
+}
+
+.wrapper-icon {
+  height: 100%;
+  @include d-flx-al-item;
+  margin-right: 15px;
+}
+
+.icon-item {
+  width: 44px;
+
+  border-radius: 4px;
+  height: 100%;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--hover-black);
+  }
+}
+
+.span-icon {
+  @include d-flx-al-item;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.link-icon {
+  position: relative;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    color: $icon-color;
+  }
+}
+
+.count-noti {
+  position: absolute;
+  left: 14px;
+  top: -7px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 18px;
+  width: 18px;
+  background-color: $color-noti;
+  color: var(--white-color);
+
+  border-radius: 50%;
+  font-size: 0.8rem;
+}
+
+.accout-wrapper {
+  @include d-flx-al-item;
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--hover-black);
+  }
+}
+
+.username-wrapper {
+  font-size: 1.2rem;
+  margin-right: 8px;
+  user-select: none;
+
+  .username {
+    transition: all 0.3s;
+    color: $username-color;
+    text-transform: none;
+    white-space: nowrap;
+  }
+
+  .role {
+    font-size: 1.1rem;
+    text-align: right;
+    color: var(--primary-color);
+  }
+}
+
+.avatar {
+  @include d-flx-al-item;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: $green-color;
+  background: #0abb871a;
+}
+
+// Accout dropdown
+
+.user-cart-avt {
+  cursor: pointer;
+}
+
+.account-dropdown-wrapper {
+  width: 380px;
+  max-width: 100%;
+  min-height: 100px;
+  background-color: var(--white-color);
+  background-clip: padding-box;
+
+  border-radius: 4px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: 0px 0px 50px 0px rgb(82 63 105 / 15%);
+
+  animation: topToDown 0.5s ease;
+}
+
+.header-account {
+  @include d-flx-al-item;
+
+  //   background-image: url(../../../../assets/images/backgroundaccount.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  padding: 18px 24px;
+  background-color: #f9fafe;
+
+  .user-cart-name {
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding-left: 10px;
+    flex-grow: 1;
+
+    .accountinfo-username {
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--primary-color);
+      cursor: pointer;
+    }
+
+    .accountinfo-role {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-transform: unset;
+      color: var(--white-color);
+    }
+  }
+
+  .user-cart-badge {
+    background-color: $green-color;
+    border-color: $green-color;
+    color: var(--white-color);
+    padding: 6px 12px;
+    border-radius: 2px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+      background-color: #08976d;
+      border-color: #078b64;
+    }
+  }
+}
+
+.change-pass {
+  @include d-flx-al-item;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid #e9eaed;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--hover-black);
+  }
+
+  .change-pass-icon {
+    @include d-flx-al-item;
+    flex: 0 0 2.5rem;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: $green-color;
+    }
+  }
+
+  .change-pass-title {
+    @include d-flx-al-item;
+    height: 100%;
+    flex-grow: 1;
+    transition: color 0.3s ease;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #595d6e;
+  }
+
+  .change-nav-pass-icon {
+    @include d-flx-al-item;
+    height: 100%;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: $welcome-color;
+    }
+  }
+}
+
+.log-out-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 18px;
+
+  button {
+    box-shadow: 0 8px 0 var(--blue-hover-color);
+    transition: 0.3s;
+
+    &:hover {
+      background-color: var(--blue-color);
+      box-shadow: 0 8px 0 var(--blue-hover-color);
+      opacity: 0.9;
+    }
+
+    &:active {
+      box-shadow: none;
+      transform: translateY(5px);
+    }
+  }
+}
+
+@keyframes topToDown {
+  from {
+    opacity: 0;
+    transform: translateY(-140px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .wrapper {
+    padding: 6px 0;
+    justify-content: space-between;
+  }
+}
