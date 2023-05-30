@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import LoginPage from "./presentations/pages/login";
 import NotFound from "./presentations/components/notFound";
 import HomePage from "./presentations/pages/home/HomePage";
+import InforPage from "./presentations/pages/farm/infor/InforFarmPage";
 //Style
 
 const App: React.FC = () => {
@@ -16,6 +17,7 @@ const App: React.FC = () => {
         <Route path="*" element={<NotFound />} />
         {/* Private Route */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/nong-trai/thong-tin" element={<InforPage />} />
       </Routes>
     </div>
   );
