@@ -39,13 +39,13 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
           <thead>
             <tr>
               <th>#</th>
-              <th>Tên xe</th>
-              <th>Biển kiểm soát</th>
-              <th>Hãng xe</th>
-              <th>Màu xe</th>
-              <th>Loại xe</th>
-              <th>Tình trạng</th>
-              <th>Chức năng</th>
+              <th>Tên nông trại</th>
+              <th>Gmail</th>
+              <th>Mã số thuê</th>
+              <th>SĐT</th>
+              <th>Loại hình DN</th>
+              <th>Mô hình KD</th>
+              <th>Ngày tạo</th>
             </tr>
           </thead>
           <tbody></tbody>

@@ -1,17 +1,17 @@
 .wrapper {
-  position: fixed;
-  top: 0;
-  left: var(--width-sidebar-small);
-  right: 0;
+  // position: fixed;
+  // top: 0;
+  // left: var(--width-sidebar-small);
+  // right: 0;
   overflow: hidden;
   background-color: var(--white-color);
 
   justify-content: flex-end;
 
   max-width: 100%;
-  height: var(--header-height);
+  height: calc(var(--header-height));
   width: auto !important;
-  z-index: 100000;
+  // z-index: 100000;
   transition: all 0.5s ease;
 }
 
