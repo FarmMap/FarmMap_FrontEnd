@@ -1,11 +1,16 @@
 // External files
 import React from "react";
 // Internal files
+import DefaultAuthLayout from "../../components/defaultAuthLayout/DefaultAuthLayOut";
+import LoginForm from "./loginForm/LoginForm";
 // Styles
+
 const LoginPage: React.FC = () => {
   return (
-    <div>
-      <h1>Login page</h1>
+    <div style={{ height: "100vh" }}>
+      <DefaultAuthLayout title="ĐĂNG NHẬP">
+        <LoginForm />
+      </DefaultAuthLayout>
     </div>
   );
 };

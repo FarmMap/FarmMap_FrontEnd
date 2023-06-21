@@ -17,19 +17,36 @@ declare module "leaflet" {
     }
   }
 }
+
 const LeafletGeocoder = () => {
   const map = useMap();
+
   useEffect(() => {
-    L.Control.geocoder({
+    const geocoderControl = L.Control.geocoder({
       defaultMarkGeocode: false,
-    })
-      .on("markgeocode", function (e: L.Geocoder.ResultEvent) {
-        var latlng = e.geocode.center;
-        L.marker(latlng).addTo(map).bindPopup(e.geocode.name).openPopup();
-        map.fitBounds(e.geocode.bbox);
-      })
-      .addTo(map);
+    }).on("markgeocode", function (e: L.Geocoder.ResultEvent) {
+      const { center, name } = e.geocode;
+      const latlng = center;
+      L.marker(latlng)
+        .addTo(map)
+        .bindPopup(
+          `Name: ${name}<br/>Lat: ${latlng.lat}<br/>Long: ${latlng.lng}`
+        )
+        .openPopup();
+      map.fitBounds(e.geocode.bbox);
+    });
+
+    geocoderControl.addTo(map);
+
+    // Remove the second geocoder control
+    const controls = document.getElementsByClassName(
+      "leaflet-control-geocoder"
+    );
+    if (controls.length > 1) {
+      controls[1].remove();
+    }
   }, [map]);
+
   return null;
 };
 

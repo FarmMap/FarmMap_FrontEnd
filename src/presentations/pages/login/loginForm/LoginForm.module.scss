@@ -1,0 +1,112 @@
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0 38px;
+
+  label {
+    color: var(--shadow-color);
+    font-size: 1.2rem;
+    margin: 24px 0 10px 0;
+    font-weight: 600;
+    text-shadow: 1px 1px 1px var(--white-color);
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  input {
+    font-size: var(--primary-size);
+    background-color: var(--gray-color);
+    border-radius: calc(var(--primary-size) * 20);
+    padding: var(--primary-size);
+    text-shadow: 1px 1px 0 var(--white-color);
+    box-shadow: inset 2px 2px 5px var(--shadow-color),
+      inset -5px -5px 10px var(--white-color);
+    appearance: none;
+    -webkit-appearance: none;
+    transition: all 0.2s ease-in-out;
+
+    &:focus {
+      box-shadow: inset 1px 1px 2px var(--shadow-color),
+        inset -1px -1px 2px var(--white-color);
+    }
+  }
+
+  .forgot-pass {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.4rem;
+    text-decoration: underline;
+    text-shadow: 1px 1px 1px var(--white-color);
+    margin-top: calc(var(--primary-size) + 0.8rem);
+
+    a {
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+.login {
+  position: relative;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: var(--green-hover-color);
+  }
+
+  &:disabled {
+    background-color: #04a35494;
+  }
+}
+
+.sign-up {
+  background-color: rgba(22, 24, 35, 0.06);
+  border: none;
+  font-weight: 600;
+
+  &:hover {
+    border: 1px solid var(--primary-color);
+  }
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  border-radius: calc(var(--primary-size) * 20);
+  box-shadow: 0 8px 0 var(--green-hover-color);
+  transition: 0.3s;
+  margin: calc(var(--primary-size) + 2rem) 0 0 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--primary-color);
+    box-shadow: 0 8px 0 var(--green-hover-color);
+  }
+
+  &:active {
+    box-shadow: none;
+    transform: translateY(5px);
+  }
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--primary-color);
+  }
+}
+
+.errors {
+  width: 100%;
+  font-family: var(--font-family);
+  font-size: 1.4rem;
+  margin: 8px 0 0 8px;
+  color: var(--second-color);
+}
