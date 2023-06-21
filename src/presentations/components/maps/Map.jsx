@@ -17,9 +17,7 @@ L.Icon.Default.mergeOptions({
 
 //
 
-let polyline;
-
-const DrawLocation = () => {
+const Map = () => {
   // see http://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html#l-draw-event for leaflet-draw events doc
 
   const [onChange, setOnchange] = useState("");
@@ -48,7 +46,6 @@ const DrawLocation = () => {
 
   const _onCreated = (e) => {
     let type = e.layerType;
-    let layer = e.layer;
     if (type === "marker") {
       // Do marker specific actions
       console.log("_onCreated: marker created", e);
@@ -252,4 +249,4 @@ function getGeoJson() {
   };
 }
 
-export default DrawLocation;
+export default Map;

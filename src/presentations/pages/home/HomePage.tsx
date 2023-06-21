@@ -1,15 +1,10 @@
-// External files
-
-// Internal files
+import React from "react";
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
-//Style
 
 const HomePage = () => {
   return (
     <DefaultWebLayOut>
-      <div className="">
-        <h2>Home Page</h2>
-      </div>
+      <h1>HomePage</h1>
     </DefaultWebLayOut>
   );
 };

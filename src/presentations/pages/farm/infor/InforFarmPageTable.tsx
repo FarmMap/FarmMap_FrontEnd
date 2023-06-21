@@ -48,7 +48,18 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
               <th>Ngày tạo</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
         </table>
       </Grid>
 
