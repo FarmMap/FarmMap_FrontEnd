@@ -13,6 +13,9 @@ import styles from "./LoginForm.module.scss";
 // import { Left, Right } from "../../../../core/Result";
 import { CircularProgress } from "@mui/material";
 import { toast } from "react-toastify";
+import UseLogin from "../../../../api/Login/useLogin";
+import { Left, Right } from "../../../../api/Login/Result";
+import UserAccount from "../../../../data/types/UserAccount";
 const cx = classNames.bind(styles);
 
 const LoginForm = () => {
@@ -31,22 +34,22 @@ const LoginForm = () => {
       password: Yup.string().required("Vui lòng nhập mật khẩu"),
     }),
 
-    onSubmit: async () => {
-      //   setDisable(true);
-      //   let api = new CarRentalApi();
-      //   let signInResult = await api.signInWithUsernameAndPassword(credentials);
-      //   // Handle login failed
-      //   if (signInResult instanceof Left) {
-      //     let errorMessage = signInResult.value;
-      //     toast.error(errorMessage);
-      //   }
-      //   // Handle login succeed
-      //   if (signInResult instanceof Right) {
-      //     let token = signInResult.value;
-      //     localStorage.setItem("token", token);
-      //     window.location.href = "/";
-      //   }
-      //   setDisable(false);
+    onSubmit: async (credentials: UserAccount) => {
+      setDisable(true);
+      let api = new UseLogin();
+      let signInResult = await api.signInWithUsernameAndPassword(credentials);
+      // Handle login failed
+      if (signInResult instanceof Left) {
+        let errorMessage = signInResult.value;
+        toast.error(errorMessage);
+      }
+      // Handle login succeed
+      if (signInResult instanceof Right) {
+        let token = signInResult.value;
+        localStorage.setItem("token", token);
+        window.location.href = "/";
+      }
+      setDisable(false);
     },
   });
 

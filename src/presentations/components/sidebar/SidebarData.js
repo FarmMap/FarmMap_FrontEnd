@@ -2,8 +2,12 @@
 import HomeIcon from '@mui/icons-material/Home';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import HomeWorkIcon from '@mui/icons-material/HomeWork';
-
+import HomeWorkIcon from '@mui/icons-material/HomeWork'
+import SpaIcon from '@mui/icons-material/Spa';
+import EdgesensorHighIcon from '@mui/icons-material/EdgesensorHigh';
+import PetsIcon from '@mui/icons-material/Pets';
+import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PropTypes from 'prop-types';
 
 export const SidebarData = [
@@ -32,6 +36,134 @@ export const SidebarData = [
                 title: "Phân lô - Tách thửa",
                 path: "/nong-trai/phan-lo-tach-thua"
             },
+        ]
+    },
+    {
+        title: "Chăn nuôi",
+        path: "",
+        icon: <SpaIcon />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+
+        subnav: [
+            {
+                title: "Thông tin cây trồng",
+                path: "/trong-trot/thong-tin-cay-trong"
+            },
+            {
+                title: "Chi phí trồng trọt",
+                path: "/trong-trot/chi-phi-trong-trot"
+            },
+            {
+                title: "Kế hoạch",
+                path: "/trong-trot/ke-hoach"
+            },
+            {
+                title: "Vùng gieo",
+                path: "/trong-trot/vung-gieo"
+            },
+        ]
+    },
+    {
+        title: "Theo dõi",
+        path: "",
+        icon: <EdgesensorHighIcon />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+
+        subnav: [
+            {
+                title: "Thiết bị IOT",
+                path: "/theo-doi/thiet-bi-iot"
+            },
+            {
+                title: "Cây trồng",
+                path: "/theo-doi/cay-trong"
+            },
+            {
+                title: "Nhân công",
+                path: "/theo-doi/nhan-cong"
+            },
+            {
+                title: "Vật nuôi",
+                path: "/theo-doi/vat-nuoi"
+            },
+        ]
+    },
+
+    {
+        title: "Chăn nuôi",
+        path: "",
+        icon: <PetsIcon />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+
+        subnav: [
+            {
+                title: "Thông tin vật nuôi",
+                path: "/chan-nuoi/thong-tin-vat-nuoi"
+            },
+            {
+                title: "Chi phí chăn nuôi",
+                path: "/chan-nuoi/chi-phi-chan-nuoi"
+            },
+            {
+                title: "Kế hoạch",
+                path: "/chan-nuoi/ke-hoach"
+            },
+            {
+                title: "Nơi chăn nuôi",
+                path: "/chan-nuoi/noi-chan-nuoi"
+            },
+        ]
+    },
+    {
+        title: "Quản lý",
+        path: "",
+        icon: <ManageHistoryIcon />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+
+        subnav: [
+            {
+                title: "Nông cụ",
+                path: "/quan-ly/nong-cu"
+            },
+            {
+                title: "Phân bón và thuốc",
+                path: "/quan-ly/phan-bon-va-thuoc"
+            },
+            {
+                title: "Sản lượng",
+                path: "/quan-ly/san-luong"
+            },
+            {
+                title: "Nhập xuất",
+                path: "/quan-ly/nhap-xuat"
+            },
+        ]
+    },
+    {
+        title: "Tài khoản",
+        path: "",
+        icon: <ManageAccountsIcon />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+
+        subnav: [
+            {
+                title: "Quản lý",
+                path: "/tai-khoan/quan-ly"
+            },
+            {
+                title: "Hội viên",
+                path: "/tai-khoan/hoi-vien"
+            },
+            {
+                title: "Thành viên",
+                path: "/tai-khoan/thanh-vien"
+            },
+
         ]
     },
 

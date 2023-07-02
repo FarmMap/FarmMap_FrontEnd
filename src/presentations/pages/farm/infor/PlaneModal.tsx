@@ -2,16 +2,14 @@
 import { Button, Grid } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import SaveIcon from "@mui/icons-material/Save";
 // Internal
 import DefaultModal from "../../../components/defaultModal";
-import SaveIcon from "@mui/icons-material/Save";
 import FormInput from "../../../components/formInput/FormInput";
-import Role from "../../../../data/types/Role";
 import PlaneArea from "../../../../data/types/PlaneArea";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./InforFarmPage.module.scss";
-import { stringify } from "querystring";
 import FloatingLabelInput from "../../../components/floatingLabelInput/FloatingLabelInput";
 const cx = classNames.bind(styles);
 
@@ -19,7 +17,6 @@ export interface PlaneModalProps {
   title: string;
   submitButtonLabel: string;
   handleCloseModal: () => void;
-  roles: Role[];
   plane: PlaneArea;
   setPlane: React.Dispatch<React.SetStateAction<PlaneArea>>;
   handleSubmitPlane: () => void;
@@ -112,10 +109,9 @@ const PlaneModal = (props: PlaneModalProps) => {
             />
           </Grid>
           <FormInput
-            label="Ghi chu"
-            placeholder="Nhập ghi chu"
+            label="Ghi chú"
+            placeholder="Nhập ghi chú"
             type="text"
-            required
             value={props.plane.ghiChu ?? ""}
             onChange={(event) => {
               let newPlane = { ...props.plane };

@@ -1,4 +1,4 @@
-// External importsimports
+// External
 import { Delete, Edit, Image } from "@mui/icons-material";
 import { Button, Grid } from "@mui/material";
 import Tippy from "@tippyjs/react";
@@ -16,12 +16,12 @@ import { ListIcon } from "../../../components/sidebar/SidebarData";
 
 // Style imports
 import classNames from "classnames/bind";
-import styles from "./InforFarmPage.module.scss";
+import styles from "../infor/InforFarmPage.module.scss";
 const cx = classNames.bind(styles);
 
-interface InforFarmPageTableProps {}
+interface AreaTableProps {}
 
-const InforFarmPageTable = (props: InforFarmPageTableProps) => {
+const AreaTable = (props: AreaTableProps) => {
   return (
     <Grid>
       {/* on PC */}
@@ -39,25 +39,40 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
           <thead>
             <tr>
               <th>#</th>
-              <th>Tên nông trại</th>
-              <th>Gmail</th>
-              <th>Mã số thuê</th>
-              <th>SĐT</th>
-              <th>Loại hình DN</th>
-              <th>Mô hình KD</th>
-              <th>Ngày tạo</th>
+              <th>Tên khu đất</th>
+              <th>Tên vùng</th>
+              <th>Diện tích</th>
+              <th>Tỉnh</th>
+              <th>Quận-Huyện</th>
+              <th>Ngày Tạo</th>
+              <th>Ghi chú</th>
+              <th>Chức năng</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <td>FIT PRO ClUB</td>
-              <td>fitproclub@gmail.com</td>
-              <td>ABC-145</td>
-              <td>0336844690</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>Khu đất A</td>
+              <td>Vùng trồng cà</td>
+              <td>
+                200 m<sup>2</sup>
+              </td>
+              <td>Đồng Nai</td>
+              <td>Biên Hòa</td>
+              <td>27/06/2023</td>
+              <td>Vùng trồng cà nhà bà Hồng</td>
+              <td>
+                <Tippy content={`Cập nhật vùng trồng cà`} theme="light">
+                  <Button
+                    className={cx("btn-edit")}
+                    variant="contained"
+                    disableElevation={true}
+                    onClick={() => {}}
+                  >
+                    <Edit />
+                  </Button>
+                </Tippy>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -184,4 +199,4 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
   );
 };
 
-export default InforFarmPageTable;
+export default AreaTable;

@@ -24,6 +24,8 @@ $color-title: #a2a3b7;
 }
 
 .btn-header {
+  display: flex;
+  align-items: center;
   background-color: transparent;
   height: $btn-icon-size;
   cursor: pointer;

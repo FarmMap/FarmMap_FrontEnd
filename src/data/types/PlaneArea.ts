@@ -1,6 +1,5 @@
-import { LatLngExpression } from "leaflet";
-
 interface LatLngObject {
+  point?: number;
   lat: number;
   lng: number;
 }

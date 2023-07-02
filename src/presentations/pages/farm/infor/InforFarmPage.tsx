@@ -1,3 +1,4 @@
+// External
 import {
   MapContainer,
   Marker,
@@ -15,28 +16,30 @@ import "leaflet-draw/dist/leaflet.draw.css";
 import "leaflet-draw/dist/leaflet.draw.js";
 // import LeafletRoutingMachine from "./LeafletRoutingMachine";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { Button, Grid, Pagination } from "@mui/material";
+import { Button, Grid, Pagination, Select, MenuItem } from "@mui/material";
+
+// Internal
 import Map from "../../../components/maps/Map";
 
 import PlaneArea from "../../../../data/types/PlaneArea";
 
 import AddIcon from "@mui/icons-material/Add";
 
-import { EditControl } from "react-leaflet-draw";
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
-
-import classNames from "classnames/bind";
-import styles from "./InforFarmPage.module.scss";
 import "./Map.css";
 import DefaultWebLayOut from "../../../components/defaultWebLayOut/DefaultWebLayOut";
 import InforFarmPageTable from "./InforFarmPageTable";
 import images from "../../../../assets/images";
-import DefaultModal from "../../../components/defaultModal/DefaultModal";
 import PlaneModal from "./PlaneModal";
 import { STATUS } from "../../../../constants/Constants";
 import { toast } from "react-toastify";
 import LeafletGeocoder from "../../../components/maps/LeafletGeocoder";
+import DrawLocation from "../../../components/maps/DrawLocation";
+
+// Style
+import classNames from "classnames/bind";
+import styles from "./InforFarmPage.module.scss";
 const cx = classNames.bind(styles);
 
 let DefaultIcon = L.icon({
@@ -54,14 +57,8 @@ const useLeafletMap = () => useContext(LeafletContext);
 function InforFarmPage() {
   const position = { lat: 10.964112, lng: 106.856461 };
 
-  const [viewLocation, setViewLocation] = useState(false);
   const fillBlueOptions = { fillColor: "blue" };
   const blackOptions = { color: "black" };
-
-  const rectangle = [
-    [10.964112, 106.856461],
-    [10.94612, 106.876259],
-  ];
 
   const [addPlace, setAddPlace] = useState(false);
 
@@ -79,38 +76,117 @@ function InforFarmPage() {
     ghiChu: "",
   });
 
-  const [showPolygon, setShowPolygon] = useState(false);
-  const [showMarker, setShowMarker] = useState(false);
+  const [planeLocal, setPlaneLocal] = useState<PlaneArea[]>([]);
 
   const handleSubmitPlane = () => {
-    setShowPolygon(true);
-    setShowMarker(true);
-    setAddPlace(false);
+    planeLocal.push(plane);
+    if (localStorage.getItem("plane") == undefined) {
+      localStorage.setItem("planeLocal", JSON.stringify(planeLocal));
+    }
+
     setTimeout(() => {
       toast.success("Thêm vùng thành công");
+      setPlane({
+        tenFarm: "",
+        tenKhuDat: "",
+        dienTich: 0,
+        latlng: [
+          {
+            lat: 0,
+            lng: 0,
+          },
+        ],
+        ghiChu: "",
+      });
     }, 3000);
   };
 
+  const planeGetLocal: PlaneArea[] =
+    JSON.parse(localStorage.getItem("planeLocal") || "null") || [];
+  console.log(planeGetLocal.map((item, i) => item.latlng));
+
   const polygon = [
-    { lat: 10.94612, lng: 106.876259 }, // Long Bình
-    { lat: 10.95536, lng: 106.848923 }, // Tân Mai
-    { lat: 10.95468, lng: 106.794357 }, // Bửu Long
-    { lat: 10.964112, lng: 106.876259 }, // Bình Đas
+    { lat: 10.9576317, lng: 106.84341754730488 }, // Long Bình
+    { lat: 10.95804175, lng: 106.82854776459729 }, // Tân Mai
+    { lat: 10.9507929, lng: 106.8263284 }, // Bửu Long
+    { lat: 10.9498102, lng: 106.841793 }, // Bình Đas
+  ];
+
+  const polygon1 = [
+    { lat: 10.95804175, lng: 106.82854776459729 }, // Long Bình
+    { lat: 10.9577124, lng: 106.8320321 }, // Tân Mai
+    { lat: 10.95393345, lng: 106.83600481134125 }, // Bình Đas
+    { lat: 10.9505247, lng: 106.8263284 }, // Bửu Long
+  ];
+
+  const polygon2 = [
+    { lat: 10.960043, lng: 106.8500886 }, // Long Bình
+    { lat: 10.958948, lng: 106.84370974954155 }, // Tân Mai
+    { lat: 10.9557241, lng: 106.8568346 }, // Bửu Long
   ];
   return (
     <DefaultWebLayOut>
       <>
         {/* Xem location */}
         <Grid>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => {
-                setViewLocation(!viewLocation);
-              }}
-            />{" "}
-            View your location
-          </label>
+          <select
+            style={{
+              marginBottom: "10px",
+              padding: "8px 10px",
+              border: "1px solid #ccc",
+            }}
+            value={"Tất cả"}
+          >
+            <option value="ok">Khu vực</option>
+            <option value="">Bắc</option>
+            <option value="">Trung</option>
+            <option value="">Nam</option>
+          </select>
+
+          <select
+            style={{
+              marginBottom: "10px",
+              marginLeft: "10px",
+              padding: "8px 10px",
+              border: "1px solid #ccc",
+            }}
+            value={"Tất cả"}
+          >
+            <option value="ok">Tỉnh</option>
+            <option value="">Đồng Nai</option>
+            <option value="">Hà Nội</option>
+            <option value="">Phú Yên</option>
+          </select>
+
+          <select
+            style={{
+              marginBottom: "10px",
+              marginLeft: "10px",
+              padding: "8px 10px",
+              border: "1px solid #ccc",
+            }}
+            value={"Tất cả"}
+          >
+            <option value="ok">Thành phố</option>
+            <option value="">Biên Hòa</option>
+            <option value="">Lạng Sơn</option>
+            <option value="">Hạ Long</option>
+          </select>
+
+          <select
+            style={{
+              marginBottom: "10px",
+              marginLeft: "10px",
+              padding: "8px 10px",
+              border: "1px solid #ccc",
+            }}
+            value={"Tên Farm"}
+          >
+            <option value="ok">Tên Farm</option>
+            <option value="">Farm A</option>
+            <option value="">Farm B</option>
+            <option value="">Farm C</option>
+          </select>
         </Grid>
 
         {/* Map */}
@@ -118,27 +194,57 @@ function InforFarmPage() {
           <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {/* Render your map layers, markers, etc. */}
-            {viewLocation && <LocationMarker />}
+            {/* {viewLocation && <LocationMarker />} */}
             <LeafletGeocoder />
+            {planeGetLocal.length > 0 &&
+              planeGetLocal.map((planeLocalItem, i) =>
+                planeLocalItem.latlng.map((item, j) => (
+                  <Marker
+                    key={j}
+                    position={{
+                      lat: item.lat,
+                      lng: item.lng,
+                    }}
+                  >
+                    <Popup>Điểm {j + 1}</Popup>
+                  </Marker>
+                ))
+              )}
 
-            {plane.latlng.length > 0 &&
-              showMarker &&
-              plane.latlng.map((item, i) => (
-                <Marker
-                  key={i}
-                  position={{
-                    lat: item.lat,
-                    lng: item.lng,
-                  }}
-                >
-                  <Popup>Điểm {i + 1}</Popup>
-                </Marker>
-              ))}
-            {plane.latlng.length > 0 && showPolygon && (
-              <Polygon pathOptions={blackOptions} positions={plane.latlng}>
-                <Popup>{plane.tenKhuDat}</Popup>
+            {polygon.map((item, i) => (
+              <Marker
+                key={i}
+                position={{
+                  lat: item.lat,
+                  lng: item.lng,
+                }}
+              >
+                <Popup>Điểm {i + 1}</Popup>
+              </Marker>
+            ))}
+
+            <Polygon pathOptions={blackOptions} positions={polygon}>
+              <Popup>Khu ABCD</Popup>
+              <Polygon pathOptions={fillBlueOptions} positions={polygon1}>
+                <Popup>Vùng A</Popup>
               </Polygon>
-            )}
+              {/* <Polygon
+                pathOptions={{ fillColor: "red", color: "red" }}
+                positions={polygon2}
+              >
+                <Popup>Vùng B</Popup>
+              </Polygon> */}
+            </Polygon>
+
+            {planeGetLocal.length > 0 &&
+              planeGetLocal.map((planeGetLocalItem, i) => (
+                <Polygon
+                  pathOptions={blackOptions}
+                  positions={planeGetLocalItem.latlng}
+                >
+                  <Popup>{planeGetLocalItem.tenKhuDat}</Popup>
+                </Polygon>
+              ))}
           </MapContainer>
           {/* <Map /> */}
         </Grid>
@@ -148,13 +254,14 @@ function InforFarmPage() {
           <Button
             className={cx("addBtn")}
             variant="contained"
+            style={{ width: "150px" }}
             startIcon={<AddIcon className={cx("add-icon")} />}
             size="large"
             onClick={() => {
               setAddPlace(true);
             }}
           >
-            Thêm vùng
+            Thêm khu đất
           </Button>
         </Grid>
 
@@ -165,7 +272,6 @@ function InforFarmPage() {
             handleCloseModal={() => {
               setAddPlace(false);
             }}
-            roles={STATUS}
             plane={plane}
             setPlane={setPlane}
             handleSubmitPlane={handleSubmitPlane}
