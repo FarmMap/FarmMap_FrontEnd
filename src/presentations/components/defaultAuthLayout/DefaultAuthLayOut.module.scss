@@ -5,23 +5,43 @@
 }
 
 .img-wrapper {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
   background-image: url("../../../../src/assets/images/banner.jpg");
   background-size: cover;
-  background-position: -319px 0px;
+  background-repeat: no-repeat;
+  // background-position: -319px 0px;
   transition: transform 1.2s ease-in-out;
   position: relative;
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  background: black;
+  opacity: 0.05;
+  height: 100%;
+  overflow: hidden;
+  outline: 0;
+  transition: opacity 0.15s linear;
+}
+
 .form-wrapper {
-  padding: 4% 0 0 0;
+  z-index: 11;
+  border-radius: 10px;
+  height: 80%;
   background-color: var(--gray-color);
 
   h4 {
-    text-shadow: 1px 1px 1px var(--white-color);
+    text-shadow: 1px 1px 1px var(--gray-color);
     width: 100%;
     text-align: center;
-    font-size: 2.4rem;
-    margin: 28px 0;
+    font-size: 1.8rem;
+    margin: 0px 0 28px 0;
   }
 }
 

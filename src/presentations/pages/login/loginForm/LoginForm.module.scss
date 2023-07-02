@@ -15,7 +15,7 @@
     }
   }
 
-  input {
+  .input {
     font-size: var(--primary-size);
     background-color: var(--gray-color);
     border-radius: calc(var(--primary-size) * 20);
@@ -79,11 +79,17 @@
   justify-content: center;
   align-items: center;
   height: 42px;
-  border-radius: calc(var(--primary-size) * 20);
+  width: 75px;
+  border-radius: 6px;
   box-shadow: 0 8px 0 var(--green-hover-color);
   transition: 0.3s;
-  margin: calc(var(--primary-size) + 2rem) 0 0 0;
+  margin: calc(var(--primary-size) + 2rem) auto;
   cursor: pointer;
+
+  svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
 
   &:hover {
     background-color: var(--primary-color);
@@ -94,13 +100,6 @@
     box-shadow: none;
     transform: translateY(5px);
   }
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: var(--primary-color);
-  }
 }
 
 .errors {
@@ -109,4 +108,35 @@
   font-size: 1.4rem;
   margin: 8px 0 0 8px;
   color: var(--second-color);
+}
+
+.remember-pass-wrapper {
+  display: flex;
+  align-items: center !important;
+  justify-content: space-evenly;
+  margin-top: 16px !important;
+  label {
+    font-size: 1.3rem;
+    cursor: pointer;
+    margin: 0;
+    color: var(--text-color);
+    font-weight: 600;
+  }
+}
+
+.forgot-pass-wrapper {
+  display: flex !important;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 16px !important;
+
+  span {
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

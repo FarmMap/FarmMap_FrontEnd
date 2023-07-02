@@ -32,7 +32,6 @@ import DefaultWebLayOut from "../../../components/defaultWebLayOut/DefaultWebLay
 import InforFarmPageTable from "./InforFarmPageTable";
 import images from "../../../../assets/images";
 import PlaneModal from "./PlaneModal";
-import { STATUS } from "../../../../constants/Constants";
 import { toast } from "react-toastify";
 import LeafletGeocoder from "../../../components/maps/LeafletGeocoder";
 import DrawLocation from "../../../components/maps/DrawLocation";

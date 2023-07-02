@@ -3,19 +3,17 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// Internal files
-
-// Styles
-// import LoginCredentials from "../../../../data/types/LoginCredentials";
-// import CarRentalApi from "../../../../data/api/CarRentalApi";
-import classNames from "classnames/bind";
-import styles from "./LoginForm.module.scss";
-// import { Left, Right } from "../../../../core/Result";
-import { CircularProgress } from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
 import { toast } from "react-toastify";
+import { CircularProgress, Grid } from "@mui/material";
+// Internal files
 import UseLogin from "../../../../api/Login/useLogin";
 import { Left, Right } from "../../../../api/Login/Result";
 import UserAccount from "../../../../data/types/UserAccount";
+// Styles
+
+import classNames from "classnames/bind";
+import styles from "./LoginForm.module.scss";
 const cx = classNames.bind(styles);
 
 const LoginForm = () => {
@@ -57,6 +55,7 @@ const LoginForm = () => {
     <form className={cx("form-wrapper")} onSubmit={formik.handleSubmit}>
       <label htmlFor="username">TÊN NGƯỜI DÙNG</label>
       <input
+        className={cx("input")}
         type="text"
         id="username"
         placeholder="Nhập tên người dùng..."
@@ -69,6 +68,7 @@ const LoginForm = () => {
 
       <label htmlFor="password">MẬT KHẨU</label>
       <input
+        className={cx("input")}
         type="password"
         id="password"
         placeholder="Nhập mật khẩu..."
@@ -80,7 +80,7 @@ const LoginForm = () => {
       )}
 
       <button type="submit" className={cx("btn", "login")} disabled={isDisable}>
-        ĐĂNG NHẬP
+        <LoginIcon />
         {isDisable && (
           <CircularProgress
             size={14}
