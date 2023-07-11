@@ -1,11 +1,13 @@
 // External files
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import PersonIcon from "@mui/icons-material/Person";
+import LockIcon from "@mui/icons-material/Lock";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import LoginIcon from "@mui/icons-material/Login";
 import { toast } from "react-toastify";
 import { CircularProgress, Grid } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 // Internal files
 import UseLogin from "../../../../api/Login/useLogin";
 import { Left, Right } from "../../../../api/Login/Result";
@@ -53,34 +55,48 @@ const LoginForm = () => {
 
   return (
     <form className={cx("form-wrapper")} onSubmit={formik.handleSubmit}>
-      <label htmlFor="username">TÊN NGƯỜI DÙNG</label>
-      <input
-        className={cx("input")}
-        type="text"
-        id="username"
-        placeholder="Nhập tên người dùng..."
-        value={formik.values.username}
-        onChange={formik.handleChange}
-      />
+      <div className={cx("form-input-wrapper")}>
+        <label htmlFor="username">Tài khoản</label>
+        <input
+          className={cx("input")}
+          type="text"
+          id="username"
+          placeholder="Nhập tên người dùng..."
+          value={formik.values.username}
+          onChange={formik.handleChange}
+        />
+        <PersonIcon />
+      </div>
       {formik.errors.username && (
         <p className={cx("errors")}>{formik.errors.username}</p>
       )}
 
-      <label htmlFor="password">MẬT KHẨU</label>
-      <input
-        className={cx("input")}
-        type="password"
-        id="password"
-        placeholder="Nhập mật khẩu..."
-        value={formik.values.password}
-        onChange={formik.handleChange}
-      />
+      <div className={cx("form-input-wrapper")}>
+        <label htmlFor="password">Mật khẩu</label>
+        <input
+          className={cx("input")}
+          type="password"
+          id="password"
+          placeholder="Nhập mật khẩu..."
+          value={formik.values.password}
+          onChange={formik.handleChange}
+        />
+        <LockIcon />
+        <VisibilityIcon
+          style={{
+            right: "12px",
+            width: "20px",
+            height: "20px",
+            cursor: "pointer",
+          }}
+        />
+      </div>
       {formik.errors.password && (
         <p className={cx("errors")}>{formik.errors.password}</p>
       )}
 
       <button type="submit" className={cx("btn", "login")} disabled={isDisable}>
-        <LoginIcon />
+        Đăng nhập <LoginIcon />
         {isDisable && (
           <CircularProgress
             size={14}
@@ -88,6 +104,8 @@ const LoginForm = () => {
           />
         )}
       </button>
+
+      <p className={cx("outro")}>Diverse Grow Agriculture</p>
     </form>
   );
 };

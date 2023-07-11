@@ -174,13 +174,11 @@
     color: var(--white-color);
     background-color: var(--primary-color);
     opacity: 1;
-    box-shadow: 0 8px 0 var(--green-hover-color);
     transition: 0.3s;
 
     &:hover {
       opacity: 0.8;
       background-color: var(--primary-color);
-      box-shadow: 0 8px 0 var(--green-hover-color);
     }
 
     &:active {

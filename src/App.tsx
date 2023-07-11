@@ -21,11 +21,11 @@ const App: React.FC = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
         {/* Private Route */}
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/nong-trai/thong-tin" element={<InforPage />} />
-          <Route path="/nong-trai/vung-trong" element={<AreaPage />} />
-        </Route>
+        {/* <Route path="/" element={<PrivateRoute />}> */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/nong-trai/thong-tin" element={<InforPage />} />
+        <Route path="/nong-trai/vung-trong" element={<AreaPage />} />
+        {/* </Route> */}
       </Routes>
     </div>
   );

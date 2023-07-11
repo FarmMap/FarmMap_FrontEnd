@@ -23,7 +23,7 @@
   z-index: 10;
   width: 100%;
   background: black;
-  opacity: 0.05;
+  opacity: 0.3;
   height: 100%;
   overflow: hidden;
   outline: 0;
@@ -48,8 +48,10 @@
 .LogoMG-wrapper {
   width: 100%;
   text-align: center;
+  margin: 28px 0 14px 0;
   img {
-    width: 200px;
+    width: 120px;
     height: 100%;
+    object-fit: contain;
   }
 }

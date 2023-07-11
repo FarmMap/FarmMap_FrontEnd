@@ -83,7 +83,7 @@ const SubSideBar: React.FC<SubSideBarProps> = (props) => {
       {openSidebar && openDropdown && (
         <ul className={cx("dropdown-menu")}>
           {item.subnav?.map((subnavItem, index) => (
-            <li key={index}>
+            <li key={index} className={cx("dropdown-menu-wrapper")}>
               <Link
                 to={subnavItem.path}
                 className={cx("dropdown-menu-link")}
