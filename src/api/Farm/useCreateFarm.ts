@@ -76,7 +76,7 @@ const useCreateFarm = (props: useCreateFarmProps) => {
             let responseError: ResponseError = error.response
               .data as ResponseError;
 
-            setError(responseError.message);
+            setError(responseError.message[0]);
           } else {
             let requestError = error.request;
 

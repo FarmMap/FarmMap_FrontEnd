@@ -39,6 +39,11 @@ import DrawLocation from "../../../components/maps/DrawLocation";
 // Style
 import classNames from "classnames/bind";
 import styles from "./InforFarmPage.module.scss";
+import { Area } from "../../../../data/types/Area";
+import useCreateArea from "../../../../api/PlaneArea/useCreateArea";
+import useFetchFarmList from "../../../../api/Farm/useFetchFarmList";
+import Farm from "../../../../data/types/Farm";
+import useFetchAreaList from "../../../../api/PlaneArea/useFetchAreaList";
 const cx = classNames.bind(styles);
 
 let DefaultIcon = L.icon({
@@ -77,29 +82,6 @@ function InforFarmPage() {
 
   const [planeLocal, setPlaneLocal] = useState<PlaneArea[]>([]);
 
-  const handleSubmitPlane = () => {
-    planeLocal.push(plane);
-    if (localStorage.getItem("plane") == undefined) {
-      localStorage.setItem("planeLocal", JSON.stringify(planeLocal));
-    }
-
-    setTimeout(() => {
-      toast.success("Thêm vùng thành công");
-      setPlane({
-        tenFarm: "",
-        tenKhuDat: "",
-        dienTich: 0,
-        latlng: [
-          {
-            lat: 0,
-            lng: 0,
-          },
-        ],
-        ghiChu: "",
-      });
-    }, 3000);
-  };
-
   const planeGetLocal: PlaneArea[] =
     JSON.parse(localStorage.getItem("planeLocal") || "null") || [];
 
@@ -122,6 +104,107 @@ function InforFarmPage() {
     { lat: 10.958948, lng: 106.84370974954155 }, // Tân Mai
     { lat: 10.9557241, lng: 106.8568346 }, // Bửu Long
   ];
+
+  //API
+  const [area, setArea] = useState<Area>({
+    name: "",
+    acreage: 0,
+    description: "",
+    locations: [
+      {
+        point: 0,
+        latitude: 0,
+        longitude: 0,
+      },
+    ],
+    avatars: undefined,
+  });
+
+  const [farm, setFarm] = useState<Farm>({
+    id: "",
+    name: "",
+    business_model: "",
+    business_type: "",
+    province: "",
+    district: "",
+    wards: "",
+    address: "",
+    location: {
+      latitude: 0,
+      longitude: 0,
+    },
+    image: undefined,
+  });
+
+  const {
+    isCreated,
+    error: createAreaError,
+    isLoading: isCreating,
+    createArea,
+  } = useCreateArea({
+    farmId: farm.id,
+    name: area.name,
+    acreage: area.acreage,
+    description: area.description,
+    locations: area.locations,
+    avatars: area.avatars,
+  });
+
+  const { farms, error: fetchFarmErr, isLoading } = useFetchFarmList({});
+
+  const handleSubmitArea = (area: Area) => {
+    console.log(area);
+
+    createArea({ area: area });
+  };
+
+  useEffect(() => {
+    let error = createAreaError ?? fetchFarmErr;
+    let isSuccess = isCreated;
+
+    if (error != null) {
+      toast.error(error);
+    }
+
+    if (isSuccess) {
+      toast.success("Thao tác thành công!");
+      setTimeout(() => {
+        setArea({
+          name: "",
+          acreage: 0,
+          description: "",
+          locations: [
+            {
+              point: 0,
+              latitude: 0,
+              longitude: 0,
+            },
+          ],
+          avatars: undefined,
+        });
+
+        setFarm({
+          id: "",
+          name: "",
+          business_model: "",
+          business_type: "",
+          province: "",
+          district: "",
+          wards: "",
+          address: "",
+          location: {
+            latitude: 0,
+            longitude: 0,
+          },
+          image: undefined,
+        });
+      }, 3000);
+    }
+  }, [createAreaError, fetchFarmErr, isCreated]);
+
+  const { areas } = useFetchAreaList({});
+  console.log("areaAPI:", areas);
+
   return (
     <DefaultWebLayOut>
       <>
@@ -264,14 +347,17 @@ function InforFarmPage() {
 
         {addPlace && (
           <PlaneModal
+            farm={farm}
+            setFarm={setFarm}
+            farms={farms}
             title="Thêm khu đất"
             submitButtonLabel="Xác nhận"
             handleCloseModal={() => {
               setAddPlace(false);
             }}
-            plane={plane}
-            setPlane={setPlane}
-            handleSubmitPlane={handleSubmitPlane}
+            area={area}
+            setArea={setArea}
+            handleSubmitArea={handleSubmitArea}
           />
         )}
 

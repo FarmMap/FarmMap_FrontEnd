@@ -192,7 +192,55 @@
   }
 }
 
-// Plane modal
+// Modal
+.filter-dropdown {
+  display: block;
+  width: 100%;
+  min-width: 100px;
+  height: calc(1.5em + 1.3rem + 2px);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  legend {
+    width: 0px;
+  }
+
+  fieldset {
+    border: none;
+  }
+}
+
+.company-wrapper {
+  margin: 0 0 15px 0;
+}
+
+.label-company {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 1.3rem;
+  text-align: right;
+  vertical-align: middle;
+  width: 100%;
+  font-weight: bold;
+  color: #646c9a;
+
+  span {
+    color: red;
+    margin-left: 5px;
+  }
+}
+
+// company modal
 .form-control-wrapper {
   padding-top: 0px !important;
   margin-bottom: 10px !important;
@@ -224,28 +272,30 @@
 }
 
 .form-input-label {
-  display: inline-block;
+  display: flex;
+  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
   font-size: 1.3rem;
-  text-align: right;
   vertical-align: middle;
   width: 100%;
   font-weight: bold;
   color: #646c9a;
 }
 
+.see-icon {
+  width: 20px !important;
+  height: 20px !important;
+  // color: var(--second-color);
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 @media (max-width: 900px) {
   .form-input-label {
     white-space: nowrap;
     text-align: left;
-  }
-}
-
-@media (max-width: 400px) {
-  .label-wrapper {
-    display: block;
-  }
-
-  .label-content {
-    padding-left: 21px;
   }
 }

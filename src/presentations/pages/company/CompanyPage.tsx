@@ -45,7 +45,6 @@ const CompanyPage = () => {
 
   const {
     isCreated,
-    setCreated,
     error: createFarmError,
     isLoading: isCreating,
     createFarm,

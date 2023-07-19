@@ -1,4 +1,5 @@
 export default interface Farm {
+  id?: string;
   name: string;
   business_model: string;
   business_type: string;

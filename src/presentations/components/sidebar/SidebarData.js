@@ -7,7 +7,6 @@ import SpaIcon from '@mui/icons-material/Spa';
 import EdgesensorHighIcon from '@mui/icons-material/EdgesensorHigh';
 import PetsIcon from '@mui/icons-material/Pets';
 import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PropTypes from 'prop-types';
 
 export const SidebarData = [
@@ -29,8 +28,8 @@ export const SidebarData = [
                 path: "/nong-nghiep/khu-canh-tac"
             },
             {
-                title: "Doanh nghiệp",
-                path: "/nong-nghiep/doanh-nghiep"
+                title: "Trang trại",
+                path: "/nong-nghiep/trang-trai"
             },
         ]
     },

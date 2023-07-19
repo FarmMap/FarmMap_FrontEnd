@@ -8,12 +8,12 @@ interface ResponseError {
   message: string;
 }
 
-interface useFetchFarmListProps {
+interface useFetchAreaListProps {
   shouldRefesh?: boolean;
 }
 
-const useFetchFarmList = (props: useFetchFarmListProps) => {
-  let [farms, setFarms] = useState<Farm[]>([]);
+const useFetchAreaList = (props: useFetchAreaListProps) => {
+  let [areas, setAreas] = useState<Farm[]>([]);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
 
@@ -23,7 +23,7 @@ const useFetchFarmList = (props: useFetchFarmListProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}farm/all`,
+      url: `${process.env.REACT_APP_API_BASE_URL}area/all`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -32,7 +32,7 @@ const useFetchFarmList = (props: useFetchFarmListProps) => {
     axios(config)
       .then((response: AxiosResponse) => {
         let data = response.data;
-        setFarms(data);
+        setAreas(data);
 
         setLoading(false);
       })
@@ -51,7 +51,7 @@ const useFetchFarmList = (props: useFetchFarmListProps) => {
       });
   }, [props.shouldRefesh]);
 
-  return { farms, error, isLoading };
+  return { areas, error, isLoading };
 };
 
-export default useFetchFarmList;
+export default useFetchAreaList;

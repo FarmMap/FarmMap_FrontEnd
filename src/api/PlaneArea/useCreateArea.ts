@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useState } from "react";
-
-import Area from "../../data/types/Area";
+import { Area, LatLngObject } from "../../data/types/Area";
+import Farm from "../../data/types/Farm";
 
 interface CreateAreaParams {
   area: Area;
@@ -13,7 +13,12 @@ interface ResponseError {
 }
 
 interface useCreateAreaProps {
-  farmId: string;
+  farmId?: string;
+  name: string;
+  acreage: number;
+  locations: LatLngObject[];
+  description: string;
+  avatars?: File[];
 }
 
 const useCreateArea = (props: useCreateAreaProps) => {
@@ -21,20 +26,42 @@ const useCreateArea = (props: useCreateAreaProps) => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const createEmployee = useCallback(
+  const createArea = useCallback(
     (params: CreateAreaParams) => {
       setCreated(false);
       setError(null);
       setLoading(true);
+      const FormData = require("form-data");
+      var data = new FormData();
+      data.append("name", props.name);
+      data.append("acreage", props.acreage);
+      data.append("description", props.description);
+      props.locations.forEach((location, i) => {
+        data.append(
+          "locations",
+          JSON.stringify({
+            point: location.point,
+            latitude: location.latitude,
+            longitude: location.longitude,
+          })
+        );
+      });
+      console.log("api img: ", props.avatars);
 
-      let data = JSON.stringify(params.area);
+      if (props.avatars && props.avatars.length > 0) {
+        props.avatars.forEach((avatar) => {
+          data.append("avatars", avatar);
+        });
+      }
 
       let config = {
         method: "post",
+        maxBodyLength: Infinity,
         url: `${process.env.REACT_APP_API_BASE_URL}area?farmId=${props.farmId}`,
         headers: {
+          accept: "*/*",
           Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
         data: data,
       };
@@ -42,6 +69,7 @@ const useCreateArea = (props: useCreateAreaProps) => {
       axios(config)
         .then((response: AxiosResponse) => {
           setCreated(true);
+
           setLoading(false);
         })
         .catch((error: AxiosError) => {
@@ -49,7 +77,7 @@ const useCreateArea = (props: useCreateAreaProps) => {
             let responseError: ResponseError = error.response
               .data as ResponseError;
 
-            setError(responseError.message);
+            setError(responseError.message[0]);
           } else {
             let requestError = error.request;
 
@@ -59,10 +87,17 @@ const useCreateArea = (props: useCreateAreaProps) => {
           setLoading(false);
         });
     },
-    [props.farmId]
+    [
+      props.acreage,
+      props.avatars,
+      props.description,
+      props.locations,
+      props.name,
+      props.farmId,
+    ]
   );
 
-  return { isCreated, setCreated, error, isLoading, createEmployee };
+  return { isCreated, setCreated, error, isLoading, createArea };
 };
 
 export default useCreateArea;

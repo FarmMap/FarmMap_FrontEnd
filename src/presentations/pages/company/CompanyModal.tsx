@@ -2,17 +2,14 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import DefaultModal from "../../components/defaultModal/DefaultModal";
 import { Autocomplete, Button, Grid, TextField } from "@mui/material";
-import { MapContainer, Marker, Polygon, Popup, TileLayer } from "react-leaflet";
-import LeafletGeocoder from "../../components/maps/LeafletGeocoder";
+import { MapContainer, TileLayer } from "react-leaflet";
 import SaveIcon from "@mui/icons-material/Save";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { toast } from "react-toastify";
 import Tippy from "@tippyjs/react";
 import ImageIcon from "@mui/icons-material/Image";
 // Internal
 import FormInput from "../../components/formInput/FormInput";
 import FloatingLabelInput from "../../components/floatingLabelInput/FloatingLabelInput";
-import PlaneArea from "../../../data/types/PlaneArea";
 import SearchLocationByLatLng from "../../components/maps/SearchLocationByLatLng";
 import {
   business_models,
@@ -110,7 +107,7 @@ const CompanyModal = (props: CompanyModalProps) => {
           </Grid>
           <Grid
             item
-            lg={7}
+            lg={7.26}
             md={7}
             xs={12}
             sm={12}
@@ -151,7 +148,7 @@ const CompanyModal = (props: CompanyModalProps) => {
           </Grid>
           <Grid
             item
-            lg={7}
+            lg={7.26}
             md={7}
             xs={12}
             sm={12}
@@ -191,7 +188,7 @@ const CompanyModal = (props: CompanyModalProps) => {
           </Grid>
           <Grid
             item
-            lg={7}
+            lg={7.26}
             md={7}
             xs={12}
             sm={12}
@@ -228,7 +225,7 @@ const CompanyModal = (props: CompanyModalProps) => {
           </Grid>
           <Grid
             item
-            lg={7}
+            lg={7.26}
             md={7}
             xs={12}
             sm={12}
@@ -265,7 +262,7 @@ const CompanyModal = (props: CompanyModalProps) => {
           </Grid>
           <Grid
             item
-            lg={7}
+            lg={7.26}
             md={7}
             xs={12}
             sm={12}
