@@ -17,7 +17,7 @@ export const SidebarData = [
         icon: <HomeIcon />,
     },
     {
-        title: "Nông trại",
+        title: "Nông nghiệp",
         path: "",
         icon: <HomeWorkIcon />,
         openIcon: <ArrowDropUpIcon />,
@@ -25,21 +25,17 @@ export const SidebarData = [
 
         subnav: [
             {
-                title: "Thông tin",
-                path: "/nong-trai/thong-tin"
+                title: "Khu canh tác",
+                path: "/nong-nghiep/khu-canh-tac"
             },
             {
-                title: "Vùng trồng",
-                path: "/nong-trai/vung-trong"
-            },
-            {
-                title: "Phân lô - Tách thửa",
-                path: "/nong-trai/phan-lo-tach-thua"
+                title: "Doanh nghiệp",
+                path: "/nong-nghiep/doanh-nghiep"
             },
         ]
     },
     {
-        title: "Chăn nuôi",
+        title: "Nông trại",
         path: "",
         icon: <SpaIcon />,
         openIcon: <ArrowDropUpIcon />,
@@ -47,25 +43,22 @@ export const SidebarData = [
 
         subnav: [
             {
-                title: "Thông tin cây trồng",
-                path: "/trong-trot/thong-tin-cay-trong"
+                title: "Vùng canh tác",
+                path: "/nong-trai/vung-canh-tac"
             },
             {
-                title: "Chi phí trồng trọt",
-                path: "/trong-trot/chi-phi-trong-trot"
+                title: "Lịch sử canh tác",
+                path: "/nong-trai/lich-su-canh-tac"
             },
             {
-                title: "Kế hoạch",
-                path: "/trong-trot/ke-hoach"
+                title: "Lịch chăm sóc",
+                path: "/nong-trai/lich-cham-soc"
             },
-            {
-                title: "Vùng gieo",
-                path: "/trong-trot/vung-gieo"
-            },
+
         ]
     },
     {
-        title: "Theo dõi",
+        title: "Nông sản",
         path: "",
         icon: <EdgesensorHighIcon />,
         openIcon: <ArrowDropUpIcon />,
@@ -73,26 +66,23 @@ export const SidebarData = [
 
         subnav: [
             {
-                title: "Thiết bị IOT",
-                path: "/theo-doi/thiet-bi-iot"
+                title: "Danh sách nông sản",
+                path: "/nong-san/danh-sach-nong-san"
             },
             {
-                title: "Cây trồng",
-                path: "/theo-doi/cay-trong"
+                title: "Đặc tính sinh trưởng",
+                path: "/nong-san/dac-tinh-sinh-truong"
             },
             {
-                title: "Nhân công",
-                path: "/theo-doi/nhan-cong"
+                title: "Đặc tính bệnh học",
+                path: "/nong-san/dac-tinh-benh-hoc"
             },
-            {
-                title: "Vật nuôi",
-                path: "/theo-doi/vat-nuoi"
-            },
+
         ]
     },
 
     {
-        title: "Chăn nuôi",
+        title: "Kho",
         path: "",
         icon: <PetsIcon />,
         openIcon: <ArrowDropUpIcon />,
@@ -100,25 +90,25 @@ export const SidebarData = [
 
         subnav: [
             {
-                title: "Thông tin vật nuôi",
-                path: "/chan-nuoi/thong-tin-vat-nuoi"
+                title: "Quản lý vật tư",
+                path: "/kho/danh-sach-yeu-cau-vat-tu"
             },
             {
-                title: "Chi phí chăn nuôi",
-                path: "/chan-nuoi/chi-phi-chan-nuoi"
+                title: "Nông sản",
+                path: "/kho/nong-san"
             },
             {
-                title: "Kế hoạch",
-                path: "/chan-nuoi/ke-hoach"
+                title: "Nhập kho",
+                path: "/kho/nhap-kho"
             },
             {
-                title: "Nơi chăn nuôi",
-                path: "/chan-nuoi/noi-chan-nuoi"
+                title: "Xuất kho",
+                path: "/kho/xuat-kho"
             },
         ]
     },
     {
-        title: "Quản lý",
+        title: "Danh sách yêu cầu",
         path: "",
         icon: <ManageHistoryIcon />,
         openIcon: <ArrowDropUpIcon />,
@@ -126,42 +116,12 @@ export const SidebarData = [
 
         subnav: [
             {
-                title: "Nông cụ",
-                path: "/quan-ly/nong-cu"
+                title: "Yêu cầu",
+                path: "/danh-sach-yeu-cau/yeu-cau"
             },
             {
-                title: "Phân bón và thuốc",
-                path: "/quan-ly/phan-bon-va-thuoc"
-            },
-            {
-                title: "Sản lượng",
-                path: "/quan-ly/san-luong"
-            },
-            {
-                title: "Nhập xuất",
-                path: "/quan-ly/nhap-xuat"
-            },
-        ]
-    },
-    {
-        title: "Tài khoản",
-        path: "",
-        icon: <ManageAccountsIcon />,
-        openIcon: <ArrowDropUpIcon />,
-        closeIcon: <ArrowDropDownIcon />,
-
-        subnav: [
-            {
-                title: "Quản lý",
-                path: "/tai-khoan/quan-ly"
-            },
-            {
-                title: "Hội viên",
-                path: "/tai-khoan/hoi-vien"
-            },
-            {
-                title: "Thành viên",
-                path: "/tai-khoan/thanh-vien"
+                title: "Phiếu trả",
+                path: "/danh-sach-yeu-cau/phieu-tra"
             },
 
         ]

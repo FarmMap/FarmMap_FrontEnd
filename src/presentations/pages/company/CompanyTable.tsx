@@ -1,4 +1,4 @@
-// External importsimports
+// External
 import { Delete, Edit, Image } from "@mui/icons-material";
 import { Button, Grid } from "@mui/material";
 import Tippy from "@tippyjs/react";
@@ -12,16 +12,20 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 // Internal imports
-import { ListIcon } from "../../../components/sidebar/SidebarData";
-
+import { ListIcon } from "../../components/sidebar/SidebarData";
+import ImageIcon from "@mui/icons-material/Image";
 // Style imports
 import classNames from "classnames/bind";
-import styles from "./InforFarmPage.module.scss";
+import styles from "./Company.module.scss";
+import Farm from "../../../data/types/Farm";
 const cx = classNames.bind(styles);
 
-interface InforFarmPageTableProps {}
+interface CompanyTableProps {
+  farms: Farm[];
+  handleGetInforFarm: (farm: Farm) => void;
+}
 
-const InforFarmPageTable = (props: InforFarmPageTableProps) => {
+const CompanyTable = (props: CompanyTableProps) => {
   return (
     <Grid>
       {/* on PC */}
@@ -43,24 +47,42 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
               <th>Mô hình kinh doanh</th>
               <th>Loại hình kinh doanh</th>
               <th>Tỉnh</th>
-              <th>Quận</th>
-              <th>Huyện</th>
-              <th>Phường</th>
+              <th>Quận-Huyện</th>
+              <th>Phường-Xã</th>
               <th>Địa chỉ</th>
               <th>Chức năng</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>FIT PRO ClUB</td>
-              <td>fitproclub@gmail.com</td>
-              <td>ABC-145</td>
-              <td>0336844690</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            {props.farms?.map((farm, i) => (
+              <tr key={i}>
+                <td>{i + 1}</td>
+                <td>{farm.name}</td>
+                <td>{farm.business_model}</td>
+                <td>{farm.business_type}</td>
+                <td>{farm.province}</td>
+                <td>{farm.district}</td>
+                <td>{farm.wards}</td>
+                <td>{farm.address}</td>
+                <td
+                  style={{
+                    whiteSpace: "nowrap",
+                    textAlign: "center",
+                  }}
+                >
+                  <Tippy content={`Xem ảnh farm ${farm.name}`} theme="light">
+                    <Button
+                      className={cx("btn-image")}
+                      variant="contained"
+                      onClick={() => props.handleGetInforFarm(farm)}
+                      disableElevation={true}
+                    >
+                      <ImageIcon />
+                    </Button>
+                  </Tippy>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </Grid>
@@ -186,4 +208,4 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
   );
 };
 
-export default InforFarmPageTable;
+export default CompanyTable;

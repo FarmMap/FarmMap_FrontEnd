@@ -3,16 +3,16 @@ import { useEffect, useState } from "react";
 
 import Farm from "../../data/types/Farm";
 
-interface FarmResponse {
-  danhSach: Farm[];
-}
-
 interface ResponseError {
   code: string;
   message: string;
 }
 
-const useFetchFarmList = () => {
+interface useFetchFarmListProps {
+  shouldRefesh: boolean;
+}
+
+const useFetchFarmList = (props: useFetchFarmListProps) => {
   let [farms, setFarms] = useState<Farm[]>([]);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
@@ -31,8 +31,9 @@ const useFetchFarmList = () => {
 
     axios(config)
       .then((response: AxiosResponse) => {
-        let data: FarmResponse = response.data;
-        setFarms(data.danhSach);
+        let data = response.data;
+        setFarms(data);
+
         setLoading(false);
       })
       .catch((error: AxiosError) => {
@@ -48,7 +49,7 @@ const useFetchFarmList = () => {
         }
         setLoading(false);
       });
-  }, []);
+  }, [props.shouldRefesh]);
 
   return { farms, error, isLoading };
 };

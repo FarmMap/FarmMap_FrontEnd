@@ -29,7 +29,6 @@ const Map = () => {
     }
 
     const geojsonData = _editableFG.leafletElement.toGeoJSON();
-    console.log("a:", geojsonData);
 
     setOnchange(geojsonData);
   };

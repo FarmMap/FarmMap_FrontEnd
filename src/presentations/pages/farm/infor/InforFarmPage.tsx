@@ -102,7 +102,6 @@ function InforFarmPage() {
 
   const planeGetLocal: PlaneArea[] =
     JSON.parse(localStorage.getItem("planeLocal") || "null") || [];
-  console.log(planeGetLocal.map((item, i) => item.latlng));
 
   const polygon = [
     { lat: 10.9576317, lng: 106.84341754730488 }, // Long Bình
@@ -253,14 +252,13 @@ function InforFarmPage() {
           <Button
             className={cx("addBtn")}
             variant="contained"
-            style={{ width: "150px" }}
             startIcon={<AddIcon className={cx("add-icon")} />}
             size="large"
             onClick={() => {
               setAddPlace(true);
             }}
           >
-            Thêm khu đất
+            Thêm khu
           </Button>
         </Grid>
 
@@ -308,7 +306,6 @@ const LocationMarker = () => {
   const map = useMapEvents({
     click() {
       map.locate();
-      console.log(map.locate());
     },
 
     locationfound(e) {

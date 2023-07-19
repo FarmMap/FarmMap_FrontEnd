@@ -6,6 +6,8 @@ interface LatLngObject {
 
 export default interface Area {
   name?: string;
+  acreage?: number;
   locations: LatLngObject[];
   description?: string;
+  avatars?: string;
 }

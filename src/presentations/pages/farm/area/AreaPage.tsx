@@ -81,7 +81,7 @@ const AreaPage = () => {
 
         {showModal && (
           <AreaModal
-            title="Thêm khu đất"
+            title="Thêm vùng trồng"
             submitButtonLabel="Xác nhận"
             handleCloseModal={() => setShowModal(false)}
           />

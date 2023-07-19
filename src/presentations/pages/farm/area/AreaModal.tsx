@@ -52,6 +52,11 @@ const AreaModal = (props: AreaModalProps) => {
     setCountLocal(newCountLocal);
   };
 
+  const handleDeletePlace = (index: Number) => {
+    const newCountLocal = countLocal.filter((_, i) => i !== index);
+    setCountLocal(newCountLocal);
+  };
+
   // Draw map
   const [plane, setPlane] = useState<PlaneArea>({
     tenFarm: "",
@@ -325,6 +330,7 @@ const AreaModal = (props: AreaModalProps) => {
                     color: "var(--second-color)",
                   }}
                   variant="outlined"
+                  onClick={() => handleDeletePlace(i)}
                   size="medium"
                 >
                   <DeleteIcon className={cx("delete-icon")} />
