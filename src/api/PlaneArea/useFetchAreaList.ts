@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-import Farm from "../../data/types/Farm";
+import { Area } from "../../data/types/Area";
 
 interface ResponseError {
   code: string;
@@ -13,7 +13,7 @@ interface useFetchAreaListProps {
 }
 
 const useFetchAreaList = (props: useFetchAreaListProps) => {
-  let [areas, setAreas] = useState<Farm[]>([]);
+  let [areas, setAreas] = useState<Area[]>([]);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
 

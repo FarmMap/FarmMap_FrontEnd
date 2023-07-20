@@ -11,13 +11,20 @@ import {
 } from "react-leaflet";
 import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 import "leaflet-control-geocoder/dist/Control.Geocoder.js";
-import L from "leaflet";
+import L, { LatLngExpression } from "leaflet";
 import "leaflet-draw/dist/leaflet.draw.css";
 import "leaflet-draw/dist/leaflet.draw.js";
 // import LeafletRoutingMachine from "./LeafletRoutingMachine";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { Button, Grid, Pagination, Select, MenuItem } from "@mui/material";
-
+import {
+  Fragment,
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { Button, Grid, Pagination } from "@mui/material";
+import Carousel from "react-material-ui-carousel";
 // Internal
 import Map from "../../../components/maps/Map";
 
@@ -39,11 +46,13 @@ import DrawLocation from "../../../components/maps/DrawLocation";
 // Style
 import classNames from "classnames/bind";
 import styles from "./InforFarmPage.module.scss";
-import { Area } from "../../../../data/types/Area";
+import { Area, LatLngObject } from "../../../../data/types/Area";
 import useCreateArea from "../../../../api/PlaneArea/useCreateArea";
 import useFetchFarmList from "../../../../api/Farm/useFetchFarmList";
 import Farm from "../../../../data/types/Farm";
 import useFetchAreaList from "../../../../api/PlaneArea/useFetchAreaList";
+import DefaultModal from "../../../components/defaultModal";
+import SearchLocationByLatLng from "../../../components/maps/SearchLocationByLatLng";
 const cx = classNames.bind(styles);
 
 let DefaultIcon = L.icon({
@@ -205,6 +214,41 @@ function InforFarmPage() {
   const { areas } = useFetchAreaList({});
   console.log("areaAPI:", areas);
 
+  const convertLatLngObjectToLatLngExpression = (
+    locations: LatLngObject[]
+  ): LatLngExpression[] => {
+    return locations.map(
+      (loc) => [loc.latitude, loc.longitude] as LatLngExpression
+    );
+  };
+
+  const [showImgModal, setShowImgModal] = useState<{
+    open: boolean;
+    area?: Area;
+  }>({
+    open: false,
+  });
+
+  const [showLocationArea, setShowLocationArea] = useState<{
+    open: boolean;
+    area?: Area;
+  }>({ open: false });
+
+  const handleGetAvtArea = (area: Area) => {
+    setShowImgModal({ open: true, area: area });
+  };
+
+  const handleSeeLocationArea = (area: Area) => {
+    setShowLocationArea({ open: !showLocationArea.open, area: area });
+  };
+
+  const [showImgFarmModal, setShowImgFarmModal] = useState<{
+    open: boolean;
+    farmImg?: Farm;
+  }>({
+    open: false,
+  });
+
   return (
     <DefaultWebLayOut>
       <>
@@ -277,14 +321,22 @@ function InforFarmPage() {
             {/* Render your map layers, markers, etc. */}
             {/* {viewLocation && <LocationMarker />} */}
             <LeafletGeocoder />
-            {planeGetLocal.length > 0 &&
-              planeGetLocal.map((planeLocalItem, i) =>
-                planeLocalItem.latlng.map((item, j) => (
+            {showLocationArea.area?.locations && showLocationArea.open && (
+              <SearchLocationByLatLng
+                showPopUp={false}
+                lat={showLocationArea.area.locations[0].latitude}
+                lng={showLocationArea.area.locations[0].longitude}
+              />
+            )}
+            {areas.length > 0 &&
+              showLocationArea.open &&
+              areas.map((area, i) =>
+                area.locations.map((item, j) => (
                   <Marker
                     key={j}
                     position={{
-                      lat: item.lat,
-                      lng: item.lng,
+                      lat: item.latitude,
+                      lng: item.longitude,
                     }}
                   >
                     <Popup>Điểm {j + 1}</Popup>
@@ -292,38 +344,38 @@ function InforFarmPage() {
                 ))
               )}
 
-            {polygon.map((item, i) => (
-              <Marker
-                key={i}
-                position={{
-                  lat: item.lat,
-                  lng: item.lng,
-                }}
-              >
-                <Popup>Điểm {i + 1}</Popup>
-              </Marker>
-            ))}
-
-            <Polygon pathOptions={blackOptions} positions={polygon}>
-              <Popup>Khu ABCD</Popup>
-              <Polygon pathOptions={fillBlueOptions} positions={polygon1}>
-                <Popup>Vùng A</Popup>
-              </Polygon>
-              {/* <Polygon
-                pathOptions={{ fillColor: "red", color: "red" }}
-                positions={polygon2}
-              >
-                <Popup>Vùng B</Popup>
-              </Polygon> */}
-            </Polygon>
-
-            {planeGetLocal.length > 0 &&
-              planeGetLocal.map((planeGetLocalItem, i) => (
-                <Polygon
-                  pathOptions={blackOptions}
-                  positions={planeGetLocalItem.latlng}
+            {/* Farm */}
+            {farms.length > 0 &&
+              !showLocationArea.open &&
+              farms.map((farm, i) => (
+                <Marker
+                  key={i}
+                  position={{
+                    lat: farm.location.latitude,
+                    lng: farm.location.longitude,
+                  }}
+                  eventHandlers={{
+                    click: () =>
+                      setShowImgFarmModal({ open: true, farmImg: farm }),
+                  }}
                 >
-                  <Popup>{planeGetLocalItem.tenKhuDat}</Popup>
+                  <Popup>
+                    {farm.name}, {farm.address}
+                  </Popup>
+                </Marker>
+              ))}
+
+            {areas.length > 0 &&
+              showLocationArea.open &&
+              areas.map((area, i) => (
+                <Polygon
+                  key={i}
+                  pathOptions={blackOptions}
+                  positions={convertLatLngObjectToLatLngExpression(
+                    area.locations
+                  )}
+                >
+                  <Popup>{area.name}</Popup>
                 </Polygon>
               ))}
           </MapContainer>
@@ -361,8 +413,58 @@ function InforFarmPage() {
           />
         )}
 
+        {showImgModal.open && (
+          <DefaultModal
+            title={`Ảnh ${showImgModal.area?.name}`}
+            onClose={() => {
+              setShowImgModal({ open: false, area: undefined });
+            }}
+          >
+            <Carousel>
+              {showImgModal.area?.avatars?.map((avatar, i) => (
+                <img
+                  key={i}
+                  style={{
+                    width: "100%",
+                    height: "70vh",
+                    objectFit: "cover",
+                    margin: "5px",
+                  }}
+                  src={`http://116.118.49.43:8878/${avatar}`}
+                  alt="FITPRO Farm"
+                />
+              ))}
+            </Carousel>
+          </DefaultModal>
+        )}
+
+        {showImgFarmModal.farmImg?.image && (
+          <DefaultModal
+            title={`${showImgFarmModal.farmImg.name}, ${showImgFarmModal.farmImg.address}`}
+            onClose={() => {
+              setShowImgFarmModal({ open: false, farmImg: undefined });
+            }}
+          >
+            <img
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                margin: "5px",
+              }}
+              src={`http://116.118.49.43:8878/${showImgFarmModal.farmImg.image}`}
+              alt="FITPRO Farm"
+            />
+          </DefaultModal>
+        )}
+
         {/* Bảng thông tin */}
-        <InforFarmPageTable />
+        <InforFarmPageTable
+          areas={areas}
+          seeLocation={showLocationArea.open}
+          handleGetAvtArea={handleGetAvtArea}
+          handleSeeLocationArea={handleSeeLocationArea}
+        />
 
         {/* Phân trang */}
         <Pagination

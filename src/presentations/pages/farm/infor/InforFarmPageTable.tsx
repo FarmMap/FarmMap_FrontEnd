@@ -4,22 +4,29 @@ import { Button, Grid } from "@mui/material";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
-
+import ImageIcon from "@mui/icons-material/Image";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 // Internal imports
 import { ListIcon } from "../../../components/sidebar/SidebarData";
 
 // Style imports
 import classNames from "classnames/bind";
 import styles from "./InforFarmPage.module.scss";
+import { Area } from "../../../../data/types/Area";
 const cx = classNames.bind(styles);
 
-interface InforFarmPageTableProps {}
+interface InforFarmPageTableProps {
+  areas: Area[];
+  handleGetAvtArea: (area: Area) => void;
+  handleSeeLocationArea: (area: Area) => void;
+  seeLocation: boolean;
+}
 
 const InforFarmPageTable = (props: InforFarmPageTableProps) => {
   return (
@@ -39,28 +46,64 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
           <thead>
             <tr>
               <th>#</th>
-              <th>Tên doanh nghiệp</th>
-              <th>Mô hình kinh doanh</th>
-              <th>Loại hình kinh doanh</th>
-              <th>Tỉnh</th>
-              <th>Quận</th>
-              <th>Huyện</th>
-              <th>Phường</th>
-              <th>Địa chỉ</th>
+              <th>Tên trang trại</th>
+              <th>Tên khu</th>
+              <th>Diện tích</th>
+              <th>Ghi chú</th>
               <th>Chức năng</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>FIT PRO ClUB</td>
-              <td>fitproclub@gmail.com</td>
-              <td>ABC-145</td>
-              <td>0336844690</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            {props.areas.map((area, i) => (
+              <tr key={i}>
+                <td>{i + 1}</td>
+                <td>{area.farm?.name}</td>
+                <td>{area.name}</td>
+                <td>
+                  {area.acreage}m<sup>2</sup>
+                </td>
+                <td>{area.description}</td>
+                <td
+                  style={{
+                    whiteSpace: "nowrap",
+                    textAlign: "center",
+                  }}
+                >
+                  <Tippy
+                    content={
+                      !props.seeLocation
+                        ? `Xem vị trí ${area.name}`
+                        : `Ẩn vị trí ${area.name}`
+                    }
+                    theme="light"
+                  >
+                    <Button
+                      className={cx("btn-edit")}
+                      variant="contained"
+                      onClick={() => props.handleSeeLocationArea(area)}
+                      disableElevation={true}
+                    >
+                      {!props.seeLocation ? (
+                        <VisibilityIcon />
+                      ) : (
+                        <VisibilityOffIcon />
+                      )}
+                    </Button>
+                  </Tippy>
+
+                  <Tippy content={`Xem ảnh ${area.name}`} theme="light">
+                    <Button
+                      className={cx("btn-image")}
+                      variant="contained"
+                      onClick={() => props.handleGetAvtArea(area)}
+                      disableElevation={true}
+                    >
+                      <ImageIcon />
+                    </Button>
+                  </Tippy>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </Grid>

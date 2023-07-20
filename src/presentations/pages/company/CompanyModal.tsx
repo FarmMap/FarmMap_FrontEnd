@@ -78,7 +78,9 @@ const CompanyModal = (props: CompanyModalProps) => {
           <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {/* Render your map layers, markers, etc. */}
-            {lat && lng && <SearchLocationByLatLng lat={lat} lng={lng} />}
+            {lat && lng && (
+              <SearchLocationByLatLng showPopUp={true} lat={lat} lng={lng} />
+            )}
             {/* {viewLocation && <LocationMarker />} */}
           </MapContainer>
           {/* <Map /> */}

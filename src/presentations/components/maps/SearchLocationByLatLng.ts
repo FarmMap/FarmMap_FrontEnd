@@ -5,11 +5,13 @@ import { useMap } from "react-leaflet";
 interface SearchLocationByLatLngProps {
   lat: number;
   lng: number;
+  showPopUp: boolean;
 }
 
 const SearchLocationByLatLng: React.FC<SearchLocationByLatLngProps> = ({
   lat,
   lng,
+  showPopUp,
 }) => {
   const map = useMap();
   const [searchResult, setSearchResult] = useState<any>(null);
@@ -53,12 +55,16 @@ const SearchLocationByLatLng: React.FC<SearchLocationByLatLngProps> = ({
       if (country) addressLine += `${country}, `;
       if (postcode) addressLine += `${postcode}`;
 
-      marker.bindPopup(`<b>Address:</b> ${addressLine}`).openPopup();
+      if (showPopUp) {
+        marker.bindPopup(`<b>Address:</b> ${addressLine}`).openPopup();
+      } else {
+        map.removeLayer(marker);
+      }
 
       // Set the map view to the searched location
       map.setView([lat, lng], 18);
     }
-  }, [searchResult, map, lat, lng]);
+  }, [searchResult, map, lat, lng, showPopUp]);
 
   return null;
 };
