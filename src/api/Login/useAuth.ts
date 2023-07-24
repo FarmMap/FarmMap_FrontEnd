@@ -23,7 +23,7 @@ function useAuth() {
     if (token != null) {
       var config = {
         method: "GET",
-        url: `${process.env.REACT_APP_API_BASE_URL}auth/users?order=ASC&page=1&take=10`,
+        url: `${process.env.REACT_APP_API_BASE_URL}/user/my`,
         headers: { Authorization: `Bearer ${token}` },
       };
 
@@ -37,7 +37,7 @@ function useAuth() {
           setErrorMessage((error.response?.data as RequestError).message);
         });
     }
-  }, []);
+  }, [token]);
 
   return [user, errorMessage];
 }

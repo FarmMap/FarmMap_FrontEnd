@@ -19,6 +19,7 @@ import { ListIcon } from "../../../components/sidebar/SidebarData";
 import classNames from "classnames/bind";
 import styles from "./InforFarmPage.module.scss";
 import { Area } from "../../../../data/types/Area";
+import { useState } from "react";
 const cx = classNames.bind(styles);
 
 interface InforFarmPageTableProps {
@@ -26,9 +27,21 @@ interface InforFarmPageTableProps {
   handleGetAvtArea: (area: Area) => void;
   handleSeeLocationArea: (area: Area) => void;
   seeLocation: boolean;
+  areaProps?: Area;
 }
 
 const InforFarmPageTable = (props: InforFarmPageTableProps) => {
+  const [visibleRows, setVisibleRows] = useState<Set<number>>(new Set());
+
+  const toggleRowVisibility = (index: number) => {
+    const newVisibleRows = new Set(visibleRows);
+    if (visibleRows.has(index)) {
+      newVisibleRows.delete(index);
+    } else {
+      newVisibleRows.add(index);
+    }
+    setVisibleRows(newVisibleRows);
+  };
   return (
     <Grid>
       {/* on PC */}
@@ -72,8 +85,8 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
                   <Tippy
                     content={
                       !props.seeLocation
-                        ? `Xem vị trí ${area.name}`
-                        : `Ẩn vị trí ${area.name}`
+                        ? `Xem vị trí ${area.name} (từng vị trí)`
+                        : `Ẩn vị trí ${area.name} (từng vị trí)`
                     }
                     theme="light"
                   >
@@ -83,10 +96,12 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
                       onClick={() => props.handleSeeLocationArea(area)}
                       disableElevation={true}
                     >
-                      {!props.seeLocation ? (
-                        <VisibilityIcon />
-                      ) : (
+                      {props.seeLocation &&
+                      props.areaProps?.id !== undefined &&
+                      props.areaProps?.id === area.id ? (
                         <VisibilityOffIcon />
+                      ) : (
+                        <VisibilityIcon />
                       )}
                     </Button>
                   </Tippy>

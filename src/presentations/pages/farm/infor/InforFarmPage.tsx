@@ -53,6 +53,7 @@ import Farm from "../../../../data/types/Farm";
 import useFetchAreaList from "../../../../api/PlaneArea/useFetchAreaList";
 import DefaultModal from "../../../components/defaultModal";
 import SearchLocationByLatLng from "../../../components/maps/SearchLocationByLatLng";
+import useFetchLandList from "../../../../api/Land/useFetchLandList";
 const cx = classNames.bind(styles);
 
 let DefaultIcon = L.icon({
@@ -239,7 +240,10 @@ function InforFarmPage() {
   };
 
   const handleSeeLocationArea = (area: Area) => {
-    setShowLocationArea({ open: !showLocationArea.open, area: area });
+    setShowLocationArea((prev) => ({
+      open: !prev.open,
+      area: prev.area === area ? undefined : area,
+    }));
   };
 
   const [showImgFarmModal, setShowImgFarmModal] = useState<{
@@ -248,6 +252,9 @@ function InforFarmPage() {
   }>({
     open: false,
   });
+
+  // Land
+  const { lands } = useFetchLandList({});
 
   return (
     <DefaultWebLayOut>
@@ -321,62 +328,103 @@ function InforFarmPage() {
             {/* Render your map layers, markers, etc. */}
             {/* {viewLocation && <LocationMarker />} */}
             <LeafletGeocoder />
-            {showLocationArea.area?.locations && showLocationArea.open && (
-              <SearchLocationByLatLng
-                showPopUp={false}
-                lat={showLocationArea.area.locations[0].latitude}
-                lng={showLocationArea.area.locations[0].longitude}
-              />
-            )}
-            {areas.length > 0 &&
-              showLocationArea.open &&
-              areas.map((area, i) =>
-                area.locations.map((item, j) => (
-                  <Marker
-                    key={j}
-                    position={{
-                      lat: item.latitude,
-                      lng: item.longitude,
-                    }}
-                  >
-                    <Popup>Điểm {j + 1}</Popup>
-                  </Marker>
-                ))
+            {showLocationArea.area?.locations &&
+              showLocationArea.area.locations[0] &&
+              showLocationArea.open && (
+                <SearchLocationByLatLng
+                  showPopUp={false}
+                  lat={showLocationArea.area.locations[0].latitude}
+                  lng={showLocationArea.area.locations[0].longitude}
+                />
               )}
 
             {/* Farm */}
             {farms.length > 0 &&
               !showLocationArea.open &&
-              farms.map((farm, i) => (
-                <Marker
-                  key={i}
-                  position={{
-                    lat: farm.location.latitude,
-                    lng: farm.location.longitude,
-                  }}
-                  eventHandlers={{
-                    click: () =>
-                      setShowImgFarmModal({ open: true, farmImg: farm }),
-                  }}
-                >
-                  <Popup>
-                    {farm.name}, {farm.address}
-                  </Popup>
-                </Marker>
-              ))}
+              farms.map((farm, i) => {
+                // Check if the farm has a valid location property
+                if (
+                  farm.location &&
+                  farm.location.latitude !== undefined &&
+                  farm.location.longitude !== undefined
+                ) {
+                  return (
+                    <Marker
+                      key={i}
+                      position={{
+                        lat: farm.location.latitude,
+                        lng: farm.location.longitude,
+                      }}
+                      eventHandlers={{
+                        click: () =>
+                          setShowImgFarmModal({ open: true, farmImg: farm }),
+                      }}
+                    >
+                      <Popup>
+                        {farm.name}, {farm.address}
+                      </Popup>
+                    </Marker>
+                  );
+                } else {
+                  return null;
+                }
+              })}
 
+            {/* Polygon */}
             {areas.length > 0 &&
               showLocationArea.open &&
               areas.map((area, i) => (
-                <Polygon
-                  key={i}
-                  pathOptions={blackOptions}
-                  positions={convertLatLngObjectToLatLngExpression(
-                    area.locations
+                <Fragment key={i}>
+                  {showLocationArea?.area?.id === area.id && (
+                    <>
+                      <Polygon
+                        key={i}
+                        pathOptions={blackOptions}
+                        positions={convertLatLngObjectToLatLngExpression(
+                          area.locations
+                        )}
+                      >
+                        <Popup>{area.name}</Popup>
+                      </Polygon>
+                      {area.locations.map((item, j) => (
+                        <Marker
+                          key={j}
+                          position={{
+                            lat: item.latitude,
+                            lng: item.longitude,
+                          }}
+                        >
+                          <Popup>Điểm {j + 1}</Popup>
+                        </Marker>
+                      ))}
+                    </>
                   )}
-                >
-                  <Popup>{area.name}</Popup>
-                </Polygon>
+                </Fragment>
+              ))}
+
+            {/* Land */}
+            {lands.length > 0 &&
+              showLocationArea.open &&
+              lands.map((land, i) => (
+                <Fragment key={i}>
+                  {showLocationArea?.area?.id === land.area?.id && (
+                    <>
+                      <Polygon
+                        key={i}
+                        pathOptions={fillBlueOptions}
+                        positions={convertLatLngObjectToLatLngExpression(
+                          land.locations
+                        )}
+                      >
+                        <Popup>
+                          <b>Khu đất:</b>
+                          {land.area?.name}, <b>Tên</b>:{land.name},{" "}
+                          <b>Loại đất:</b> {land.soilType.name}
+                        </Popup>
+                      </Polygon>
+                    </>
+                  )}
+                </Fragment>
               ))}
           </MapContainer>
           {/* <Map /> */}
@@ -461,6 +509,7 @@ function InforFarmPage() {
         {/* Bảng thông tin */}
         <InforFarmPageTable
           areas={areas}
+          areaProps={showLocationArea.area}
           seeLocation={showLocationArea.open}
           handleGetAvtArea={handleGetAvtArea}
           handleSeeLocationArea={handleSeeLocationArea}
