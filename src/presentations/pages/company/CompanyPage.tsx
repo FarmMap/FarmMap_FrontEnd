@@ -91,7 +91,7 @@ const CompanyPage = () => {
       toast.success("Thao tác thành công!");
       setRefresh((refresh) => !refresh);
     }
-  }, [createFarmError, fetchFarmErr, isCreated]);
+  }, [isCreated]);
   return (
     <DefaultWebLayOut>
       <Grid>
@@ -175,7 +175,7 @@ const CompanyPage = () => {
                 <img
                   style={{
                     width: "100%",
-                    height: "100%",
+                    height: "90vh",
                     objectFit: "cover",
                     margin: "5px",
                   }}

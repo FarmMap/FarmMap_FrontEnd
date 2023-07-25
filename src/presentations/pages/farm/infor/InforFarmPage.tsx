@@ -208,7 +208,7 @@ function InforFarmPage() {
         });
       }, 3000);
     }
-  }, [createAreaError, fetchFarmErr, isCreated]);
+  }, [isCreated]);
 
   const { areas } = useFetchAreaList({});
 
@@ -493,7 +493,7 @@ function InforFarmPage() {
             <img
               style={{
                 width: "100%",
-                height: "100%",
+                height: "90vh",
                 objectFit: "cover",
                 margin: "5px",
               }}
