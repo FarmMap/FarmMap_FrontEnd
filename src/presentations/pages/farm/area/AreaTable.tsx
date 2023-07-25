@@ -1,10 +1,10 @@
 // External
-import { Delete, Edit, Image } from "@mui/icons-material";
+import { Delete, Edit } from "@mui/icons-material";
 import { Button, Grid } from "@mui/material";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
-
+import ImageIcon from "@mui/icons-material/Image";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -17,9 +17,13 @@ import { ListIcon } from "../../../components/sidebar/SidebarData";
 // Style imports
 import classNames from "classnames/bind";
 import styles from "../infor/InforFarmPage.module.scss";
+import Land from "../../../../data/types/Land";
 const cx = classNames.bind(styles);
 
-interface AreaTableProps {}
+interface AreaTableProps {
+  lands: Land[];
+  handleGetImgLand: (land: Land) => void;
+}
 
 const AreaTable = (props: AreaTableProps) => {
   return (
@@ -41,39 +45,37 @@ const AreaTable = (props: AreaTableProps) => {
               <th>#</th>
               <th>Tên khu đất</th>
               <th>Tên vùng</th>
-              <th>Diện tích</th>
-              <th>Tỉnh</th>
-              <th>Quận-Huyện</th>
-              <th>Ngày Tạo</th>
-              <th>Ghi chú</th>
+              <th>Loại đất</th>
               <th>Chức năng</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Khu đất A</td>
-              <td>Vùng trồng cà</td>
-              <td>
-                200 m<sup>2</sup>
-              </td>
-              <td>Đồng Nai</td>
-              <td>Biên Hòa</td>
-              <td>27/06/2023</td>
-              <td>Vùng trồng cà nhà bà Hồng</td>
-              <td>
-                <Tippy content={`Cập nhật vùng trồng cà`} theme="light">
-                  <Button
-                    className={cx("btn-edit")}
-                    variant="contained"
-                    disableElevation={true}
-                    onClick={() => {}}
-                  >
-                    <Edit />
-                  </Button>
-                </Tippy>
-              </td>
-            </tr>
+            {props.lands.map((land, i) => (
+              <tr key={i}>
+                <td>{i + 1}</td>
+                <td>{land.area?.name}</td>
+                <td>{land.name}</td>
+
+                <td>{land.soilType.name}</td>
+                <td
+                  style={{
+                    whiteSpace: "nowrap",
+                    textAlign: "center",
+                  }}
+                >
+                  <Tippy content={`Xem ảnh ${land.name}`} theme="light">
+                    <Button
+                      className={cx("btn-image")}
+                      variant="contained"
+                      onClick={() => props.handleGetImgLand(land)}
+                      disableElevation={true}
+                    >
+                      <ImageIcon />
+                    </Button>
+                  </Tippy>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </Grid>

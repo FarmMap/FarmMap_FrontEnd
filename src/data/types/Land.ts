@@ -1,5 +1,5 @@
 import { Area, LatLngObject } from "./Area";
-import { SoilType } from "./SoilType";
+import SoilType from "./SoilType";
 
 export default interface Land {
   id?: string;

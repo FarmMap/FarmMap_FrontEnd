@@ -58,19 +58,6 @@ const StyledLabel = styled("label")(({ theme }) => ({
 
 let label = "";
 
-const InnerInput = React.forwardRef<
-  HTMLInputElement,
-  JSX.IntrinsicElements["input"]
->(function InnerInput(props, ref) {
-  const id = React.useId();
-  return (
-    <React.Fragment>
-      <StyledInput {...props} ref={ref} id={id} />
-      <StyledLabel htmlFor={id}>{label}</StyledLabel>
-    </React.Fragment>
-  );
-});
-
 interface FloatingLabelInputProps {
   label: string;
   placeholder: string;
@@ -79,14 +66,30 @@ interface FloatingLabelInputProps {
   onChange?: (event: FormEvent<HTMLInputElement>) => void;
 }
 
-const FloatingLabelInput = (props: FloatingLabelInputProps) => {
-  label = props.label;
+interface InnerInputProps {
+  label: string;
+}
+
+const InnerInput = React.forwardRef<HTMLInputElement, InnerInputProps>(
+  function InnerInput({ label, ...props }, ref) {
+    const id = React.useId();
+    return (
+      <React.Fragment>
+        <StyledInput {...props} ref={ref} id={id} />
+        <StyledLabel htmlFor={id}>{label}</StyledLabel>
+      </React.Fragment>
+    );
+  }
+);
+
+const FloatingLabelInput: React.FC<FloatingLabelInputProps> = (props) => {
   return (
     <Input
       endDecorator={<CheckCircleOutlined sx={{ color: "text.tertiary" }} />}
       slots={{ input: InnerInput }}
       slotProps={{
         input: {
+          label: props.label, // Pass the 'label' prop to InnerInput
           placeholder: `${props.placeholder}`,
           type: `${props.type}`,
           value: `${props.value}`,

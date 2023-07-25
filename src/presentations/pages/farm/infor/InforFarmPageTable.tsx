@@ -12,14 +12,15 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { Area } from "../../../../data/types/Area";
+import { useState } from "react";
 // Internal imports
 import { ListIcon } from "../../../components/sidebar/SidebarData";
 
 // Style imports
 import classNames from "classnames/bind";
 import styles from "./InforFarmPage.module.scss";
-import { Area } from "../../../../data/types/Area";
-import { useState } from "react";
+
 const cx = classNames.bind(styles);
 
 interface InforFarmPageTableProps {

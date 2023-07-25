@@ -22,12 +22,12 @@ const App: React.FC = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
         {/* Private Route */}
-        {/* <Route path="/" element={<PrivateRoute />}> */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/nong-nghiep/trang-trai" element={<CompanyPage />} />
-        <Route path="/nong-nghiep/khu-canh-tac" element={<InforPage />} />
-        <Route path="/nong-trai/vung-canh-tac" element={<AreaPage />} />
-        {/* </Route> */}
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/nong-nghiep/trang-trai" element={<CompanyPage />} />
+          <Route path="/nong-nghiep/khu-canh-tac" element={<InforPage />} />
+          <Route path="/nong-trai/vung-canh-tac" element={<AreaPage />} />
+        </Route>
       </Routes>
     </div>
   );

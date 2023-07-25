@@ -163,8 +163,6 @@ function InforFarmPage() {
   const { farms, error: fetchFarmErr, isLoading } = useFetchFarmList({});
 
   const handleSubmitArea = (area: Area) => {
-    console.log(area);
-
     createArea({ area: area });
   };
 
@@ -213,7 +211,6 @@ function InforFarmPage() {
   }, [createAreaError, fetchFarmErr, isCreated]);
 
   const { areas } = useFetchAreaList({});
-  console.log("areaAPI:", areas);
 
   const convertLatLngObjectToLatLngExpression = (
     locations: LatLngObject[]

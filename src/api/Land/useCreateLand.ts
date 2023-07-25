@@ -1,9 +1,10 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useState } from "react";
-import { Area, LatLngObject } from "../../data/types/Area";
+import { LatLngObject } from "../../data/types/Area";
+import Land from "../../data/types/Land";
 
 interface CreateAreaParams {
-  area: Area;
+  land: Land;
 }
 
 interface ResponseError {
@@ -11,21 +12,20 @@ interface ResponseError {
   message: string;
 }
 
-interface useCreateAreaProps {
-  farmId?: string;
+interface useCreateLandProps {
+  areaId?: string;
   name: string;
-  acreage: number;
+  soilTypeId: string;
   locations: LatLngObject[];
-  description: string;
-  avatars?: File[];
+  images?: File[];
 }
 
-const useCreateArea = (props: useCreateAreaProps) => {
+const useCreateLand = (props: useCreateLandProps) => {
   const [isCreated, setCreated] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const createArea = useCallback(
+  const createLand = useCallback(
     (params: CreateAreaParams) => {
       setCreated(false);
       setError(null);
@@ -33,8 +33,7 @@ const useCreateArea = (props: useCreateAreaProps) => {
       const FormData = require("form-data");
       var data = new FormData();
       data.append("name", props.name);
-      data.append("acreage", props.acreage);
-      data.append("description", props.description);
+      data.append("soilTypeId", props.soilTypeId);
       props.locations.forEach((location, i) => {
         data.append(
           "locations",
@@ -46,16 +45,16 @@ const useCreateArea = (props: useCreateAreaProps) => {
         );
       });
 
-      if (props.avatars && props.avatars.length > 0) {
-        props.avatars.forEach((avatar) => {
-          data.append("avatars", avatar);
+      if (props.images && props.images.length > 0) {
+        props.images.forEach((image) => {
+          data.append("images", image);
         });
       }
 
       let config = {
         method: "post",
         maxBodyLength: Infinity,
-        url: `${process.env.REACT_APP_API_BASE_URL}area?farmId=${props.farmId}`,
+        url: `${process.env.REACT_APP_API_BASE_URL}land/create?areaId=${props.areaId}`,
         headers: {
           accept: "*/*",
           Authorization: `Bearer ${window.localStorage.getItem("token")}`,
@@ -85,17 +84,10 @@ const useCreateArea = (props: useCreateAreaProps) => {
           setLoading(false);
         });
     },
-    [
-      props.acreage,
-      props.avatars,
-      props.description,
-      props.locations,
-      props.name,
-      props.farmId,
-    ]
+    [props.name, props.soilTypeId, props.locations, props.images, props.areaId]
   );
 
-  return { isCreated, setCreated, error, isLoading, createArea };
+  return { isCreated, setCreated, error, isLoading, createLand };
 };
 
-export default useCreateArea;
+export default useCreateLand;
