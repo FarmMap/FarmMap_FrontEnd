@@ -5,8 +5,6 @@ import {
   Popup,
   TileLayer,
   Polygon,
-  Rectangle,
-  useMap,
   useMapEvents,
 } from "react-leaflet";
 import "leaflet-control-geocoder/dist/Control.Geocoder.css";
@@ -15,20 +13,10 @@ import L, { LatLngExpression } from "leaflet";
 import "leaflet-draw/dist/leaflet.draw.css";
 import "leaflet-draw/dist/leaflet.draw.js";
 // import LeafletRoutingMachine from "./LeafletRoutingMachine";
-import {
-  Fragment,
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Button, Grid, Pagination } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 // Internal
-import Map from "../../../components/maps/Map";
-
-import PlaneArea from "../../../../data/types/PlaneArea";
 
 import AddIcon from "@mui/icons-material/Add";
 
@@ -41,11 +29,6 @@ import images from "../../../../assets/images";
 import PlaneModal from "./PlaneModal";
 import { toast } from "react-toastify";
 import LeafletGeocoder from "../../../components/maps/LeafletGeocoder";
-import DrawLocation from "../../../components/maps/DrawLocation";
-
-// Style
-import classNames from "classnames/bind";
-import styles from "./InforFarmPage.module.scss";
 import { Area, LatLngObject } from "../../../../data/types/Area";
 import useCreateArea from "../../../../api/PlaneArea/useCreateArea";
 import useFetchFarmList from "../../../../api/Farm/useFetchFarmList";
@@ -54,6 +37,10 @@ import useFetchAreaList from "../../../../api/PlaneArea/useFetchAreaList";
 import DefaultModal from "../../../components/defaultModal";
 import SearchLocationByLatLng from "../../../components/maps/SearchLocationByLatLng";
 import useFetchLandList from "../../../../api/Land/useFetchLandList";
+// Style
+import classNames from "classnames/bind";
+import styles from "./InforFarmPage.module.scss";
+
 const cx = classNames.bind(styles);
 
 let DefaultIcon = L.icon({
@@ -63,10 +50,8 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 // Create a Leaflet context
-const LeafletContext = createContext(null);
 
 // Custom hook to access the Leaflet map instance
-const useLeafletMap = () => useContext(LeafletContext);
 
 function InforFarmPage() {
   const position = { lat: 10.964112, lng: 106.856461 };
@@ -75,45 +60,6 @@ function InforFarmPage() {
   const blackOptions = { color: "black" };
 
   const [addPlace, setAddPlace] = useState(false);
-
-  // Draw map
-  const [plane, setPlane] = useState<PlaneArea>({
-    tenFarm: "",
-    tenKhuDat: "",
-    dienTich: 0,
-    latlng: [
-      {
-        lat: 0,
-        lng: 0,
-      },
-    ],
-    ghiChu: "",
-  });
-
-  const [planeLocal, setPlaneLocal] = useState<PlaneArea[]>([]);
-
-  const planeGetLocal: PlaneArea[] =
-    JSON.parse(localStorage.getItem("planeLocal") || "null") || [];
-
-  const polygon = [
-    { lat: 10.9576317, lng: 106.84341754730488 }, // Long Bình
-    { lat: 10.95804175, lng: 106.82854776459729 }, // Tân Mai
-    { lat: 10.9507929, lng: 106.8263284 }, // Bửu Long
-    { lat: 10.9498102, lng: 106.841793 }, // Bình Đas
-  ];
-
-  const polygon1 = [
-    { lat: 10.95804175, lng: 106.82854776459729 }, // Long Bình
-    { lat: 10.9577124, lng: 106.8320321 }, // Tân Mai
-    { lat: 10.95393345, lng: 106.83600481134125 }, // Bình Đas
-    { lat: 10.9505247, lng: 106.8263284 }, // Bửu Long
-  ];
-
-  const polygon2 = [
-    { lat: 10.960043, lng: 106.8500886 }, // Long Bình
-    { lat: 10.958948, lng: 106.84370974954155 }, // Tân Mai
-    { lat: 10.9557241, lng: 106.8568346 }, // Bửu Long
-  ];
 
   //API
   const [area, setArea] = useState<Area>({

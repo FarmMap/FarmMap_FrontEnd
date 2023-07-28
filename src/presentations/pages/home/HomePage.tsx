@@ -2,15 +2,99 @@ import React, { Fragment } from "react";
 // Ex
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import { Grid } from "@mui/material";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+
+import images from "../../../assets/images";
+// Style
+import classNames from "classnames/bind";
+import styles from "./HomePage.module.scss";
+
+const cx = classNames.bind(styles);
 
 const HomePage = () => {
+  const headerData = [
+    {
+      title: "Doanh thu",
+      quality: "$7,825",
+      percent: 22,
+      srcVector: images.vector1,
+      isIncrease: true,
+      color: "var(--orange-color)",
+    },
+    {
+      title: "Khoản chi khác",
+      percent: 5.7,
+      srcVector: images.vector2,
+      quality: "920",
+      isIncrease: true,
+      color: "var(--second-color)",
+    },
+    {
+      title: "Người truy cập",
+      percent: 18,
+      srcVector: images.vector3,
+      quality: "15.5K",
+      isIncrease: false,
+      color: "#25a150",
+    },
+    {
+      title: "Lợi nhuận",
+      percent: 12,
+      srcVector: images.vector4,
+      quality: "28%",
+      isIncrease: true,
+      color: "var(--orange-color)",
+    },
+  ];
   return (
     <DefaultWebLayOut>
-      <Fragment></Fragment>
+      <Grid>
+        <Grid>
+          <h4>Dashboard</h4>
+        </Grid>
+        <Grid
+          mt={"12px"}
+          columns={12}
+          container
+          justifyContent={"space-between"}
+        >
+          {headerData.map((data, i) => (
+            <Grid
+              className={cx("box-wrapper")}
+              key={i}
+              item
+              lg={2.8}
+              md={5.7}
+              sm={5.7}
+              xs={12}
+              sx={{
+                marginTop: { lg: "0", md: "10px", sm: "10px", xs: "10px" },
+              }}
+            >
+              <Grid display={"flex"} justifyContent={"space-between"}>
+                <span className={cx("title")}>{data.title}</span>
+                <span
+                  className={cx("percent")}
+                  style={{ color: `${data.color}`, fontWeight: 600 }}
+                >
+                  {data.isIncrease ? "+" : ""} {data.percent}%
+                </span>
+              </Grid>
+              <Grid
+                display={"flex"}
+                justifyContent={"space-between"}
+                mt={"5px"}
+              >
+                <span>{data.quality}</span>
+                <img
+                  className={cx("vector")}
+                  alt="vector"
+                  src={data.srcVector}
+                />
+              </Grid>
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
     </DefaultWebLayOut>
   );
 };

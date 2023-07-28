@@ -3,6 +3,10 @@ const images = {
   avatar: require("../images/avatar.webp"),
   notFound: require("../images/page-not-found.webp"),
   markerIcon: require("../images/marker-icon.png"),
+  vector1: require("../images/vector1.jpg"),
+  vector2: require("../images/vector2.jpg"),
+  vector3: require("../images/vector3.jpg"),
+  vector4: require("../images/vector4.jpg"),
 };
 
 export default images;
