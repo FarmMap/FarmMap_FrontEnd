@@ -3,7 +3,10 @@ import React, { Fragment } from "react";
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import { Grid } from "@mui/material";
 
+// In
 import images from "../../../assets/images";
+import RechartsPage from "../../components/chart/RechartPage";
+import ChartPage from "../../components/chart/ChartPage";
 // Style
 import classNames from "classnames/bind";
 import styles from "./HomePage.module.scss";
@@ -11,10 +14,19 @@ import styles from "./HomePage.module.scss";
 const cx = classNames.bind(styles);
 
 const HomePage = () => {
+  const labels = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+  ];
   const headerData = [
     {
       title: "Doanh thu",
-      quality: "$7,825",
+      quality: "$50",
       percent: 22,
       srcVector: images.vector1,
       isIncrease: true,
@@ -24,7 +36,7 @@ const HomePage = () => {
       title: "Khoản chi khác",
       percent: 5.7,
       srcVector: images.vector2,
-      quality: "920",
+      quality: "20$",
       isIncrease: true,
       color: "var(--second-color)",
     },
@@ -32,7 +44,7 @@ const HomePage = () => {
       title: "Người truy cập",
       percent: 18,
       srcVector: images.vector3,
-      quality: "15.5K",
+      quality: "160",
       isIncrease: false,
       color: "#25a150",
     },
@@ -93,6 +105,10 @@ const HomePage = () => {
               </Grid>
             </Grid>
           ))}
+        </Grid>
+
+        <Grid mt={"20px"}>
+          <ChartPage />
         </Grid>
       </Grid>
     </DefaultWebLayOut>

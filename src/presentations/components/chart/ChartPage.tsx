@@ -10,7 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import faker from "faker";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -21,39 +21,53 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
+const labels: string[] = ["2017", "2018", "2019", "2020", "2021", "2022"];
+
+const options = {
   plugins: {
     legend: {
-      position: "top" as const,
-    },
-    title: {
-      display: true,
-      text: "Chart.js Line Chart",
+      position: "bottom" as const,
     },
   },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
+interface Dataset {
+  label: string;
+  data: number[];
+  backgroundColor: string;
+  borderColor: string;
+}
 
-export const data = {
+interface ChartData {
+  labels: string[];
+  datasets: Dataset[];
+}
+
+const data: ChartData = {
   labels,
   datasets: [
     {
-      label: "Dataset 1",
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
+      label: "Khách hàng mới",
+      data: [32, 42, 51, 60, 51, 95],
+      backgroundColor: "#2196F3",
+      borderColor: "#2196F3",
     },
+
     {
-      label: "Dataset 2",
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
+      label: "Khách hàng thân thiết",
+      data: [60, 54, 54, 53, 57, 65],
+      backgroundColor: "#FFCA29",
+      borderColor: "#FFCA29",
     },
   ],
 };
 
-export default function ChartPage() {
-  return <Line options={options} data={data} />;
-}
+const ChartJsExample: React.FC = () => {
+  return (
+    <div style={{ width: "100%", height: "514px" }}>
+      <Line options={options} data={data} />
+    </div>
+  );
+};
+
+export default ChartJsExample;
