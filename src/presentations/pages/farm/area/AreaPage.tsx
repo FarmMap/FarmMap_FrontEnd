@@ -27,9 +27,12 @@ const cx = classNames.bind(styles);
 
 const AreaPage = () => {
   const [query, setQuery] = useState("");
+  const [refresh, setRefresh] = useState(false);
   const [showModal, setShowModal] = useState(false);
   // Get area list
-  const { areas } = useFetchAreaList({});
+  const { areas } = useFetchAreaList({
+    shouldRefesh: refresh,
+  });
   const [area, setArea] = useState<Area>({
     name: "",
     acreage: 0,
@@ -81,7 +84,9 @@ const AreaPage = () => {
   });
 
   // Get land list
-  const { lands, error: fetchFarmErr } = useFetchLandList({});
+  const { lands, error: fetchFarmErr } = useFetchLandList({
+    shouldRefesh: refresh,
+  });
 
   // handleSubmitCreateLand
   const handleSubmitCreateLand = (land: Land) => {
@@ -98,6 +103,7 @@ const AreaPage = () => {
 
     if (isSuccess) {
       toast.success("Thao tác thành công!");
+      setRefresh((refresh) => !refresh);
       setTimeout(() => {
         setArea({
           name: "",
@@ -135,7 +141,7 @@ const AreaPage = () => {
         images: undefined,
       });
     }
-  }, [isCreated]);
+  }, [isCreated, CreateLandErr]);
 
   // Get img
   const [imgLand, setImgLand] = useState<{

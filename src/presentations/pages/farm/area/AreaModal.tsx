@@ -117,7 +117,7 @@ const AreaModal = (props: AreaModalProps) => {
     ghiChu: "",
   });
 
-  const fillBlueOptions = { color: "blue", fillColor: "blue" };
+  const fillBlueOptions = { fillColor: "blue" };
   const yellowOption = { color: "yellow", fillColor: "yellow" };
   const blackOptions = { fillColor: "black" };
 

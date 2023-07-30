@@ -96,7 +96,7 @@ const HomePage = () => {
                 justifyContent={"space-between"}
                 mt={"5px"}
               >
-                <span>{data.quality}</span>
+                <span className={cx("quality")}>{data.quality}</span>
                 <img
                   className={cx("vector")}
                   alt="vector"

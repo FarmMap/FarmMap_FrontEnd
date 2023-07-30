@@ -89,9 +89,23 @@ const CompanyPage = () => {
 
     if (isSuccess) {
       toast.success("Thao tác thành công!");
+      setFarm({
+        name: "",
+        business_model: "",
+        business_type: "",
+        province: "",
+        district: "",
+        wards: "",
+        address: "",
+        location: {
+          latitude: 0,
+          longitude: 0,
+        },
+        image: undefined,
+      });
       setRefresh((refresh) => !refresh);
     }
-  }, [isCreated]);
+  }, [isCreated, createFarmError]);
   return (
     <DefaultWebLayOut>
       <Grid>

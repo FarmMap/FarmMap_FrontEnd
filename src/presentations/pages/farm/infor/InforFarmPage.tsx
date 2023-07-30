@@ -60,6 +60,7 @@ function InforFarmPage() {
   const blackOptions = { color: "black" };
 
   const [addPlace, setAddPlace] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   //API
   const [area, setArea] = useState<Area>({
@@ -106,7 +107,13 @@ function InforFarmPage() {
     avatars: area.avatars,
   });
 
-  const { farms, error: fetchFarmErr, isLoading } = useFetchFarmList({});
+  const {
+    farms,
+    error: fetchFarmErr,
+    isLoading,
+  } = useFetchFarmList({
+    shouldRefesh: refresh,
+  });
 
   const handleSubmitArea = (area: Area) => {
     createArea({ area: area });
@@ -122,6 +129,7 @@ function InforFarmPage() {
 
     if (isSuccess) {
       toast.success("Thao tác thành công!");
+      setRefresh((refresh) => !refresh);
       setTimeout(() => {
         setArea({
           name: "",
@@ -154,7 +162,7 @@ function InforFarmPage() {
         });
       }, 3000);
     }
-  }, [isCreated]);
+  }, [isCreated, createAreaError]);
 
   const { areas } = useFetchAreaList({});
 

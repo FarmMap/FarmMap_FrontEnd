@@ -64,7 +64,7 @@ const data: ChartData = {
 
 const ChartJsExample: React.FC = () => {
   return (
-    <div style={{ width: "100%", height: "514px" }}>
+    <div style={{ width: "100%", height: "538px" }}>
       <Line options={options} data={data} />
     </div>
   );

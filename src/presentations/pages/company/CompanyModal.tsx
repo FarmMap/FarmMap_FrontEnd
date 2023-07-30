@@ -466,6 +466,13 @@ const CompanyModal = (props: CompanyModalProps) => {
             </label>
             <Button
               variant="contained"
+              disabled={
+                props.farm.name == "" ||
+                props.farm.district == "" ||
+                props.farm.province == "" ||
+                props.farm.wards == "" ||
+                props.farm.image == undefined
+              }
               disableElevation={true}
               startIcon={<SaveIcon />}
               onClick={() => props.onSubmit(props.farm)}
