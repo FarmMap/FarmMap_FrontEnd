@@ -17,7 +17,7 @@ function useAuth() {
   useEffect(() => {
     if (token == null) {
       setUser(undefined);
-      setErrorMessage("Cần đăng nhập trước mới có thể vào trang này!");
+      setErrorMessage("Cần đăng nhập trước mới có thể vào trang này");
     }
 
     if (token != null) {

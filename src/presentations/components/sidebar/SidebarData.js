@@ -46,8 +46,8 @@ export const SidebarData = [
                 path: "/nong-trai/vung-canh-tac"
             },
             {
-                title: "Lịch sử canh tác",
-                path: "/nong-trai/lich-su-canh-tac"
+                title: "Lịch canh tác",
+                path: "/nong-trai/lich-canh-tac"
             },
             {
                 title: "Lịch chăm sóc",

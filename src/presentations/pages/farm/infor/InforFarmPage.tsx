@@ -401,7 +401,7 @@ function InforFarmPage() {
             farm={farm}
             setFarm={setFarm}
             farms={farms}
-            title="Thêm khu đất"
+            title="Thêm khu canh tác"
             submitButtonLabel="Xác nhận"
             handleCloseModal={() => {
               setAddPlace(false);

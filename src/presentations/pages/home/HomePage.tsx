@@ -1,12 +1,16 @@
 import React, { Fragment } from "react";
 // Ex
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 // In
 import images from "../../../assets/images";
 import RechartsPage from "../../components/chart/RechartPage";
 import ChartPage from "../../components/chart/ChartPage";
+import PieChart from "../../components/chart/Pie";
+import RadialBar from "../../components/chart/RadialBar";
+import DataGridComponent from "../../components/chart/DataGrid";
+import VerticalChart from "../../components/chart/VerticalChart";
 // Style
 import classNames from "classnames/bind";
 import styles from "./HomePage.module.scss";
@@ -26,7 +30,7 @@ const HomePage = () => {
   const headerData = [
     {
       title: "Doanh thu",
-      quality: "$50",
+      quality: "10.000.000",
       percent: 22,
       srcVector: images.vector1,
       isIncrease: true,
@@ -36,7 +40,7 @@ const HomePage = () => {
       title: "Khoản chi khác",
       percent: 5.7,
       srcVector: images.vector2,
-      quality: "20$",
+      quality: "5.000.000",
       isIncrease: true,
       color: "var(--second-color)",
     },
@@ -107,8 +111,54 @@ const HomePage = () => {
           ))}
         </Grid>
 
-        <Grid mt={"20px"}>
-          <ChartPage />
+        <Grid
+          mt={"20px"}
+          columns={12}
+          container
+          justifyContent={"space-between"}
+        >
+          <Grid
+            item
+            lg={7}
+            display={"flex"}
+            height={"55vh"}
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            padding={"10px 12px 12px 12px"}
+          >
+            {" "}
+            <span style={{ fontWeight: 600, marginBottom: "20px" }}>
+              Bảng điều khiển
+            </span>
+            <VerticalChart />
+          </Grid>
+          <Grid
+            lg={4.8}
+            item
+            height={"55vh"}
+            display={"flex"}
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            padding={"10px 12px 32px 12px"}
+          >
+            <span style={{ fontWeight: 600, marginBottom: "10px" }}>
+              Thống kê
+            </span>
+            <PieChart />
+          </Grid>
+        </Grid>
+        <Grid
+          height="100%"
+          boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+          padding={"20px 10px"}
+          mt={"12px"}
+        >
+          <span style={{ fontWeight: 600, margin: "0 0 10px 25px" }}>
+            Người dùng
+          </span>
+          <DataGridComponent />
         </Grid>
       </Grid>
     </DefaultWebLayOut>

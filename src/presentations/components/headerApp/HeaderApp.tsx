@@ -31,7 +31,15 @@ const HeaderApp = (props: HeaderAppProps) => {
         }
       >
         {/* <HeaderLeft /> */}
-
+        {!props.openSidebar && (
+          <img
+            src={images.logoAgri}
+            alt="Logo"
+            height={"100%"}
+            width={"200px"}
+            style={{ objectFit: "contain" }}
+          />
+        )}
         <HeaderRight />
       </Grid>
       {/* Header on Mobile and Ipad */}
@@ -80,6 +88,7 @@ const HeaderApp = (props: HeaderAppProps) => {
           }}
         >
           {/* <HeaderLeft /> */}
+
           <HeaderRight />
         </Grid>
       </Grid>

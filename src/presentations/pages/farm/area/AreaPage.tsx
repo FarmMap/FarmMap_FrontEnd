@@ -2,26 +2,25 @@
 import React, { Fragment, useEffect, useState } from "react";
 import DefaultWebLayOut from "../../../components/defaultWebLayOut/DefaultWebLayOut";
 import { Grid, MenuItem, Select } from "@mui/material";
-import FormInput from "../../../components/formInput/FormInput";
 import DefaultTitleLayOut from "../../../components/defaultTitleLayOut/DefaultTitleLayOut";
 import DefaultFilterLayOut from "../../../components/defaultTitleLayOut/DefaultFilterLayOut";
 import AreaTable from "./AreaTable";
 import AreaModal from "./AreaModal";
-import PlaneArea from "../../../../data/types/PlaneArea";
 import { toast } from "react-toastify";
 import useFetchAreaList from "../../../../api/PlaneArea/useFetchAreaList";
-import { Area } from "../../../../data/types/Area";
-import useFetchSoilTypeList from "../../../../api/SoilType/useFetchSoilTypeList";
+
 // Internal
-// Style imports
-import classNames from "classnames/bind";
-import styles from "./Area.module.scss";
 import SoilType from "../../../../data/types/SoilType";
 import Land from "../../../../data/types/Land";
 import useCreateLand from "../../../../api/Land/useCreateLand";
 import useFetchLandList from "../../../../api/Land/useFetchLandList";
 import DefaultModal from "../../../components/defaultModal";
 import Carousel from "react-material-ui-carousel";
+import { Area } from "../../../../data/types/Area";
+import useFetchSoilTypeList from "../../../../api/SoilType/useFetchSoilTypeList";
+// Style imports
+import classNames from "classnames/bind";
+import styles from "./Area.module.scss";
 
 const cx = classNames.bind(styles);
 
