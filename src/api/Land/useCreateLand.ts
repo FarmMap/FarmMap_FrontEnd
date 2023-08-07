@@ -15,6 +15,7 @@ interface ResponseError {
 interface useCreateLandProps {
   areaId?: string;
   name: string;
+  productTypeId?: string;
   soilTypeId: string;
   locations: LatLngObject[];
   images?: File[];
@@ -33,6 +34,7 @@ const useCreateLand = (props: useCreateLandProps) => {
       const FormData = require("form-data");
       var data = new FormData();
       data.append("name", props.name);
+      data.append("productTypeId", props.productTypeId);
       data.append("soilTypeId", props.soilTypeId);
       props.locations.forEach((location, i) => {
         data.append(

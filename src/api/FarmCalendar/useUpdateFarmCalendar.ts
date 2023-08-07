@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import FarmCalendar from "../../data/types/FarmCalendar";
 
 interface UpdateFarmCalendarPrarams {
-  farmCalendar: FarmCalendar;
+  farmCalendar: FarmCalendar | undefined;
 }
 
 interface ResponseError {
@@ -30,7 +30,7 @@ const useUpdateFarmCalendar = () => {
         url: `${
           process.env.REACT_APP_API_BASE_URL
         }farming-calender/update?id=${encodeURIComponent(
-          `${params.farmCalendar.id}`
+          `${params.farmCalendar?.id}`
         )}`,
         headers: {
           Authorization: `Bearer ${window.localStorage.getItem("token")}`,

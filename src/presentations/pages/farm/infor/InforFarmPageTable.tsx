@@ -14,6 +14,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Area } from "../../../../data/types/Area";
 import { useState } from "react";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 // Internal imports
 import { ListIcon } from "../../../components/sidebar/SidebarData";
 
@@ -27,22 +28,12 @@ interface InforFarmPageTableProps {
   areas: Area[];
   handleGetAvtArea: (area: Area) => void;
   handleSeeLocationArea: (area: Area) => void;
+  handleGetLandOfArea: (area: Area) => void;
   seeLocation: boolean;
   areaProps?: Area;
 }
 
 const InforFarmPageTable = (props: InforFarmPageTableProps) => {
-  const [visibleRows, setVisibleRows] = useState<Set<number>>(new Set());
-
-  const toggleRowVisibility = (index: number) => {
-    const newVisibleRows = new Set(visibleRows);
-    if (visibleRows.has(index)) {
-      newVisibleRows.delete(index);
-    } else {
-      newVisibleRows.add(index);
-    }
-    setVisibleRows(newVisibleRows);
-  };
   return (
     <Grid>
       {/* on PC */}
@@ -115,6 +106,17 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
                       disableElevation={true}
                     >
                       <ImageIcon />
+                    </Button>
+                  </Tippy>
+
+                  <Tippy content={`Thêm vùng cho ${area.name}`} theme="light">
+                    <Button
+                      className={cx("btn-more")}
+                      variant="contained"
+                      onClick={() => props.handleGetLandOfArea(area)}
+                      disableElevation={true}
+                    >
+                      <AddCircleIcon />
                     </Button>
                   </Tippy>
                 </td>

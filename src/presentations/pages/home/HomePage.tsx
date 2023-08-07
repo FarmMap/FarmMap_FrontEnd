@@ -30,7 +30,7 @@ const HomePage = () => {
   const headerData = [
     {
       title: "Doanh thu",
-      quality: "10.000.000",
+      quality: "0",
       percent: 22,
       srcVector: images.vector1,
       isIncrease: true,
@@ -40,7 +40,7 @@ const HomePage = () => {
       title: "Khoản chi khác",
       percent: 5.7,
       srcVector: images.vector2,
-      quality: "5.000.000",
+      quality: "0",
       isIncrease: true,
       color: "var(--second-color)",
     },

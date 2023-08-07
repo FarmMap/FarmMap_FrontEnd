@@ -22,6 +22,8 @@ const cx = classNames.bind(styles);
 
 interface FarmCalendarTableProps {
   farmCalendars: FarmCalendar[];
+  handleDeleteFarmCalendar: (farmCalendar: FarmCalendar) => void;
+  handleEditFarmCalendar: (farmCalendar: FarmCalendar) => void;
 }
 
 const FarmCalendarTable = (props: FarmCalendarTableProps) => {
@@ -44,6 +46,7 @@ const FarmCalendarTable = (props: FarmCalendarTableProps) => {
               <th>#</th>
               <th>Vùng</th>
               <th>Tên sản phẩm</th>
+              <th>Loại sản phẩm</th>
               <th>Ngày bắt đầu- thu hoạch</th>
               <th>Số lượng giống</th>
               <th>Đơn vị cung cấp giống</th>
@@ -58,6 +61,7 @@ const FarmCalendarTable = (props: FarmCalendarTableProps) => {
                 <td>{i + 1}</td>
                 <td>{farmCalendar.land?.name}</td>
                 <td>{farmCalendar.product_name}</td>
+                <td>{farmCalendar.productType?.name}</td>
                 <td>
                   {toReadableDate(farmCalendar.startDay ?? "")} -{" "}
                   {toReadableDate(farmCalendar.endDate ?? "")}
@@ -80,7 +84,9 @@ const FarmCalendarTable = (props: FarmCalendarTableProps) => {
                     <Button
                       className={cx("btn-edit")}
                       variant="contained"
-                      onClick={() => {}}
+                      onClick={() => {
+                        props.handleEditFarmCalendar(farmCalendar);
+                      }}
                       disableElevation={true}
                     >
                       <Edit />
@@ -95,7 +101,9 @@ const FarmCalendarTable = (props: FarmCalendarTableProps) => {
                       className={cx("btn-delete")}
                       variant="contained"
                       disableElevation={true}
-                      onClick={() => {}}
+                      onClick={() => {
+                        props.handleDeleteFarmCalendar(farmCalendar);
+                      }}
                     >
                       <Delete />
                     </Button>

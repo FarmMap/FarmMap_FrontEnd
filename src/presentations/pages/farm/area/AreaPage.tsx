@@ -60,6 +60,7 @@ const AreaPage = () => {
     id: "",
     name: "",
     soilType: soilType,
+    productTypeId: "",
     locations: [
       {
         point: 0,
@@ -77,6 +78,7 @@ const AreaPage = () => {
   } = useCreateLand({
     areaId: area.id,
     name: land.name,
+    productTypeId: land.productTypeId,
     soilTypeId: soilType.id,
     locations: land.locations,
     images: land.images,
@@ -130,6 +132,7 @@ const AreaPage = () => {
         id: "",
         name: "",
         soilType: soilType,
+        productTypeId: "",
         locations: [
           {
             point: 0,
@@ -227,6 +230,7 @@ const AreaPage = () => {
             setLand={setLand}
             lands={lands}
             handleSubmitCreateLand={handleSubmitCreateLand}
+            isDisabled={false}
           />
         )}
 

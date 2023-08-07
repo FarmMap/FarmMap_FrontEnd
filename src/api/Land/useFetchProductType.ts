@@ -1,18 +1,19 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-import SoilType from "../../data/types/SoilType";
+import ProductType from "../../data/types/ProductType";
+
 interface ResponseError {
   code: string;
   message: string;
 }
 
-interface useFetchAreaListProps {
+interface useFetchProductTypeProps {
   shouldRefesh?: boolean;
 }
 
-const useFetchSoilTypeList = (props: useFetchAreaListProps) => {
-  let [soilTypes, setSoilTypes] = useState<SoilType[]>([]);
+const useFetchProductType = (props: useFetchProductTypeProps) => {
+  let [productTypes, setProductTypes] = useState<ProductType[]>([]);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
 
@@ -22,7 +23,7 @@ const useFetchSoilTypeList = (props: useFetchAreaListProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}categories/getsByCategory?type=SOIL_TYPE`,
+      url: `${process.env.REACT_APP_API_BASE_URL}categories/getsByCategory?type=PRODUCT_TYPE`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -31,7 +32,7 @@ const useFetchSoilTypeList = (props: useFetchAreaListProps) => {
     axios(config)
       .then((response: AxiosResponse) => {
         let data = response.data;
-        setSoilTypes(data);
+        setProductTypes(data);
 
         setLoading(false);
       })
@@ -50,7 +51,7 @@ const useFetchSoilTypeList = (props: useFetchAreaListProps) => {
       });
   }, [props.shouldRefesh]);
 
-  return { soilTypes, error, isLoading };
+  return { productTypes, error, isLoading };
 };
 
-export default useFetchSoilTypeList;
+export default useFetchProductType;

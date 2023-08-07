@@ -17,7 +17,7 @@ const useDeleteFarmCalendar = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const deleteEmployee = useCallback((params: DeleteFarmCalendarParams) => {
+  const deleteFarmCalendar = useCallback((params: DeleteFarmCalendarParams) => {
     setDeleted(false);
     setError(null);
     setLoading(true);
@@ -55,7 +55,7 @@ const useDeleteFarmCalendar = () => {
       });
   }, []);
 
-  return { isDeleted, error, isLoading, deleteEmployee };
+  return { isDeleted, error, isLoading, deleteFarmCalendar };
 };
 
 export default useDeleteFarmCalendar;

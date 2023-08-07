@@ -32,6 +32,11 @@ import Land from "../../../../data/types/Land";
 import SearchLocationByLatLng from "../../../components/maps/SearchLocationByLatLng";
 import { LatLngExpression } from "leaflet";
 import Carousel from "react-material-ui-carousel";
+import useFetchProductType from "../../../../api/Land/useFetchProductType";
+import FormDropdown, {
+  DropdownOption,
+} from "../../../components/formDropDown/FormDropdown";
+import KDialog from "../../../components/kDialog/KDialog";
 
 const cx = classNames.bind(styles);
 
@@ -49,6 +54,7 @@ interface AreaModalProps {
   setLand: React.Dispatch<React.SetStateAction<Land>>;
   lands: Land[];
   handleSubmitCreateLand: (land: Land) => void;
+  isDisabled: boolean;
 }
 const AreaModal = (props: AreaModalProps) => {
   const position = { lat: 10.964112, lng: 106.856461 };
@@ -78,73 +84,56 @@ const AreaModal = (props: AreaModalProps) => {
     };
 
     // Lấy giá trị hiện tại của state props.land.locations và thêm phần tử mới vào mảng
-    const updatedLocations = props.land.locations
-      ? [...props.land.locations, newLocation]
-      : [newLocation];
+    let updatedLocations;
+    if (props.isDisabled) {
+      updatedLocations = props.area.locations
+        ? [...props.area.locations, newLocation]
+        : [newLocation];
+    } else {
+      updatedLocations = props.land.locations
+        ? [...props.land.locations, newLocation]
+        : [newLocation];
+    }
 
     // Cập nhật state props.land
-    props.setLand({
-      ...props.land,
-      locations: updatedLocations,
-    });
+    if (props.isDisabled) {
+      props.area.locations = updatedLocations;
+    } else {
+      props.setLand({
+        ...props.land,
+        locations: updatedLocations,
+      });
+    }
   };
+
+  // Delete điểm
+  const [showConfirmDeletePoint, setShowConfirmDeletePoint] = useState(false);
 
   const handleDeletePlace = (index: Number) => {
     const newCountLocal = countLocal.filter((_, i) => i !== index);
     setCountLocal(newCountLocal);
 
     // Lọc ra các phần tử khác với điểm được chỉ định để xóa
-    const updatedLocations = props.land.locations.filter((_, i) => i !== index);
-
-    // Cập nhật state props.land
-    props.setLand({
-      ...props.land,
-      locations: updatedLocations,
-    });
-  };
-
-  // Draw map
-  const [plane, setPlane] = useState<PlaneArea>({
-    tenFarm: "",
-    tenKhuDat: "",
-    dienTich: 0,
-    latlng: [
-      {
-        lat: 0,
-        lng: 0,
-      },
-    ],
-    ghiChu: "",
-  });
-
-  const fillBlueOptions = { fillColor: "blue" };
-  const yellowOption = { color: "yellow", fillColor: "yellow" };
-  const blackOptions = { fillColor: "black" };
-
-  const [planeLocal, setPlaneLocal] = useState<PlaneArea[]>([]);
-
-  const handleSubmitPlane = () => {
-    planeLocal.push(plane);
-    if (localStorage.getItem("plane") == undefined) {
-      localStorage.setItem("planeLocal", JSON.stringify(planeLocal));
+    let updatedLocations;
+    if (props.isDisabled) {
+      updatedLocations = props.area.locations.filter((_, i) => i !== index);
+    } else {
+      updatedLocations = props.land.locations.filter((_, i) => i !== index);
     }
 
-    setTimeout(() => {
-      toast.success("Thêm vùng thành công");
-      setPlane({
-        tenFarm: "",
-        tenKhuDat: "",
-        dienTich: 0,
-        latlng: [
-          {
-            lat: 0,
-            lng: 0,
-          },
-        ],
-        ghiChu: "",
+    // Cập nhật state props.land
+    if (props.isDisabled) {
+      props.area.locations = updatedLocations;
+    } else {
+      props.setLand({
+        ...props.land,
+        locations: updatedLocations,
       });
-    }, 3000);
+    }
+    setShowConfirmDeletePoint(false);
   };
+
+  const blackOptions = { fillColor: "black" };
 
   const convertLatLngObjectToLatLngExpression = (
     locations: LatLngObject[]
@@ -169,6 +158,9 @@ const AreaModal = (props: AreaModalProps) => {
     }
   }, [props.land.images]);
 
+  // product type
+  const { productTypes } = useFetchProductType({});
+
   return (
     <DefaultModal
       overrideMaxWidth={{
@@ -187,8 +179,16 @@ const AreaModal = (props: AreaModalProps) => {
             {props.area.locations && (
               <SearchLocationByLatLng
                 showPopUp={false}
-                lat={props.area.locations[0].latitude}
-                lng={props.area.locations[0].longitude}
+                lat={
+                  props.area.locations.length > 0
+                    ? props.area.locations[0].latitude
+                    : 0
+                }
+                lng={
+                  props.area.locations.length > 0
+                    ? props.area.locations[0].longitude
+                    : 0
+                }
               />
             )}
 
@@ -230,7 +230,10 @@ const AreaModal = (props: AreaModalProps) => {
                     <>
                       <Polygon
                         key={i}
-                        pathOptions={fillBlueOptions}
+                        pathOptions={{
+                          color: land.productType?.child_column?.color,
+                          fillColor: land.productType?.child_column?.color,
+                        }}
                         positions={convertLatLngObjectToLatLngExpression(
                           land.locations
                         )}
@@ -253,7 +256,10 @@ const AreaModal = (props: AreaModalProps) => {
                   <>
                     <Polygon
                       key={i}
-                      pathOptions={yellowOption}
+                      pathOptions={{
+                        color: "var(--primary-color)",
+                        fillColor: "var(--primary-color)",
+                      }}
                       positions={convertLatLngObjectToLatLngExpression(
                         props.land.locations
                       )}
@@ -288,6 +294,8 @@ const AreaModal = (props: AreaModalProps) => {
               disablePortal
               id="combo-box-demo"
               options={props.areas}
+              defaultValue={props.area}
+              disabled={props.isDisabled}
               getOptionLabel={(option: Area) => option.name as string}
               noOptionsText="Không tìm thấy khu canh tác nào"
               onChange={(event, value: Area | null) => {
@@ -333,6 +341,26 @@ const AreaModal = (props: AreaModalProps) => {
               props.setLand(newLand);
             }}
             required
+          />
+
+          <FormDropdown
+            label="Loại sản phẩm"
+            value={props.land.productTypeId}
+            required
+            defaultValue={""}
+            options={productTypes.map((u) => {
+              return {
+                name: u.name,
+                value: u.id,
+              } as DropdownOption;
+            })}
+            onChange={(event) => {
+              let newLand: Land = {
+                ...props.land,
+                productTypeId: event.target.value,
+              };
+              props.setLand(newLand);
+            }}
           />
         </Grid>
 
@@ -384,8 +412,7 @@ const AreaModal = (props: AreaModalProps) => {
           </Grid>
         </Grid>
 
-        {props.area.id &&
-        props.area.locations.length == props.land.locations.length
+        {props.area.id && props.isDisabled
           ? props.area.locations.map((item, i) => (
               <Grid
                 justifyContent={"space-around"}
@@ -419,8 +446,8 @@ const AreaModal = (props: AreaModalProps) => {
                     placeholder="nhập lat"
                     type="number"
                     value={
-                      props.land.locations[i]?.latitude !== undefined
-                        ? props.land.locations[i].latitude.toString()
+                      item.latitude !== undefined
+                        ? item.latitude.toString()
                         : ""
                     }
                     onChange={(event: React.FormEvent<HTMLInputElement>) => {
@@ -458,8 +485,8 @@ const AreaModal = (props: AreaModalProps) => {
                     placeholder="nhập lng"
                     type="number"
                     value={
-                      props.land.locations[i]?.longitude !== undefined
-                        ? props.land.locations[i].longitude.toString()
+                      item.longitude !== undefined
+                        ? item.longitude.toString()
                         : ""
                     }
                     onChange={(event: React.FormEvent<HTMLInputElement>) => {
@@ -480,6 +507,24 @@ const AreaModal = (props: AreaModalProps) => {
                     }}
                   />
                 </Grid>
+
+                {/* Confirm delete modal */}
+                <KDialog
+                  open={showConfirmDeletePoint}
+                  title="Xác nhận xóa"
+                  content={
+                    <p>
+                      Điểm này sẽ được xóa khỏi hệ thống cho đến khi bạn tải lại
+                      trang <br />
+                      Bạn có chắc muốn xóa điểm này chứ?
+                    </p>
+                  }
+                  onCancel={() => {
+                    setShowConfirmDeletePoint(false);
+                  }}
+                  onConfirm={() => handleDeletePlace(i)}
+                />
+
                 <Grid
                   display={"flex"}
                   alignItems={"center"}
@@ -498,7 +543,9 @@ const AreaModal = (props: AreaModalProps) => {
                         color: "var(--second-color)",
                       }}
                       variant="outlined"
-                      onClick={() => handleDeletePlace(i)}
+                      onClick={() => {
+                        setShowConfirmDeletePoint(true);
+                      }}
                       size="medium"
                     >
                       <DeleteIcon className={cx("delete-icon")} />
@@ -540,8 +587,8 @@ const AreaModal = (props: AreaModalProps) => {
                     placeholder="nhập lat"
                     type="number"
                     value={
-                      props.land.locations[i]?.latitude !== undefined
-                        ? props.land.locations[i].latitude.toString()
+                      item.latitude !== undefined
+                        ? item.latitude.toString()
                         : ""
                     }
                     onChange={(event: React.FormEvent<HTMLInputElement>) => {
@@ -579,8 +626,8 @@ const AreaModal = (props: AreaModalProps) => {
                     placeholder="nhập lng"
                     type="number"
                     value={
-                      props.land.locations[i]?.longitude !== undefined
-                        ? props.land.locations[i].longitude.toString()
+                      item.longitude !== undefined
+                        ? item.longitude.toString()
                         : ""
                     }
                     onChange={(event: React.FormEvent<HTMLInputElement>) => {
@@ -601,6 +648,25 @@ const AreaModal = (props: AreaModalProps) => {
                     }}
                   />
                 </Grid>
+
+                {/* Confirm delete modal */}
+                <KDialog
+                  open={showConfirmDeletePoint}
+                  title="Xác nhận xóa"
+                  content={
+                    <p>
+                      Điểm này sẽ được xóa khỏi hệ thống cho đến khi bạn thay
+                      đổi khu canh tác
+                      <br />
+                      Bạn có chắc muốn xóa điểm này chứ?
+                    </p>
+                  }
+                  onCancel={() => {
+                    setShowConfirmDeletePoint(false);
+                  }}
+                  onConfirm={() => handleDeletePlace(i)}
+                />
+
                 <Grid
                   display={"flex"}
                   alignItems={"center"}
@@ -611,7 +677,7 @@ const AreaModal = (props: AreaModalProps) => {
                   sm={4}
                   xs={6}
                 >
-                  <Tippy content={`Xóa điểm ${i}`}>
+                  <Tippy content={`Xóa điểm ${i + 1}`}>
                     <Button
                       style={{
                         backgroundColor: "var(--white-color)",
@@ -619,7 +685,7 @@ const AreaModal = (props: AreaModalProps) => {
                         color: "var(--second-color)",
                       }}
                       variant="outlined"
-                      onClick={() => handleDeletePlace(i)}
+                      onClick={() => setShowConfirmDeletePoint(true)}
                       size="medium"
                     >
                       <DeleteIcon className={cx("delete-icon")} />
@@ -647,6 +713,7 @@ const AreaModal = (props: AreaModalProps) => {
               ))}
           </Carousel>
         </Grid>
+
         <Grid
           container
           columns={12}

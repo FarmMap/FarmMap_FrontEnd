@@ -5,15 +5,21 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import HomeWorkIcon from '@mui/icons-material/HomeWork'
 import SpaIcon from '@mui/icons-material/Spa';
 import EdgesensorHighIcon from '@mui/icons-material/EdgesensorHigh';
-import PetsIcon from '@mui/icons-material/Pets';
-import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
+import GrassIcon from '@mui/icons-material/Grass';
 import PropTypes from 'prop-types';
+import StoreIcon from '@mui/icons-material/Store';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 
 export const SidebarData = [
     {
         title: "Trang chủ",
         path: "/",
         icon: <HomeIcon />,
+    },
+    {
+        title: "Thiết bị IOT",
+        path: "/thiet-bi-iot",
+        icon: <EdgesensorHighIcon />,
     },
     {
         title: "Nông nghiệp",
@@ -31,6 +37,10 @@ export const SidebarData = [
                 title: "Trang trại",
                 path: "/nong-nghiep/trang-trai"
             },
+            {
+                title: "Vùng canh tác",
+                path: "/nong-nghiep/vung-canh-tac"
+            },
         ]
     },
     {
@@ -41,10 +51,7 @@ export const SidebarData = [
         closeIcon: <ArrowDropDownIcon />,
 
         subnav: [
-            {
-                title: "Vùng canh tác",
-                path: "/nong-trai/vung-canh-tac"
-            },
+
             {
                 title: "Lịch canh tác",
                 path: "/nong-trai/lich-canh-tac"
@@ -56,10 +63,11 @@ export const SidebarData = [
 
         ]
     },
+
     {
         title: "Nông sản",
         path: "",
-        icon: <EdgesensorHighIcon />,
+        icon: <GrassIcon />,
         openIcon: <ArrowDropUpIcon />,
         closeIcon: <ArrowDropDownIcon />,
 
@@ -83,7 +91,7 @@ export const SidebarData = [
     {
         title: "Kho",
         path: "",
-        icon: <PetsIcon />,
+        icon: <StoreIcon />,
         openIcon: <ArrowDropUpIcon />,
         closeIcon: <ArrowDropDownIcon />,
 
@@ -109,7 +117,7 @@ export const SidebarData = [
     {
         title: "Danh sách yêu cầu",
         path: "",
-        icon: <ManageHistoryIcon />,
+        icon: <ReceiptLongIcon />,
         openIcon: <ArrowDropUpIcon />,
         closeIcon: <ArrowDropDownIcon />,
 

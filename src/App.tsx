@@ -11,6 +11,7 @@ import RedirectRoute from "./routes/RedirectRoute";
 import AreaPage from "./presentations/pages/farm/area/AreaPage";
 import CompanyPage from "./presentations/pages/company/CompanyPage";
 import FarmCalendarPage from "./presentations/pages/farmCalendar/FarmCalendarPage";
+import IotPage from "./presentations/pages/iot/IotPage";
 //Style
 
 const App: React.FC = () => {
@@ -27,11 +28,12 @@ const App: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/nong-nghiep/trang-trai" element={<CompanyPage />} />
           <Route path="/nong-nghiep/khu-canh-tac" element={<InforPage />} />
-          <Route path="/nong-trai/vung-canh-tac" element={<AreaPage />} />
+          <Route path="/nong-nghiep/vung-canh-tac" element={<AreaPage />} />
           <Route
             path="/nong-trai/lich-canh-tac"
             element={<FarmCalendarPage />}
           />
+          <Route path="/thiet-bi-iot" element={<IotPage />} />
         </Route>
       </Routes>
     </div>

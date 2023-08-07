@@ -1,10 +1,11 @@
 import Land from "./Land";
-import UserAccount from "./UserAccount";
+import ProductType from "./ProductType";
 
 export default interface FarmCalendar {
   id?: string;
   product_name?: string;
-  product_type?: string;
+  productType?: ProductType;
+  productTypeId?: string;
   numberOfVarites?: number;
   startDay?: string;
   endDate?: string;

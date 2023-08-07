@@ -32,6 +32,7 @@ import UserAccount from "../../../data/types/UserAccount";
 // Style imports
 import classNames from "classnames/bind";
 import styles from "./FarmCalendar.module.scss";
+import useFetchProductType from "../../../api/Land/useFetchProductType";
 
 const cx = classNames.bind(styles);
 
@@ -39,7 +40,7 @@ interface FarmCalendarModalProps {
   title: string;
   handleCloseModal: () => void;
   submitButtonLabel: string;
-  land: Land;
+  land?: Land;
   setLand: React.Dispatch<React.SetStateAction<Land>>;
   farmCalendar?: FarmCalendar;
   user: UserAccount[];
@@ -64,8 +65,8 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
   const [farmCalendar, setFarmCalendar] = useState<FarmCalendar>(
     props.farmCalendar ?? {}
   );
-  const unit = ["Quả", "Tấn", "Cây", "Tạ"];
-  const product_type = ["Hành", "Ngô", "Bắp", "Đậu"];
+  const unit = ["Quả", "Tấn", "Cây", "Tạ", "Kí"];
+  const { productTypes } = useFetchProductType({});
 
   return (
     <DefaultModal
@@ -99,15 +100,19 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
               disablePortal
               id="combo-box-demo"
               options={lands}
+              defaultValue={props.land}
+              disabled={props.farmCalendar !== undefined}
               getOptionLabel={(option: Land) => option.name as string}
               noOptionsText="Không tìm thấy vùng canh tác nào"
               onChange={(event, value: Land | null) => {
                 if (value == null) return;
-                props.setLand({
-                  ...props.land,
-                  id: value.id,
-                  name: value.name,
-                });
+                if (props.land !== undefined) {
+                  props.setLand({
+                    ...props.land,
+                    id: value.id,
+                    name: value.name,
+                  });
+                }
               }}
               sx={{ width: "100%" }}
               renderOption={(props, option) => (
@@ -127,7 +132,7 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
           </Grid>
           <Grid item lg={3} md={4} xs={4} sm={12}>
             <label className={cx("label-area")} htmlFor="khu-dat">
-              Người thực hiện
+              Người thực hiện <span>*</span>
             </label>
           </Grid>
           <Grid
@@ -197,18 +202,19 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
 
           <FormDropdown
             label="Loại sản phẩm"
-            value={farmCalendar.product_type}
-            defaultValue={""}
-            options={product_type.map((u) => {
+            value={farmCalendar.productType}
+            required
+            defaultValue={props.farmCalendar?.productType?.name}
+            options={productTypes.map((u) => {
               return {
-                name: u,
-                value: u,
+                name: u.name,
+                value: u.id,
               } as DropdownOption;
             })}
             onChange={(event) => {
               let newFarmCalendar: FarmCalendar = {
                 ...farmCalendar,
-                product_type: event.target.value,
+                productTypeId: event.target.value,
               };
               setFarmCalendar(newFarmCalendar);
             }}
@@ -217,6 +223,7 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
           <FormInput
             label="Số lượng giống"
             placeholder="Nhập số lượng giống"
+            required
             type="number"
             value={farmCalendar.numberOfVarites?.toString() ?? ""}
             onChange={(event) => {
@@ -238,7 +245,7 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
               className={cx("form-control-wrapper")}
             >
               <label className={cx("form-input-label")} htmlFor={"Dientich"}>
-                Thời gian thu hoạch
+                Thời gian thu hoạch <span style={{ color: "red" }}>*</span>
               </label>
             </Grid>
             <Grid
@@ -253,7 +260,6 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
                 <DemoContainer components={["DatePicker"]}>
                   <DatePicker
                     label="Ngày bắt đầu"
-                    defaultValue={dayjs(farmCalendar.startDay)}
                     value={dayjs(farmCalendar.startDay)}
                     onChange={(date: Dayjs | null) => {
                       // Convert the selected Dayjs date to an ISO string and update the state
@@ -266,7 +272,6 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
 
                   <DatePicker
                     label="Ngày kết thúc"
-                    defaultValue={dayjs(farmCalendar.endDate)}
                     value={dayjs(farmCalendar.endDate)}
                     onChange={(date: Dayjs | null) => {
                       // Convert the selected Dayjs date to an ISO string and update the state
@@ -283,6 +288,7 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
 
           <FormInput
             label="Nhà cung cấp"
+            required
             placeholder="Nhập tên nhà cung cấp"
             type="text"
             value={farmCalendar.seedProvider ?? ""}
@@ -297,6 +303,7 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
 
           <FormInput
             label="Sản lượng dự kiến"
+            required
             placeholder="Nhập sản lượng dự kiến"
             type="number"
             value={farmCalendar.expectOutput?.toString() ?? ""}
@@ -313,6 +320,7 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
             label="Đơn vị"
             value={farmCalendar.unit}
             defaultValue={""}
+            required
             options={unit.map((u) => {
               return {
                 name: u,

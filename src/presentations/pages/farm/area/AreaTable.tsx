@@ -45,6 +45,7 @@ const AreaTable = (props: AreaTableProps) => {
               <th>#</th>
               <th>Tên khu đất</th>
               <th>Tên vùng</th>
+              <th>Loại sản phẩm</th>
               <th>Loại đất</th>
               <th>Chức năng</th>
             </tr>
@@ -55,6 +56,7 @@ const AreaTable = (props: AreaTableProps) => {
                 <td>{i + 1}</td>
                 <td>{land.area?.name}</td>
                 <td>{land.name}</td>
+                <td>{land.productType?.name}</td>
 
                 <td>{land.soilType.name}</td>
                 <td

@@ -23,7 +23,7 @@ const useFetchFarmCalendarList = (props: useFetchFarmCalendarListProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}farming-calender/gets`,
+      url: `${process.env.REACT_APP_API_BASE_URL}farming-calender/gets?order=ASC&page=1&take=10`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },

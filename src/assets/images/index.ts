@@ -7,6 +7,8 @@ const images = {
   vector2: require("../images/vector2.jpg"),
   vector3: require("../images/vector3.jpg"),
   vector4: require("../images/vector4.jpg"),
+  cloudRain: require("../images/cloudRain.png"),
+  cloudSun: require("../images/cloudSun.png"),
 };
 
 export default images;

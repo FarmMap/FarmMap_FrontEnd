@@ -40,6 +40,11 @@ import useFetchLandList from "../../../../api/Land/useFetchLandList";
 // Style
 import classNames from "classnames/bind";
 import styles from "./InforFarmPage.module.scss";
+import AreaModal from "../area/AreaModal";
+import useFetchSoilTypeList from "../../../../api/SoilType/useFetchSoilTypeList";
+import SoilType from "../../../../data/types/SoilType";
+import Land from "../../../../data/types/Land";
+import useCreateLand from "../../../../api/Land/useCreateLand";
 
 const cx = classNames.bind(styles);
 
@@ -54,9 +59,8 @@ L.Marker.prototype.options.icon = DefaultIcon;
 // Custom hook to access the Leaflet map instance
 
 function InforFarmPage() {
-  const position = { lat: 10.964112, lng: 106.856461 };
+  const position = { lat: 10.5607168, lng: 106.6497623 };
 
-  const fillBlueOptions = { fillColor: "blue" };
   const blackOptions = { color: "black" };
 
   const [addPlace, setAddPlace] = useState(false);
@@ -119,51 +123,6 @@ function InforFarmPage() {
     createArea({ area: area });
   };
 
-  useEffect(() => {
-    let error = createAreaError ?? fetchFarmErr;
-    let isSuccess = isCreated;
-
-    if (error != null) {
-      toast.error(error);
-    }
-
-    if (isSuccess) {
-      toast.success("Thao tác thành công!");
-      setRefresh((refresh) => !refresh);
-      setTimeout(() => {
-        setArea({
-          name: "",
-          acreage: 0,
-          description: "",
-          locations: [
-            {
-              point: 0,
-              latitude: 0,
-              longitude: 0,
-            },
-          ],
-          avatars: undefined,
-        });
-
-        setFarm({
-          id: "",
-          name: "",
-          business_model: "",
-          business_type: "",
-          province: "",
-          district: "",
-          wards: "",
-          address: "",
-          location: {
-            latitude: 0,
-            longitude: 0,
-          },
-          image: undefined,
-        });
-      }, 3000);
-    }
-  }, [isCreated, createAreaError]);
-
   const { areas } = useFetchAreaList({});
 
   const convertLatLngObjectToLatLngExpression = (
@@ -206,6 +165,115 @@ function InforFarmPage() {
 
   // Land
   const { lands } = useFetchLandList({});
+  const [showAddLand, setShowAddLand] = useState<{
+    open: boolean;
+    area: Area;
+  }>({
+    open: false,
+    area: {
+      name: "",
+      acreage: 0,
+      locations: [{ point: 0, latitude: 0, longitude: 0 }],
+      description: "",
+    },
+  });
+  const handleGetLandOfArea = (area: Area) => {
+    setShowAddLand({ open: true, area: area });
+  };
+
+  // Get soiltype list
+  const { soilTypes } = useFetchSoilTypeList({});
+  const [soilType, setSoilType] = useState<SoilType>({
+    createdAt: "",
+    updateAt: "",
+    id: "",
+    name: "",
+  });
+
+  // Create land
+  const [land, setLand] = useState<Land>({
+    id: "",
+    name: "",
+    soilType: soilType,
+    productTypeId: "",
+    locations: [
+      {
+        point: 0,
+        latitude: 0,
+        longitude: 0,
+      },
+    ],
+    images: undefined,
+  });
+
+  const {
+    isCreated: createLandSuccess,
+    createLand,
+    error: CreateLandErr,
+  } = useCreateLand({
+    areaId: showAddLand.area.id,
+    name: land.name,
+    productTypeId: land.productTypeId,
+    soilTypeId: soilType.id,
+    locations: land.locations,
+    images: land.images,
+  });
+
+  // handleSubmitCreateLand
+  const handleSubmitCreateLand = (land: Land) => {
+    createLand({ land: land });
+  };
+
+  useEffect(() => {
+    let error = createAreaError ?? fetchFarmErr ?? CreateLandErr;
+    let isSuccess = isCreated ?? createLandSuccess;
+
+    if (error != null) {
+      toast.error(error);
+    }
+
+    if (isSuccess) {
+      toast.success("Thao tác thành công!");
+      setRefresh((refresh) => !refresh);
+      setTimeout(() => {
+        setArea({
+          name: "",
+          acreage: 0,
+          description: "",
+          locations: [
+            {
+              point: 0,
+              latitude: 0,
+              longitude: 0,
+            },
+          ],
+          avatars: undefined,
+        });
+
+        setFarm({
+          id: "",
+          name: "",
+          business_model: "",
+          business_type: "",
+          province: "",
+          district: "",
+          wards: "",
+          address: "",
+          location: {
+            latitude: 0,
+            longitude: 0,
+          },
+          image: undefined,
+        });
+      }, 3000);
+    }
+  }, [
+    isCreated,
+    createAreaError,
+    fetchFarmErr,
+    CreateLandErr,
+    createLandSuccess,
+  ]);
 
   return (
     <DefaultWebLayOut>
@@ -362,7 +430,10 @@ function InforFarmPage() {
                     <>
                       <Polygon
                         key={i}
-                        pathOptions={fillBlueOptions}
+                        pathOptions={{
+                          fillColor: land.productType?.child_column?.color,
+                          color: land.productType?.child_column?.color,
+                        }}
                         positions={convertLatLngObjectToLatLngExpression(
                           land.locations
                         )}
@@ -464,6 +535,7 @@ function InforFarmPage() {
           seeLocation={showLocationArea.open}
           handleGetAvtArea={handleGetAvtArea}
           handleSeeLocationArea={handleSeeLocationArea}
+          handleGetLandOfArea={handleGetLandOfArea}
         />
 
         {/* Phân trang */}
@@ -483,33 +555,39 @@ function InforFarmPage() {
             },
           }}
         />
+
+        {/* Thêm vùng */}
+        {showAddLand.open && (
+          <AreaModal
+            title="Thêm vùng trồng"
+            submitButtonLabel="Xác nhận"
+            handleCloseModal={() =>
+              setShowAddLand({
+                open: false,
+                area: {
+                  name: "",
+                  acreage: 0,
+                  locations: [{ point: 0, latitude: 0, longitude: 0 }],
+                  description: "",
+                },
+              })
+            }
+            areas={areas}
+            area={showAddLand.area}
+            setArea={setArea}
+            soilTypes={soilTypes}
+            soilType={soilType}
+            setSoilType={setSoilType}
+            land={land}
+            isDisabled={true}
+            setLand={setLand}
+            lands={lands}
+            handleSubmitCreateLand={handleSubmitCreateLand}
+          />
+        )}
       </>
     </DefaultWebLayOut>
   );
 }
 
-const LocationMarker = () => {
-  const [position, setPosition] = useState({ lat: 0, lng: 0 });
-
-  const map = useMapEvents({
-    click() {
-      map.locate();
-    },
-
-    locationfound(e) {
-      setPosition(e.latlng);
-      map.flyTo(e.latlng, map.getZoom());
-    },
-  });
-
-  return position === null ? null : (
-    <Marker position={position}>
-      <Popup>You are here</Popup>
-    </Marker>
-  );
-};
-
 export default InforFarmPage;
-function useLeaflet(): { map: any } {
-  throw new Error("Function not implemented.");
-}

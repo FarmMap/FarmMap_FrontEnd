@@ -8,14 +8,18 @@ import DefaultFilterLayOut from "../../components/defaultTitleLayOut/DefaultFilt
 import FarmCalendarTable from "./FarmCalendarTable";
 import useFetchFarmCalendarList from "../../../api/FarmCalendar/useFetchFarmCalendar";
 import FarmCalendarModal from "./FarmCalendarModal";
-// Style imports
-import classNames from "classnames/bind";
-import styles from "./FarmCalendar.module.scss";
 import Land from "../../../data/types/Land";
 import useCreateFarmCalendar from "../../../api/FarmCalendar/useCreateFarmCalendar";
 import UserAccount from "../../../data/types/UserAccount";
 import FarmCalendar from "../../../data/types/FarmCalendar";
 import { toast } from "react-toastify";
+import KDialog from "../../components/kDialog/KDialog";
+import useDeleteFarmCalendar from "../../../api/FarmCalendar/useDeleteFarmCalendar";
+
+// Style imports
+import classNames from "classnames/bind";
+import styles from "./FarmCalendar.module.scss";
+import useUpdateFarmCalendar from "../../../api/FarmCalendar/useUpdateFarmCalendar";
 
 const cx = classNames.bind(styles);
 
@@ -68,9 +72,60 @@ const FarmCalendarPage = () => {
     }
   };
 
+  // Delete
+  const {
+    deleteFarmCalendar,
+    isDeleted,
+    error: deleteFarmCalendarErr,
+  } = useDeleteFarmCalendar();
+  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState<{
+    open: boolean;
+    farmCalendar: undefined | FarmCalendar;
+  }>({ open: false, farmCalendar: undefined });
+
+  // Cancel Delete close modal, employee = undefined
+  const handleCancelDelete = () => {
+    setShowConfirmDeleteModal({ open: false, farmCalendar: undefined });
+  };
+
+  // Delete customer when submit
+  const handleDeleteFarmCalendarButton = (farmCalendar: FarmCalendar) => {
+    setShowConfirmDeleteModal({ open: true, farmCalendar: farmCalendar });
+  };
+
+  const handleConfirmDelete = () => {
+    deleteFarmCalendar({
+      farmCalendar: showConfirmDeleteModal.farmCalendar as FarmCalendar,
+    });
+    setShowConfirmDeleteModal({ open: false, farmCalendar: undefined });
+  };
+
+  // Update
+  const {
+    isUpdated,
+    error: updateFarmCalendarErr,
+    updateFarmCalendar,
+  } = useUpdateFarmCalendar();
+  const [showUpdateModal, setShowUpdateModal] = useState<{
+    open: boolean;
+    farmCalendar: undefined | FarmCalendar;
+  }>({ open: false, farmCalendar: undefined });
+
+  const handleEditFarmCalendar = (farmCalendar: FarmCalendar) => {
+    setShowUpdateModal({ open: true, farmCalendar: farmCalendar });
+  };
+
+  const handleUpdateFarmCalendar = (farmCalendar: FarmCalendar | undefined) => {
+    updateFarmCalendar({ farmCalendar: farmCalendar });
+  };
+
   useEffect(() => {
-    let error = createFarmCalendarErr ?? fetchFarmCalendarErr;
-    let isSuccess = isCreated;
+    let error =
+      createFarmCalendarErr ??
+      fetchFarmCalendarErr ??
+      deleteFarmCalendarErr ??
+      updateFarmCalendarErr;
+    let isSuccess = isCreated ?? isDeleted ?? isUpdated;
 
     if (error != null) {
       toast.error(error);
@@ -95,7 +150,15 @@ const FarmCalendarPage = () => {
         });
       }, 3000);
     }
-  }, [isCreated]);
+  }, [
+    createFarmCalendarErr,
+    deleteFarmCalendarErr,
+    fetchFarmCalendarErr,
+    isCreated,
+    isDeleted,
+    isUpdated,
+    updateFarmCalendarErr,
+  ]);
 
   return (
     <DefaultWebLayOut>
@@ -118,8 +181,13 @@ const FarmCalendarPage = () => {
           ></DefaultFilterLayOut>
         </DefaultTitleLayOut>
 
-        <FarmCalendarTable farmCalendars={farmCalendars} />
+        <FarmCalendarTable
+          farmCalendars={farmCalendars}
+          handleDeleteFarmCalendar={handleDeleteFarmCalendarButton}
+          handleEditFarmCalendar={handleEditFarmCalendar}
+        />
 
+        {/* Create modal */}
         {showModal && (
           <FarmCalendarModal
             title="Tạo lịch canh tác"
@@ -133,6 +201,39 @@ const FarmCalendarPage = () => {
             onSubmit={handleCreateFarmCalendar}
           />
         )}
+
+        {/* Update Modal */}
+        {showUpdateModal.open && (
+          <FarmCalendarModal
+            title="Cập nhật lịch canh tác"
+            handleCloseModal={() =>
+              setShowUpdateModal({ open: false, farmCalendar: undefined })
+            }
+            submitButtonLabel="Xác nhận"
+            land={showUpdateModal.farmCalendar?.land}
+            setLand={setLand}
+            farmCalendar={showUpdateModal.farmCalendar}
+            user={user}
+            setUser={setUser}
+            onSubmit={handleUpdateFarmCalendar}
+          />
+        )}
+
+        {/* Confirm delete modal */}
+        <KDialog
+          open={showConfirmDeleteModal.open}
+          title="Xác nhận xóa"
+          content={
+            <p>
+              Lịch canh tác thuộc vùng{" "}
+              <span>{showConfirmDeleteModal.farmCalendar?.land?.name}</span> sẽ
+              bị xóa khỏi hệ thống. <br />
+              Bạn có muốn xóa nhân viên này không?
+            </p>
+          }
+          onCancel={handleCancelDelete}
+          onConfirm={handleConfirmDelete}
+        />
       </Grid>
     </DefaultWebLayOut>
   );
