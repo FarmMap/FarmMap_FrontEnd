@@ -226,13 +226,12 @@ function InforFarmPage() {
 
   useEffect(() => {
     let error = createAreaError ?? fetchFarmErr ?? CreateLandErr;
-    let isSuccess = isCreated ?? createLandSuccess;
 
     if (error != null) {
       toast.error(error);
     }
 
-    if (isSuccess) {
+    if (isCreated || createLandSuccess) {
       toast.success("Thao tác thành công!");
       setRefresh((refresh) => !refresh);
       setTimeout(() => {

@@ -53,12 +53,21 @@ const AreaTable = (props: AreaTableProps) => {
           <tbody>
             {props.lands.map((land, i) => (
               <tr key={i}>
-                <td>{i + 1}</td>
-                <td>{land.area?.name}</td>
-                <td>{land.name}</td>
-                <td>{land.productType?.name}</td>
-
-                <td>{land.soilType.name}</td>
+                <td>
+                  <p>{i + 1}</p>
+                </td>
+                <td>
+                  <p>{land.area?.name}</p>
+                </td>
+                <td>
+                  <p>{land.name}</p>
+                </td>
+                <td>
+                  <p>{land.productType?.name}</p>
+                </td>
+                <td>
+                  <p>{land.soilType.name}</p>
+                </td>
                 <td
                   style={{
                     whiteSpace: "nowrap",

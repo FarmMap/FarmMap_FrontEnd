@@ -345,7 +345,7 @@ const AreaModal = (props: AreaModalProps) => {
 
           <FormDropdown
             label="Loại sản phẩm"
-            value={props.land.productTypeId}
+            value={props.land.productTypeId ?? ""}
             required
             defaultValue={""}
             options={productTypes.map((u) => {
@@ -392,7 +392,6 @@ const AreaModal = (props: AreaModalProps) => {
               onChange={(event, value: SoilType | null) => {
                 if (value == null) return;
                 props.setSoilType({ ...props.soilType, id: value.id });
-                console.log(props.soilType);
               }}
               sx={{ width: "100%" }}
               renderOption={(props, option) => (

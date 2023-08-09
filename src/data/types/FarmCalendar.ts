@@ -12,6 +12,6 @@ export default interface FarmCalendar {
   seedProvider?: string;
   expectOutput?: number;
   unit?: string;
-  users?: string[];
+  users?: any | string[];
   land?: Land;
 }

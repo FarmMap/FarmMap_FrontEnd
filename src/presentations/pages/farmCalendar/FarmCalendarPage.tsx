@@ -116,7 +116,16 @@ const FarmCalendarPage = () => {
   };
 
   const handleUpdateFarmCalendar = (farmCalendar: FarmCalendar | undefined) => {
-    updateFarmCalendar({ farmCalendar: farmCalendar });
+    if (farmCalendar) {
+      const filteredUserIds: string[] = user
+        .filter((item) => item.id !== undefined)
+        .map((item) => item.id)
+        .filter((id) => id !== undefined) as string[];
+
+      setUserIds(filteredUserIds);
+      farmCalendar.users = filteredUserIds;
+      updateFarmCalendar({ farmCalendar: farmCalendar });
+    }
   };
 
   useEffect(() => {
@@ -125,13 +134,12 @@ const FarmCalendarPage = () => {
       fetchFarmCalendarErr ??
       deleteFarmCalendarErr ??
       updateFarmCalendarErr;
-    let isSuccess = isCreated ?? isDeleted ?? isUpdated;
 
     if (error != null) {
       toast.error(error);
     }
 
-    if (isSuccess) {
+    if (isCreated || isDeleted || isUpdated) {
       toast.success("Thao tác thành công!");
       setRefresh((refresh) => !refresh);
       setTimeout(() => {
@@ -213,7 +221,7 @@ const FarmCalendarPage = () => {
             land={showUpdateModal.farmCalendar?.land}
             setLand={setLand}
             farmCalendar={showUpdateModal.farmCalendar}
-            user={user}
+            user={showUpdateModal.farmCalendar?.users}
             setUser={setUser}
             onSubmit={handleUpdateFarmCalendar}
           />

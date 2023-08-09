@@ -61,13 +61,23 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
           <tbody>
             {props.areas.map((area, i) => (
               <tr key={i}>
-                <td>{i + 1}</td>
-                <td>{area.farm?.name}</td>
-                <td>{area.name}</td>
                 <td>
-                  {area.acreage}m<sup>2</sup>
+                  <p>{i + 1}</p>
                 </td>
-                <td>{area.description}</td>
+                <td>
+                  <p>{area.farm?.name}</p>
+                </td>
+                <td>
+                  <p>{area.name}</p>
+                </td>
+                <td>
+                  <p>
+                    {area.acreage}m<sup>2</sup>
+                  </p>
+                </td>
+                <td>
+                  <p>{area.description}</p>
+                </td>
                 <td
                   style={{
                     whiteSpace: "nowrap",

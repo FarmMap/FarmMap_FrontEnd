@@ -68,6 +68,8 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
   const unit = ["Quả", "Tấn", "Cây", "Tạ", "Kí"];
   const { productTypes } = useFetchProductType({});
 
+  console.log(props.farmCalendar?.productType?.name);
+
   return (
     <DefaultModal
       overrideMaxWidth={{
@@ -153,6 +155,7 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
               disablePortal
               id="combo-box-demo"
               multiple // Thêm thuộc tính multiple để chọn nhiều giá trị
+              defaultValue={props.farmCalendar !== undefined ? props.user : []}
               options={users} // Đảm bảo users là một mảng
               getOptionLabel={(option: UserAccount) =>
                 option.fullName as string
@@ -202,7 +205,11 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
 
           <FormDropdown
             label="Loại sản phẩm"
-            value={farmCalendar.productType}
+            value={
+              farmCalendar.productType !== undefined
+                ? props.farmCalendar?.productType?.name
+                : farmCalendar.productType
+            }
             required
             defaultValue={props.farmCalendar?.productType?.name}
             options={productTypes.map((u) => {

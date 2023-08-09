@@ -52,25 +52,48 @@ const FarmCalendarTable = (props: FarmCalendarTableProps) => {
               <th>Đơn vị cung cấp giống</th>
               <th>Sản lượng dự kiến</th>
               <th>Đơn vị</th>
+              <th>Người thực hiện</th>
               <th>Chức năng</th>
             </tr>
           </thead>
           <tbody>
             {props.farmCalendars.map((farmCalendar, i) => (
               <tr key={i}>
-                <td>{i + 1}</td>
-                <td>{farmCalendar.land?.name}</td>
-                <td>{farmCalendar.product_name}</td>
-                <td>{farmCalendar.productType?.name}</td>
                 <td>
-                  {toReadableDate(farmCalendar.startDay ?? "")} -{" "}
-                  {toReadableDate(farmCalendar.endDate ?? "")}
+                  <p>{i + 1}</p>
                 </td>
-                <td>{farmCalendar.numberOfVarites}</td>
-                <td>{farmCalendar.seedProvider}</td>
-                <td>{farmCalendar.expectOutput}</td>
-                <td>{farmCalendar.unit}</td>
-
+                <td>
+                  <p>{farmCalendar.land?.name}</p>
+                </td>
+                <td>
+                  <p>{farmCalendar.product_name}</p>
+                </td>
+                <td>
+                  <p>{farmCalendar.productType?.name}</p>
+                </td>
+                <td>
+                  <p>
+                    {toReadableDate(farmCalendar.startDay ?? "")} -{" "}
+                    {toReadableDate(farmCalendar.endDate ?? "")}
+                  </p>
+                </td>
+                <td>
+                  <p>{farmCalendar.numberOfVarites}</p>
+                </td>
+                <td>
+                  <p>{farmCalendar.seedProvider}</p>
+                </td>
+                <td>
+                  <p>{farmCalendar.expectOutput}</p>
+                </td>
+                <td>
+                  <p>{farmCalendar.unit}</p>
+                </td>
+                <td>
+                  {farmCalendar.users?.map((item: any, i: number) => (
+                    <p key={i}>{item.fullName}</p>
+                  ))}
+                </td>
                 <td
                   style={{
                     whiteSpace: "nowrap",

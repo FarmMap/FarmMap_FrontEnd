@@ -56,14 +56,30 @@ const CompanyTable = (props: CompanyTableProps) => {
           <tbody>
             {props.farms?.map((farm, i) => (
               <tr key={i}>
-                <td>{i + 1}</td>
-                <td>{farm.name}</td>
-                <td>{farm.business_model}</td>
-                <td>{farm.business_type}</td>
-                <td>{farm.province}</td>
-                <td>{farm.district}</td>
-                <td>{farm.wards}</td>
-                <td>{farm.address}</td>
+                <td>
+                  <p>{i + 1}</p>
+                </td>
+                <td>
+                  <p>{farm.name}</p>
+                </td>
+                <td>
+                  <p>{farm.business_model}</p>
+                </td>
+                <td>
+                  <p>{farm.business_type}</p>
+                </td>
+                <td>
+                  <p>{farm.province}</p>
+                </td>
+                <td>
+                  <p>{farm.district}</p>
+                </td>
+                <td>
+                  <p>{farm.wards}</p>
+                </td>
+                <td>
+                  <p>{farm.address}</p>
+                </td>
                 <td
                   style={{
                     whiteSpace: "nowrap",
