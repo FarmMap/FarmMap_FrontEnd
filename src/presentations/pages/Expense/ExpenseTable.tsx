@@ -18,7 +18,7 @@ import FarmCalendar from "../../../data/types/FarmCalendar";
 
 // Style imports
 import classNames from "classnames/bind";
-import styles from "./FarmCalendar.module.scss";
+import styles from "./Expense.module.scss";
 const cx = classNames.bind(styles);
 
 interface FarmCalendarTableProps {

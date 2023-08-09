@@ -274,6 +274,9 @@ function InforFarmPage() {
     createLandSuccess,
   ]);
 
+  // Show marker
+  const [showMarker, setShowMarker] = useState(false);
+
   return (
     <DefaultWebLayOut>
       <>
@@ -398,23 +401,27 @@ function InforFarmPage() {
                       <Polygon
                         key={i}
                         pathOptions={blackOptions}
+                        eventHandlers={{
+                          click: () => setShowMarker((marker) => !marker),
+                        }}
                         positions={convertLatLngObjectToLatLngExpression(
                           area.locations
                         )}
                       >
                         <Popup>{area.name}</Popup>
                       </Polygon>
-                      {area.locations.map((item, j) => (
-                        <Marker
-                          key={j}
-                          position={{
-                            lat: item.latitude,
-                            lng: item.longitude,
-                          }}
-                        >
-                          <Popup>Điểm {j + 1}</Popup>
-                        </Marker>
-                      ))}
+                      {showMarker &&
+                        area.locations.map((item, j) => (
+                          <Marker
+                            key={j}
+                            position={{
+                              lat: item.latitude,
+                              lng: item.longitude,
+                            }}
+                          >
+                            <Popup>Điểm {j + 1}</Popup>
+                          </Marker>
+                        ))}
                     </>
                   )}
                 </Fragment>

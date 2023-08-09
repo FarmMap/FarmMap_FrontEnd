@@ -127,8 +127,8 @@ export const SidebarData = [
                 path: "/danh-sach-yeu-cau/yeu-cau"
             },
             {
-                title: "Phiếu trả",
-                path: "/danh-sach-yeu-cau/phieu-tra"
+                title: "Thu chi",
+                path: "/danh-sach-yeu-cau/thu-chi"
             },
 
         ]

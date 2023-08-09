@@ -387,7 +387,7 @@ const CompanyModal = (props: CompanyModalProps) => {
                   style={{
                     backgroundColor: "var(--white-color)",
                     borderColor: "transparent",
-                    color: "var(--blue-color)",
+                    color: "var(--blue-color2)",
                   }}
                   onClick={handleSeeLocation}
                   variant="outlined"
