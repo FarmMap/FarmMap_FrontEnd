@@ -1,12 +1,5 @@
 // External
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  Polygon,
-  useMapEvents,
-} from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, Polygon } from "react-leaflet";
 import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 import "leaflet-control-geocoder/dist/Control.Geocoder.js";
 import L, { LatLngExpression } from "leaflet";
@@ -14,12 +7,20 @@ import "leaflet-draw/dist/leaflet.draw.css";
 import "leaflet-draw/dist/leaflet.draw.js";
 // import LeafletRoutingMachine from "./LeafletRoutingMachine";
 import { Fragment, useEffect, useState } from "react";
-import { Button, Grid, Pagination } from "@mui/material";
+import {
+  Autocomplete,
+  Button,
+  Grid,
+  ListItemText,
+  MenuItem,
+  Pagination,
+  Select,
+  TextField,
+} from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 // Internal
 
-import AddIcon from "@mui/icons-material/Add";
-
+import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
 import "./Map.css";
@@ -37,14 +38,18 @@ import useFetchAreaList from "../../../../api/PlaneArea/useFetchAreaList";
 import DefaultModal from "../../../components/defaultModal";
 import SearchLocationByLatLng from "../../../components/maps/SearchLocationByLatLng";
 import useFetchLandList from "../../../../api/Land/useFetchLandList";
-// Style
-import classNames from "classnames/bind";
-import styles from "./InforFarmPage.module.scss";
 import AreaModal from "../area/AreaModal";
 import useFetchSoilTypeList from "../../../../api/SoilType/useFetchSoilTypeList";
 import SoilType from "../../../../data/types/SoilType";
 import Land from "../../../../data/types/Land";
 import useCreateLand from "../../../../api/Land/useCreateLand";
+import DefaultTitleLayOut from "../../../components/defaultTitleLayOut";
+import DefaultFilterLayOut from "../../../components/defaultTitleLayOut/DefaultFilterLayOut";
+import Province from "../../../../data/types/Province";
+import useFetchProvinceList from "../../../../api/Farm/useFetchCategoryList";
+// Style
+import classNames from "classnames/bind";
+import styles from "./InforFarmPage.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -277,69 +282,305 @@ function InforFarmPage() {
   // Show marker
   const [showMarker, setShowMarker] = useState(false);
 
+  // Filter
+  const places = ["Bắc", "Trung", "Nam"];
+
+  const { provinces } = useFetchProvinceList({
+    type: "TINH_THANH",
+  });
+
+  const { provinces: districts } = useFetchProvinceList({
+    type: "QUAN_HUYEN",
+  });
+
+  const { provinces: wards } = useFetchProvinceList({
+    type: "PHUONG_XA",
+  });
+
   return (
     <DefaultWebLayOut>
       <>
         {/* Xem location */}
         <Grid>
-          <select
-            style={{
-              marginBottom: "10px",
-              padding: "8px 10px",
-              border: "1px solid #ccc",
+          <DefaultTitleLayOut
+            heading="Khu canh tác"
+            handleAddButtonClick={() => {
+              setAddPlace(true);
             }}
-            value={"Tất cả"}
           >
-            <option value="ok">Khu vực</option>
-            <option value="">Bắc</option>
-            <option value="">Trung</option>
-            <option value="">Nam</option>
-          </select>
-
-          <select
-            style={{
-              marginBottom: "10px",
-              marginLeft: "10px",
-              padding: "8px 10px",
-              border: "1px solid #ccc",
-            }}
-            value={"Tất cả"}
-          >
-            <option value="ok">Tỉnh</option>
-            <option value="">Đồng Nai</option>
-            <option value="">Hà Nội</option>
-            <option value="">Phú Yên</option>
-          </select>
-
-          <select
-            style={{
-              marginBottom: "10px",
-              marginLeft: "10px",
-              padding: "8px 10px",
-              border: "1px solid #ccc",
-            }}
-            value={"Tất cả"}
-          >
-            <option value="ok">Thành phố</option>
-            <option value="">Biên Hòa</option>
-            <option value="">Lạng Sơn</option>
-            <option value="">Hạ Long</option>
-          </select>
-
-          <select
-            style={{
-              marginBottom: "10px",
-              marginLeft: "10px",
-              padding: "8px 10px",
-              border: "1px solid #ccc",
-            }}
-            value={"Tên Farm"}
-          >
-            <option value="ok">Tên Farm</option>
-            <option value="">Farm A</option>
-            <option value="">Farm B</option>
-            <option value="">Farm C</option>
-          </select>
+            <DefaultFilterLayOut
+              searchs={[]}
+              filters={[
+                <Fragment>
+                  <Select
+                    className={cx("filter-dropdown")}
+                    sx={{
+                      fontSize: "1.2rem",
+                      boxShadow: "none",
+                      minWidth: "140px",
+                    }}
+                    value={""}
+                    displayEmpty
+                    onChange={() => {}}
+                  >
+                    <MenuItem sx={{ fontSize: "1.1rem" }} value="">
+                      Tất cả
+                    </MenuItem>
+                  </Select>
+                </Fragment>,
+                <Fragment>
+                  <Grid
+                    sx={{
+                      width: {
+                        lg: "140px",
+                        md: "140px",
+                        sm: "140px",
+                        xs: "100%",
+                      },
+                    }}
+                  >
+                    <Autocomplete
+                      disablePortal
+                      id="combo-box-demo"
+                      options={provinces}
+                      getOptionLabel={(option: Province) =>
+                        option.name as string
+                      }
+                      noOptionsText="Không tìm thấy tỉnh nào"
+                      // onChange={(event, value: Province | null) => {
+                      //   if (value == null) return;
+                      //   setProVinceList({
+                      //     ...provinceList,
+                      //     name: value.name,
+                      //   });
+                      // }}
+                      sx={{ width: "100%" }}
+                      renderOption={(props, option) => (
+                        <MenuItem {...props} divider>
+                          <HomeWorkIcon sx={{ mr: 2 }} />
+                          <ListItemText
+                            primaryTypographyProps={{
+                              fontSize: "1.2rem",
+                              overflow: "hidden",
+                            }}
+                            primary={option.name}
+                          />
+                        </MenuItem>
+                      )}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Tỉnh"
+                          InputProps={{
+                            ...params.InputProps,
+                            style: {
+                              width: "100%",
+                              padding: "0",
+                            },
+                          }}
+                          InputLabelProps={{
+                            style: {
+                              fontSize: "1.1rem",
+                              top: "-8px",
+                              color: "var(--black-color)",
+                              fontWeight: "500",
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                  </Grid>
+                </Fragment>,
+                <Fragment>
+                  <Grid
+                    sx={{
+                      width: {
+                        lg: "140px",
+                        md: "140px",
+                        sm: "140px",
+                        xs: "100%",
+                      },
+                    }}
+                  >
+                    <Autocomplete
+                      disablePortal
+                      id="combo-box-demo"
+                      options={districts}
+                      getOptionLabel={(option: Province) =>
+                        option.name as string
+                      }
+                      noOptionsText="Không tìm thấy tỉnh nào"
+                      // onChange={(event, value: Province | null) => {
+                      //   if (value == null) return;
+                      //   setProVinceList({
+                      //     ...provinceList,
+                      //     name: value.name,
+                      //   });
+                      // }}
+                      sx={{ width: "100%" }}
+                      renderOption={(props, option) => (
+                        <MenuItem {...props} divider>
+                          <HomeWorkIcon sx={{ mr: 2 }} />
+                          <ListItemText
+                            primaryTypographyProps={{
+                              fontSize: "1.2rem",
+                              overflow: "hidden",
+                            }}
+                            primary={option.name}
+                          />
+                        </MenuItem>
+                      )}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Quận Huyện"
+                          InputProps={{
+                            ...params.InputProps,
+                            style: {
+                              width: "100%",
+                              padding: "0",
+                            },
+                          }}
+                          InputLabelProps={{
+                            style: {
+                              fontSize: "1.1rem",
+                              top: "-8px",
+                              color: "var(--black-color)",
+                              fontWeight: "500",
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                  </Grid>
+                </Fragment>,
+                <Fragment>
+                  <Grid
+                    sx={{
+                      width: {
+                        lg: "140px",
+                        md: "140px",
+                        sm: "140px",
+                        xs: "100%",
+                      },
+                    }}
+                  >
+                    <Autocomplete
+                      disablePortal
+                      id="combo-box-demo"
+                      options={wards}
+                      getOptionLabel={(option: Province) =>
+                        option.name as string
+                      }
+                      noOptionsText="Không tìm thấy tỉnh nào"
+                      // onChange={(event, value: Province | null) => {
+                      //   if (value == null) return;
+                      //   setProVinceList({
+                      //     ...provinceList,
+                      //     name: value.name,
+                      //   });
+                      // }}
+                      sx={{ width: "100%" }}
+                      renderOption={(props, option) => (
+                        <MenuItem {...props} divider>
+                          <HomeWorkIcon sx={{ mr: 2 }} />
+                          <ListItemText
+                            primaryTypographyProps={{ fontSize: "1.3rem" }}
+                            secondaryTypographyProps={{ fontSize: "1.2rem" }}
+                            primary={option.name}
+                          />
+                        </MenuItem>
+                      )}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Phường Xã"
+                          InputProps={{
+                            ...params.InputProps,
+                            style: {
+                              width: "100%",
+                              padding: "0",
+                            },
+                          }}
+                          InputLabelProps={{
+                            style: {
+                              fontSize: "1.1rem",
+                              top: "-8px",
+                              color: "var(--black-color)",
+                              fontWeight: "500",
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                  </Grid>
+                </Fragment>,
+                <Fragment>
+                  <Grid
+                    sx={{
+                      width: {
+                        lg: "140px",
+                        md: "140px",
+                        sm: "140px",
+                        xs: "100%",
+                      },
+                    }}
+                  >
+                    <Autocomplete
+                      disablePortal
+                      id="combo-box-demo"
+                      options={farms}
+                      getOptionLabel={(option: Province) =>
+                        option.name as string
+                      }
+                      noOptionsText="Không tìm thấy tỉnh nào"
+                      // onChange={(event, value: Province | null) => {
+                      //   if (value == null) return;
+                      //   setProVinceList({
+                      //     ...provinceList,
+                      //     name: value.name,
+                      //   });
+                      // }}
+                      sx={{ width: "100%" }}
+                      renderOption={(props, option) => (
+                        <MenuItem {...props} divider>
+                          {/* <HomeWorkIcon sx={{ mr: 2 }} /> */}
+                          <ListItemText
+                            primaryTypographyProps={{
+                              fontSize: "1.2rem",
+                              overflow: "hidden",
+                            }}
+                            primary={option.name}
+                          />
+                        </MenuItem>
+                      )}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Trang trại"
+                          InputProps={{
+                            ...params.InputProps,
+                            style: {
+                              width: "100%",
+                              padding: "0",
+                            },
+                          }}
+                          InputLabelProps={{
+                            style: {
+                              fontSize: "1.1rem",
+                              top: "-8px",
+                              color: "var(--black-color)",
+                              fontWeight: "500",
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                  </Grid>
+                </Fragment>,
+              ]}
+            ></DefaultFilterLayOut>
+          </DefaultTitleLayOut>
         </Grid>
 
         {/* Map */}
@@ -456,21 +697,6 @@ function InforFarmPage() {
               ))}
           </MapContainer>
           {/* <Map /> */}
-        </Grid>
-
-        {/* Thêm vùng */}
-        <Grid className={cx("add-btn-wrapper")}>
-          <Button
-            className={cx("addBtn")}
-            variant="contained"
-            startIcon={<AddIcon className={cx("add-icon")} />}
-            size="large"
-            onClick={() => {
-              setAddPlace(true);
-            }}
-          >
-            Thêm khu
-          </Button>
         </Grid>
 
         {addPlace && (

@@ -25,6 +25,10 @@ $color-title: #a2a3b7;
   height: $header-sidebar-height;
 }
 
+.btn-header-active {
+  padding: 25px 2px;
+}
+
 .btn-header {
   position: absolute;
   top: 0;
@@ -34,7 +38,12 @@ $color-title: #a2a3b7;
   background-color: transparent;
   height: $btn-icon-size;
   cursor: pointer;
-  color: $color-iconArr;
+  color: var(--text-color);
+
+  svg {
+    width: 25px;
+    height: 25px;
+  }
 
   &:hover {
     color: $color-iconArr-hover;
@@ -76,18 +85,11 @@ $color-title: #a2a3b7;
 
     text-decoration: none;
     transition: all 0.4s ease;
-    border-radius: 12px;
+    border-radius: 8px;
     white-space: nowrap;
 
     &:hover {
-      background-color: var(--white-color);
-    }
-
-    &:hover .btn-list,
-    &:hover .title,
-    &:hover span {
-      color: var(--text-color);
-      font-weight: 600;
+      background-color: #23233e;
     }
   }
 
@@ -96,11 +98,10 @@ $color-title: #a2a3b7;
     align-items: center;
     justify-content: center;
 
-    height: 50px;
-    min-width: 50px;
+    padding: 10px;
     line-height: 50px;
     background-color: transparent;
-    color: $color-title;
+    color: var(--white-color);
 
     cursor: pointer;
 
@@ -117,10 +118,9 @@ $color-title: #a2a3b7;
   .title {
     display: flex;
     align-items: center;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     width: 100%;
     color: var(--white-color);
-    text-transform: uppercase;
     transition: all 0.5s ease;
   }
 
@@ -157,13 +157,7 @@ $color-title: #a2a3b7;
     cursor: pointer;
 
     &:hover {
-      background-color: var(--white-color);
-
-      &:hover .dropdown-menu-icon,
-      &:hover .dropdown-menu-title {
-        color: var(--text-color);
-        font-weight: 600;
-      }
+      background-color: #23233e;
     }
   }
 
@@ -175,9 +169,8 @@ $color-title: #a2a3b7;
   }
 
   .dropdown-menu-title {
-    font-size: 1.1rem;
-    color: $color-title;
-    text-transform: uppercase;
+    font-size: 1.2rem;
+    color: #eeef;
     margin-left: 8px;
     white-space: nowrap;
     transition: all 0.5s ease;

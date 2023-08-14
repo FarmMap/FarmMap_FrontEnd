@@ -40,7 +40,6 @@ $color-label: #646c9a;
       color: var(--white-color);
       background-color: var(--primary-color);
       opacity: 1;
-      box-shadow: 0 8px 0 var(--green-hover-color);
       transition: 0.3s;
 
       &:hover {
@@ -48,7 +47,6 @@ $color-label: #646c9a;
       }
 
       &:active {
-        box-shadow: none;
         transform: translateY(5px);
       }
 

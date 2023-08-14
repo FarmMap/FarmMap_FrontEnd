@@ -149,7 +149,7 @@ const HomePage = () => {
             <PieChart />
           </Grid>
         </Grid>
-        <Grid
+        {/* <Grid
           height="100%"
           boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
           padding={"20px 10px"}
@@ -159,7 +159,7 @@ const HomePage = () => {
             Người dùng
           </span>
           <DataGridComponent />
-        </Grid>
+        </Grid> */}
       </Grid>
     </DefaultWebLayOut>
   );
