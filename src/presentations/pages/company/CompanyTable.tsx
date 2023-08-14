@@ -57,7 +57,7 @@ const CompanyTable = (props: CompanyTableProps) => {
             {props.farms?.map((farm, i) => (
               <tr key={i}>
                 <td>
-                  <p>{i + 1}</p>
+                  <p style={{ whiteSpace: "nowrap" }}>{i + 1}</p>
                 </td>
                 <td>
                   <p>{farm.name}</p>

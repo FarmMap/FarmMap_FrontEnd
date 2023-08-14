@@ -15,13 +15,14 @@ import {
   business_models,
   business_types,
   districts,
-  provinces,
   wards,
 } from "./LocalDataCompany";
 // Style
 import classNames from "classnames/bind";
 import styles from "./Company.module.scss";
 import Farm from "../../../data/types/Farm";
+import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
+import Province from "../../../data/types/Province";
 
 const cx = classNames.bind(styles);
 
@@ -31,6 +32,16 @@ interface CompanyModalProps {
   handleCloseModal: () => void;
   farm: Farm;
   setFarm: React.Dispatch<React.SetStateAction<Farm>>;
+  businessModelList: Province;
+  setBusinessModeList: React.Dispatch<React.SetStateAction<Province>>;
+  businessTypeList: Province;
+  setBusinessTypeList: React.Dispatch<React.SetStateAction<Province>>;
+  provinceList: Province;
+  setProVinceList: React.Dispatch<React.SetStateAction<Province>>;
+  districtList: Province;
+  setDistrictList: React.Dispatch<React.SetStateAction<Province>>;
+  wardList: Province;
+  setWardList: React.Dispatch<React.SetStateAction<Province>>;
   onSubmit: (farm: Farm) => void;
 }
 const CompanyModal = (props: CompanyModalProps) => {
@@ -61,7 +72,25 @@ const CompanyModal = (props: CompanyModalProps) => {
   };
 
   // API
+  const { provinces: business_models } = useFetchProvinceList({
+    type: "BUSINESS_MODEL",
+  });
 
+  const { provinces: business_types } = useFetchProvinceList({
+    type: "BUSINESS_TYPE",
+  });
+
+  const { provinces } = useFetchProvinceList({
+    type: "TINH_THANH",
+  });
+
+  const { provinces: districts } = useFetchProvinceList({
+    type: "QUAN_HUYEN",
+  });
+
+  const { provinces: wards } = useFetchProvinceList({
+    type: "PHUONG_XA",
+  });
   // Ref để tham chiếu tới input file
   const fileInputRef = useRef(null);
 
@@ -123,20 +152,19 @@ const CompanyModal = (props: CompanyModalProps) => {
             <Autocomplete
               disablePortal
               id="combo-box-demo"
-              placeholder="Nhập mô hình kinh doanh"
               options={business_models}
-              getOptionLabel={(option: Farm) => option.business_model as string}
+              getOptionLabel={(option: Province) => option.name as string}
               noOptionsText="Không tìm thấy mô hình kinh doanh nào"
-              sx={{ width: "100%" }}
-              onChange={(event, value: Farm | null) => {
+              onChange={(event, value: Province | null) => {
                 if (value == null) return;
-                props.setFarm({
-                  ...props.farm,
-                  business_model: value.business_model,
+                props.setBusinessModeList({
+                  ...props.businessModelList,
+                  name: value.name,
                 });
               }}
+              sx={{ width: "100%" }}
               renderInput={(params) => (
-                <TextField {...params} label="Chọn mô hình KD" />
+                <TextField {...params} label="Chọn mô hình kinh doanh" />
               )}
             />
           </Grid>
@@ -165,18 +193,18 @@ const CompanyModal = (props: CompanyModalProps) => {
               disablePortal
               id="combo-box-demo"
               options={business_types}
-              getOptionLabel={(option: Farm) => option.business_type as string}
+              getOptionLabel={(option: Province) => option.name as string}
               noOptionsText="Không tìm thấy loại hình kinh doanh nào"
-              onChange={(event, value: Farm | null) => {
+              onChange={(event, value: Province | null) => {
                 if (value == null) return;
-                props.setFarm({
-                  ...props.farm,
-                  business_type: value.business_type,
+                props.setBusinessTypeList({
+                  ...props.businessTypeList,
+                  name: value.name,
                 });
               }}
               sx={{ width: "100%" }}
               renderInput={(params) => (
-                <TextField {...params} label="Chọn loại hình KD" />
+                <TextField {...params} label="Chọn loại hình kinh doanh" />
               )}
             />
           </Grid>
@@ -205,11 +233,14 @@ const CompanyModal = (props: CompanyModalProps) => {
               disablePortal
               id="combo-box-demo"
               options={provinces}
-              getOptionLabel={(option: Farm) => option.province as string}
+              getOptionLabel={(option: Province) => option.name as string}
               noOptionsText="Không tìm thấy tỉnh nào"
-              onChange={(event, value: Farm | null) => {
+              onChange={(event, value: Province | null) => {
                 if (value == null) return;
-                props.setFarm({ ...props.farm, province: value.province });
+                props.setProVinceList({
+                  ...props.provinceList,
+                  name: value.name,
+                });
               }}
               sx={{ width: "100%" }}
               renderInput={(params) => (
@@ -242,15 +273,18 @@ const CompanyModal = (props: CompanyModalProps) => {
               disablePortal
               id="combo-box-demo"
               options={districts}
-              getOptionLabel={(option: Farm) => option.district as string}
-              noOptionsText="Không tìm thấy quận/huyện nào"
-              onChange={(event, value: Farm | null) => {
+              getOptionLabel={(option: Province) => option.name as string}
+              noOptionsText="Không tìm thấy quận huyện nào"
+              onChange={(event, value: Province | null) => {
                 if (value == null) return;
-                props.setFarm({ ...props.farm, district: value.district });
+                props.setDistrictList({
+                  ...props.districtList,
+                  name: value.name,
+                });
               }}
               sx={{ width: "100%" }}
               renderInput={(params) => (
-                <TextField {...params} label="Chọn quận/huyện" />
+                <TextField {...params} label="Chọn quận huyện" />
               )}
             />
           </Grid>
@@ -279,15 +313,18 @@ const CompanyModal = (props: CompanyModalProps) => {
               disablePortal
               id="combo-box-demo"
               options={wards}
-              getOptionLabel={(option: Farm) => option.wards as string}
-              noOptionsText="Không tìm thấy quận/huyện nào"
-              onChange={(event, value: Farm | null) => {
+              getOptionLabel={(option: Province) => option.name as string}
+              noOptionsText="Không tìm thấy phường xã nào"
+              onChange={(event, value: Province | null) => {
                 if (value == null) return;
-                props.setFarm({ ...props.farm, wards: value.wards });
+                props.setWardList({
+                  ...props.wardList,
+                  name: value.name,
+                });
               }}
               sx={{ width: "100%" }}
               renderInput={(params) => (
-                <TextField {...params} label="Chọn phường/xã" />
+                <TextField {...params} label="Chọn phường xã" />
               )}
             />
           </Grid>
@@ -468,9 +505,9 @@ const CompanyModal = (props: CompanyModalProps) => {
               variant="contained"
               disabled={
                 props.farm.name == "" ||
-                props.farm.district == "" ||
-                props.farm.province == "" ||
-                props.farm.wards == "" ||
+                props.districtList.name == "" ||
+                props.provinceList.name == "" ||
+                props.wardList.name == "" ||
                 props.farm.image == undefined
               }
               disableElevation={true}

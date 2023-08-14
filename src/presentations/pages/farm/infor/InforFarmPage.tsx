@@ -59,7 +59,7 @@ L.Marker.prototype.options.icon = DefaultIcon;
 // Custom hook to access the Leaflet map instance
 
 function InforFarmPage() {
-  const position = { lat: 10.5607168, lng: 106.6497623 };
+  const position = { lat: 10.964112, lng: 106.856461 };
 
   const blackOptions = { color: "black" };
 
