@@ -18,34 +18,26 @@ interface HeaderAppProps {
 }
 
 const HeaderApp = (props: HeaderAppProps) => {
-  const [isOpen, setOpen] = useState(false);
-
   return (
     <Grid>
-      <Grid
-        sx={{
-          display: { lg: "flex", md: "flex", sm: "none", xs: "none" },
-        }}
-        className={
-          !props.openSidebar ? cx("wrapper") : cx("wrapper", "active-wrapper")
-        }
-      >
-        {/* <HeaderLeft /> */}
-        {!props.openSidebar && (
-          <img
-            src={images.logoAgri}
-            alt="Logo"
-            height={"100%"}
-            width={"200px"}
-            style={{ objectFit: "contain" }}
-          />
-        )}
-        <HeaderRight />
+      <Grid>
+        <Grid
+          sx={{
+            display: { lg: "flex", md: "flex", sm: "none", xs: "none" },
+          }}
+          className={
+            !props.openSidebar ? cx("wrapper") : cx("wrapper", "active-wrapper")
+          }
+        >
+          {/* <HeaderLeft /> */}
+
+          <HeaderRight />
+        </Grid>
       </Grid>
       {/* Header on Mobile and Ipad */}
       <Grid
         sx={{
-          display: { lg: "none", md: "none", sm: "flex", xs: "flex" },
+          display: { lg: "none", md: "none", sm: "block", xs: "block" },
         }}
       >
         <Grid
@@ -54,7 +46,7 @@ const HeaderApp = (props: HeaderAppProps) => {
             display: { lg: "none", md: "none", sm: "flex", xs: "flex" },
           }}
         >
-          <Link to="/">
+          <Link to="/home">
             <img
               src={images.logoAgri}
               alt="logo Mai Group"
@@ -77,19 +69,6 @@ const HeaderApp = (props: HeaderAppProps) => {
               <MenuIcon className={cx("icon-menu-mobile")} />
             </button>
           </div>
-        </Grid>
-
-        <Grid
-          style={{
-            transition: "all ease-in 0.3s",
-            transform: "translateY(65px)",
-            width: "100%",
-            boxShadow: " 0px 0px 40px 0px rgb(82 63 105 / 10%)",
-          }}
-        >
-          {/* <HeaderLeft /> */}
-
-          <HeaderRight />
         </Grid>
       </Grid>
     </Grid>

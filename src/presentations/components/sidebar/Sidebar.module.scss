@@ -183,6 +183,8 @@ $color-title: #a2a3b7;
 
 // Footer
 .profile_content {
+  position: absolute;
+  bottom: 0;
   width: 100%;
   color: $color-title;
 
@@ -211,28 +213,26 @@ $color-title: #a2a3b7;
 }
 
 .name {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 400;
 }
 
 .job {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .log-out-btn {
   width: 100%;
-
+  padding: 0;
   .log-out-icon {
     position: absolute;
     top: 22%;
     right: 8px;
-
-    height: 40px;
-    min-width: 50px;
+    height: 32px;
+    min-width: 42px;
     font-size: 2rem;
-    color: $color-title;
-    border-radius: 8px;
-
+    color: #a2a3b7;
+    border-radius: 4px;
     cursor: pointer;
     text-align: center;
     transition: all 0.4s ease;

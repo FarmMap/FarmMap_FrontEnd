@@ -343,6 +343,19 @@ const AreaModal = (props: AreaModalProps) => {
             required
           />
 
+          <FormInput
+            label="Diện tích"
+            placeholder="Nhập diện tích"
+            required
+            type="number"
+            value={props.land.acreage?.toString() ?? ""}
+            onChange={(event) => {
+              let newLand = { ...props.land };
+              newLand.acreage = parseInt(event.currentTarget.value);
+              props.setLand(newLand);
+            }}
+          />
+
           <FormDropdown
             label="Loại sản phẩm"
             value={props.land.productTypeId ?? ""}

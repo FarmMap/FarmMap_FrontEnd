@@ -6,7 +6,7 @@
   overflow: hidden;
   background-color: var(--white-color);
 
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 4px 0;
   max-width: 100%;
   height: calc(var(--header-height));
@@ -47,6 +47,7 @@
     left: 0px;
     background-color: var(--sidebar-color);
     padding: 0 15px;
+    justify-content: space-between;
   }
 
   .btn-menu-mobile {

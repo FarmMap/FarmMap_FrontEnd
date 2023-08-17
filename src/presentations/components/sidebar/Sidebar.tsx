@@ -7,6 +7,7 @@ import { Grid } from "@mui/material";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Sidebar.module.scss";
+import FooterSideBar from "./FooterSidebar";
 
 const cx = classNames.bind(styles);
 
@@ -48,6 +49,20 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
           />
         ))}
       </ul>
+
+      {/* footer sidebar */}
+      <Grid
+        sx={{
+          display: {
+            lg: "none",
+            md: "none",
+            sm: "block",
+            xs: "block",
+          },
+        }}
+      >
+        <FooterSideBar openSidebar={openSidebar} handleLogOut={() => {}} />
+      </Grid>
     </Grid>
   );
 };

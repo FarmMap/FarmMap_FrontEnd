@@ -73,7 +73,7 @@ $color-label: #646c9a;
   display: flex;
   flex-direction: column;
   max-width: 250px;
-  margin: 4px 22px 14px 0;
+  margin: 4px 6px 14px 0;
 
   label {
     color: $color-label;
@@ -211,6 +211,8 @@ $color-label: #646c9a;
   }
 
   .search-wrapper {
+    margin: 4px 0px 14px 0;
+
     max-width: 100%;
     width: 100%;
   }

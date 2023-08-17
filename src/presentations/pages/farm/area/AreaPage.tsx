@@ -78,6 +78,7 @@ const AreaPage = () => {
   } = useCreateLand({
     areaId: area.id,
     name: land.name,
+    acreage: land.acreage,
     productTypeId: land.productTypeId,
     soilTypeId: soilType.id,
     locations: land.locations,

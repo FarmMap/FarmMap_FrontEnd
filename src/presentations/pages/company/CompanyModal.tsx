@@ -23,6 +23,7 @@ import styles from "./Company.module.scss";
 import Farm from "../../../data/types/Farm";
 import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
 import Province from "../../../data/types/Province";
+import useFetchCategoryDetail from "../../../api/Category-detail/useFetchCategoryDetail";
 
 const cx = classNames.bind(styles);
 
@@ -80,16 +81,24 @@ const CompanyModal = (props: CompanyModalProps) => {
     type: "BUSINESS_TYPE",
   });
 
+  const [province, setProVince] = useState<Province>({
+    name: "",
+  });
+
+  const [district, setDistrict] = useState<Province>({
+    name: "",
+  });
+
   const { provinces } = useFetchProvinceList({
     type: "TINH_THANH",
   });
 
-  const { provinces: districts } = useFetchProvinceList({
-    type: "QUAN_HUYEN",
+  const { cateDetails: districts } = useFetchCategoryDetail({
+    id: province.key,
   });
 
-  const { provinces: wards } = useFetchProvinceList({
-    type: "PHUONG_XA",
+  const { cateDetails: wards } = useFetchCategoryDetail({
+    id: district.key,
   });
   // Ref để tham chiếu tới input file
   const fileInputRef = useRef(null);
@@ -241,6 +250,11 @@ const CompanyModal = (props: CompanyModalProps) => {
                   ...props.provinceList,
                   name: value.name,
                 });
+                setProVince({
+                  ...province,
+                  name: value.name,
+                  key: value.key,
+                });
               }}
               sx={{ width: "100%" }}
               renderInput={(params) => (
@@ -273,6 +287,7 @@ const CompanyModal = (props: CompanyModalProps) => {
               disablePortal
               id="combo-box-demo"
               options={districts}
+              disabled={province.name == undefined || province.key == undefined}
               getOptionLabel={(option: Province) => option.name as string}
               noOptionsText="Không tìm thấy quận huyện nào"
               onChange={(event, value: Province | null) => {
@@ -280,6 +295,11 @@ const CompanyModal = (props: CompanyModalProps) => {
                 props.setDistrictList({
                   ...props.districtList,
                   name: value.name,
+                });
+                setDistrict({
+                  ...district,
+                  name: value.name,
+                  key: value.key,
                 });
               }}
               sx={{ width: "100%" }}
@@ -313,6 +333,7 @@ const CompanyModal = (props: CompanyModalProps) => {
               disablePortal
               id="combo-box-demo"
               options={wards}
+              disabled={district.name == undefined || district.key == undefined}
               getOptionLabel={(option: Province) => option.name as string}
               noOptionsText="Không tìm thấy phường xã nào"
               onChange={(event, value: Province | null) => {

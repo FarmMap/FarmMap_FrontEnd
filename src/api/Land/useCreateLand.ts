@@ -17,6 +17,7 @@ interface useCreateLandProps {
   name: string;
   productTypeId?: string;
   soilTypeId: string;
+  acreage?: number;
   locations: LatLngObject[];
   images?: File[];
 }
@@ -34,6 +35,7 @@ const useCreateLand = (props: useCreateLandProps) => {
       const FormData = require("form-data");
       var data = new FormData();
       data.append("name", props.name);
+      data.append("acreage", props.acreage);
       data.append("productTypeId", props.productTypeId);
       data.append("soilTypeId", props.soilTypeId);
       props.locations.forEach((location, i) => {

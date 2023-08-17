@@ -6,6 +6,7 @@ export default interface Land {
   id?: string;
   name: string;
   productTypeId?: string;
+  acreage?: number;
   productType?: ProductType;
   locations: LatLngObject[];
   soilType: SoilType;

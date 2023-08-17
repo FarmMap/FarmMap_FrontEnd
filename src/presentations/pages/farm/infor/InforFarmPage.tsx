@@ -15,6 +15,7 @@ import {
   MenuItem,
   Pagination,
   Select,
+  SelectChangeEvent,
   TextField,
 } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
@@ -50,6 +51,7 @@ import useFetchProvinceList from "../../../../api/Farm/useFetchCategoryList";
 // Style
 import classNames from "classnames/bind";
 import styles from "./InforFarmPage.module.scss";
+import useFetchCategoryDetail from "../../../../api/Category-detail/useFetchCategoryDetail";
 
 const cx = classNames.bind(styles);
 
@@ -284,18 +286,71 @@ function InforFarmPage() {
 
   // Filter
   const places = ["Bắc", "Trung", "Nam"];
+  const [filter, setFilter] = useState<string | number>("");
+  const handleFilterChange = (event: SelectChangeEvent) =>
+    setFilter(event.target.value);
+  const [farmFilters, setFarmFilters] = useState<Farm[]>([
+    {
+      name: "",
+      business_model: "",
+      business_type: "",
+      province: "",
+      district: "",
+      wards: "",
+      address: "",
+      location: {
+        latitude: 0,
+        longitude: 0,
+      },
+    },
+  ]);
+
+  const [province, setProVince] = useState<Province>({
+    name: "",
+  });
+
+  const [district, setDistrict] = useState<Province>({
+    name: "",
+  });
+
+  const [ward, setWard] = useState<Province>({
+    name: "",
+  });
 
   const { provinces } = useFetchProvinceList({
     type: "TINH_THANH",
   });
 
-  const { provinces: districts } = useFetchProvinceList({
-    type: "QUAN_HUYEN",
+  const { cateDetails: districts } = useFetchCategoryDetail({
+    id: province.key,
   });
 
-  const { provinces: wards } = useFetchProvinceList({
-    type: "PHUONG_XA",
+  const { cateDetails: wards } = useFetchCategoryDetail({
+    id: district.key,
   });
+
+  const handleAddFarmFilters = () => {
+    // Tạo một bản sao mới của mảng farmFilters để không làm thay đổi trực tiếp state cũ
+    const updatedFarmFilters = [...farmFilters];
+
+    // Lọc qua danh sách trang trại và kiểm tra nếu phường/xã trùng khớp
+    farms.forEach((farm) => {
+      if (farm.wards === ward.name) {
+        // Kiểm tra xem trang trại đã tồn tại trong mảng farmFilters chưa
+        const existingFarmIndex = updatedFarmFilters.findIndex(
+          (existingFarm) => existingFarm.name === farm.name
+        );
+
+        // Nếu trang trại chưa tồn tại trong mảng farmFilters, thêm nó vào
+        if (existingFarmIndex === -1) {
+          updatedFarmFilters.push(farm);
+        }
+      }
+    });
+
+    // Cập nhật state farmFilters bằng mảng mới đã được cập nhật
+    setFarmFilters(updatedFarmFilters);
+  };
 
   return (
     <DefaultWebLayOut>
@@ -311,23 +366,6 @@ function InforFarmPage() {
             <DefaultFilterLayOut
               searchs={[]}
               filters={[
-                <Fragment>
-                  <Select
-                    className={cx("filter-dropdown")}
-                    sx={{
-                      fontSize: "1.2rem",
-                      boxShadow: "none",
-                      minWidth: "140px",
-                    }}
-                    value={""}
-                    displayEmpty
-                    onChange={() => {}}
-                  >
-                    <MenuItem sx={{ fontSize: "1.1rem" }} value="">
-                      Tất cả
-                    </MenuItem>
-                  </Select>
-                </Fragment>,
                 <Fragment>
                   <Grid
                     sx={{
@@ -347,17 +385,17 @@ function InforFarmPage() {
                         option.name as string
                       }
                       noOptionsText="Không tìm thấy tỉnh nào"
-                      // onChange={(event, value: Province | null) => {
-                      //   if (value == null) return;
-                      //   setProVinceList({
-                      //     ...provinceList,
-                      //     name: value.name,
-                      //   });
-                      // }}
+                      onChange={(event, value: Province | null) => {
+                        if (value == null) return;
+                        setProVince({
+                          ...province,
+                          name: value.name,
+                          key: value.key,
+                        });
+                      }}
                       sx={{ width: "100%" }}
                       renderOption={(props, option) => (
                         <MenuItem {...props} divider>
-                          <HomeWorkIcon sx={{ mr: 2 }} />
                           <ListItemText
                             primaryTypographyProps={{
                               fontSize: "1.2rem",
@@ -406,21 +444,24 @@ function InforFarmPage() {
                       disablePortal
                       id="combo-box-demo"
                       options={districts}
+                      disabled={
+                        province.name == undefined || province.key == undefined
+                      }
                       getOptionLabel={(option: Province) =>
                         option.name as string
                       }
-                      noOptionsText="Không tìm thấy tỉnh nào"
-                      // onChange={(event, value: Province | null) => {
-                      //   if (value == null) return;
-                      //   setProVinceList({
-                      //     ...provinceList,
-                      //     name: value.name,
-                      //   });
-                      // }}
+                      noOptionsText="Không tìm thấy quận huyện nào"
+                      onChange={(event, value: Province | null) => {
+                        if (value == null) return;
+                        setDistrict({
+                          ...district,
+                          name: value.name,
+                          key: value.key,
+                        });
+                      }}
                       sx={{ width: "100%" }}
                       renderOption={(props, option) => (
                         <MenuItem {...props} divider>
-                          <HomeWorkIcon sx={{ mr: 2 }} />
                           <ListItemText
                             primaryTypographyProps={{
                               fontSize: "1.2rem",
@@ -469,21 +510,26 @@ function InforFarmPage() {
                       disablePortal
                       id="combo-box-demo"
                       options={wards}
+                      disabled={
+                        district.name == undefined || district.key == undefined
+                      }
                       getOptionLabel={(option: Province) =>
                         option.name as string
                       }
-                      noOptionsText="Không tìm thấy tỉnh nào"
-                      // onChange={(event, value: Province | null) => {
-                      //   if (value == null) return;
-                      //   setProVinceList({
-                      //     ...provinceList,
-                      //     name: value.name,
-                      //   });
-                      // }}
+                      noOptionsText="Không tìm thấy phường xã nào"
+                      onChange={(event, value: Province | null) => {
+                        if (value == null) return;
+                        setWard({
+                          ...ward,
+                          name: value.name,
+                          key: value.key,
+                        });
+                        setFarmFilters([]);
+                        handleAddFarmFilters();
+                      }}
                       sx={{ width: "100%" }}
                       renderOption={(props, option) => (
                         <MenuItem {...props} divider>
-                          <HomeWorkIcon sx={{ mr: 2 }} />
                           <ListItemText
                             primaryTypographyProps={{ fontSize: "1.3rem" }}
                             secondaryTypographyProps={{ fontSize: "1.2rem" }}
@@ -529,22 +575,23 @@ function InforFarmPage() {
                     <Autocomplete
                       disablePortal
                       id="combo-box-demo"
-                      options={farms}
+                      options={farmFilters}
+                      disabled={ward.name == undefined || ward.key == undefined}
                       getOptionLabel={(option: Province) =>
                         option.name as string
                       }
-                      noOptionsText="Không tìm thấy tỉnh nào"
+                      noOptionsText="Không tìm thấy trang trại nào"
                       // onChange={(event, value: Province | null) => {
                       //   if (value == null) return;
-                      //   setProVinceList({
-                      //     ...provinceList,
+                      //   setWard({
+                      //     ...ward,
                       //     name: value.name,
                       //   });
                       // }}
                       sx={{ width: "100%" }}
                       renderOption={(props, option) => (
                         <MenuItem {...props} divider>
-                          {/* <HomeWorkIcon sx={{ mr: 2 }} /> */}
+                          {/*  */}
                           <ListItemText
                             primaryTypographyProps={{
                               fontSize: "1.2rem",
@@ -742,6 +789,11 @@ function InforFarmPage() {
 
         {showImgFarmModal.farmImg?.image && (
           <DefaultModal
+            overrideMaxWidth={{
+              height: {
+                lg: "100vh",
+              },
+            }}
             title={`${showImgFarmModal.farmImg.name}, ${showImgFarmModal.farmImg.address}`}
             onClose={() => {
               setShowImgFarmModal({ open: false, farmImg: undefined });
