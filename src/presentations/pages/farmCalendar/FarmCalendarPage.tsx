@@ -236,7 +236,7 @@ const FarmCalendarPage = () => {
               Lịch canh tác thuộc vùng{" "}
               <span>{showConfirmDeleteModal.farmCalendar?.land?.name}</span> sẽ
               bị xóa khỏi hệ thống. <br />
-              Bạn có muốn xóa nhân viên này không?
+              Bạn có muốn xóa lịch này không?
             </p>
           }
           onCancel={handleCancelDelete}

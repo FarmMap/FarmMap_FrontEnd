@@ -9,6 +9,7 @@ import GrassIcon from '@mui/icons-material/Grass';
 import PropTypes from 'prop-types';
 import StoreIcon from '@mui/icons-material/Store';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 
 export const SidebarData = [
     {
@@ -113,6 +114,11 @@ export const SidebarData = [
                 path: "/kho/xuat-kho"
             },
         ]
+    },
+    {
+        title: "Liên hệ",
+        path: "/lien-he",
+        icon: <AddIcCallIcon />,
     },
     {
         title: "Danh sách yêu cầu",
