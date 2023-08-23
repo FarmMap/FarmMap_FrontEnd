@@ -61,7 +61,7 @@ const useFetchProvidor = (props: UseFetchProvidorProps) => {
         }
         setLoading(false);
       });
-  }, [props.page, props.shouldRefesh, props.query]);
+  }, [props.page, props.shouldRefesh, props.query, props.filter]);
 
   return { providors, pages, error, isLoading };
 };

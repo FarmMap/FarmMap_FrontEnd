@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 // Ex
-import { Grid, MenuItem, Select } from "@mui/material";
+import { Grid, MenuItem, Pagination, Select } from "@mui/material";
 // In
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
@@ -25,8 +25,15 @@ const cx = classNames.bind(styles);
 
 const FarmCalendarPage = () => {
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
   const [refresh, setRefresh] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  // handle Pagination
+  const handlePaginationChange = (event: any, value: number) => {
+    setPage(value);
+  };
+
   // land
   const [land, setLand] = useState<Land>({
     id: "",
@@ -44,10 +51,16 @@ const FarmCalendarPage = () => {
   //
   const [user, setUser] = useState<UserAccount[]>([]);
   // Get farmcalendars
-  const { farmCalendars, error: fetchFarmCalendarErr } =
-    useFetchFarmCalendarList({
-      shouldRefesh: refresh,
-    });
+  const {
+    farmCalendars,
+    error: fetchFarmCalendarErr,
+    isLoading,
+    pages,
+  } = useFetchFarmCalendarList({
+    shouldRefesh: refresh,
+    page: page,
+    query: query,
+  });
   // Create farm
   const {
     isCreated,
@@ -194,6 +207,26 @@ const FarmCalendarPage = () => {
           handleDeleteFarmCalendar={handleDeleteFarmCalendarButton}
           handleEditFarmCalendar={handleEditFarmCalendar}
         />
+
+        {!isLoading && (
+          <Pagination
+            count={pages}
+            page={page}
+            defaultPage={1}
+            variant="outlined"
+            color="primary"
+            shape="rounded"
+            onChange={handlePaginationChange}
+            sx={{
+              marginTop: {
+                lg: "0",
+                md: "0",
+                sm: "30px",
+                xs: "30px",
+              },
+            }}
+          />
+        )}
 
         {/* Create modal */}
         {showModal && (

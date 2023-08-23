@@ -28,6 +28,7 @@ interface FarmCalendarTableProps {
 }
 
 const FarmCalendarTable = (props: FarmCalendarTableProps) => {
+  console.log(props.farmCalendars);
   return (
     <Grid>
       {/* on PC */}

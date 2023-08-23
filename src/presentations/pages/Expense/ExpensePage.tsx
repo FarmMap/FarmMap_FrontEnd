@@ -26,6 +26,7 @@ const cx = classNames.bind(styles);
 const ExpensePage = () => {
   const [query, setQuery] = useState("");
   const [refresh, setRefresh] = useState(false);
+  const [page, setPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   // land
   const [land, setLand] = useState<Land>({
@@ -47,6 +48,8 @@ const ExpensePage = () => {
   const { farmCalendars, error: fetchFarmCalendarErr } =
     useFetchFarmCalendarList({
       shouldRefesh: refresh,
+      page: page,
+      query: query,
     });
   // Create farm
   const {
