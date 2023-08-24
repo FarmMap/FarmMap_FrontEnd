@@ -71,8 +71,6 @@ const ExpenseModal = (props: ExpenseModalProps) => {
   const unit = ["Quả", "Tấn", "Cây", "Tạ", "Kí"];
   const { productTypes } = useFetchProductType({});
 
-  console.log(props.farmCalendar?.productType?.name);
-
   return (
     <DefaultModal
       overrideMaxWidth={{

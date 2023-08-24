@@ -20,13 +20,6 @@ import ImageIcon from "@mui/icons-material/Image";
 // Internal
 import FormInput from "../../../components/formInput/FormInput";
 import FloatingLabelInput from "../../../components/floatingLabelInput/FloatingLabelInput";
-import PlaneArea from "../../../../data/types/PlaneArea";
-import { toast } from "react-toastify";
-import Tippy from "@tippyjs/react";
-import { Area, LatLngObject } from "../../../../data/types/Area";
-// Style
-import classNames from "classnames/bind";
-import styles from "./Area.module.scss";
 import SoilType from "../../../../data/types/SoilType";
 import Land from "../../../../data/types/Land";
 import SearchLocationByLatLng from "../../../components/maps/SearchLocationByLatLng";
@@ -37,6 +30,11 @@ import FormDropdown, {
   DropdownOption,
 } from "../../../components/formDropDown/FormDropdown";
 import KDialog from "../../../components/kDialog/KDialog";
+import Tippy from "@tippyjs/react";
+import { Area, LatLngObject } from "../../../../data/types/Area";
+// Style
+import classNames from "classnames/bind";
+import styles from "./Area.module.scss";
 
 const cx = classNames.bind(styles);
 

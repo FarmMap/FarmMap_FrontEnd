@@ -150,7 +150,6 @@ const HomePage = () => {
     type: "PHUONG_XA",
   });
 
-  console.log(districts.map((ward) => ward.name));
   return (
     <DefaultWebLayOut>
       <Grid>

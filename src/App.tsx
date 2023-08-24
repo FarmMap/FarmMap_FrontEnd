@@ -14,6 +14,7 @@ import FarmCalendarPage from "./presentations/pages/farmCalendar/FarmCalendarPag
 import IotPage from "./presentations/pages/iot/IotPage";
 import ExpensePage from "./presentations/pages/Expense/ExpensePage";
 import ProvidorPage from "./presentations/pages/providor/ProvidorPage";
+import PlantPage from "./presentations/pages/plant/PlantPage";
 //Style
 
 const App: React.FC = () => {
@@ -38,6 +39,7 @@ const App: React.FC = () => {
           <Route path="/thiet-bi-iot" element={<IotPage />} />
           <Route path="/danh-sach-yeu-cau/thu-chi" element={<ExpensePage />} />
           <Route path="/lien-he" element={<ProvidorPage />} />
+          <Route path="/nong-san/cay-trong" element={<PlantPage />} />
         </Route>
       </Routes>
     </div>

@@ -74,8 +74,8 @@ export const SidebarData = [
 
         subnav: [
             {
-                title: "Danh sách nông sản",
-                path: "/nong-san/danh-sach-nong-san"
+                title: "Cây trồng",
+                path: "/nong-san/cay-trong"
             },
             {
                 title: "Đặc tính sinh trưởng",

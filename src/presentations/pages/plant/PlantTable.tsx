@@ -12,21 +12,20 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 // Internal imports
 import { ListIcon } from "../../components/sidebar/SidebarData";
-import { toReadableDate } from "../../../utils/Utils";
-import Providor from "../../../data/types/Providor";
+import ImageIcon from "@mui/icons-material/Image";
+import Plant from "../../../data/types/Plant";
 
 // Style imports
 import classNames from "classnames/bind";
-import styles from "./Providor.module.scss";
+import styles from "./Plant.module.scss";
 const cx = classNames.bind(styles);
 
-interface ProvidorTableProps {
-  providors: Providor[];
-  handleDeleteProvidor: (Providor: Providor) => void;
-  handleEditProvidor: (Providor: Providor) => void;
+interface PlantTableProps {
+  plants: Plant[];
+  handleGetImgPlant: (plant: Plant) => void;
 }
 
-const ProvidorTable = (props: ProvidorTableProps) => {
+const PlantTable = (props: PlantTableProps) => {
   return (
     <Grid>
       {/* on PC */}
@@ -44,50 +43,48 @@ const ProvidorTable = (props: ProvidorTableProps) => {
           <thead>
             <tr>
               <th>#</th>
-              <th>Họ và tên</th>
-              <th>Địa chỉ</th>
-              <th>Số điện thoại</th>
-              <th>Dư nợ</th>
-              <th>Ghi chú</th>
+              <th>Tên cây trồng</th>
+              <th>Loại bệnh thường gặp</th>
+              <th>Đặc tính sinh trưởng</th>
+              <th>Đặc tính sử dụng cây trồng</th>
+              <th>Thu hoạch</th>
+              <th>Giá bán giống cây trồng</th>
               <th>Chức năng</th>
             </tr>
           </thead>
           <tbody>
-            {props.providors.map((providor, i) => (
+            {props.plants.map((plant, i) => (
               <tr key={i}>
                 <td>
                   <p>{i + 1}</p>
                 </td>
                 <td>
-                  <p>{providor.name}</p>
+                  <p>{plant.name}</p>
                 </td>
                 <td>
-                  <p>{providor.address}</p>
+                  <p>{plant.disease}</p>
                 </td>
                 <td>
-                  <Tippy content={`gọi ${providor.phoneNumber}`} theme="light">
-                    <a href={`tel: ${providor.phoneNumber}`}>
-                      {providor.phoneNumber?.replace(/[^\d]/g, "").slice(0, 3)}{" "}
-                      {providor.phoneNumber?.replace(/[^\d]/g, "").slice(3, 6)}{" "}
-                      {providor.phoneNumber?.replace(/[^\d]/g, "").slice(6, 10)}
-                    </a>
-                  </Tippy>
+                  <p>{plant.growth}</p>
                 </td>
-
+                <td>
+                  <p>{plant.use}</p>
+                </td>
+                <td>
+                  <p>{plant.harvest}</p>
+                </td>
                 <td>
                   <p>
+                    {" "}
                     {`${
-                      providor.debt !== null && providor.debt !== undefined
+                      plant.price !== null && plant.price !== undefined
                         ? new Intl.NumberFormat("vi-VN", {
                             style: "currency",
                             currency: "VND",
-                          }).format(providor.debt)
+                          }).format(plant.price)
                         : ""
                     }`}
                   </p>
-                </td>
-                <td>
-                  <p>{providor.description}</p>
                 </td>
 
                 <td
@@ -96,35 +93,14 @@ const ProvidorTable = (props: ProvidorTableProps) => {
                     textAlign: "center",
                   }}
                 >
-                  <Tippy
-                    content={`Sửa thông tin nhà cung cấp ${providor.name}`}
-                    theme="light"
-                  >
+                  <Tippy content={`Xem ảnh ${plant.name}`} theme="light">
                     <Button
-                      className={cx("btn-edit")}
+                      className={cx("btn-image")}
                       variant="contained"
-                      onClick={() => {
-                        props.handleEditProvidor(providor);
-                      }}
+                      onClick={() => props.handleGetImgPlant(plant)}
                       disableElevation={true}
                     >
-                      <Edit />
-                    </Button>
-                  </Tippy>
-
-                  <Tippy
-                    content={`Xóa nhà cung cấp ${providor.name}`}
-                    theme="light"
-                  >
-                    <Button
-                      className={cx("btn-delete")}
-                      variant="contained"
-                      disableElevation={true}
-                      onClick={() => {
-                        props.handleDeleteProvidor(providor);
-                      }}
-                    >
-                      <Delete />
+                      <ImageIcon />
                     </Button>
                   </Tippy>
                 </td>
@@ -255,4 +231,4 @@ const ProvidorTable = (props: ProvidorTableProps) => {
   );
 };
 
-export default ProvidorTable;
+export default PlantTable;
