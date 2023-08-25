@@ -78,8 +78,8 @@ export const SidebarData = [
                 path: "/nong-san/cay-trong"
             },
             {
-                title: "Đặc tính sinh trưởng",
-                path: "/nong-san/dac-tinh-sinh-truong"
+                title: "Công việc trong ngày",
+                path: "/nong-san/cong-viec-trong-ngay"
             },
             {
                 title: "Đặc tính bệnh học",

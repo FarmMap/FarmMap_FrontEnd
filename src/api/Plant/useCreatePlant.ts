@@ -31,7 +31,7 @@ const useCreatePlant = (props: useCreatePlantProps) => {
     (params: CreatePlantParams) => {
       setCreated(false);
       setError(null);
-      var FormData = require("form-data");
+
       var data = new FormData();
       setLoading(true);
       data.append("name", props.name);
@@ -39,7 +39,7 @@ const useCreatePlant = (props: useCreatePlantProps) => {
       data.append("growth ", props.growth);
       data.append("use  ", props.use);
       data.append("harvest  ", props.harvest);
-      data.append("price  ", props.price);
+      data.append("price  ", props.price.toString());
       data.append("groupCrop  ", props.groupCrop);
       if (props.images && props.images.length > 0) {
         props.images.forEach((image) => {
@@ -62,14 +62,12 @@ const useCreatePlant = (props: useCreatePlantProps) => {
       axios(config)
         .then((response: AxiosResponse) => {
           setCreated(true);
-
           setLoading(false);
         })
         .catch((error: AxiosError) => {
           if (error.response) {
             let responseError: ResponseError = error.response
               .data as ResponseError;
-
             setError(responseError.message);
           } else {
             let requestError = error.request;

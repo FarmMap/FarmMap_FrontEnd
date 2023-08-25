@@ -1,18 +1,19 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-import Plant from "../../data/types/Plant";
+import Todo from "../../data/types/Todo";
 import Meta from "../../data/types/Meta";
 
-interface UseFetchPlantProps {
-  page?: number;
-  query?: string;
+interface UseFetchTodoProps {
+  page: number;
+
   shouldRefesh?: boolean;
+  filter?: string;
 }
 
-interface PlantResponse {
+interface TodoResponse {
   meta: Meta;
-  data: Plant[];
+  data: Todo[];
 }
 
 interface ResponseError {
@@ -20,8 +21,8 @@ interface ResponseError {
   message: string;
 }
 
-const useFetchPlants = (props: UseFetchPlantProps) => {
-  let [plants, setPlant] = useState<Plant[]>([]);
+const useFetchTodo = (props: UseFetchTodoProps) => {
+  let [todos, setTodo] = useState<Todo[]>([]);
   let [pages, setPages] = useState(1);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
@@ -32,7 +33,7 @@ const useFetchPlants = (props: UseFetchPlantProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}crops?order=ASC&page=${props.page}&take=10`,
+      url: `${process.env.REACT_APP_API_BASE_URL}work-of-day/gets?order=ASC&page=${props.page}&take=10`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -40,8 +41,8 @@ const useFetchPlants = (props: UseFetchPlantProps) => {
 
     axios(config)
       .then((response: AxiosResponse) => {
-        let data: PlantResponse = response.data;
-        setPlant(data.data);
+        let data: TodoResponse = response.data;
+        setTodo(data.data);
         setPages(data.meta.pageCount ?? 0);
         setLoading(false);
       })
@@ -58,9 +59,9 @@ const useFetchPlants = (props: UseFetchPlantProps) => {
         }
         setLoading(false);
       });
-  }, [props.page, props.shouldRefesh, props.query]);
+  }, [props.page, props.shouldRefesh, props.filter]);
 
-  return { plants, pages, error, isLoading };
+  return { todos, pages, error, isLoading };
 };
 
-export default useFetchPlants;
+export default useFetchTodo;
