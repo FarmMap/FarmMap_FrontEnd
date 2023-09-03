@@ -1,10 +1,9 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useState } from "react";
-import { LatLngObject } from "../../data/types/Area";
-import Land from "../../data/types/Land";
+import Material from "../../data/types/Material";
 
-interface CreateAreaParams {
-  land: Land;
+interface CreateMaterialParams {
+  material: Material | undefined;
 }
 
 interface ResponseError {
@@ -12,43 +11,30 @@ interface ResponseError {
   message: string;
 }
 
-interface useCreateLandProps {
-  areaId?: string;
-  name: string;
-  productTypeId?: string;
-  soilTypeId: string;
-  acreage?: number;
-  locations: LatLngObject[];
+interface useCreateMaterialProps {
+  name?: string;
+  quantity?: number;
+  description?: string;
   images?: File[];
+  materialGroupId?: string;
 }
 
-const useCreateLand = (props: useCreateLandProps) => {
+const useCreateMaterial = (props: useCreateMaterialProps) => {
   const [isCreated, setCreated] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const createLand = useCallback(
-    (params: CreateAreaParams) => {
+  const createMaterial = useCallback(
+    (params: CreateMaterialParams) => {
       setCreated(false);
       setError(null);
-      setLoading(true);
-      const FormData = require("form-data");
-      var data = new FormData();
-      data.append("name", props.name);
-      data.append("acreage", props.acreage);
-      data.append("productTypeId", props.productTypeId);
-      data.append("soilTypeId", props.soilTypeId);
-      props.locations.forEach((location, i) => {
-        data.append(
-          "locations",
-          JSON.stringify({
-            point: location.point,
-            latitude: location.latitude,
-            longitude: location.longitude,
-          })
-        );
-      });
 
+      var data = new FormData();
+      setLoading(true);
+      data.append("name", props.name ?? "");
+      data.append("quantity", props.quantity?.toString() ?? "");
+      data.append("description", props.description?.toString() ?? "");
+      data.append("materialGroupId", props.materialGroupId ?? "");
       if (props.images && props.images.length > 0) {
         props.images.forEach((image) => {
           data.append("images", image);
@@ -58,7 +44,7 @@ const useCreateLand = (props: useCreateLandProps) => {
       let config = {
         method: "post",
         maxBodyLength: Infinity,
-        url: `${process.env.REACT_APP_API_BASE_URL}land/create?areaId=${props.areaId}`,
+        url: `${process.env.REACT_APP_API_BASE_URL}material`,
         headers: {
           accept: "*/*",
           Authorization: `Bearer ${window.localStorage.getItem("token")}`,
@@ -70,14 +56,12 @@ const useCreateLand = (props: useCreateLandProps) => {
       axios(config)
         .then((response: AxiosResponse) => {
           setCreated(true);
-
           setLoading(false);
         })
         .catch((error: AxiosError) => {
           if (error.response) {
             let responseError: ResponseError = error.response
               .data as ResponseError;
-
             setError(responseError.message);
           } else {
             let requestError = error.request;
@@ -88,10 +72,16 @@ const useCreateLand = (props: useCreateLandProps) => {
           setLoading(false);
         });
     },
-    [props.name, props.soilTypeId, props.locations, props.images, props.areaId]
+    [
+      props.name,
+      props.quantity,
+      props.description,
+      props.materialGroupId,
+      props.images,
+    ]
   );
 
-  return { isCreated, setCreated, error, isLoading, createLand };
+  return { isCreated, setCreated, error, isLoading, createMaterial };
 };
 
-export default useCreateLand;
+export default useCreateMaterial;

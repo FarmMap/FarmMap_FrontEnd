@@ -16,6 +16,8 @@ import ExpensePage from "./presentations/pages/Expense/ExpensePage";
 import ProvidorPage from "./presentations/pages/providor/ProvidorPage";
 import PlantPage from "./presentations/pages/plant/PlantPage";
 import TodoPage from "./presentations/pages/todo/TodoPage";
+import MaterialPage from "./presentations/pages/material/MaterialPage";
+import BillRequestPage from "./presentations/pages/billRequest/BillRequestPage";
 //Style
 
 const App: React.FC = () => {
@@ -42,6 +44,14 @@ const App: React.FC = () => {
           <Route path="/lien-he" element={<ProvidorPage />} />
           <Route path="/nong-san/cay-trong" element={<PlantPage />} />
           <Route path="/nong-san/cong-viec-trong-ngay" element={<TodoPage />} />
+          <Route
+            path="/kho/danh-sach-yeu-cau-vat-tu"
+            element={<MaterialPage />}
+          />
+          <Route
+            path="/danh-sach-yeu-cau/yeu-cau"
+            element={<BillRequestPage />}
+          />
         </Route>
       </Routes>
     </div>

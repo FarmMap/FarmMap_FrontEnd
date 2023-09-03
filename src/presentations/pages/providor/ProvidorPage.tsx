@@ -116,13 +116,13 @@ const ProvidorPage = () => {
     setShowModal(true);
   };
 
-  const handleCancelDelete = () => {
-    setShowConfirmDeleteModal({ open: false, providor: undefined });
-  };
-
   // Delete customer when submit
   const handleDeleteProvidorButton = (providor: Providor) => {
     setShowConfirmDeleteModal({ open: true, providor: providor });
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirmDeleteModal({ open: false, providor: undefined });
   };
 
   const handleConfirmDelete = () => {
@@ -267,6 +267,7 @@ const ProvidorPage = () => {
         <KDialog
           open={showTypeModal}
           title="Chọn loại"
+          bckColor="var(--blue-hover-color)"
           content={
             <Grid className={cx("type-wrapper")}>
               {TYPEPERSON.map((type, i) => (
@@ -328,6 +329,7 @@ const ProvidorPage = () => {
         {/* Confirm delete modal */}
         <KDialog
           open={showConfirmDeleteModal.open}
+          bckColor="var(--second-color)"
           title="Xác nhận xóa"
           content={
             <p>

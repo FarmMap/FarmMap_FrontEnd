@@ -112,7 +112,6 @@ const TodoModal = (props: TodoModalProps) => {
                       ...props.land,
                       id: value.id,
                     });
-                    console.log("hiu", props.land);
                   }
                 }}
                 sx={{ width: "100%" }}

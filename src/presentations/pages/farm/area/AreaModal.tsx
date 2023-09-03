@@ -521,6 +521,7 @@ const AreaModal = (props: AreaModalProps) => {
                 {/* Confirm delete modal */}
                 <KDialog
                   open={showConfirmDeletePoint}
+                  bckColor="var(--blue-hover-color)"
                   title="Xác nhận xóa"
                   content={
                     <p>
@@ -663,6 +664,7 @@ const AreaModal = (props: AreaModalProps) => {
                 <KDialog
                   open={showConfirmDeletePoint}
                   title="Xác nhận xóa"
+                  bckColor="var(--blue-hover-color)"
                   content={
                     <p>
                       Điểm này sẽ được xóa khỏi hệ thống cho đến khi bạn thay

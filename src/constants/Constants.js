@@ -8,10 +8,21 @@ const STATUS = [
   { value: "VUA_THEM", name: "Vửa thêm" },
 ];
 
+const STATUSBILL = [
+  {
+    value: 1,
+    name: "Đã hoàn thành",
+  },
+  {
+    value: 2,
+    name: "Chưa hoàn thành",
+  },
+];
+
 const TYPEPERSON = [
   { value: "PROVIDER", name: "Nhà cung cấp", icon: <GroupsIcon /> },
   { value: "KHACH_HANG", name: "Khách hàng", icon: <AccountCircleIcon /> },
   { value: "DOI_TUONG_KHAC", name: "Đối tượng khác", icon: <Diversity3Icon /> },
 ];
 
-export { STATUS, TYPEPERSON };
+export { STATUS, TYPEPERSON, STATUSBILL };

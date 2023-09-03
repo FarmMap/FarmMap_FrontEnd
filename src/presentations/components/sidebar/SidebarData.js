@@ -133,8 +133,8 @@ export const SidebarData = [
                 path: "/danh-sach-yeu-cau/yeu-cau"
             },
             {
-                title: "Thu chi",
-                path: "/danh-sach-yeu-cau/thu-chi"
+                title: "Yêu cầu",
+                path: "/danh-sach-yeu-cau/khach-tham-quan"
             },
 
         ]

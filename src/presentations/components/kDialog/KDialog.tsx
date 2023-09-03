@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogActions,
   Button,
+  styled,
 } from "@mui/material";
 
 // Style imports
@@ -18,7 +19,18 @@ interface KDialogProps {
   content: React.ReactNode;
   onCancel: () => void;
   onConfirm: () => void;
+  bckColor: string;
 }
+const StyledButton = styled(Button)<KDialogProps>`
+  && {
+    font-size: 1.3rem;
+    background-color: ${(props) => props.bckColor};
+    &:hover {
+      background-color: ${(props) => props.bckColor};
+      opacity: 0.8;
+    }
+  }
+`;
 
 const KDialog = (props: KDialogProps) => {
   return (
@@ -30,7 +42,15 @@ const KDialog = (props: KDialogProps) => {
       style={{ zIndex: 9999999, minWidth: "200px" }}
     >
       <DialogTitle
-        sx={{ fontSize: "1.6rem", fontWeight: "bold", minWidth: "300px" }}
+        sx={{
+          fontSize: "1.6rem",
+          fontWeight: "bold",
+          minWidth: "300px",
+          color: "var(--white-color)",
+          backgroundColor: props.bckColor,
+          padding: "10px 20px",
+          marginBottom: "12px",
+        }}
       >
         {props.title}
       </DialogTitle>
@@ -39,15 +59,19 @@ const KDialog = (props: KDialogProps) => {
         <Button sx={{ fontSize: "1.3rem" }} onClick={props.onCancel}>
           Hủy
         </Button>
-        <Button
-          variant="contained"
-          sx={{ fontSize: "1.3rem" }}
-          disableElevation={true}
-          autoFocus
+        <StyledButton
+          bckColor={props.bckColor}
           onClick={props.onConfirm}
+          variant="contained"
+          open={true}
+          title="Xác nhận xóa"
+          content={<p></p>}
+          onCancel={() => {}}
+          onConfirm={() => {}}
+          disableElevation
         >
           Xác nhận
-        </Button>
+        </StyledButton>
       </DialogActions>
     </Dialog>
   );

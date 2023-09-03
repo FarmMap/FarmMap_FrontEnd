@@ -13,11 +13,11 @@ import UserAccount from "../../../data/types/UserAccount";
 import Todo from "../../../data/types/Todo";
 import { toast } from "react-toastify";
 import KDialog from "../../components/kDialog/KDialog";
-import useDeleteTodo from "../../../api/Todo/useDeleteProvidor";
-import useFetchTodo from "../../../api/Todo/useFetchProvidorList";
+import useDeleteTodo from "../../../api/Todo/useDeleteTodo";
+import useFetchTodo from "../../../api/Todo/useFetchTodo";
 
 import Plant from "../../../data/types/Plant";
-import useUpdateTodo from "../../../api/Todo/useUpdateProvidor";
+import useUpdateTodo from "../../../api/Todo/useUpdateTodo";
 // Style imports
 import classNames from "classnames/bind";
 import styles from "./Todo.module.scss";
@@ -234,6 +234,7 @@ const TodoPage = () => {
         {/* Confirm delete modal */}
         <KDialog
           open={showConfirmDeleteModal.open}
+          bckColor="var(--blue-hover-color)"
           title="Xác nhận xóa"
           content={
             <p>

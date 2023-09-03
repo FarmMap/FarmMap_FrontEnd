@@ -154,7 +154,7 @@ const HomePage = () => {
     <DefaultWebLayOut>
       <Grid>
         <Grid>
-          <h4>Dashboard</h4>
+          <h4>Bảng điều khiển</h4>
         </Grid>
         <Grid
           mt={"12px"}
