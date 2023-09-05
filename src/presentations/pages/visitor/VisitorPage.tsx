@@ -1,39 +1,38 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 // Ex
 import { Grid, Pagination } from "@mui/material";
 // In
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
 import DefaultFilterLayOut from "../../components/defaultTitleLayOut/DefaultFilterLayOut";
-import FarmCalendarTable from "./BillRequestTable";
+import VisitorTable from "./VisitorTable";
 
 import { toast } from "react-toastify";
 import KDialog from "../../components/kDialog/KDialog";
 
-import BillRequest from "../../../data/types/BillRequest";
-import { TYPEPERSON } from "../../../constants/Constants";
-import BillRequestModal from "./BillRequestModal";
-import useFetchBillRequest from "../../../api/BillRequest/useFetchBillRequest";
-import useDeleteBillRequest from "../../../api/BillRequest/useDeleteBillRequest";
+import Visitor from "../../../data/types/Visitor";
+
+import useCreateVisitor from "../../../api/Visitor/useCreateVisitor";
+import useUpdateVisitor from "../../../api/Visitor/useUpdateVisitor";
+import useFetchVisitor from "../../../api/Visitor/useFetchVisitor";
+import useDeleteVisitor from "../../../api/Visitor/useDeleteVisitor";
+import VisitorModal from "./VisitorModal";
 // Style imports
 
-import useCreateBillRequest from "../../../api/BillRequest/useCreateBillRequest";
-import useUpdateBillRequest from "../../../api/BillRequest/useUpdateBillRequest";
-
-const BillRequestPage = () => {
+const VisitorPage = () => {
   const [query, setQuery] = useState("");
 
   const [page, setPage] = useState(1);
   const [refresh, setRefresh] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  // Get billRequests
+  // Get visitors
   const {
-    billRequests,
-    error: fetchbillRequestErr,
+    visitors,
+    error: fetchVisitorErr,
     pages,
     isLoading,
-  } = useFetchBillRequest({
+  } = useFetchVisitor({
     shouldRefesh: refresh,
     page: page,
     query: query,
@@ -41,12 +40,12 @@ const BillRequestPage = () => {
   // Create farm
   const {
     isCreated,
-    createBillRequest,
-    error: createBillRequestErr,
-  } = useCreateBillRequest();
+    createVisitor,
+    error: createVisitorErr,
+  } = useCreateVisitor();
 
-  const handleCreateBillRequest = (billRequest: BillRequest) => {
-    createBillRequest({ billRequest: billRequest });
+  const handleCreateVisitor = (visitor: Visitor) => {
+    createVisitor({ visitor: visitor });
   };
 
   // handle Pagination
@@ -57,56 +56,56 @@ const BillRequestPage = () => {
 
   // Delete
   const {
-    deleteBillRequest,
+    deleteVisitor,
     isDeleted,
-    error: deleteBillRequestErr,
-  } = useDeleteBillRequest();
+    error: deleteVisitorErr,
+  } = useDeleteVisitor();
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState<{
     open: boolean;
-    billRequest: undefined | BillRequest;
-  }>({ open: false, billRequest: undefined });
+    visitor: undefined | Visitor;
+  }>({ open: false, visitor: undefined });
 
   // Delete customer when submit
-  const handleDeleteBillRequestButton = (billRequest: BillRequest) => {
-    setShowConfirmDeleteModal({ open: true, billRequest: billRequest });
+  const handleDeleteVisitorButton = (visitor: Visitor) => {
+    setShowConfirmDeleteModal({ open: true, visitor: visitor });
   };
 
   const handleCancelDelete = () => {
-    setShowConfirmDeleteModal({ open: false, billRequest: undefined });
+    setShowConfirmDeleteModal({ open: false, visitor: undefined });
   };
 
   const handleConfirmDelete = () => {
-    deleteBillRequest({
-      billRequest: showConfirmDeleteModal.billRequest as BillRequest,
+    deleteVisitor({
+      visitor: showConfirmDeleteModal.visitor as Visitor,
     });
-    setShowConfirmDeleteModal({ open: false, billRequest: undefined });
+    setShowConfirmDeleteModal({ open: false, visitor: undefined });
   };
 
   // Update
   const {
     isUpdated,
-    error: updateBillRequestErr,
-    updateBillRequest,
-  } = useUpdateBillRequest();
+    error: updateVisitorErr,
+    updateVisitor,
+  } = useUpdateVisitor();
   const [showUpdateModal, setShowUpdateModal] = useState<{
     open: boolean;
-    billRequest: undefined | BillRequest;
-  }>({ open: false, billRequest: undefined });
+    visitor: undefined | Visitor;
+  }>({ open: false, visitor: undefined });
 
-  const handleEditbillRequest = (billRequest: BillRequest) => {
-    setShowUpdateModal({ open: true, billRequest: billRequest });
+  const handleEditVisitor = (visitor: Visitor) => {
+    setShowUpdateModal({ open: true, visitor: visitor });
   };
 
-  const handleUpdateBillRequest = (billRequest: BillRequest) => {
-    updateBillRequest({ billRequest: billRequest });
+  const handleUpdateVisitor = (visitor: Visitor) => {
+    updateVisitor({ visitor: visitor });
   };
 
   useEffect(() => {
     let error =
-      createBillRequestErr ??
-      fetchbillRequestErr ??
-      deleteBillRequestErr ??
-      updateBillRequestErr;
+      createVisitorErr ??
+      fetchVisitorErr ??
+      deleteVisitorErr ??
+      updateVisitorErr;
 
     if (error != null) {
       toast.error(error);
@@ -115,25 +114,23 @@ const BillRequestPage = () => {
     if (isCreated || isDeleted || isUpdated) {
       toast.success("Thao tác thành công!");
       setRefresh((refresh) => !refresh);
-      setTimeout(() => {
-        setShowModal(false);
-      }, 3000);
+      setShowModal(false);
     }
   }, [
-    createBillRequestErr,
-    deleteBillRequestErr,
-    fetchbillRequestErr,
+    createVisitorErr,
+    deleteVisitorErr,
+    fetchVisitorErr,
     isCreated,
     isDeleted,
     isUpdated,
-    updateBillRequestErr,
+    updateVisitorErr,
   ]);
 
   return (
     <DefaultWebLayOut>
       <Grid>
         <DefaultTitleLayOut
-          heading="phiếu yêu cầu"
+          heading="khách tham quan"
           handleAddButtonClick={() => {
             setShowModal(true);
           }}
@@ -141,7 +138,7 @@ const BillRequestPage = () => {
           <DefaultFilterLayOut
             searchs={[
               {
-                searchLabel: "Tên phiếu yêu cầu",
+                searchLabel: "Tên khách tham quan",
                 searchPlaceholder: "Nhập tên...",
                 query: query,
                 setQuery: setQuery,
@@ -151,10 +148,10 @@ const BillRequestPage = () => {
           ></DefaultFilterLayOut>
         </DefaultTitleLayOut>
 
-        <FarmCalendarTable
-          billRequests={billRequests}
-          handleDeleteBillRequest={handleDeleteBillRequestButton}
-          handleEditBillRequest={handleEditbillRequest}
+        <VisitorTable
+          visitors={visitors}
+          handleDeleteVisitor={handleDeleteVisitorButton}
+          handleEditVisitor={handleEditVisitor}
         />
 
         {!isLoading && (
@@ -179,27 +176,27 @@ const BillRequestPage = () => {
 
         {/* Create modal */}
         {showModal && (
-          <BillRequestModal
-            title={`Thêm mới phiếu yêu cầu`}
+          <VisitorModal
+            title={`Thêm mới khách tham quan`}
             handleCloseModal={() => {
               setShowModal(false);
             }}
             submitButtonLabel="Xác nhận"
-            billRequest={!isCreated ? undefined : {}}
-            onSubmit={handleCreateBillRequest}
+            visitor={!isCreated ? undefined : {}}
+            onSubmit={handleCreateVisitor}
           />
         )}
 
         {/* Update Modal */}
         {showUpdateModal.open && (
-          <BillRequestModal
-            title="Cập nhật phiếu yêu cầu"
+          <VisitorModal
+            title="Cập nhật khách tham quan"
             handleCloseModal={() =>
-              setShowUpdateModal({ open: false, billRequest: undefined })
+              setShowUpdateModal({ open: false, visitor: undefined })
             }
             submitButtonLabel="Xác nhận"
-            billRequest={showUpdateModal.billRequest}
-            onSubmit={handleUpdateBillRequest}
+            visitor={showUpdateModal.visitor}
+            onSubmit={handleUpdateVisitor}
           />
         )}
 
@@ -210,10 +207,10 @@ const BillRequestPage = () => {
           title="Xác nhận xóa"
           content={
             <p>
-              Phiếu yêu cầu {""}
-              <span>{showConfirmDeleteModal.billRequest?.name}</span> sẽ bị xóa
-              khỏi hệ thống. <br />
-              Bạn có muốn xóa phiếu yêu cầu này không?
+              Khách tham quan {""}
+              <span>{showConfirmDeleteModal.visitor?.name}</span> sẽ bị xóa khỏi
+              hệ thống. <br />
+              Bạn có muốn xóa khách tham quan này không?
             </p>
           }
           onCancel={handleCancelDelete}
@@ -224,4 +221,4 @@ const BillRequestPage = () => {
   );
 };
 
-export default BillRequestPage;
+export default VisitorPage;

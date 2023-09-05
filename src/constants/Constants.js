@@ -11,12 +11,43 @@ const STATUS = [
 const STATUSBILL = [
   {
     value: 1,
-    name: "Đã hoàn thành",
+    name: "Còn hàng",
   },
   {
     value: 2,
-    name: "Chưa hoàn thành",
+    name: "Hết hàng",
   },
+];
+
+const STATUSVISITOR = [
+  {
+    value: 1,
+    name: "Đã tham quan",
+  },
+  {
+    value: 2,
+    name: "Đã xác nhận",
+  },
+  {
+    value: 3,
+    name: "Chưa xác nhận",
+  },
+  {
+    value: 4,
+    name: "Đang chờ",
+  },
+];
+
+const STATUSINGREDIENT = [
+  {
+    value: 0,
+    name: "Hàng tồn kho",
+  },
+  {
+    value: 1,
+    name: "Hết hàng",
+  },
+
 ];
 
 const TYPEPERSON = [
@@ -25,4 +56,4 @@ const TYPEPERSON = [
   { value: "DOI_TUONG_KHAC", name: "Đối tượng khác", icon: <Diversity3Icon /> },
 ];
 
-export { STATUS, TYPEPERSON, STATUSBILL };
+export { STATUS, TYPEPERSON, STATUSBILL, STATUSVISITOR, STATUSINGREDIENT };

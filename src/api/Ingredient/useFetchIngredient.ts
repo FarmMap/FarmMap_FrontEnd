@@ -1,18 +1,18 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-import Visitor from "../../data/types/Visitor";
+import Ingredient from "../../data/types/Ingredient";
 import Meta from "../../data/types/Meta";
 
-interface UseFetchVisitorProps {
-  page: number;
-  query: string;
+interface UseFetchIngredientProps {
+  page?: number;
+  query?: string;
   shouldRefesh?: boolean;
 }
 
-interface VisitorResponse {
+interface IngredientResponse {
   meta: Meta;
-  data: Visitor[];
+  data: Ingredient[];
 }
 
 interface ResponseError {
@@ -20,8 +20,8 @@ interface ResponseError {
   message: string;
 }
 
-const useFetchVisitor = (props: UseFetchVisitorProps) => {
-  let [visitors, setVisitor] = useState<Visitor[]>([]);
+const useFetchIngredients = (props: UseFetchIngredientProps) => {
+  let [ingredients, setIngredient] = useState<Ingredient[]>([]);
   let [pages, setPages] = useState(1);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
@@ -32,7 +32,7 @@ const useFetchVisitor = (props: UseFetchVisitorProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}visitor/gets?order=ASC&page=${props.page}&take=10`,
+      url: `${process.env.REACT_APP_API_BASE_URL}ingredients?order=ASC&page=${props.page}&take=10`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -40,8 +40,8 @@ const useFetchVisitor = (props: UseFetchVisitorProps) => {
 
     axios(config)
       .then((response: AxiosResponse) => {
-        let data: VisitorResponse = response.data;
-        setVisitor(data.data);
+        let data: IngredientResponse = response.data;
+        setIngredient(data.data);
         setPages(data.meta.pageCount ?? 0);
         setLoading(false);
       })
@@ -60,7 +60,7 @@ const useFetchVisitor = (props: UseFetchVisitorProps) => {
       });
   }, [props.page, props.shouldRefesh, props.query]);
 
-  return { visitors, pages, error, isLoading };
+  return { ingredients, pages, error, isLoading };
 };
 
-export default useFetchVisitor;
+export default useFetchIngredients;

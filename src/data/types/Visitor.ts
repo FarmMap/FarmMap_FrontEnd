@@ -3,7 +3,7 @@ export default interface Visitor {
   updatedAt?: string;
   id?: string;
   name?: string;
-  quantity?: 0;
+  quantity?: number;
   receptionDay?: string;
   description?: string;
   status?: number;

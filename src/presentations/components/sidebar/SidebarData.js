@@ -102,8 +102,8 @@ export const SidebarData = [
                 path: "/kho/danh-sach-yeu-cau-vat-tu"
             },
             {
-                title: "Nông sản",
-                path: "/kho/nong-san"
+                title: "Nguyên liệu",
+                path: "/kho/nguyen-lieu"
             },
             {
                 title: "Nhập kho",
@@ -133,7 +133,7 @@ export const SidebarData = [
                 path: "/danh-sach-yeu-cau/yeu-cau"
             },
             {
-                title: "Yêu cầu",
+                title: "Khách tham quan",
                 path: "/danh-sach-yeu-cau/khach-tham-quan"
             },
 

@@ -1,9 +1,9 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useState } from "react";
-import Material from "../../data/types/Material";
+import Ingredient from "../../data/types/Ingredient";
 
-interface UpdateMaterialParams {
-  material: Material | undefined;
+interface UpdateIngredientParams {
+  ingredient: Ingredient | undefined;
 }
 
 interface ResponseError {
@@ -11,31 +11,37 @@ interface ResponseError {
   message: string;
 }
 
-interface useUpdateMaterialProps {
+interface useUpdateIngredientProps {
   id?: string;
   name?: string;
-  quantity?: number;
-  description?: string;
+  quantity?: string;
+  weight?: string;
+  money?: number;
+  information?: string;
+  time?: string;
+  status?: string;
   images?: File[];
-  materialGroupId?: string;
 }
 
-const useUpdateMaterial = (props: useUpdateMaterialProps) => {
+const useUpdateIngredient = (props: useUpdateIngredientProps) => {
   const [isUpdated, setUpdated] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const updateMaterial = useCallback(
-    (params: UpdateMaterialParams) => {
+  const updateIngredient = useCallback(
+    (params: UpdateIngredientParams) => {
       setUpdated(false);
       setError(null);
 
       var data = new FormData();
       setLoading(true);
       data.append("name", props.name ?? "");
-      data.append("quantity", props.quantity?.toString() ?? "");
-      data.append("description", props.description?.toString() ?? "");
-      data.append("materialGroupId", props.materialGroupId ?? "");
+      data.append("quantity", props.quantity ?? "");
+      data.append("weight", props.weight ?? "");
+      data.append("money", props.money?.toString() ?? "");
+      data.append("information", props.information ?? "");
+      data.append("time", props.time ?? "");
+      data.append("status", props.status ?? "");
       if (props.images && props.images.length > 0) {
         props.images.forEach((image) => {
           data.append("images", image);
@@ -45,7 +51,7 @@ const useUpdateMaterial = (props: useUpdateMaterialProps) => {
       let config = {
         method: "patch",
         maxBodyLength: Infinity,
-        url: `${process.env.REACT_APP_API_BASE_URL}material/update?id=${props.id}`,
+        url: `${process.env.REACT_APP_API_BASE_URL}ingredient/update?id=${props.id}`,
         headers: {
           accept: "*/*",
           Authorization: `Bearer ${window.localStorage.getItem("token")}`,
@@ -76,14 +82,17 @@ const useUpdateMaterial = (props: useUpdateMaterialProps) => {
     [
       props.name,
       props.quantity,
-      props.description,
-      props.materialGroupId,
+      props.weight,
+      props.money,
+      props.information,
+      props.time,
+      props.status,
       props.images,
       props.id,
     ]
   );
 
-  return { isUpdated, setUpdated, error, isLoading, updateMaterial };
+  return { isUpdated, setUpdated, error, isLoading, updateIngredient };
 };
 
-export default useUpdateMaterial;
+export default useUpdateIngredient;

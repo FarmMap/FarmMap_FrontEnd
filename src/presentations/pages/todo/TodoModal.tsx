@@ -77,68 +77,12 @@ const TodoModal = (props: TodoModalProps) => {
       onClose={props.handleCloseModal}
     >
       <Grid>
-        <Grid>
-          <Grid className={cx("area-wrapper")} container columns={12}>
-            <Grid item lg={3} md={4} xs={4} sm={12}>
-              <label className={cx("label-area")} htmlFor="cay-trong">
-                Vùng canh tác <span>*</span>
-              </label>
-            </Grid>
-            <Grid
-              item
-              lg={7.3}
-              md={7}
-              xs={12}
-              sm={12}
-              sx={{
-                paddingLeft: {
-                  lg: "30px",
-                  md: "30px",
-                },
-              }}
-            >
-              <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                options={lands}
-                defaultValue={props.land}
-                disabled={props.todo !== undefined}
-                getOptionLabel={(option: Land) => option.name as string}
-                noOptionsText="Không tìm thấy vùng canh tác nào"
-                onChange={(event, value: Land | null) => {
-                  if (value == null) return;
-                  if (props.land !== undefined) {
-                    props.setLand({
-                      ...props.land,
-                      id: value.id,
-                    });
-                  }
-                }}
-                sx={{ width: "100%" }}
-                renderOption={(props, option) => (
-                  <MenuItem {...props} divider>
-                    <HomeWorkIcon sx={{ mr: 2 }} />
-                    <ListItemText
-                      primaryTypographyProps={{ fontSize: "1.3rem" }}
-                      secondaryTypographyProps={{ fontSize: "1.2rem" }}
-                      primary={option.name}
-                    />
-                  </MenuItem>
-                )}
-                renderInput={(params) => (
-                  <TextField {...params} label="Chọn vùng canh tác" />
-                )}
-              />
-            </Grid>
-            <Grid
-              className={cx("area-wrapper")}
-              container
-              columns={12}
-              mt={"10px"}
-            >
+        {props.todo == undefined && (
+          <Grid>
+            <Grid className={cx("area-wrapper")} container columns={12}>
               <Grid item lg={3} md={4} xs={4} sm={12}>
                 <label className={cx("label-area")} htmlFor="cay-trong">
-                  Cây trồng<span>*</span>
+                  Vùng canh tác <span>*</span>
                 </label>
               </Grid>
               <Grid
@@ -157,16 +101,16 @@ const TodoModal = (props: TodoModalProps) => {
                 <Autocomplete
                   disablePortal
                   id="combo-box-demo"
-                  options={plants}
+                  options={lands}
+                  defaultValue={props.land}
                   disabled={props.todo !== undefined}
-                  defaultValue={props.crop}
-                  getOptionLabel={(option: Plant) => option.name as string}
-                  noOptionsText="Không tìm thấy cây trồng nào"
-                  onChange={(event, value: Plant | null) => {
+                  getOptionLabel={(option: Land) => option.name as string}
+                  noOptionsText="Không tìm thấy vùng canh tác nào"
+                  onChange={(event, value: Land | null) => {
                     if (value == null) return;
-                    if (props.crop !== undefined) {
-                      props.setCrop({
-                        ...props.crop,
+                    if (props.land !== undefined) {
+                      props.setLand({
+                        ...props.land,
                         id: value.id,
                       });
                     }
@@ -183,13 +127,70 @@ const TodoModal = (props: TodoModalProps) => {
                     </MenuItem>
                   )}
                   renderInput={(params) => (
-                    <TextField {...params} label="Chọn cây trồng" />
+                    <TextField {...params} label="Chọn vùng canh tác" />
                   )}
                 />
               </Grid>
+              <Grid
+                className={cx("area-wrapper")}
+                container
+                columns={12}
+                mt={"10px"}
+              >
+                <Grid item lg={3} md={4} xs={4} sm={12}>
+                  <label className={cx("label-area")} htmlFor="cay-trong">
+                    Cây trồng<span>*</span>
+                  </label>
+                </Grid>
+                <Grid
+                  item
+                  lg={7.3}
+                  md={7}
+                  xs={12}
+                  sm={12}
+                  sx={{
+                    paddingLeft: {
+                      lg: "30px",
+                      md: "30px",
+                    },
+                  }}
+                >
+                  <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    options={plants}
+                    disabled={props.todo !== undefined}
+                    getOptionLabel={(option: Plant) => option.name as string}
+                    noOptionsText="Không tìm thấy cây trồng nào"
+                    onChange={(event, value: Plant | null) => {
+                      if (value == null) return;
+                      if (props.crop !== undefined) {
+                        props.setCrop({
+                          ...props.crop,
+                          id: value.id,
+                        });
+                      }
+                    }}
+                    sx={{ width: "100%" }}
+                    renderOption={(props, option) => (
+                      <MenuItem {...props} divider>
+                        <HomeWorkIcon sx={{ mr: 2 }} />
+                        <ListItemText
+                          primaryTypographyProps={{ fontSize: "1.3rem" }}
+                          secondaryTypographyProps={{ fontSize: "1.2rem" }}
+                          primary={option.name}
+                        />
+                      </MenuItem>
+                    )}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Chọn cây trồng" />
+                    )}
+                  />
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        )}
         <Grid container spacing={3} className={cx("form-body-wrapper")}>
           <Fragment>
             <Grid

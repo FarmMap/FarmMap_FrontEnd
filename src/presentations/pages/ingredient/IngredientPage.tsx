@@ -5,35 +5,30 @@ import { Grid, Pagination } from "@mui/material";
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
 import DefaultFilterLayOut from "../../components/defaultTitleLayOut/DefaultFilterLayOut";
-import FarmCalendarTable from "./MaterialTable";
+import FarmCalendarTable from "./IngredientTable";
 import Material from "../../../data/types/Material";
 import { toast } from "react-toastify";
 import DefaultModal from "../../components/defaultModal";
 import Carousel from "react-material-ui-carousel";
 import useCreateMaterial from "../../../api/Material/useCreateMaterial";
 import Province from "../../../data/types/Province";
-import MaterialModal from "./MaterialModal";
-// Style imports
-import classNames from "classnames/bind";
-import styles from "./Material.module.scss";
-import useFetchMaterials from "../../../api/Material/useFetchMaterials";
+import MaterialModal from "./IngredientModal";
+
 import KDialog from "../../components/kDialog/KDialog";
-import useDeleteMaterial from "../../../api/Material/useDeleteMaterial";
 import useUpdateMaterial from "../../../api/Material/useUpdateMaterial";
+import useFetchIngredients from "../../../api/Ingredient/useFetchIngredient";
+import Ingredient from "../../../data/types/Ingredient";
+import useDeleteIngredient from "../../../api/Ingredient/useDeleteIngredient";
+import useCreateIngredient from "../../../api/Ingredient/useCreateIngredient";
+// Style imports
 
-const cx = classNames.bind(styles);
-
-const MaterialPage = () => {
+const IngredientPage = () => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [refresh, setRefresh] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [material, setMaterials] = useState<Material>({
-    name: "",
-    quantity: 0,
-    description: "",
-    images: [],
-    materialGroupId: "",
+  const [ingredient, setIngredient] = useState<Ingredient>({
+    status: 0,
   });
 
   // handle Pagination
@@ -42,135 +37,133 @@ const MaterialPage = () => {
   };
 
   //
-  // Get materials
+  // Get ingredients
   const {
-    materials,
-    error: fetchmaterialsErr,
+    ingredients,
+    error: fetchIngredientsErr,
     isLoading,
     pages,
-  } = useFetchMaterials({
+  } = useFetchIngredients({
     shouldRefesh: refresh,
     page: page,
     query: query,
   });
 
-  // Create materials
+  // Create ingredients
   const [crop, setCrop] = useState<Province>({
     name: "",
   });
   const {
     isCreated,
     error: creatematerialErr,
-    createMaterial,
-  } = useCreateMaterial({
-    name: material.name,
-    quantity: material.quantity,
-    description: material.description,
-    images: material.images,
-    materialGroupId: material.materialGroupId,
+    createIngredient,
+  } = useCreateIngredient({
+    name: ingredient.name,
+    quantity: ingredient.quantity,
+    weight: ingredient.weight,
+    money: ingredient.money,
+    information: ingredient.information,
+    time: ingredient.time,
+    status: ingredient.status,
+    images: ingredient.images,
   });
-  const handleCreateMaterial = (material: Material | undefined) => {
-    createMaterial({ material: material });
+  const handleCreateIngredient = (ingredient: Ingredient | undefined) => {
+    createIngredient({ ingredient: ingredient });
   };
   // Get img
-  const [imgMaterial, setImgMaterial] = useState<{
+  const [imgIngredient, setImgIngredient] = useState<{
     open: boolean;
-    material?: Material;
+    ingredient?: Ingredient;
   }>({ open: false });
 
-  const handleGetImgMaterial = (material: Material) => {
-    setImgMaterial({ open: true, material: material });
+  const handleGetImgIngredient = (ingredient: Ingredient) => {
+    setImgIngredient({ open: true, ingredient: ingredient });
   };
 
   // Delete
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState<{
     open: boolean;
-    material: undefined | Material;
-  }>({ open: false, material: undefined });
+    ingredient: undefined | Ingredient;
+  }>({ open: false, ingredient: undefined });
 
   const {
-    deleteMaterial,
-    error: deleteMaterialErr,
+    deleteIngredient,
+    error: deleteIngredientErr,
     isDeleted,
-  } = useDeleteMaterial();
+  } = useDeleteIngredient();
 
-  const handleDeleteMaterial = (material: Material) => {
-    setShowConfirmDeleteModal({ open: true, material: material });
+  const handleDeleteIngredient = (ingredient: Ingredient) => {
+    setShowConfirmDeleteModal({ open: true, ingredient: ingredient });
   };
 
   const handleCancelDelete = () => {
-    setShowConfirmDeleteModal({ open: false, material: undefined });
+    setShowConfirmDeleteModal({ open: false, ingredient: undefined });
   };
 
   const handleConfirmDelete = () => {
-    deleteMaterial({
-      material: showConfirmDeleteModal.material as Material,
+    deleteIngredient({
+      ingredient: showConfirmDeleteModal.ingredient as Ingredient,
     });
-    setShowConfirmDeleteModal({ open: false, material: undefined });
+    setShowConfirmDeleteModal({ open: false, ingredient: undefined });
   };
 
   // Edit
-  const {
-    isUpdated,
-    error: updateMaterialErr,
-    updateMaterial,
-  } = useUpdateMaterial({
-    id: material.id,
-    name: material.name,
-    quantity: material.quantity,
-    description: material.description,
-    images: material.images,
-    materialGroupId: material.materialGroupId,
-  });
-  const [showUpdateModal, setShowUpdateModal] = useState<{
-    open: boolean;
-    material: Material | undefined;
-  }>({ open: false, material: undefined });
+  // const {
+  //   isUpdated,
+  //   error: updateMaterialErr,
+  //   updateMaterial,
+  // } = useUpdateMaterial({
+  //   id: material.id,
+  //   name: material.name,
+  //   quantity: material.quantity,
+  //   description: material.description,
+  //   images: material.images,
+  //   materialGroupId: material.materialGroupId,
+  // });
+  // const [showUpdateModal, setShowUpdateModal] = useState<{
+  //   open: boolean;
+  //   material: Material | undefined;
+  // }>({ open: false, material: undefined });
 
-  const handleEditMaterial = (material: Material) => {
-    setShowUpdateModal({ open: true, material: material });
-    setMaterials(material);
-  };
+  // const handleEditMaterial = (material: Material) => {
+  //   setShowUpdateModal({ open: true, material: material });
+  //   setIngredient(material);
+  // };
 
-  const handleUpdateMaterial = (material: Material | undefined) => {
-    updateMaterial({ material: material });
-  };
+  // const handleUpdateMaterial = (material: Material | undefined) => {
+  //   updateMaterial({ material: material });
+  // };
 
   useEffect(() => {
-    let error =
-      fetchmaterialsErr ??
-      creatematerialErr ??
-      deleteMaterialErr ??
-      updateMaterialErr;
+    let error = fetchIngredientsErr ?? creatematerialErr ?? deleteIngredientErr;
+    // updateMaterialErr;
 
     if (error != null) {
       toast.error(error);
     }
 
-    if (isCreated || isDeleted || isUpdated) {
+    if (isCreated || isDeleted) {
       toast.success("Thao tác thành công!");
       setRefresh((refresh) => !refresh);
       setTimeout(() => {
-        setMaterials({} as Material);
+        setIngredient({} as Ingredient);
         setCrop({ name: "", id: "" });
         setShowModal(false);
       }, 3000);
     }
   }, [
     creatematerialErr,
-    deleteMaterialErr,
-    fetchmaterialsErr,
+    deleteIngredientErr,
+    fetchIngredientsErr,
     isCreated,
     isDeleted,
-    isUpdated,
-    updateMaterialErr,
   ]);
 
   return (
     <DefaultWebLayOut>
       <Grid>
         <DefaultTitleLayOut
-          heading="Vật tư"
+          heading="nguyên liệu"
           handleAddButtonClick={() => {
             setShowModal(true);
           }}
@@ -178,8 +171,8 @@ const MaterialPage = () => {
           <DefaultFilterLayOut
             searchs={[
               {
-                searchLabel: "Tên vật tư",
-                searchPlaceholder: "Nhập tên vật tư",
+                searchLabel: "Tên nguyên liệu",
+                searchPlaceholder: "Nhập tên nguyên liệu",
                 query: query,
                 setQuery: setQuery,
               },
@@ -188,10 +181,10 @@ const MaterialPage = () => {
         </DefaultTitleLayOut>
 
         <FarmCalendarTable
-          materials={materials}
-          handleGetImgMaterial={handleGetImgMaterial}
-          handleDeleteMaterial={handleDeleteMaterial}
-          handleEditMaterial={handleEditMaterial}
+          ingredients={ingredients}
+          handleGetImgIngredient={handleGetImgIngredient}
+          handleDeleteIngredient={handleDeleteIngredient}
+          // handleEditIngredient={handleEditMaterial}
         />
 
         {!isLoading && (
@@ -217,43 +210,43 @@ const MaterialPage = () => {
         {/* Create modal */}
         {showModal && (
           <MaterialModal
-            title="Thêm vật tư"
+            title="Thêm nguyên liệu"
             handleCloseModal={() => {
               setShowModal(false);
-              setMaterials({});
+              setIngredient({});
             }}
             submitButtonLabel="Xác nhận"
-            material={material}
-            setMaterial={setMaterials}
-            onSubmit={handleCreateMaterial}
+            ingredient={ingredient}
+            setIngredient={setIngredient}
+            onSubmit={handleCreateIngredient}
           />
         )}
 
         {/* Update Modal */}
-        {showUpdateModal.open && (
+        {/* {showUpdateModal.open && (
           <MaterialModal
-            title="Cập nhật vật tư"
+            title="Cập nhật nguyên liệu"
             handleCloseModal={() => {
               setShowUpdateModal({ open: false, material: undefined });
-              setMaterials({});
+              setIngredient({});
             }}
             submitButtonLabel="Xác nhận"
             material={material}
-            setMaterial={setMaterials}
+            setMaterial={setIngredient}
             onSubmit={handleUpdateMaterial}
           />
-        )}
+        )} */}
 
         {/* Img modal */}
-        {imgMaterial.open && (
+        {imgIngredient.open && (
           <DefaultModal
-            title={`Ảnh ${imgMaterial.material?.name}`}
+            title={`Ảnh ${imgIngredient.ingredient?.name}`}
             onClose={() => {
-              setImgMaterial({ open: false, material: undefined });
+              setImgIngredient({ open: false, ingredient: undefined });
             }}
           >
             <Carousel>
-              {imgMaterial.material?.images?.map((image, i) => (
+              {imgIngredient.ingredient?.images?.map((image, i) => (
                 <img
                   key={i}
                   style={{
@@ -278,7 +271,7 @@ const MaterialPage = () => {
           content={
             <p>
               Nhà cung cấp {""}
-              <span>{showConfirmDeleteModal.material?.name}</span> sẽ bị xóa
+              <span>{showConfirmDeleteModal.ingredient?.name}</span> sẽ bị xóa
               khỏi hệ thống. <br />
               Bạn có muốn xóa nhà cung cấp này không?
             </p>
@@ -291,4 +284,4 @@ const MaterialPage = () => {
   );
 };
 
-export default MaterialPage;
+export default IngredientPage;
