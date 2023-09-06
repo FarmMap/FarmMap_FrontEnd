@@ -18,10 +18,12 @@ import useFetchIngredients from "../../../api/Ingredient/useFetchIngredient";
 import useDeleteIngredient from "../../../api/Ingredient/useDeleteIngredient";
 import useUpdateIngredient from "../../../api/Ingredient/useUpdateIngredient";
 import IngredientModal from "./IngredientModal";
+import useDebounce from "../../../hooks/useDebounce";
 // Style imports
 
 const IngredientPage = () => {
   const [query, setQuery] = useState("");
+  const ingredientQueryDebounce = useDebounce<string>(query, 700);
   const [page, setPage] = useState(1);
   const [refresh, setRefresh] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -44,13 +46,11 @@ const IngredientPage = () => {
   } = useFetchIngredients({
     shouldRefesh: refresh,
     page: page,
-    query: query,
+    query: ingredientQueryDebounce,
   });
 
   // Create ingredients
-  const [crop, setCrop] = useState<Province>({
-    name: "",
-  });
+
   const {
     isCreated,
     error: createingredientErr,
@@ -152,7 +152,6 @@ const IngredientPage = () => {
       setRefresh((refresh) => !refresh);
       setTimeout(() => {
         setIngredient({} as Ingredient);
-        setCrop({ name: "", id: "" });
         setShowModal(false);
       }, 3000);
     }
@@ -184,6 +183,7 @@ const IngredientPage = () => {
                 setQuery: setQuery,
               },
             ]}
+            onSearchSubmit={() => {}}
           ></DefaultFilterLayOut>
         </DefaultTitleLayOut>
 

@@ -67,7 +67,18 @@ const IngredientTable = (props: IngredientTableProps) => {
                   <p>{ingredient.name}</p>
                 </td>
                 <td>
-                  <p>{ingredient?.money}</p>
+                  <p>
+                    {" "}
+                    {`${
+                      ingredient.money !== null &&
+                      ingredient.money !== undefined
+                        ? new Intl.NumberFormat("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          }).format(ingredient.money)
+                        : ""
+                    }`}
+                  </p>
                 </td>
                 <td>
                   <p>{ingredient.quantity}</p>

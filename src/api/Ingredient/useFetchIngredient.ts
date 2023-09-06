@@ -32,7 +32,7 @@ const useFetchIngredients = (props: UseFetchIngredientProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}ingredients?order=ASC&page=${props.page}&take=10`,
+      url: `${process.env.REACT_APP_API_BASE_URL}ingredients?order=ASC&page=${props.page}&take=10&search=${props.query}`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },

@@ -274,7 +274,7 @@ const MaterialPage = () => {
         <KDialog
           open={showConfirmDeleteModal.open}
           title="Xác nhận xóa"
-          bckColor="var(--blue-hover-color)"
+          bckColor="var(--second-color)"
           content={
             <p>
               Nhà cung cấp {""}
