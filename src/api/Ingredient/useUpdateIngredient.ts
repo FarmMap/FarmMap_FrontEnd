@@ -19,7 +19,7 @@ interface useUpdateIngredientProps {
   money?: number;
   information?: string;
   time?: string;
-  status?: string;
+  status?: number;
   images?: File[];
 }
 
@@ -41,7 +41,7 @@ const useUpdateIngredient = (props: useUpdateIngredientProps) => {
       data.append("money", props.money?.toString() ?? "");
       data.append("information", props.information ?? "");
       data.append("time", props.time ?? "");
-      data.append("status", props.status ?? "");
+      data.append("status", props.status?.toString() ?? "");
       if (props.images && props.images.length > 0) {
         props.images.forEach((image) => {
           data.append("images", image);
@@ -51,7 +51,7 @@ const useUpdateIngredient = (props: useUpdateIngredientProps) => {
       let config = {
         method: "patch",
         maxBodyLength: Infinity,
-        url: `${process.env.REACT_APP_API_BASE_URL}ingredient/update?id=${props.id}`,
+        url: `${process.env.REACT_APP_API_BASE_URL}ingredients/${props.id}`,
         headers: {
           accept: "*/*",
           Authorization: `Bearer ${window.localStorage.getItem("token")}`,

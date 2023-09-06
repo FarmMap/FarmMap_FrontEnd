@@ -6,20 +6,18 @@ import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
 import DefaultFilterLayOut from "../../components/defaultTitleLayOut/DefaultFilterLayOut";
 import FarmCalendarTable from "./IngredientTable";
-import Material from "../../../data/types/Material";
+import Ingredient from "../../../data/types/Ingredient";
 import { toast } from "react-toastify";
 import DefaultModal from "../../components/defaultModal";
 import Carousel from "react-material-ui-carousel";
-import useCreateMaterial from "../../../api/Material/useCreateMaterial";
+import useCreateIngredient from "../../../api/Ingredient/useCreateIngredient";
 import Province from "../../../data/types/Province";
-import MaterialModal from "./IngredientModal";
 
 import KDialog from "../../components/kDialog/KDialog";
-import useUpdateMaterial from "../../../api/Material/useUpdateMaterial";
 import useFetchIngredients from "../../../api/Ingredient/useFetchIngredient";
-import Ingredient from "../../../data/types/Ingredient";
 import useDeleteIngredient from "../../../api/Ingredient/useDeleteIngredient";
-import useCreateIngredient from "../../../api/Ingredient/useCreateIngredient";
+import useUpdateIngredient from "../../../api/Ingredient/useUpdateIngredient";
+import IngredientModal from "./IngredientModal";
 // Style imports
 
 const IngredientPage = () => {
@@ -55,7 +53,7 @@ const IngredientPage = () => {
   });
   const {
     isCreated,
-    error: creatematerialErr,
+    error: createingredientErr,
     createIngredient,
   } = useCreateIngredient({
     name: ingredient.name,
@@ -108,41 +106,48 @@ const IngredientPage = () => {
   };
 
   // Edit
-  // const {
-  //   isUpdated,
-  //   error: updateMaterialErr,
-  //   updateMaterial,
-  // } = useUpdateMaterial({
-  //   id: material.id,
-  //   name: material.name,
-  //   quantity: material.quantity,
-  //   description: material.description,
-  //   images: material.images,
-  //   materialGroupId: material.materialGroupId,
-  // });
-  // const [showUpdateModal, setShowUpdateModal] = useState<{
-  //   open: boolean;
-  //   material: Material | undefined;
-  // }>({ open: false, material: undefined });
+  const {
+    isUpdated,
+    error: updateIngredientErr,
+    updateIngredient,
+  } = useUpdateIngredient({
+    id: ingredient.id,
+    name: ingredient.name,
+    quantity: ingredient.quantity,
+    weight: ingredient.weight,
+    money: ingredient.money,
+    information: ingredient.information,
+    time: ingredient.time,
+    status: ingredient.status,
+    images: ingredient.images,
+  });
+  const [showUpdateModal, setShowUpdateModal] = useState<{
+    open: boolean;
+    ingredient: Ingredient | undefined;
+  }>({ open: false, ingredient: undefined });
 
-  // const handleEditMaterial = (material: Material) => {
-  //   setShowUpdateModal({ open: true, material: material });
-  //   setIngredient(material);
-  // };
+  const handleEditIngredient = (ingredient: Ingredient) => {
+    setShowUpdateModal({ open: true, ingredient: ingredient });
+    setIngredient(ingredient);
+  };
 
-  // const handleUpdateMaterial = (material: Material | undefined) => {
-  //   updateMaterial({ material: material });
-  // };
+  const handleUpdateIngredient = (ingredient: Ingredient | undefined) => {
+    updateIngredient({ ingredient: ingredient });
+  };
 
   useEffect(() => {
-    let error = fetchIngredientsErr ?? creatematerialErr ?? deleteIngredientErr;
-    // updateMaterialErr;
+    let error =
+      fetchIngredientsErr ??
+      createingredientErr ??
+      deleteIngredientErr ??
+      updateIngredientErr;
+    // updateIngredientErr;
 
     if (error != null) {
       toast.error(error);
     }
 
-    if (isCreated || isDeleted) {
+    if (isCreated || isDeleted || isUpdated) {
       toast.success("Thao tác thành công!");
       setRefresh((refresh) => !refresh);
       setTimeout(() => {
@@ -152,11 +157,13 @@ const IngredientPage = () => {
       }, 3000);
     }
   }, [
-    creatematerialErr,
+    createingredientErr,
     deleteIngredientErr,
     fetchIngredientsErr,
     isCreated,
     isDeleted,
+    isUpdated,
+    updateIngredientErr,
   ]);
 
   return (
@@ -184,7 +191,7 @@ const IngredientPage = () => {
           ingredients={ingredients}
           handleGetImgIngredient={handleGetImgIngredient}
           handleDeleteIngredient={handleDeleteIngredient}
-          // handleEditIngredient={handleEditMaterial}
+          handleEditIngredient={handleEditIngredient}
         />
 
         {!isLoading && (
@@ -209,7 +216,7 @@ const IngredientPage = () => {
 
         {/* Create modal */}
         {showModal && (
-          <MaterialModal
+          <IngredientModal
             title="Thêm nguyên liệu"
             handleCloseModal={() => {
               setShowModal(false);
@@ -223,19 +230,19 @@ const IngredientPage = () => {
         )}
 
         {/* Update Modal */}
-        {/* {showUpdateModal.open && (
-          <MaterialModal
+        {showUpdateModal.open && (
+          <IngredientModal
             title="Cập nhật nguyên liệu"
             handleCloseModal={() => {
-              setShowUpdateModal({ open: false, material: undefined });
+              setShowUpdateModal({ open: false, ingredient: undefined });
               setIngredient({});
             }}
             submitButtonLabel="Xác nhận"
-            material={material}
-            setMaterial={setIngredient}
-            onSubmit={handleUpdateMaterial}
+            ingredient={ingredient}
+            setIngredient={setIngredient}
+            onSubmit={handleUpdateIngredient}
           />
-        )} */}
+        )}
 
         {/* Img modal */}
         {imgIngredient.open && (
@@ -267,7 +274,7 @@ const IngredientPage = () => {
         <KDialog
           open={showConfirmDeleteModal.open}
           title="Xác nhận xóa"
-          bckColor="var(--blue-hover-color)"
+          bckColor="var(--second-color)"
           content={
             <p>
               Nhà cung cấp {""}

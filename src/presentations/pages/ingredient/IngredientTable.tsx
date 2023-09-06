@@ -26,7 +26,7 @@ interface IngredientTableProps {
   ingredients: Ingredient[];
   handleGetImgIngredient: (ingredient: Ingredient) => void;
   handleDeleteIngredient: (ingredient: Ingredient) => void;
-  // handleEditIngredient: (ingredient: Ingredient) => void;
+  handleEditIngredient: (ingredient: Ingredient) => void;
 }
 
 const IngredientTable = (props: IngredientTableProps) => {
@@ -96,7 +96,7 @@ const IngredientTable = (props: IngredientTableProps) => {
                     textAlign: "center",
                   }}
                 >
-                  {/* <Tippy
+                  <Tippy
                     content={`Sửa thông tin vật tư ${ingredient.name}`}
                     theme="light"
                   >
@@ -110,7 +110,7 @@ const IngredientTable = (props: IngredientTableProps) => {
                     >
                       <Edit />
                     </Button>
-                  </Tippy> */}
+                  </Tippy>
 
                   <Tippy
                     content={`Xem ảnh vật tư ${ingredient.name}`}
