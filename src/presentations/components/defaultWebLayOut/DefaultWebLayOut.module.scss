@@ -81,4 +81,38 @@
     width: var(--width-sidebar-large);
     z-index: 1000000;
   }
+
+  .phone-wrapper {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column !important;
+    background-color: var(--black-color);
+    height: 100vh;
+  }
+
+  .phone-on-mobile {
+    width: 160px;
+    height: 300px;
+    transform-origin: 50% 50% 0px;
+    animation: pleaserotateframes 2s ease 0s infinite normal none running;
+  }
+
+  .text-phone {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #fff;
+    padding: 0 12px;
+  }
+}
+
+@keyframes pleaserotateframes {
+  0% {
+    transform: rotate(0deg);
+  }
+  49% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
 }

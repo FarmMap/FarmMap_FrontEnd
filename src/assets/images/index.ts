@@ -9,6 +9,7 @@ const images = {
   vector4: require("../images/vector4.jpg"),
   cloudRain: require("../images/cloudRain.png"),
   cloudSun: require("../images/cloudSun.png"),
+  phone: require("../images/phone.png"),
 };
 
 export default images;

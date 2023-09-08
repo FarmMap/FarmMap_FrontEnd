@@ -7,6 +7,7 @@ import HeaderApp from "../headerApp";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./DefaultWebLayOut.module.scss";
+import images from "../../../assets/images";
 const cx = classNames.bind(styles);
 
 interface DefaultWebLayOutProps {
@@ -18,56 +19,91 @@ const DefaultWebLayOut: React.FC<DefaultWebLayOutProps> = ({ children }) => {
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
 
   return (
-    <Grid className={cx("wrapper")}>
-      {/* Sidebar */}
-      <Sidebar
-        className={
-          !openSidebar ? cx("sidebar") : cx("sidebar", "active-sidebar")
-        }
-        openSidebar={openSidebar}
-        setOpenSidebar={setOpenSidebar}
-      />
-      <div
-        className={
-          !openSidebar
-            ? cx("content-wrapper")
-            : cx("content-wrapper", "active-content-wrapper")
-        }
+    <Grid>
+      <Grid
+        className={cx("wrapper")}
+        sx={{
+          display: {
+            lg: "block",
+            md: "block",
+            sm: "none",
+            xs: "none",
+          },
+        }}
       >
-        {/* Modal show Sidebar */}
-
-        {openSidebar && (
-          <Grid
-            className={cx("modal")}
-            sx={{
-              display: {
-                lg: "none",
-                md: "none",
-                sm: "block",
-                xs: "block",
-              },
-            }}
-            onClick={() => setOpenSidebar(!openSidebar)}
-          ></Grid>
-        )}
-
-        {/* Header */}
-        <Grid
-          sx={{
-            display: { lg: "block", md: "block", sm: "block", xs: "block" },
-          }}
+        {/* Sidebar */}
+        <Sidebar
+          className={
+            !openSidebar ? cx("sidebar") : cx("sidebar", "active-sidebar")
+          }
+          openSidebar={openSidebar}
+          setOpenSidebar={setOpenSidebar}
+        />
+        <div
+          className={
+            !openSidebar
+              ? cx("content-wrapper")
+              : cx("content-wrapper", "active-content-wrapper")
+          }
         >
-          <HeaderApp
-            openSidebar={openSidebar}
-            setOpenSidebar={setOpenSidebar}
-          />
-        </Grid>
+          {/* Modal show Sidebar */}
 
-        {/* Content */}
-        <Grid className={cx("content-body-wrapper")}>
-          <div className={cx("content-body")}>{children}</div>
-        </Grid>
-      </div>
+          {openSidebar && (
+            <Grid
+              className={cx("modal")}
+              sx={{
+                display: {
+                  lg: "none",
+                  md: "none",
+                  sm: "block",
+                  xs: "block",
+                },
+              }}
+              onClick={() => setOpenSidebar(!openSidebar)}
+            ></Grid>
+          )}
+
+          {/* Header */}
+          <Grid
+            sx={{
+              display: { lg: "block", md: "block", sm: "block", xs: "block" },
+            }}
+          >
+            <HeaderApp
+              openSidebar={openSidebar}
+              setOpenSidebar={setOpenSidebar}
+            />
+          </Grid>
+
+          {/* Content */}
+          <Grid className={cx("content-body-wrapper")}>
+            <div className={cx("content-body")}>{children}</div>
+          </Grid>
+        </div>
+      </Grid>
+
+      <Grid
+        sx={{
+          display: {
+            lg: "none",
+            md: "none",
+            sm: "flex",
+            xs: "flex",
+          },
+        }}
+        className={cx("phone-wrapper")}
+      >
+        <img
+          className={cx("phone-on-mobile")}
+          src={images.phone}
+          alt="ITFS phone"
+        />
+
+        <p className={cx("text-phone")}>
+          Hệ thống đang phát triển, vui lòng quay ngang điện thoại hoặc sử dụng
+          máy tính/laptop để có trải nghiệm tốt nhất
+        </p>
+      </Grid>
     </Grid>
   );
 };
