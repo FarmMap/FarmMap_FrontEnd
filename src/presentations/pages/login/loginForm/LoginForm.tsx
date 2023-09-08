@@ -105,7 +105,10 @@ const LoginForm = () => {
         )}
       </button>
 
-      <p className={cx("outro")}>Diverse Grow Agriculture</p>
+      <p className={cx("outro")}>
+        <span style={{color:"#ffff17"}}>I</span> <span style={{color:"#ffff17"}}>T</span> <span style={{color:"#ffff17"}}>F</span> 
+        <span style={{color:"#ffff17"}}>S</span> <span style={{color:"#ffff17"}}>D</span>
+      </p>
     </form>
   );
 };
