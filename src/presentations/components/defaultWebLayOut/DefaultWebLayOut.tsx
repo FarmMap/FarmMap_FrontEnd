@@ -100,7 +100,7 @@ const DefaultWebLayOut: React.FC<DefaultWebLayOutProps> = ({ children }) => {
         />
 
         <p className={cx("text-phone")}>
-          Hệ thống đang phát triển, vui lòng quay ngang điện thoại hoặc sử dụng
+          Hệ thống đang phát triển, vui lòng quay ngang thiết bị hoặc sử dụng
           máy tính/laptop để có trải nghiệm tốt nhất
         </p>
       </Grid>
