@@ -14,6 +14,7 @@ import HomeWorkIcon from "@mui/icons-material/HomeWork";
 // In
 import images from "../../../assets/images";
 import CircleChart from "../../components/chart/CircleChart";
+import ChartKho from "../../components/chart/ChartKho";
 
 // Style
 import classNames from "classnames/bind";
@@ -634,7 +635,6 @@ const HomePage = () => {
             <span style={{ fontWeight: 600 }}>Thống kê</span>
             <Grid
               style={{
-                borderTop: "1px solid var(--border-color)",
                 height: "100%",
               }}
             >
