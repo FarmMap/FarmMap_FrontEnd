@@ -4,10 +4,10 @@ import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import LoginIcon from "@mui/icons-material/Login";
 import { toast } from "react-toastify";
 import { CircularProgress, Grid } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 // Internal files
 import UseLogin from "../../../../api/Login/useLogin";
 import { Left, Right } from "../../../../api/Login/Result";
@@ -20,7 +20,7 @@ const cx = classNames.bind(styles);
 
 const LoginForm = () => {
   let [isDisable, setDisable] = useState(false);
-  let [errorMessage, setErrorMessage] = useState(null);
+  let [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -53,6 +53,11 @@ const LoginForm = () => {
     },
   });
 
+  // Function to toggle password visibility
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
   return (
     <form className={cx("form-wrapper")} onSubmit={formik.handleSubmit}>
       <div className={cx("form-input-wrapper")}>
@@ -75,28 +80,43 @@ const LoginForm = () => {
         <label htmlFor="password">Mật khẩu</label>
         <input
           className={cx("input")}
-          type="password"
+          type={showPassword ? "text" : "password"}
           id="password"
           placeholder="Nhập mật khẩu..."
           value={formik.values.password}
           onChange={formik.handleChange}
         />
         <LockIcon />
-        <VisibilityIcon
-          style={{
-            right: "12px",
-            width: "20px",
-            height: "20px",
-            cursor: "pointer",
-          }}
-        />
+        {!showPassword ? (
+          <VisibilityIcon
+            className={cx(!formik.errors.password ? "" : "error")}
+            onClick={togglePasswordVisibility}
+            style={{
+              right: "12px",
+              width: "20px",
+              height: "20px",
+              cursor: "pointer",
+            }}
+          />
+        ) : (
+          <VisibilityOffIcon
+            onClick={togglePasswordVisibility}
+            className={cx(!formik.errors.password ? "" : "error")}
+            style={{
+              right: "12px",
+              width: "20px",
+              height: "20px",
+              cursor: "pointer",
+            }}
+          />
+        )}
       </div>
       {formik.errors.password && (
         <p className={cx("errors")}>{formik.errors.password}</p>
       )}
 
       <button type="submit" className={cx("btn", "login")} disabled={isDisable}>
-        Đăng nhập <LoginIcon />
+        Đăng nhập
         {isDisable && (
           <CircularProgress
             size={14}
@@ -104,11 +124,6 @@ const LoginForm = () => {
           />
         )}
       </button>
-
-      <p className={cx("outro")}>
-        <span style={{color:"#ffff17"}}>I</span> <span style={{color:"#ffff17"}}>T</span> <span style={{color:"#ffff17"}}>F</span> 
-        <span style={{color:"#ffff17"}}>S</span> <span style={{color:"#ffff17"}}>D</span>
-      </p>
     </form>
   );
 };

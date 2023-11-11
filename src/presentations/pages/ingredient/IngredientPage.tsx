@@ -25,7 +25,6 @@ import classNames from "classnames/bind";
 import styles from "./Ingredient.module.scss";
 const cx = classNames.bind(styles);
 
-
 const IngredientPage = () => {
   const [query, setQuery] = useState("");
   const ingredientQueryDebounce = useDebounce<string>(query, 700);
@@ -189,13 +188,13 @@ const IngredientPage = () => {
               },
               {
                 searchLabel: "Giá tiền",
-                searchPlaceholder: "Nhập tên nguyên liệu",
+                searchPlaceholder: "Nhập tên giá tiền",
                 query: query,
                 setQuery: setQuery,
               },
               {
                 searchLabel: "Số lượng",
-                searchPlaceholder: "Nhập tên nguyên liệu",
+                searchPlaceholder: "Nhập số lượng",
                 query: query,
                 setQuery: setQuery,
               },
@@ -212,16 +211,15 @@ const IngredientPage = () => {
                   }}
                   value={""}
                   displayEmpty
-                  onChange={() => { }}
+                  onChange={() => {}}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
                   </MenuItem>
                 </Select>
               </Fragment>,
-
             ]}
-            onSearchSubmit={() => { }}
+            onSearchSubmit={() => {}}
           ></DefaultFilterLayOut>
         </DefaultTitleLayOut>
 

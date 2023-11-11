@@ -11,15 +11,15 @@
 
   thead {
     background-color: var(--primary-color);
-    color: white;
+    color: var(text-color);
 
     th {
       padding: 8px 12px;
       text-overflow: ellipsis;
       word-break: break-word;
       overflow: hidden;
-      font-size: 1.2rem;
-      font-weight: 300;
+      font-size: 1.4rem;
+      font-weight: 500;
       border-collapse: collapse;
       border-right: 1px solid var(--border-color);
       text-align: center;
@@ -45,14 +45,22 @@
       border-collapse: collapse;
       border-right: 1px solid var(--border-color);
       text-align: center;
+      width: 62px;
+      height: 36px;
 
       p {
-        display: block;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+
         font-size: 1.2rem;
         text-overflow: ellipsis;
         word-break: break-word;
         overflow: hidden;
-        max-height: 85px;
+        max-height: 56px;
         line-height: 1.5;
       }
 
@@ -83,7 +91,7 @@
 
 .btn-image {
   margin-left: 8px !important;
-  background-color: rgb(18, 202, 89) !important;
+  background-color: var(--blue-hover-color) !important;
 }
 
 .btn-delete {
