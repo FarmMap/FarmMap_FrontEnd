@@ -12,6 +12,7 @@ import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import ShopIcon from '@mui/icons-material/Shop';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
+import { BookOnline, BookRounded, CallMadeRounded, CallTwoTone, Pets, PetsTwoTone, SettingsTwoTone, Task, TaskRounded } from '@mui/icons-material';
 
 export const SidebarData = [
     {
@@ -84,8 +85,22 @@ export const SidebarData = [
                 path: "/nong-san/cay-trong"
             },
             {
-                title: "Công việc trong ngày",
-                path: "/nong-san/cong-viec-trong-ngay"
+                title: "Đặc tính bệnh học",
+                path: "/nong-san/dac-tinh-benh-hoc"
+            },
+
+        ]
+    },
+    {
+        title: "Vật nuôi",
+        path: "",
+        icon: <PetsTwoTone />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+        subnav: [
+            {
+                title: "Gia súc",
+                path: "/nong-san/cay-trong"
             },
             {
                 title: "Đặc tính bệnh học",
@@ -94,7 +109,6 @@ export const SidebarData = [
 
         ]
     },
-
     {
         title: "Kho",
         path: "",
@@ -112,6 +126,14 @@ export const SidebarData = [
                 path: "/kho/nguyen-lieu"
             },
             {
+                title: "Hàng hóa",
+                path: "/kho/nguyen-lieu"
+            },
+            {
+                title: "Thu hoạch",
+                path: "/kho/nguyen-lieu"
+            },
+            {
                 title: "Nhập kho",
                 path: "/kho/nhap-kho"
             },
@@ -122,9 +144,21 @@ export const SidebarData = [
         ]
     },
     {
-        title: "Liên hệ",
+        title: "Sổ tay",
         path: "/lien-he",
-        icon: <AddIcCallIcon />,
+        icon: <BookRounded />,
+    },
+    {
+        title: "Công việc",
+        path: "/nong-san/cong-viec-trong-ngay",
+        icon: <TaskRounded />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+    },
+    {
+        title: "Sổ tay",
+        path: "/lien-he",
+        icon: <BookRounded />,
     },
     {
         title: "Danh sách yêu cầu",
@@ -146,14 +180,37 @@ export const SidebarData = [
         ]
     },
     {
+        title: "Bán hàng",
+        path: "",
+        icon: <ShopIcon />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+        subnav: [
+            {
+                title: "Thu hoạch trực tiếp",
+                path: "/ban-hang"
+            },
+            {
+                title: "Bán từ kho",
+                path: "/ban-hang"
+            },
+
+        ]
+    }, 
+    {
         title: "Tài liệu",
         path: "/tai-lieu",
         icon: <DocumentScannerIcon />,
     },
     {
-        title: "Bán hàng",
-        path: "/ban-hang",
-        icon: <ShopIcon />,
+        title: "Tư vấn",
+        path: "/tai-lieu",
+        icon: <CallTwoTone/>,
+    },
+    {
+        title: "Cài đặt",
+        path: "/tai-lieu",
+        icon: <SettingsTwoTone/>,
     },
 ];
 

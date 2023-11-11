@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 // Ex
-import { Grid, Pagination } from "@mui/material";
+import { Grid, MenuItem, Pagination, Select } from "@mui/material";
 // In
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
@@ -17,8 +17,15 @@ import useFetchBillRequest from "../../../api/BillRequest/useFetchBillRequest";
 import useDeleteBillRequest from "../../../api/BillRequest/useDeleteBillRequest";
 // Style imports
 
+
+
+
 import useCreateBillRequest from "../../../api/BillRequest/useCreateBillRequest";
 import useUpdateBillRequest from "../../../api/BillRequest/useUpdateBillRequest";
+
+import classNames from "classnames/bind";
+import styles from "./BillRequest.module.scss";
+const cx = classNames.bind(styles);
 
 const BillRequestPage = () => {
   const [query, setQuery] = useState("");
@@ -146,6 +153,61 @@ const BillRequestPage = () => {
                 query: query,
                 setQuery: setQuery,
               },
+            ]}
+            filters={[
+              <Fragment>
+                <label htmlFor="select">Trạng thái</label>
+                <Select
+                  className={cx("filter-dropdown")}
+                  sx={{
+                    fontSize: "1.2rem",
+                    boxShadow: "none",
+                    minWidth: "150px",
+                  }}
+                  value={""}
+                  displayEmpty
+                  onChange={() => { }}
+                >
+                  <MenuItem sx={{ fontSize: "1.2rem" }} value="">
+                    Tất cả
+                  </MenuItem>
+                </Select>
+              </Fragment>,
+              <Fragment>
+                <label htmlFor="select">Vật tư</label>
+                <Select
+                  className={cx("filter-dropdown")}
+                  sx={{
+                    fontSize: "1.2rem",
+                    boxShadow: "none",
+                    minWidth: "150px",
+                  }}
+                  value={""}
+                  displayEmpty
+                  onChange={() => { }}
+                >
+                  <MenuItem sx={{ fontSize: "1.2rem" }} value="">
+                    Tất cả
+                  </MenuItem>
+                </Select>
+              </Fragment>, <Fragment>
+                <label htmlFor="select">Nhà cung cấp</label>
+                <Select
+                  className={cx("filter-dropdown")}
+                  sx={{
+                    fontSize: "1.2rem",
+                    boxShadow: "none",
+                    minWidth: "150px",
+                  }}
+                  value={""}
+                  displayEmpty
+                  onChange={() => { }}
+                >
+                  <MenuItem sx={{ fontSize: "1.2rem" }} value="">
+                    Tất cả
+                  </MenuItem>
+                </Select>
+              </Fragment>,
             ]}
             onSearchSubmit={handleSearchSubmit}
           ></DefaultFilterLayOut>

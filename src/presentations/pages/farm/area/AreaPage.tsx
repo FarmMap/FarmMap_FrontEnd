@@ -176,7 +176,7 @@ const AreaPage = () => {
             ]}
             filters={[
               <Fragment>
-                <label htmlFor="select">Tỉnh</label>
+                <label htmlFor="select">Tỉnh thành </label>
                 <Select
                   className={cx("filter-dropdown")}
                   sx={{
@@ -186,7 +186,7 @@ const AreaPage = () => {
                   }}
                   value={""}
                   displayEmpty
-                  onChange={() => {}}
+                  onChange={() => { }}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
@@ -202,8 +202,45 @@ const AreaPage = () => {
                     boxShadow: "none",
                     minWidth: "150px",
                   }}
-                  value={"Hi"}
+                  value={""}
                   displayEmpty
+                  onChange={() => { }}
+                >
+                  <MenuItem sx={{ fontSize: "1.2rem" }} value="">
+                    Tất cả
+                  </MenuItem>
+                </Select>
+              </Fragment>,
+              <Fragment>
+                <label htmlFor="select">Loại sản phẩm</label>
+                <Select
+                  className={cx("filter-dropdown")}
+                  sx={{
+                    fontSize: "1.2rem",
+                    boxShadow: "none",
+                    minWidth: "150px",
+                  }}
+                  value={""}
+                  displayEmpty
+                  onChange={() => { }}
+                >
+                  <MenuItem sx={{ fontSize: "1.2rem" }} value="">
+                    Tất cả
+                  </MenuItem>
+                </Select>
+              </Fragment>,
+              <Fragment>
+                <label htmlFor="select">Loại đất</label>
+                <Select
+                  className={cx("filter-dropdown")}
+                  sx={{
+                    fontSize: "1.2rem",
+                    boxShadow: "none",
+                    minWidth: "150px",
+                  }}
+                  value={""}
+                  displayEmpty
+                  onChange={() => { }}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
