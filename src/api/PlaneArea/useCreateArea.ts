@@ -1,7 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useState } from "react";
 import { Area, LatLngObject } from "../../data/types/Area";
-import Farm from "../../data/types/Farm";
 
 interface CreateAreaParams {
   area: Area;
@@ -46,7 +45,6 @@ const useCreateArea = (props: useCreateAreaProps) => {
           })
         );
       });
-      console.log("api img: ", props.avatars);
 
       if (props.avatars && props.avatars.length > 0) {
         props.avatars.forEach((avatar) => {
@@ -77,7 +75,7 @@ const useCreateArea = (props: useCreateAreaProps) => {
             let responseError: ResponseError = error.response
               .data as ResponseError;
 
-            setError(responseError.message[0]);
+            setError(responseError.message);
           } else {
             let requestError = error.request;
 

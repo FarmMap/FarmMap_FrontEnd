@@ -1,7 +1,6 @@
 import { Result, Left, Right } from "./Result";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import UserAccount from "../../data/types/UserAccount";
-import { log } from "console";
 type RequestError = {
   code: string;
   message: string;
@@ -32,8 +31,6 @@ class UseLogin {
 
       let data: LoginSuccess = response.data;
 
-      console.log(data);
-
       return new Right(data.accessToken);
     } catch (error) {
       return new Left(
@@ -54,7 +51,7 @@ class UseLogin {
         method: "GET",
         url:
           process.env.REACT_APP_API_BASE_URL +
-          "auth/users?order=ASC&page=1&take=10",
+          "user/gets?order=ASC&page=1&take=10",
         headers: { Authorization: `Bearer ${token}` },
       };
 

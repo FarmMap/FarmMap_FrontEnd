@@ -17,13 +17,13 @@ function useAuth() {
   useEffect(() => {
     if (token == null) {
       setUser(undefined);
-      setErrorMessage("Cần đăng nhập trước mới có thể vào trang này!");
+      setErrorMessage("Cần đăng nhập trước mới có thể vào trang này");
     }
 
     if (token != null) {
       var config = {
         method: "GET",
-        url: `${process.env.REACT_APP_API_BASE_URL}auth/users?order=ASC&page=1&take=10`,
+        url: `${process.env.REACT_APP_API_BASE_URL}user/gets?order=ASC&page=1&take=10`,
         headers: { Authorization: `Bearer ${token}` },
       };
 
@@ -37,7 +37,7 @@ function useAuth() {
           setErrorMessage((error.response?.data as RequestError).message);
         });
     }
-  }, []);
+  }, [token]);
 
   return [user, errorMessage];
 }

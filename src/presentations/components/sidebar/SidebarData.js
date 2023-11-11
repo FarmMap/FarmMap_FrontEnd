@@ -5,15 +5,25 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import HomeWorkIcon from '@mui/icons-material/HomeWork'
 import SpaIcon from '@mui/icons-material/Spa';
 import EdgesensorHighIcon from '@mui/icons-material/EdgesensorHigh';
-import PetsIcon from '@mui/icons-material/Pets';
-import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
+import GrassIcon from '@mui/icons-material/Grass';
 import PropTypes from 'prop-types';
+import StoreIcon from '@mui/icons-material/Store';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import AddIcCallIcon from '@mui/icons-material/AddIcCall';
+import ShopIcon from '@mui/icons-material/Shop';
+import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
+import { BookOnline, BookRounded, CallMadeRounded, CallTwoTone, Pets, PetsTwoTone, SettingsTwoTone, Task, TaskRounded } from '@mui/icons-material';
 
 export const SidebarData = [
     {
         title: "Trang chủ",
         path: "/",
         icon: <HomeIcon />,
+    },
+    {
+        title: "Thiết bị IOT",
+        path: "/thiet-bi-iot",
+        icon: <EdgesensorHighIcon />,
     },
     {
         title: "Nông nghiệp",
@@ -24,12 +34,16 @@ export const SidebarData = [
 
         subnav: [
             {
+                title: "Trang trại",
+                path: "/nong-nghiep/trang-trai"
+            },
+            {
                 title: "Khu canh tác",
                 path: "/nong-nghiep/khu-canh-tac"
             },
             {
-                title: "Trang trại",
-                path: "/nong-nghiep/trang-trai"
+                title: "Vùng canh tác",
+                path: "/nong-nghiep/vung-canh-tac"
             },
         ]
     },
@@ -41,36 +55,34 @@ export const SidebarData = [
         closeIcon: <ArrowDropDownIcon />,
 
         subnav: [
+
             {
-                title: "Vùng canh tác",
-                path: "/nong-trai/vung-canh-tac"
-            },
-            {
-                title: "Lịch sử canh tác",
-                path: "/nong-trai/lich-su-canh-tac"
+                title: "Lịch canh tác",
+                path: "/nong-trai/lich-canh-tac"
             },
             {
                 title: "Lịch chăm sóc",
                 path: "/nong-trai/lich-cham-soc"
             },
+            {
+                title: "Lịch bệnh tật",
+                path: "/nong-trai/lenh-benh-tat"
+            },
 
         ]
     },
+
     {
         title: "Nông sản",
         path: "",
-        icon: <EdgesensorHighIcon />,
+        icon: <GrassIcon />,
         openIcon: <ArrowDropUpIcon />,
         closeIcon: <ArrowDropDownIcon />,
 
         subnav: [
             {
-                title: "Danh sách nông sản",
-                path: "/nong-san/danh-sach-nong-san"
-            },
-            {
-                title: "Đặc tính sinh trưởng",
-                path: "/nong-san/dac-tinh-sinh-truong"
+                title: "Cây trồng",
+                path: "/nong-san/cay-trong"
             },
             {
                 title: "Đặc tính bệnh học",
@@ -79,11 +91,28 @@ export const SidebarData = [
 
         ]
     },
+    {
+        title: "Vật nuôi",
+        path: "",
+        icon: <PetsTwoTone />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+        subnav: [
+            {
+                title: "Gia súc",
+                path: "/nong-san/cay-trong"
+            },
+            {
+                title: "Đặc tính bệnh học",
+                path: "/nong-san/dac-tinh-benh-hoc"
+            },
 
+        ]
+    },
     {
         title: "Kho",
         path: "",
-        icon: <PetsIcon />,
+        icon: <StoreIcon />,
         openIcon: <ArrowDropUpIcon />,
         closeIcon: <ArrowDropDownIcon />,
 
@@ -93,8 +122,16 @@ export const SidebarData = [
                 path: "/kho/danh-sach-yeu-cau-vat-tu"
             },
             {
-                title: "Nông sản",
-                path: "/kho/nong-san"
+                title: "Nguyên liệu",
+                path: "/kho/nguyen-lieu"
+            },
+            {
+                title: "Hàng hóa",
+                path: "/kho/nguyen-lieu"
+            },
+            {
+                title: "Thu hoạch",
+                path: "/kho/nguyen-lieu"
             },
             {
                 title: "Nhập kho",
@@ -107,9 +144,26 @@ export const SidebarData = [
         ]
     },
     {
+        title: "Sổ tay",
+        path: "/lien-he",
+        icon: <BookRounded />,
+    },
+    {
+        title: "Công việc",
+        path: "/nong-san/cong-viec-trong-ngay",
+        icon: <TaskRounded />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+    },
+    {
+        title: "Sổ tay",
+        path: "/lien-he",
+        icon: <BookRounded />,
+    },
+    {
         title: "Danh sách yêu cầu",
         path: "",
-        icon: <ManageHistoryIcon />,
+        icon: <ReceiptLongIcon />,
         openIcon: <ArrowDropUpIcon />,
         closeIcon: <ArrowDropDownIcon />,
 
@@ -119,13 +173,45 @@ export const SidebarData = [
                 path: "/danh-sach-yeu-cau/yeu-cau"
             },
             {
-                title: "Phiếu trả",
-                path: "/danh-sach-yeu-cau/phieu-tra"
+                title: "Khách tham quan",
+                path: "/danh-sach-yeu-cau/khach-tham-quan"
             },
 
         ]
     },
+    {
+        title: "Bán hàng",
+        path: "",
+        icon: <ShopIcon />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+        subnav: [
+            {
+                title: "Thu hoạch trực tiếp",
+                path: "/ban-hang"
+            },
+            {
+                title: "Bán từ kho",
+                path: "/ban-hang"
+            },
 
+        ]
+    }, 
+    {
+        title: "Tài liệu",
+        path: "/tai-lieu",
+        icon: <DocumentScannerIcon />,
+    },
+    {
+        title: "Tư vấn",
+        path: "/tai-lieu",
+        icon: <CallTwoTone/>,
+    },
+    {
+        title: "Cài đặt",
+        path: "/tai-lieu",
+        icon: <SettingsTwoTone/>,
+    },
 ];
 
 

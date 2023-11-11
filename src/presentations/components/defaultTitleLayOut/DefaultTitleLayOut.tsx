@@ -24,33 +24,22 @@ interface DefaultManagerLayOutProps {
   children: ReactElement;
   btnElement?: ReactElement;
   handleAddButtonClick: () => void;
+  showHeading?: boolean;
 }
 
 const DefaultTitleLayOut: React.FC<DefaultManagerLayOutProps> = (props) => {
   const [checkCooperator, setCheckCooperator] = useState(false);
-  const [showHeading, setShowHeading] = useState(true);
 
-  useEffect(() => {
-    if (
-      window.location.href.indexOf("cooperator") !== -1 ||
-      window.location.href.indexOf("schedule") !== -1 ||
-      window.location.href.indexOf("report") !== -1 ||
-      window.location.href.indexOf("debt") !== -1
-    ) {
-      setCheckCooperator(true);
-    }
-  }, [checkCooperator]);
-
-  useEffect(() => {
-    if (window.location.href.indexOf("debt") !== -1) {
-      setShowHeading(false);
-    }
-  }, [showHeading]);
+  // useEffect(() => {
+  //   if (window.location.href.indexOf("") !== 1) {
+  //     setShowHeading(false);
+  //   }
+  // }, [showHeading]);
 
   return (
     <div className={cx("wrapper")}>
       {/* Header */}
-      {showHeading && (
+      {!props.showHeading && (
         <Grid
           className={cx("header")}
           item

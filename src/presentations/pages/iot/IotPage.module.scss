@@ -1,0 +1,160 @@
+.header {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+
+  svg {
+    width: 25px;
+    height: 25px;
+    margin-right: 12px;
+    color: var(--yellow-color);
+  }
+}
+
+.body {
+  justify-content: space-between;
+  margin-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  padding-top: 20px;
+}
+
+.box {
+  border-radius: 12px;
+  box-shadow: 0 1px 5px #e3e7eb;
+  padding-bottom: 12px;
+}
+
+.title {
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 12px 0;
+  font-size: 2rem;
+  color: #974a4a;
+  font-weight: 600;
+}
+
+.content {
+  padding: 16px;
+}
+
+.content-header {
+  display: flex;
+  align-items: center;
+  font-size: 2.6rem;
+  font-weight: 600;
+  justify-content: space-between;
+  svg {
+    width: 45px;
+    height: 45px;
+    color: #ec6e4c;
+  }
+}
+
+.content-footer {
+  text-align: center;
+  margin-top: 16px;
+  color: #5a7684;
+  font-style: italic;
+  font-size: 1.4rem;
+}
+
+.box-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  margin-top: 4px;
+  padding: 0 0 80px 12px;
+  font-size: 1.5rem;
+}
+
+.box-footer-row {
+  margin-top: 16px;
+}
+
+.strong {
+  font-weight: 600;
+}
+
+.body-box {
+  display: flex;
+  flex-direction: column !important;
+  align-items: center;
+  padding-top: 20px;
+
+  span {
+    font-weight: 600;
+    margin: 30px 0 50px 0;
+  }
+
+  strong {
+    margin: 6px 0 50px 0;
+  }
+
+  svg {
+    width: 50px;
+    height: 50px;
+    margin-top: 25px;
+  }
+}
+
+.status {
+  color: #5a7684;
+  font-style: italic;
+  font-size: 1.4rem;
+}
+
+.table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  margin: 24px 0 !important;
+  font-size: 14px;
+
+  thead {
+    background-color: #f2f2f2;
+    color: var(--text-color);
+
+    th {
+      padding: 8px 12px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      border-collapse: collapse;
+      border-right: 1px solid var(--border-color);
+      text-align: center;
+    }
+  }
+
+  tbody {
+    tr {
+      border: 1px solid #d5d7dc;
+
+      &:nth-child(even) {
+        background-color: var(--gray-color);
+      }
+    }
+
+    td {
+      padding: 12px;
+      border-collapse: collapse;
+      border-right: 1px solid var(--border-color);
+      text-align: center;
+
+      p {
+        display: flex;
+        justify-content: center;
+        text-overflow: ellipsis;
+        word-break: break-word;
+        overflow: hidden;
+        max-height: 85px;
+        font-size: 1.2rem;
+        line-height: 1.5;
+      }
+
+      a {
+        white-space: nowrap;
+      }
+
+      &:first-child {
+        text-align: center;
+      }
+    }
+  }
+}

@@ -38,7 +38,6 @@ const Map = () => {
     e.layers.eachLayer((layer) => {
       numEdited += 1;
     });
-    console.log(`_onEdited: edited ${numEdited} layers`, e);
 
     _onChange();
   };
@@ -47,9 +46,7 @@ const Map = () => {
     let type = e.layerType;
     if (type === "marker") {
       // Do marker specific actions
-      console.log("_onCreated: marker created", e);
     } else {
-      console.log("_onCreated: something else created:", type, e);
     }
     // Do whatever else you need to. (save to db; etc)
 
@@ -61,30 +58,19 @@ const Map = () => {
     e.layers.eachLayer((layer) => {
       numDeleted += 1;
     });
-    console.log(`onDeleted: removed ${numDeleted} layers`, e);
 
     _onChange();
   };
 
-  const _onMounted = (drawControl) => {
-    console.log("_onMounted", drawControl);
-  };
+  const _onMounted = (drawControl) => {};
 
-  const _onEditStart = (e) => {
-    console.log("_onEditStart", e);
-  };
+  const _onEditStart = (e) => {};
 
-  const _onEditStop = (e) => {
-    console.log("_onEditStop", e);
-  };
+  const _onEditStop = (e) => {};
 
-  const _onDeleteStart = (e) => {
-    console.log("_onDeleteStart", e);
-  };
+  const _onDeleteStart = (e) => {};
 
-  const _onDeleteStop = (e) => {
-    console.log("_onDeleteStop", e);
-  };
+  const _onDeleteStop = (e) => {};
   return (
     <MapContainer
       center={[10.964112, 106.856461]}

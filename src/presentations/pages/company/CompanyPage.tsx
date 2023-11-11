@@ -16,6 +16,7 @@ import useCreateFarm from "../../../api/Farm/useCreateFarm";
 import useFetchFarmList from "../../../api/Farm/useFetchFarmList";
 import CompanyModal from "./CompanyModal";
 import DefaultModal from "../../components/defaultModal/DefaultModal";
+import Province from "../../../data/types/Province";
 const cx = classNames.bind(styles);
 
 const CompanyPage = () => {
@@ -28,13 +29,34 @@ const CompanyPage = () => {
     open: false,
   });
 
+  // support field
+  const [businessModelList, setBusinessModelList] = useState<Province>({
+    name: "",
+  });
+
+  const [businessTypeList, setBusinessTypeList] = useState<Province>({
+    name: "",
+  });
+
+  const [provinceList, setProvinceList] = useState<Province>({
+    name: "",
+  });
+
+  const [districtList, setDistrictList] = useState<Province>({
+    name: "",
+  });
+
+  const [wardsList, setWardsList] = useState<Province>({
+    name: "",
+  });
+
   const [farm, setFarm] = useState<Farm>({
     name: "",
-    business_model: "",
-    business_type: "",
-    province: "",
-    district: "",
-    wards: "",
+    business_model: businessModelList.name,
+    business_type: businessTypeList.name,
+    province: provinceList.name,
+    district: districtList.name,
+    wards: wardsList.name,
     address: "",
     location: {
       latitude: 0,
@@ -50,12 +72,12 @@ const CompanyPage = () => {
     createFarm,
   } = useCreateFarm({
     name: farm.name,
-    business_model: farm.business_model,
-    business_type: farm.business_type,
-    province: farm.province,
-    district: farm.district,
+    business_model: businessModelList.name,
+    business_type: businessTypeList.name,
+    province: provinceList.name,
+    district: districtList.name,
     location: farm.location,
-    wards: farm.wards,
+    wards: wardsList.name,
     address: farm.address,
     image: farm.image,
   });
@@ -89,9 +111,24 @@ const CompanyPage = () => {
 
     if (isSuccess) {
       toast.success("Thao tác thành công!");
+      setShowModal(false);
+      setFarm({
+        name: "",
+        business_model: "",
+        business_type: "",
+        province: "",
+        district: "",
+        wards: "",
+        address: "",
+        location: {
+          latitude: 0,
+          longitude: 0,
+        },
+        image: undefined,
+      });
       setRefresh((refresh) => !refresh);
     }
-  }, [createFarmError, fetchFarmErr, isCreated]);
+  }, [isCreated, createFarmError]);
   return (
     <DefaultWebLayOut>
       <Grid>
@@ -122,7 +159,7 @@ const CompanyPage = () => {
                   }}
                   value={""}
                   displayEmpty
-                  onChange={() => {}}
+                  onChange={() => { }}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
@@ -138,8 +175,63 @@ const CompanyPage = () => {
                     boxShadow: "none",
                     minWidth: "150px",
                   }}
-                  value={"Hi"}
+                  value={""}
                   displayEmpty
+                  onChange={() => { }}
+                >
+                  <MenuItem sx={{ fontSize: "1.2rem" }} value="">
+                    Tất cả
+                  </MenuItem>
+                </Select>
+              </Fragment>,
+              <Fragment>
+                <label htmlFor="select">Tỉnh thành</label>
+                <Select
+                  className={cx("filter-dropdown")}
+                  sx={{
+                    fontSize: "1.2rem",
+                    boxShadow: "none",
+                    minWidth: "150px",
+                  }}
+                  value={""}
+                  displayEmpty
+                  onChange={() => { }}
+                >
+                  <MenuItem sx={{ fontSize: "1.2rem" }} value="">
+                    Tất cả
+                  </MenuItem>
+                </Select>
+              </Fragment>,
+              <Fragment>
+                <label htmlFor="select">Quận huyện</label>
+                <Select
+                  className={cx("filter-dropdown")}
+                  sx={{
+                    fontSize: "1.2rem",
+                    boxShadow: "none",
+                    minWidth: "150px",
+                  }}
+                  value={""}
+                  displayEmpty
+                  onChange={() => { }}
+                >
+                  <MenuItem sx={{ fontSize: "1.2rem" }} value="">
+                    Tất cả
+                  </MenuItem>
+                </Select>
+              </Fragment>,
+              <Fragment>
+                <label htmlFor="select">Phường xã</label>
+                <Select
+                  className={cx("filter-dropdown")}
+                  sx={{
+                    fontSize: "1.2rem",
+                    boxShadow: "none",
+                    minWidth: "150px",
+                  }}
+                  value={""}
+                  displayEmpty
+                  onChange={() => { }}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
@@ -158,6 +250,16 @@ const CompanyPage = () => {
             submitButtonLabel="Xác nhận"
             farm={farm}
             setFarm={setFarm}
+            businessModelList={businessModelList}
+            setBusinessModeList={setBusinessModelList}
+            businessTypeList={businessTypeList}
+            setBusinessTypeList={setBusinessTypeList}
+            provinceList={provinceList}
+            setProVinceList={setProvinceList}
+            districtList={districtList}
+            setDistrictList={setDistrictList}
+            wardList={wardsList}
+            setWardList={setWardsList}
             handleCloseModal={() => setShowModal(false)}
             onSubmit={handleCreateFarmSubmit}
           />
@@ -175,7 +277,7 @@ const CompanyPage = () => {
                 <img
                   style={{
                     width: "100%",
-                    height: "100%",
+                    height: "90vh",
                     objectFit: "cover",
                     margin: "5px",
                   }}

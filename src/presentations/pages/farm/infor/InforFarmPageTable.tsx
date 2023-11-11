@@ -12,20 +12,25 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { Area } from "../../../../data/types/Area";
+import { useState } from "react";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 // Internal imports
 import { ListIcon } from "../../../components/sidebar/SidebarData";
 
 // Style imports
 import classNames from "classnames/bind";
 import styles from "./InforFarmPage.module.scss";
-import { Area } from "../../../../data/types/Area";
+
 const cx = classNames.bind(styles);
 
 interface InforFarmPageTableProps {
   areas: Area[];
   handleGetAvtArea: (area: Area) => void;
   handleSeeLocationArea: (area: Area) => void;
+  handleGetLandOfArea: (area: Area) => void;
   seeLocation: boolean;
+  areaProps?: Area;
 }
 
 const InforFarmPageTable = (props: InforFarmPageTableProps) => {
@@ -56,13 +61,23 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
           <tbody>
             {props.areas.map((area, i) => (
               <tr key={i}>
-                <td>{i + 1}</td>
-                <td>{area.farm?.name}</td>
-                <td>{area.name}</td>
                 <td>
-                  {area.acreage}m<sup>2</sup>
+                  <p>{i + 1}</p>
                 </td>
-                <td>{area.description}</td>
+                <td>
+                  <p>{area.farm?.name}</p>
+                </td>
+                <td>
+                  <p>{area.name}</p>
+                </td>
+                <td>
+                  <p>
+                    {area.acreage}m<sup>2</sup>
+                  </p>
+                </td>
+                <td>
+                  <p>{area.description}</p>
+                </td>
                 <td
                   style={{
                     whiteSpace: "nowrap",
@@ -72,8 +87,8 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
                   <Tippy
                     content={
                       !props.seeLocation
-                        ? `Xem vị trí ${area.name}`
-                        : `Ẩn vị trí ${area.name}`
+                        ? `Xem vị trí ${area.name} (từng vị trí)`
+                        : `Ẩn vị trí ${area.name} (từng vị trí)`
                     }
                     theme="light"
                   >
@@ -83,10 +98,12 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
                       onClick={() => props.handleSeeLocationArea(area)}
                       disableElevation={true}
                     >
-                      {!props.seeLocation ? (
-                        <VisibilityIcon />
-                      ) : (
+                      {props.seeLocation &&
+                      props.areaProps?.id !== undefined &&
+                      props.areaProps?.id === area.id ? (
                         <VisibilityOffIcon />
+                      ) : (
+                        <VisibilityIcon />
                       )}
                     </Button>
                   </Tippy>
@@ -99,6 +116,17 @@ const InforFarmPageTable = (props: InforFarmPageTableProps) => {
                       disableElevation={true}
                     >
                       <ImageIcon />
+                    </Button>
+                  </Tippy>
+
+                  <Tippy content={`Thêm vùng cho ${area.name}`} theme="light">
+                    <Button
+                      className={cx("btn-more")}
+                      variant="contained"
+                      onClick={() => props.handleGetLandOfArea(area)}
+                      disableElevation={true}
+                    >
+                      <AddCircleIcon />
                     </Button>
                   </Tippy>
                 </td>

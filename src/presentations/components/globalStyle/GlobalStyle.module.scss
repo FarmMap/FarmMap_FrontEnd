@@ -61,26 +61,30 @@
   --text-color: #595d6e;
   --black-color: #000;
   --white-color: #fff;
-  --second-color: #fd397a;
+  --second-color: #f93e3e;
+  --orange-color: #ffb764;
   --pink-hover-color: #e53670;
   --yellow-color: #ffc107;
-  --gray-color: #ebecf0;
-  --primary-color: #0abb87;
+  --gray-color: #ebecf08a;
+  --gray-color2: #ebecf0;
+  --primary-color: #009688;
   // --primary-color: #ec94fb;
-  --green-hover-color: #06a173;
+  --green-hover-color: #018b7e;
   // --green-hover-color: #ec94fb;
-  --blue-color: #1976d2;
+  --blue-color: rgba(53, 162, 235, 0.5);
+  --blue-color2: #1976d2;
   --blue-hover-color: #2669ad;
   --shadow-color: #babecc;
   --bgr-body-content-app: #f1f2f7;
   --border-color: #e2e5ec;
   --hover-black: #4d59950f;
-  --sidebar-color: #1e1e2d;
+  --sidebar-color: #120d26;
+  --pink-color: rgba(255, 99, 132, 0.5);
 
   --primary-size: 1.6rem;
-  --header-height: 65px;
-  --width-sidebar-small: 96px;
-  --width-sidebar-large: 266px;
+  --header-height: 75px;
+  --width-sidebar-small: 80px;
+  --width-sidebar-large: 242px;
   --font-family: "Verdana";
 }
 

@@ -11,16 +11,18 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import SaveIcon from "@mui/icons-material/Save";
+import ImageIcon from "@mui/icons-material/Image";
 // Internal
 import DefaultModal from "../../../components/defaultModal";
 import FormInput from "../../../components/formInput/FormInput";
-import ImageIcon from "@mui/icons-material/Image";
+
 // Styles
 import classNames from "classnames/bind";
 import styles from "./InforFarmPage.module.scss";
 import FloatingLabelInput from "../../../components/floatingLabelInput/FloatingLabelInput";
 import Farm from "../../../../data/types/Farm";
 import { Area } from "../../../../data/types/Area";
+import Carousel from "react-material-ui-carousel";
 const cx = classNames.bind(styles);
 
 export interface PlaneModalProps {
@@ -209,7 +211,12 @@ const PlaneModal = (props: PlaneModalProps) => {
           </Fragment>
 
           {countLocal.map((item, i) => (
-            <Fragment key={i}>
+            <Grid
+              justifyContent={"space-around"}
+              container
+              columns={12}
+              key={i}
+            >
               <Grid
                 item
                 lg={3}
@@ -295,30 +302,28 @@ const PlaneModal = (props: PlaneModalProps) => {
                   }}
                 />
               </Grid>
-            </Fragment>
+            </Grid>
           ))}
-          <Grid
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-            }}
-          >
-            {imageURLs.length > 0 &&
-              imageURLs.map((avatar, i) => (
-                <img
-                  src={avatar}
-                  alt="Chọn hình ảnh"
-                  key={i}
-                  style={{
-                    width: "100%",
-                    height: "300px",
-                    objectFit: "cover",
-                    margin: "5px",
-                  }}
-                />
-              ))}
+
+          <Grid columns={12} width={"100%"}>
+            <Carousel>
+              {imageURLs.length > 0 &&
+                imageURLs.map((avatar, i) => (
+                  <img
+                    src={avatar}
+                    alt="Chọn hình ảnh"
+                    key={i}
+                    style={{
+                      width: "100%",
+                      height: "70vh",
+                      objectFit: "contain",
+                      margin: "5px",
+                    }}
+                  />
+                ))}
+            </Carousel>
           </Grid>
+
           <Grid item xs={3}></Grid>
           <Grid item xs={7}>
             <Button
