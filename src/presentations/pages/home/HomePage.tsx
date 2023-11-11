@@ -1,9 +1,8 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 // Ex
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import {
   Autocomplete,
-  Box,
   Grid,
   ListItemText,
   MenuItem,
@@ -14,8 +13,7 @@ import {
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 // In
 import images from "../../../assets/images";
-
-import PieChart from "../../components/chart/Pie";
+import CircleChart from "../../components/chart/CircleChart";
 
 // Style
 import classNames from "classnames/bind";
@@ -28,31 +26,18 @@ import LeafletGeocoder from "../../components/maps/LeafletGeocoder";
 import SearchLocationByLatLng from "../../components/maps/SearchLocationByLatLng";
 import { Area } from "../../../data/types/Area";
 import Farm from "../../../data/types/Farm";
-import useCreateArea from "../../../api/PlaneArea/useCreateArea";
 import useFetchFarmList from "../../../api/Farm/useFetchFarmList";
 import useFetchAreaList from "../../../api/PlaneArea/useFetchAreaList";
 import { LatLngObject } from "../../../data/types/Area";
 import { LatLngExpression } from "leaflet";
 import useFetchLandList from "../../../api/Land/useFetchLandList";
-import useFetchSoilTypeList from "../../../api/SoilType/useFetchSoilTypeList";
-import SoilType from "../../../data/types/SoilType";
-import Land from "../../../data/types/Land";
-import useCreateLand from "../../../api/Land/useCreateLand";
-import { toast } from "react-toastify";
+
 import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
+import VerticalChart from "../../components/chart/VerticalChart";
 
 const cx = classNames.bind(styles);
 
 const HomePage = () => {
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
   const headerData = [
     {
       title: "Doanh thu",
@@ -650,12 +635,25 @@ const HomePage = () => {
             <Grid
               style={{
                 borderTop: "1px solid var(--border-color)",
-                height: "92%",
+                height: "100%",
               }}
             >
               {" "}
-              <PieChart />
+              <CircleChart />
             </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid
+          container
+          height={"100%"}
+          width={"100%"}
+          marginTop={"12px"}
+          boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+          padding={"10px 12px 12px 12px"}
+        >
+          <Grid item lg={7}>
+            <VerticalChart />
           </Grid>
         </Grid>
       </Grid>

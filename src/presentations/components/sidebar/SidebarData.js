@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
 import StoreIcon from '@mui/icons-material/Store';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
+import ShopIcon from '@mui/icons-material/Shop';
+import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 
 export const SidebarData = [
     {
@@ -31,12 +33,12 @@ export const SidebarData = [
 
         subnav: [
             {
-                title: "Khu canh tác",
-                path: "/nong-nghiep/khu-canh-tac"
-            },
-            {
                 title: "Trang trại",
                 path: "/nong-nghiep/trang-trai"
+            },
+            {
+                title: "Khu canh tác",
+                path: "/nong-nghiep/khu-canh-tac"
             },
             {
                 title: "Vùng canh tác",
@@ -60,6 +62,10 @@ export const SidebarData = [
             {
                 title: "Lịch chăm sóc",
                 path: "/nong-trai/lich-cham-soc"
+            },
+            {
+                title: "Lịch bệnh tật",
+                path: "/nong-trai/lenh-benh-tat"
             },
 
         ]
@@ -139,7 +145,16 @@ export const SidebarData = [
 
         ]
     },
-
+    {
+        title: "Tài liệu",
+        path: "/tai-lieu",
+        icon: <DocumentScannerIcon />,
+    },
+    {
+        title: "Bán hàng",
+        path: "/ban-hang",
+        icon: <ShopIcon />,
+    },
 ];
 
 

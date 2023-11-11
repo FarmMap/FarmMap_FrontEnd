@@ -17,6 +17,7 @@
     "@nivo/radial-bar": "^0.83.0",
     "@react-google-maps/api": "^2.18.1",
     "@reduxjs/toolkit": "^1.8.6",
+    "@syncfusion/ej2-react-charts": "^23.1.44",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -30,7 +31,6 @@
     "axios": "^1.4.0",
     "chart.js": "^4.3.2",
     "classnames": "^2.3.2",
-<<<<<<< Updated upstream
     "datepicker": "^0.0.0",
     "dayjs": "^1.11.9",
     "faker": "^6.6.6",
@@ -40,9 +40,6 @@
     "leaflet-control-geocoder": "^2.4.0",
     "leaflet-draw": "^1.0.4",
     "moment": "^2.29.4",
-=======
-    "firebase": "^10.4.0",
->>>>>>> Stashed changes
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",

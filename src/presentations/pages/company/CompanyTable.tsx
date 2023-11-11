@@ -86,7 +86,7 @@ const CompanyTable = (props: CompanyTableProps) => {
                     textAlign: "center",
                   }}
                 >
-                  <Tippy content={`Xem ảnh farm ${farm.name}`} theme="light">
+                  <Tippy content={`Xem ảnh ${farm.name}`} theme="light">
                     <Button
                       className={cx("btn-image")}
                       variant="contained"

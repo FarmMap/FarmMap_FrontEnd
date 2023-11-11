@@ -56,6 +56,43 @@ const IotPage = () => {
     },
   ];
 
+  const dataIOT = [
+    {
+      thoiGian: "2023-11-14 15:10:58",
+      nhietDoKhongKhi: "40.68",
+      doAmKhongKhi: "45.76",
+      doSang: "2498",
+      cO2: "",
+      nH3: "",
+      doAmDat: "",
+      ec: "",
+      nhietDoDat: "",
+      danDienDat: "",
+      pHdat: "",
+      danDienNuoc: "",
+      pHnuoc: "",
+      nhietDoNuoc: "",
+      doMan: "",
+    },
+    {
+      thoiGian: "2023-11-14 15:10:58",
+      nhietDoKhongKhi: "40.68",
+      doAmKhongKhi: "45.76",
+      doSang: "2498",
+      cO2: "",
+      nH3: "",
+      doAmDat: "",
+      ec: "",
+      nhietDoDat: "",
+      danDienDat: "",
+      pHdat: "",
+      danDienNuoc: "",
+      pHnuoc: "",
+      nhietDoNuoc: "",
+      doMan: "",
+    },
+  ];
+
   return (
     <DefaultWebLayOut>
       <Grid>
@@ -128,6 +165,118 @@ const IotPage = () => {
               </Grid>
             </Grid>
           ))}
+        </Grid>
+
+        <Grid>
+          <table className={cx("table")}>
+            <thead>
+              <tr>
+                <th></th>
+                <th style={{ borderRight: "none" }}></th>
+                <th style={{ border: "none" }}></th>
+                <th
+                  style={{ border: "none", textAlign: "left", width: "92px" }}
+                >
+                  Không khí
+                </th>
+                <th style={{ border: "none" }}></th>
+                <th></th>
+                <th style={{ borderRight: "none" }}></th>
+                <th style={{ border: "none" }}></th>
+                <th style={{ border: "none", textAlign: "left" }}>Đất</th>
+                <th style={{ border: "none" }}></th>
+                <th></th>
+                <th style={{ borderRight: "none" }}></th>
+                <th style={{ border: "none" }}></th>
+                <th style={{ border: "none", textAlign: "left" }}>Nước</th>
+                <th></th>
+              </tr>
+              <tr>
+                <th>Thời gian</th>
+                <th style={{ width: "82px", borderTop: "1px solid #d5d7dc" }}>
+                  Nhiệt độ
+                </th>
+                <th style={{ width: "82px", borderTop: "1px solid #d5d7dc" }}>
+                  Độ ẩm
+                </th>
+                <th style={{ borderTop: "1px solid #d5d7dc" }}>Độ sáng</th>
+                <th style={{ borderTop: "1px solid #d5d7dc" }}>CO2</th>
+                <th style={{ borderTop: "1px solid #d5d7dc" }}>NH3</th>
+                <th style={{ width: "82px", borderTop: "1px solid #d5d7dc" }}>
+                  Độ ẩm
+                </th>
+                <th style={{ borderTop: "1px solid #d5d7dc" }}>EC (ppm)</th>
+                <th style={{ width: "82px", borderTop: "1px solid #d5d7dc" }}>
+                  Nhiệt độ
+                </th>
+                <th style={{ width: "85px", borderTop: "1px solid #d5d7dc" }}>
+                  Dẫn điện
+                </th>
+                <th style={{ borderTop: "1px solid #d5d7dc" }}>pH</th>
+                <th style={{ width: "85px", borderTop: "1px solid #d5d7dc" }}>
+                  Dẫn điện
+                </th>
+                <th style={{ borderTop: "1px solid #d5d7dc" }}>pH</th>
+                <th style={{ width: "82px", borderTop: "1px solid #d5d7dc" }}>
+                  Nhiệt độ
+                </th>
+                <th style={{ width: "82px", borderTop: "1px solid #d5d7dc" }}>
+                  Độ mặn
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {dataIOT.map((data, i) => (
+                <tr key={i}>
+                  <td>
+                    <p>{data.thoiGian}</p>
+                  </td>
+                  <td>
+                    <p>{data.nhietDoKhongKhi}</p>
+                  </td>
+                  <td>
+                    <p>{data.doAmKhongKhi}</p>
+                  </td>
+                  <td>
+                    <p>{data.doSang}</p>
+                  </td>
+                  <td>
+                    <p>{data.cO2}</p>
+                  </td>
+                  <td>
+                    <p>{data.nH3}</p>
+                  </td>
+                  <td>
+                    <p>{data.doAmDat}</p>
+                  </td>
+                  <td>
+                    <p>{data.ec}</p>
+                  </td>
+                  <td>
+                    <p>{data.nhietDoDat}</p>
+                  </td>
+                  <td>
+                    <p>{data.danDienDat}</p>
+                  </td>
+                  <td>
+                    <p>{data.pHdat}</p>
+                  </td>
+                  <td>
+                    <p>{data.danDienNuoc}</p>
+                  </td>
+                  <td>
+                    <p>{data.pHnuoc}</p>
+                  </td>
+                  <td>
+                    <p>{data.nhietDoNuoc}</p>
+                  </td>
+                  <td>
+                    <p>{data.doMan}</p>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </Grid>
       </Grid>
     </DefaultWebLayOut>
