@@ -7,29 +7,34 @@ import { ResponsivePie } from "@nivo/pie";
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const MaterialChart = () => {
+const ArgiPie = () => {
   const data = [
     {
-      id: "Kho hàng hóa",
-      label: "Kho hàng hóa",
-      value: 34,
-      data: {
-        color: "red",
-      },
+      id: "Nông trại",
+      label: "Nông trại",
+      value: 52,
+      color: "red", // Change color to red
     },
     {
-      id: "Kho nguyên liệu",
-      label: "Kho nguyên liệu",
+      id: "Khu đất",
+      label: "Khu đất",
+      value: 20,
+      color: "green", // Change color to green
+    },
+    {
+      id: "Vùng đất",
+      label: "Vùng đất",
+      value: 25,
+      color: "yellow", // Change color to yellow
+    },
+    {
+      id: "Nhân viên",
+      label: "Nhân viên",
       value: 40,
-      color: "hsl(41, 70%, 50%)",
-    },
-    {
-      id: "Kho thu hoạch",
-      label: "Kho thu hoạch",
-      value: 23,
-      color: "hsl(14, 70%, 50%)",
+      color: "orange", // Change color to orange
     },
   ];
+
   return (
     <ResponsivePie
       data={data}
@@ -52,7 +57,7 @@ const MaterialChart = () => {
         from: "color",
         modifiers: [["darker", 2]],
       }}
-      colors={["#148c70", "#4750bd", "#df1824"]} // Specify colors directly
+      colors={["#148c70", "#4750bd", "#f3f225", "#ce67e7"]} // Specify colors directly
       defs={[
         {
           id: "dots",
@@ -81,7 +86,7 @@ const MaterialChart = () => {
           translateX: 0,
           translateY: 56,
           itemsSpacing: 0,
-          itemWidth: 110,
+          itemWidth: 80,
           itemHeight: 18,
           itemTextColor: "#999",
           itemDirection: "left-to-right",
@@ -102,4 +107,4 @@ const MaterialChart = () => {
   );
 };
 
-export default MaterialChart;
+export default ArgiPie;

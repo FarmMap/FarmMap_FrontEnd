@@ -13,33 +13,37 @@ const XuatKhoDashBoard = () => {
     <table className={cx("table")}>
       <thead>
         <tr>
+          <th>Hàng hóa</th>
+          <th>Nguyên liệu</th>
+          <th>Thu hoạch</th>
+          <th>Đang lấy hàng</th>
+          <th>Đang chờ xuất</th>
+          <th>Đã xuất kho</th>
           <th>Tổng</th>
-          <th>Kho hàng hóa</th>
-          <th>Kho nguyên liệu</th>
-          <th>Kho thu hoạch</th>
-          <th>Nhập kho</th>
-          <th>Đang xuất kho</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>
-            <p>150</p>
-          </td>
-          <td>
-            <p>28</p>
-          </td>
-          <td>
             <p>34</p>
           </td>
           <td>
-            <p>90</p>
+            <p>40</p>
           </td>
           <td>
-            <p>120</p>
+            <p>23</p>
+          </td>
+          <td>
+            <p>50</p>
+          </td>
+          <td>
+            <p>10</p>
           </td>
           <td>
             <p>80</p>
+          </td>
+          <td>
+            <p>237</p>
           </td>
         </tr>
       </tbody>

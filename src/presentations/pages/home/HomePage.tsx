@@ -13,7 +13,6 @@ import {
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 // In
 import images from "../../../assets/images";
-import CircleChart from "../../components/chart/CircleChart";
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
 import DefaultFilterLayOut from "../../components/defaultTitleLayOut/DefaultFilterLayOut";
 import Province from "../../../data/types/Province";
@@ -32,12 +31,13 @@ import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
 import VerticalChart from "../../components/chart/VerticalChart";
 
 import MyResponsivePie from "../../components/chart/Pie";
-import KhoDashBoard from "./XuatKhoDashBoard";
+import KhoDashBoard from "./KhoDashBoard";
+import XuatKhoDashBoard from "./XuatKhoDashBoard";
+import MaterialChart from "../../components/chart/MaterialChart";
+import ArgiPie from "../../components/chart/ArgiPie";
 // Style
 import classNames from "classnames/bind";
 import styles from "./HomePage.module.scss";
-import XuatKhoDashBoard from "./XuatKhoDashBoard";
-import MaterialChart from "../../components/chart/MaterialChart";
 
 const cx = classNames.bind(styles);
 
@@ -199,7 +199,7 @@ const HomePage = () => {
             item
             lg={7}
             display={"flex"}
-            height={"100%"}
+            height={"500px"}
             width={"100%"}
             flexDirection={"column"}
             justifyContent={"space-between"}
@@ -627,7 +627,7 @@ const HomePage = () => {
           <Grid
             lg={4.8}
             item
-            height={"76.4vh"}
+            height={"500px"}
             display={"flex"}
             width={"100%"}
             flexDirection={"column"}
@@ -635,14 +635,14 @@ const HomePage = () => {
             boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
             padding={"10px 12px 32px 12px"}
           >
-            <span style={{ fontWeight: 600 }}>Thống kê</span>
+            <span style={{ fontWeight: 600 }}>Nông nghiệp</span>
             <Grid
               style={{
                 height: "100%",
               }}
             >
               {" "}
-              <CircleChart />
+              <ArgiPie />
             </Grid>
           </Grid>
         </Grid>
@@ -673,7 +673,7 @@ const HomePage = () => {
             boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
             padding={"10px 12px 32px 12px"}
           >
-            <span style={{ fontWeight: 600 }}>Thống kê vật tư</span>
+            <span style={{ fontWeight: 600 }}>Vật tư</span>
             <Grid
               style={{
                 height: "100%",
@@ -732,7 +732,7 @@ const HomePage = () => {
             boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
             padding={"10px 12px 32px 12px"}
           >
-            <span style={{ fontWeight: 600 }}>Thống kê kho</span>
+            <span style={{ fontWeight: 600 }}>Kho</span>
             <Grid
               style={{
                 height: "100%",
