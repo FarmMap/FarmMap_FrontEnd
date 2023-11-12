@@ -324,23 +324,23 @@ export const mockBarData = [
 export const mockPieData = [
 
     {
-        id: "Farm",
-        label: "Farm",
+        id: "Phiếu đã duyệt",
+        label: "Phiếu đã duyệt",
         value: 170,
-        color: "hsl(162, 70%, 50%)",
+        color: "#4a87b9",
     },
     {
-        id: "Khu canh tác",
-        label: "Khu canh tác",
+        id: "Phiếu chờ duyệt",
+        label: "Phiếu chờ duyệt",
         value: 322,
-        color: "hsl(291, 70%, 50%)",
+        color: "#c06b84",
     },
 
     {
-        id: "Vùng đất",
-        label: "Vùng đất",
+        id: "Đã hủy phiếu",
+        label: "Đã hủy phiếu",
         value: 284,
-        color: "hsl(344, 70%, 50%)",
+        color: "#f67180",
     },
 ];
 

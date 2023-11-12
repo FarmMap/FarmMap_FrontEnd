@@ -90,7 +90,7 @@
   justify-content: center;
   align-items: center;
   height: 42px;
-  background-color: var(--blue-hover-color);
+  background-color: var(--orange-color);
   width: 100%;
   border-radius: 6px;
   transition: 0.3s;
@@ -104,7 +104,7 @@
   }
 
   &:hover {
-    background-color: var(--blue-hover-color);
+    background-color: var(--orange-color);
     opacity: 0.9;
   }
 

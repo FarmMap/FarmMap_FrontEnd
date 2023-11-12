@@ -14,11 +14,6 @@ import HomeWorkIcon from "@mui/icons-material/HomeWork";
 // In
 import images from "../../../assets/images";
 import CircleChart from "../../components/chart/CircleChart";
-import ChartKho from "../../components/chart/ChartKho";
-
-// Style
-import classNames from "classnames/bind";
-import styles from "./HomePage.module.scss";
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
 import DefaultFilterLayOut from "../../components/defaultTitleLayOut/DefaultFilterLayOut";
 import Province from "../../../data/types/Province";
@@ -35,6 +30,14 @@ import useFetchLandList from "../../../api/Land/useFetchLandList";
 
 import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
 import VerticalChart from "../../components/chart/VerticalChart";
+
+import MyResponsivePie from "../../components/chart/Pie";
+import KhoDashBoard from "./XuatKhoDashBoard";
+// Style
+import classNames from "classnames/bind";
+import styles from "./HomePage.module.scss";
+import XuatKhoDashBoard from "./XuatKhoDashBoard";
+import MaterialChart from "../../components/chart/MaterialChart";
 
 const cx = classNames.bind(styles);
 
@@ -645,15 +648,99 @@ const HomePage = () => {
         </Grid>
 
         <Grid
+          mt={"20px"}
+          columns={12}
           container
-          height={"100%"}
-          width={"100%"}
-          marginTop={"12px"}
-          boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
-          padding={"10px 12px 12px 12px"}
+          justifyContent={"space-between"}
         >
-          <Grid item lg={7}>
+          <Grid
+            item
+            lg={7}
+            padding={"10px 12px 12px 12px"}
+            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+          >
             <VerticalChart />
+          </Grid>
+
+          <Grid
+            lg={4.8}
+            item
+            height={"400px"}
+            display={"flex"}
+            width={"100%"}
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            padding={"10px 12px 32px 12px"}
+          >
+            <span style={{ fontWeight: 600 }}>Thống kê vật tư</span>
+            <Grid
+              style={{
+                height: "100%",
+              }}
+            >
+              {" "}
+              <MyResponsivePie />
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid
+          mt={"20px"}
+          columns={12}
+          container
+          justifyContent={"space-between"}
+        >
+          <Grid
+            lg={7}
+            item
+            height={"400px"}
+            display={"flex"}
+            width={"100%"}
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            padding={"10px 12px 32px 12px"}
+          >
+            <span style={{ fontWeight: 600 }}>Nhập hàng</span>
+            <Grid
+              style={{
+                height: "100%",
+              }}
+            >
+              <KhoDashBoard />
+            </Grid>
+
+            <span style={{ fontWeight: 600 }}>Xuất hàng</span>
+            <Grid
+              style={{
+                height: "100%",
+              }}
+            >
+              <XuatKhoDashBoard />
+            </Grid>
+          </Grid>
+
+          <Grid
+            lg={4.8}
+            item
+            height={"400px"}
+            display={"flex"}
+            width={"100%"}
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            padding={"10px 12px 32px 12px"}
+          >
+            <span style={{ fontWeight: 600 }}>Thống kê kho</span>
+            <Grid
+              style={{
+                height: "100%",
+              }}
+            >
+              {" "}
+              <MaterialChart />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
