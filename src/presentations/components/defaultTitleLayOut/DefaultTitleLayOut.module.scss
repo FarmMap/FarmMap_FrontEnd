@@ -23,7 +23,7 @@ $color-label: #646c9a;
     .heading-wrapper-icon {
       width: 20px;
       height: 20px;
-      color: var(--primary-color);
+      color: var(--blue-hover-color);
     }
 
     .heading-title {
@@ -38,12 +38,14 @@ $color-label: #646c9a;
   .add-btn-wrapper {
     button {
       color: var(--white-color);
-      background-color: var(--primary-color);
+      background-color: var(--blue-hover-color);
       opacity: 1;
       transition: 0.3s;
+      box-shadow: none !important;
 
       &:hover {
         opacity: 0.8;
+        background-color: var(--blue-hover-color);
       }
 
       &:active {
@@ -121,17 +123,18 @@ $color-label: #646c9a;
     right: 0;
     @include d-flx-al-item;
     justify-content: center;
-
     max-height: 100%;
     line-height: 0;
+    border-radius: 0% !important;
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
     color: var(--white-color);
-    background-color: var(--primary-color);
-    opacity: 0.8;
+    background-color: var(--blue-hover-color);
     cursor: pointer;
 
     &:hover {
-      background-color: var(--green-hover-color);
-      opacity: 1;
+      opacity: 0.9;
+      background-color: var(--blue-hover-color);
     }
 
     svg {

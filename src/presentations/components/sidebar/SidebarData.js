@@ -143,11 +143,7 @@ export const SidebarData = [
             },
         ]
     },
-    {
-        title: "Sổ tay",
-        path: "/lien-he",
-        icon: <BookRounded />,
-    },
+
     {
         title: "Công việc",
         path: "/nong-san/cong-viec-trong-ngay",
@@ -196,7 +192,7 @@ export const SidebarData = [
             },
 
         ]
-    }, 
+    },
     {
         title: "Tài liệu",
         path: "/tai-lieu",
@@ -205,12 +201,12 @@ export const SidebarData = [
     {
         title: "Tư vấn",
         path: "/tai-lieu",
-        icon: <CallTwoTone/>,
+        icon: <CallTwoTone />,
     },
     {
         title: "Cài đặt",
         path: "/tai-lieu",
-        icon: <SettingsTwoTone/>,
+        icon: <SettingsTwoTone />,
     },
 ];
 

@@ -114,7 +114,8 @@
 
     th {
       padding: 8px 12px;
-      font-weight: 600;
+      font-size: 1.4rem;
+      font-weight: 500;
       font-size: 1.2rem;
       border-collapse: collapse;
       border-right: 1px solid var(--border-color);
@@ -136,14 +137,20 @@
       border-collapse: collapse;
       border-right: 1px solid var(--border-color);
       text-align: center;
+      width: 62px;
+      height: 36px;
 
       p {
+        font-size: 1.2rem;
         display: flex;
         justify-content: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
         text-overflow: ellipsis;
         word-break: break-word;
         overflow: hidden;
-        max-height: 85px;
+        max-height: 56px;
         font-size: 1.2rem;
         line-height: 1.5;
       }

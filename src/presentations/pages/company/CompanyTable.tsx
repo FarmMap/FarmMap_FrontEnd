@@ -44,11 +44,11 @@ const CompanyTable = (props: CompanyTableProps) => {
             <tr>
               <th>#</th>
               <th>Tên doanh nghiệp</th>
-              <th>Mô hình kinh doanh</th>
-              <th>Loại hình kinh doanh</th>
+              <th>Mô hình KD</th>
+              <th>Loại hình KD</th>
               <th>Tỉnh</th>
-              <th>Quận-Huyện</th>
-              <th>Phường-Xã</th>
+              <th>Quận Huyện</th>
+              <th>Phường Xã</th>
               <th>Địa chỉ</th>
               <th>Chức năng</th>
             </tr>
