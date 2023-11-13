@@ -12,19 +12,19 @@ const MyResponsivePie = () => {
     {
       id: "Phiếu đã duyệt",
       label: "Phiếu đã duyệt",
-      value: 221,
+      value: 50,
       color: "red",
     },
     {
       id: "Phiếu chờ duyệt",
       label: "Phiếu chờ duyệt",
-      value: 103,
+      value: 20,
       color: "hsl(41, 70%, 50%)",
     },
     {
       id: "Đã hủy phiếu",
       label: "Đã hủy phiếu",
-      value: 303,
+      value: 30,
       color: "hsl(14, 70%, 50%)",
     },
   ];
@@ -50,6 +50,7 @@ const MyResponsivePie = () => {
         from: "color",
         modifiers: [["darker", 2]],
       }}
+      colors={["#c06b84", "#f67180", "#4a87b9"]} // Specify colors directly
       defs={[
         {
           id: "dots",
@@ -70,56 +71,6 @@ const MyResponsivePie = () => {
           spacing: 10,
         },
       ]}
-      fill={[
-        {
-          match: {
-            id: "ruby",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "c",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "go",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "python",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "scala",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "lisp",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "elixir",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "javascript",
-          },
-          id: "lines",
-        },
-      ]}
       legends={[
         {
           anchor: "bottom",
@@ -128,7 +79,7 @@ const MyResponsivePie = () => {
           translateX: 0,
           translateY: 56,
           itemsSpacing: 0,
-          itemWidth: 120,
+          itemWidth: 114,
           itemHeight: 18,
           itemTextColor: "#999",
           itemDirection: "left-to-right",
