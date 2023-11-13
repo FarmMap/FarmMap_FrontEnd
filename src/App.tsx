@@ -20,6 +20,7 @@ import MaterialPage from "./presentations/pages/material/MaterialPage";
 import BillRequestPage from "./presentations/pages/billRequest/BillRequestPage";
 import VisitorPage from "./presentations/pages/visitor/VisitorPage";
 import IngredientPage from "./presentations/pages/ingredient/IngredientPage";
+import SalePage from "./presentations/pages/sales/SalePage";
 //Style
 
 const App: React.FC = () => {
@@ -51,6 +52,7 @@ const App: React.FC = () => {
             element={<MaterialPage />}
           />
           <Route path="/kho/nguyen-lieu" element={<IngredientPage />} />
+          <Route path="/banhang/thong-ke" element={<SalePage />} />
           <Route
             path="/danh-sach-yeu-cau/yeu-cau"
             element={<BillRequestPage />}

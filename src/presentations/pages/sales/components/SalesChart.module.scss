@@ -1,0 +1,160 @@
+.upgrade-wrapper {
+  box-shadow: 0px 8px 32px rgba(51, 38, 174, 0.08);
+  background-color: var(--white-color);
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.alert {
+  align-items: center !important;
+  font-size: 1.3rem !important;
+  span {
+    display: block;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    max-width: 76% !important;
+  }
+  svg {
+    width: 16px;
+    height: 20px;
+    color: rgba(247, 204, 83, 1) !important;
+  }
+}
+
+.alert-wrapper {
+  display: flex;
+  align-items: center;
+
+  p {
+    color: #947a32;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+}
+
+.upgrade-body {
+  display: flex;
+}
+
+.upgrade-content-wrapper {
+  width: 58%;
+  p {
+    font-size: 1.4rem;
+    text-align: justify;
+  }
+  span {
+    font-weight: 600;
+  }
+}
+
+.upgrade-img-wrapper {
+  width: 40%;
+
+  img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.upgrade-footer {
+  button {
+    color: #fff !important;
+    background-color: #038edc !important;
+    border-color: #038edc !important;
+    padding: 8px 12px;
+
+    &:hover {
+      color: #fff !important;
+      background-color: #0379bb !important;
+      border-color: #0272b0 !important;
+    }
+  }
+}
+
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .report-heading {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+}
+
+.report-heading-reportBy {
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  p {
+    span {
+      font-weight: 500;
+      color: #74788d;
+    }
+  }
+}
+
+.month-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.month-content {
+  h5 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #74788d;
+  }
+
+  p {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .month-content-percent {
+    color: #51d28c;
+    background-color: rgba(81, 210, 140, 0.1);
+    padding: 4px 8px;
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+}
+
+.percentLast-wrapper {
+  p {
+    display: flex;
+    font-size: 1.2rem;
+    color: #74788d;
+  }
+  span {
+    color: #51d28c;
+    font-size: 1.2rem;
+    display: flex;
+    margin-right: 8px;
+    align-items: center;
+  }
+}
+
+.report-footer-wrapper {
+  button {
+    color: #74788d !important;
+    background-color: rgba(116, 120, 141, 0.1) !important;
+    border-color: transparent !important;
+    padding: 6px 10px !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    font-size: 1.2rem;
+    text-transform: none;
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    &:hover {
+      color: #fff !important;
+      background-color: #74788d !important;
+    }
+  }
+}
