@@ -66,7 +66,7 @@ export const SidebarData = [
             },
             {
                 title: "Lịch bệnh tật",
-                path: "/nong-trai/lenh-benh-tat"
+                path: "/nong-trai/lich-benh"
             },
 
         ]

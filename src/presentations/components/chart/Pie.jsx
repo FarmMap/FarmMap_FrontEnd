@@ -13,19 +13,19 @@ const MyResponsivePie = () => {
       id: "Phiếu đã duyệt",
       label: "Phiếu đã duyệt",
       value: 50,
-      color: "red",
+      color: "blue",
     },
     {
       id: "Phiếu chờ duyệt",
       label: "Phiếu chờ duyệt",
       value: 20,
-      color: "hsl(41, 70%, 50%)",
+      color: "red",
     },
     {
       id: "Đã hủy phiếu",
       label: "Đã hủy phiếu",
       value: 30,
-      color: "hsl(14, 70%, 50%)",
+      color: "grey",
     },
   ];
   return (

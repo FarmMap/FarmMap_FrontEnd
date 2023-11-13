@@ -28,7 +28,7 @@ import { LatLngExpression } from "leaflet";
 import useFetchLandList from "../../../api/Land/useFetchLandList";
 
 import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
-import VerticalChart from "../../components/chart/VerticalChart";
+import VerticalChart, { data } from "../../components/chart/VerticalChart";
 
 import MyResponsivePie from "../../components/chart/Pie";
 import KhoDashBoard from "./KhoDashBoard";
@@ -38,6 +38,7 @@ import ArgiPie from "../../components/chart/ArgiPie";
 // Style
 import classNames from "classnames/bind";
 import styles from "./HomePage.module.scss";
+import { Schedule } from "@mui/icons-material";
 
 const cx = classNames.bind(styles);
 
@@ -742,6 +743,7 @@ const HomePage = () => {
               <MaterialChart />
             </Grid>
           </Grid>
+          
         </Grid>
       </Grid>
     </DefaultWebLayOut>
