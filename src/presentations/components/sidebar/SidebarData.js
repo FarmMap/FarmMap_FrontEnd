@@ -10,6 +10,9 @@ import PropTypes from 'prop-types';
 import StoreIcon from '@mui/icons-material/Store';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
+import ShopIcon from '@mui/icons-material/Shop';
+import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
+import { BookOnline, BookRounded, CallMadeRounded, CallTwoTone, Pets, PetsTwoTone, SettingsTwoTone, Task, TaskRounded } from '@mui/icons-material';
 
 export const SidebarData = [
     {
@@ -31,12 +34,12 @@ export const SidebarData = [
 
         subnav: [
             {
-                title: "Khu canh tác",
-                path: "/nong-nghiep/khu-canh-tac"
-            },
-            {
                 title: "Trang trại",
                 path: "/nong-nghiep/trang-trai"
+            },
+            {
+                title: "Khu canh tác",
+                path: "/nong-nghiep/khu-canh-tac"
             },
             {
                 title: "Vùng canh tác",
@@ -61,6 +64,10 @@ export const SidebarData = [
                 title: "Lịch chăm sóc",
                 path: "/nong-trai/lich-cham-soc"
             },
+            {
+                title: "Lịch bệnh tật",
+                path: "/nong-trai/lenh-benh-tat"
+            },
 
         ]
     },
@@ -78,8 +85,22 @@ export const SidebarData = [
                 path: "/nong-san/cay-trong"
             },
             {
-                title: "Công việc trong ngày",
-                path: "/nong-san/cong-viec-trong-ngay"
+                title: "Đặc tính bệnh học",
+                path: "/nong-san/dac-tinh-benh-hoc"
+            },
+
+        ]
+    },
+    {
+        title: "Vật nuôi",
+        path: "",
+        icon: <PetsTwoTone />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+        subnav: [
+            {
+                title: "Gia súc",
+                path: "/nong-san/gia-suc"
             },
             {
                 title: "Đặc tính bệnh học",
@@ -88,7 +109,6 @@ export const SidebarData = [
 
         ]
     },
-
     {
         title: "Kho",
         path: "",
@@ -99,11 +119,19 @@ export const SidebarData = [
         subnav: [
             {
                 title: "Quản lý vật tư",
-                path: "/kho/danh-sach-yeu-cau-vat-tu"
+                path: "/kho/quan-ly-vat-tu"
             },
             {
                 title: "Nguyên liệu",
                 path: "/kho/nguyen-lieu"
+            },
+            {
+                title: "Hàng hóa",
+                path: "/kho/hang-hoa"
+            },
+            {
+                title: "Thu hoạch",
+                path: "/kho/thu-hoach"
             },
             {
                 title: "Nhập kho",
@@ -115,10 +143,18 @@ export const SidebarData = [
             },
         ]
     },
+
     {
-        title: "Liên hệ",
-        path: "/lien-he",
-        icon: <AddIcCallIcon />,
+        title: "Công việc",
+        path: "/nong-san/cong-viec",
+        icon: <TaskRounded />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+    },
+    {
+        title: "Sổ tay",
+        path: "/so-tay",
+        icon: <BookRounded />,
     },
     {
         title: "Danh sách yêu cầu",
@@ -139,7 +175,43 @@ export const SidebarData = [
 
         ]
     },
+    {
+        title: "Bán hàng",
+        path: "",
+        icon: <ShopIcon />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+        subnav: [
+            {
+                title: "Thu hoạch trực tiếp",
+                path: "/banhang/thu-hoach-truc-tiep"
+            },
+            {
+                title: "Thống kê",
+                path: "/banhang/thong-ke"
+            },
+            {
+                title: "Bán từ kho",
+                path: "/banhang/ban-tu-kho"
+            },
 
+        ]
+    },
+    {
+        title: "Tài liệu",
+        path: "/tai-lieu",
+        icon: <DocumentScannerIcon />,
+    },
+    {
+        title: "Tư vấn",
+        path: "/tu-van",
+        icon: <CallTwoTone />,
+    },
+    {
+        title: "Cài đặt",
+        path: "/cai-dat",
+        icon: <SettingsTwoTone />,
+    },
 ];
 
 

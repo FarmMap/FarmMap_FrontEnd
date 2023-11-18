@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 // Ex
-import { Grid, Pagination } from "@mui/material";
+import { Grid, MenuItem, Pagination, Select } from "@mui/material";
 // In
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
@@ -198,6 +198,45 @@ const FarmCalendarPage = () => {
                 query: query,
                 setQuery: setQuery,
               },
+            ]}
+            filters={[
+              <Fragment>
+                <label htmlFor="select">Loại sản phẩm</label>
+                <Select
+                  className={cx("filter-dropdown")}
+                  sx={{
+                    fontSize: "1.2rem",
+                    boxShadow: "none",
+                    minWidth: "150px",
+                  }}
+                  value={""}
+                  displayEmpty
+                  onChange={() => { }}
+                >
+                  <MenuItem sx={{ fontSize: "1.2rem" }} value="">
+                    Tất cả
+                  </MenuItem>
+                </Select>
+              </Fragment>,
+              <Fragment>
+                <label htmlFor="select">Đơn vị</label>
+                <Select
+                  className={cx("filter-dropdown")}
+                  sx={{
+                    fontSize: "1.2rem",
+                    boxShadow: "none",
+                    minWidth: "150px",
+                  }}
+                  value={""}
+                  displayEmpty
+                  onChange={() => { }}
+                >
+                  <MenuItem sx={{ fontSize: "1.2rem" }} value="">
+                    Tất cả
+                  </MenuItem>
+                </Select>
+              </Fragment>,
+
             ]}
           ></DefaultFilterLayOut>
         </DefaultTitleLayOut>

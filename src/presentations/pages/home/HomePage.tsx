@@ -1,9 +1,8 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 // Ex
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import {
   Autocomplete,
-  Box,
   Grid,
   ListItemText,
   MenuItem,
@@ -14,12 +13,6 @@ import {
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 // In
 import images from "../../../assets/images";
-
-import PieChart from "../../components/chart/Pie";
-
-// Style
-import classNames from "classnames/bind";
-import styles from "./HomePage.module.scss";
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
 import DefaultFilterLayOut from "../../components/defaultTitleLayOut/DefaultFilterLayOut";
 import Province from "../../../data/types/Province";
@@ -28,31 +21,27 @@ import LeafletGeocoder from "../../components/maps/LeafletGeocoder";
 import SearchLocationByLatLng from "../../components/maps/SearchLocationByLatLng";
 import { Area } from "../../../data/types/Area";
 import Farm from "../../../data/types/Farm";
-import useCreateArea from "../../../api/PlaneArea/useCreateArea";
 import useFetchFarmList from "../../../api/Farm/useFetchFarmList";
 import useFetchAreaList from "../../../api/PlaneArea/useFetchAreaList";
 import { LatLngObject } from "../../../data/types/Area";
 import { LatLngExpression } from "leaflet";
 import useFetchLandList from "../../../api/Land/useFetchLandList";
-import useFetchSoilTypeList from "../../../api/SoilType/useFetchSoilTypeList";
-import SoilType from "../../../data/types/SoilType";
-import Land from "../../../data/types/Land";
-import useCreateLand from "../../../api/Land/useCreateLand";
-import { toast } from "react-toastify";
+
 import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
+import VerticalChart from "../../components/chart/VerticalChart";
+
+import MyResponsivePie from "../../components/chart/Pie";
+import KhoDashBoard from "./KhoDashBoard";
+import XuatKhoDashBoard from "./XuatKhoDashBoard";
+import MaterialChart from "../../components/chart/MaterialChart";
+import ArgiPie from "../../components/chart/ArgiPie";
+// Style
+import classNames from "classnames/bind";
+import styles from "./HomePage.module.scss";
 
 const cx = classNames.bind(styles);
 
 const HomePage = () => {
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
   const headerData = [
     {
       title: "Doanh thu",
@@ -210,7 +199,7 @@ const HomePage = () => {
             item
             lg={7}
             display={"flex"}
-            height={"100%"}
+            height={"500px"}
             width={"100%"}
             flexDirection={"column"}
             justifyContent={"space-between"}
@@ -638,7 +627,7 @@ const HomePage = () => {
           <Grid
             lg={4.8}
             item
-            height={"76.4vh"}
+            height={"500px"}
             display={"flex"}
             width={"100%"}
             flexDirection={"column"}
@@ -646,15 +635,111 @@ const HomePage = () => {
             boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
             padding={"10px 12px 32px 12px"}
           >
-            <span style={{ fontWeight: 600 }}>Thống kê</span>
+            <span style={{ fontWeight: 600 }}>Nông nghiệp</span>
             <Grid
               style={{
-                borderTop: "1px solid var(--border-color)",
-                height: "92%",
+                height: "100%",
               }}
             >
               {" "}
-              <PieChart />
+              <ArgiPie />
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid
+          mt={"20px"}
+          columns={12}
+          container
+          justifyContent={"space-between"}
+        >
+          <Grid
+            item
+            lg={7}
+            padding={"10px 12px 12px 12px"}
+            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+          >
+            <VerticalChart />
+          </Grid>
+
+          <Grid
+            lg={4.8}
+            item
+            height={"400px"}
+            display={"flex"}
+            width={"100%"}
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            padding={"10px 12px 32px 12px"}
+          >
+            <span style={{ fontWeight: 600 }}>Vật tư</span>
+            <Grid
+              style={{
+                height: "100%",
+              }}
+            >
+              {" "}
+              <MyResponsivePie />
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid
+          mt={"20px"}
+          columns={12}
+          container
+          justifyContent={"space-between"}
+        >
+          <Grid
+            lg={7}
+            item
+            height={"400px"}
+            display={"flex"}
+            width={"100%"}
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            padding={"10px 12px 32px 12px"}
+          >
+            <span style={{ fontWeight: 600 }}>Nhập hàng</span>
+            <Grid
+              style={{
+                height: "100%",
+              }}
+            >
+              <KhoDashBoard />
+            </Grid>
+
+            <span style={{ fontWeight: 600 }}>Xuất hàng</span>
+            <Grid
+              style={{
+                height: "100%",
+              }}
+            >
+              <XuatKhoDashBoard />
+            </Grid>
+          </Grid>
+
+          <Grid
+            lg={4.8}
+            item
+            height={"400px"}
+            display={"flex"}
+            width={"100%"}
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            padding={"10px 12px 32px 12px"}
+          >
+            <span style={{ fontWeight: 600 }}>Kho</span>
+            <Grid
+              style={{
+                height: "100%",
+              }}
+            >
+              {" "}
+              <MaterialChart />
             </Grid>
           </Grid>
         </Grid>

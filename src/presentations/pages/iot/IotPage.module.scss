@@ -100,3 +100,68 @@
   font-style: italic;
   font-size: 1.4rem;
 }
+
+.table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  margin: 24px 0 !important;
+  font-size: 14px;
+
+  thead {
+    background-color: #f2f2f2;
+    color: var(--text-color);
+
+    th {
+      padding: 8px 12px;
+      font-size: 1.4rem;
+      font-weight: 500;
+      font-size: 1.2rem;
+      border-collapse: collapse;
+      border-right: 1px solid var(--border-color);
+      text-align: center;
+    }
+  }
+
+  tbody {
+    tr {
+      border: 1px solid #d5d7dc;
+
+      &:nth-child(even) {
+        background-color: var(--gray-color);
+      }
+    }
+
+    td {
+      padding: 12px;
+      border-collapse: collapse;
+      border-right: 1px solid var(--border-color);
+      text-align: center;
+      width: 62px;
+      height: 36px;
+
+      p {
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+        text-overflow: ellipsis;
+        word-break: break-word;
+        overflow: hidden;
+        max-height: 56px;
+        font-size: 1.2rem;
+        line-height: 1.5;
+      }
+
+      a {
+        white-space: nowrap;
+      }
+
+      &:first-child {
+        text-align: center;
+      }
+    }
+  }
+}

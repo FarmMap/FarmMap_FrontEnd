@@ -93,7 +93,7 @@ $green-color: #0abb87;
   .role {
     font-size: 1.1rem;
     text-align: right;
-    color: var(--primary-color);
+    color: var(--blue-hover-color);
   }
 }
 
@@ -148,7 +148,7 @@ $green-color: #0abb87;
     .accountinfo-username {
       font-weight: 600;
       text-transform: uppercase;
-      color: var(--primary-color);
+      color: var(--blue-hover-color);
       cursor: pointer;
     }
 

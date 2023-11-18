@@ -1,62 +1,58 @@
+// install (please try to align the version of installed @nivo packages)
+// yarn add @nivo/pie
 import { ResponsivePie } from "@nivo/pie";
-import { tokens } from "./theme";
-import { useTheme } from "@mui/material";
-import { mockPieData as data } from "./mockData";
 
-const PieChart = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+// make sure parent container have a defined height when using
+// responsive component, otherwise height will be 0 and
+// no chart will be rendered.
+// website examples showcase many properties,
+// you'll often use just a few of them.
+const MaterialChart = () => {
+  const data = [
+    {
+      id: "Kho hàng hóa",
+      label: "Kho hàng hóa",
+      value: 34,
+      data: {
+        color: "red",
+      },
+    },
+    {
+      id: "Kho nguyên liệu",
+      label: "Kho nguyên liệu",
+      value: 40,
+      color: "hsl(41, 70%, 50%)",
+    },
+    {
+      id: "Kho thu hoạch",
+      label: "Kho thu hoạch",
+      value: 23,
+      color: "hsl(14, 70%, 50%)",
+    },
+  ];
   return (
     <ResponsivePie
       data={data}
-      theme={{
-        axis: {
-          domain: {
-            line: {
-              stroke: colors.grey[100],
-            },
-          },
-          legend: {
-            text: {
-              fill: colors.grey[100],
-            },
-          },
-          ticks: {
-            line: {
-              stroke: colors.grey[100],
-              strokeWidth: 1,
-            },
-            text: {
-              fill: colors.grey[100],
-            },
-          },
-        },
-        legends: {
-          text: {
-            fill: colors.grey[100],
-          },
-        },
-      }}
       margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
       innerRadius={0.5}
       padAngle={0.7}
       cornerRadius={3}
       activeOuterRadiusOffset={8}
+      borderWidth={1}
       borderColor={{
         from: "color",
         modifiers: [["darker", 0.2]],
       }}
       arcLinkLabelsSkipAngle={10}
-      arcLinkLabelsTextColor={colors.grey[100]}
+      arcLinkLabelsTextColor={{ theme: "background" }}
       arcLinkLabelsThickness={2}
-      arcLinkLabelsColor={{ from: "color" }}
-      enableArcLabels={false}
-      arcLabelsRadiusOffset={0.4}
-      arcLabelsSkipAngle={7}
+      arcLinkLabelsColor={{ theme: "background" }}
+      arcLabelsSkipAngle={10}
       arcLabelsTextColor={{
         from: "color",
         modifiers: [["darker", 2]],
       }}
+      colors={["#148c70", "#4750bd", "#df1824"]} // Specify colors directly
       defs={[
         {
           id: "dots",
@@ -85,7 +81,7 @@ const PieChart = () => {
           translateX: 0,
           translateY: 56,
           itemsSpacing: 0,
-          itemWidth: 100,
+          itemWidth: 110,
           itemHeight: 18,
           itemTextColor: "#999",
           itemDirection: "left-to-right",
@@ -106,4 +102,4 @@ const PieChart = () => {
   );
 };
 
-export default PieChart;
+export default MaterialChart;

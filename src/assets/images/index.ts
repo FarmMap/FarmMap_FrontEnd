@@ -10,6 +10,7 @@ const images = {
   cloudRain: require("../images/cloudRain.png"),
   cloudSun: require("../images/cloudSun.png"),
   phone: require("../images/phone.png"),
+  coGaiVoTri: require("../images/coGaiVoTri.png"),
 };
 
 export default images;

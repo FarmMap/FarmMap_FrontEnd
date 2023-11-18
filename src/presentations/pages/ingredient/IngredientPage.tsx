@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 // Ex
-import { Grid, Pagination } from "@mui/material";
+import { Grid, MenuItem, Pagination, Select } from "@mui/material";
 // In
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
@@ -20,6 +20,10 @@ import useUpdateIngredient from "../../../api/Ingredient/useUpdateIngredient";
 import IngredientModal from "./IngredientModal";
 import useDebounce from "../../../hooks/useDebounce";
 // Style imports
+
+import classNames from "classnames/bind";
+import styles from "./Ingredient.module.scss";
+const cx = classNames.bind(styles);
 
 const IngredientPage = () => {
   const [query, setQuery] = useState("");
@@ -182,6 +186,38 @@ const IngredientPage = () => {
                 query: query,
                 setQuery: setQuery,
               },
+              {
+                searchLabel: "Giá tiền",
+                searchPlaceholder: "Nhập tên giá tiền",
+                query: query,
+                setQuery: setQuery,
+              },
+              {
+                searchLabel: "Số lượng",
+                searchPlaceholder: "Nhập số lượng",
+                query: query,
+                setQuery: setQuery,
+              },
+            ]}
+            filters={[
+              <Fragment>
+                <label htmlFor="select">Trạng thái</label>
+                <Select
+                  className={cx("filter-dropdown")}
+                  sx={{
+                    fontSize: "1.2rem",
+                    boxShadow: "none",
+                    minWidth: "150px",
+                  }}
+                  value={""}
+                  displayEmpty
+                  onChange={() => {}}
+                >
+                  <MenuItem sx={{ fontSize: "1.2rem" }} value="">
+                    Tất cả
+                  </MenuItem>
+                </Select>
+              </Fragment>,
             ]}
             onSearchSubmit={() => {}}
           ></DefaultFilterLayOut>
