@@ -30,15 +30,19 @@ import useFetchLandList from "../../../api/Land/useFetchLandList";
 import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
 import VerticalChart, { data } from "../../components/chart/VerticalChart";
 
-import MyResponsivePie from "../../components/chart/Pie";
+import MyResponsivePie from "../../components/chart/home/pie_supplies";
 import KhoDashBoard from "./KhoDashBoard";
 import XuatKhoDashBoard from "./XuatKhoDashBoard";
-import MaterialChart from "../../components/chart/MaterialChart";
-import ArgiPie from "../../components/chart/ArgiPie";
+import MaterialChart from "../../components/chart/home/pie_material";
 // Style
 import classNames from "classnames/bind";
 import styles from "./HomePage.module.scss";
 import { Schedule } from "@mui/icons-material";
+import PieWareHouse from "../../components/chart/home/pie_agri";
+import PieActiveArc from "../../components/chart/home/pie_agri";
+import PieAgri from "../../components/chart/home/pie_agri";
+import PieMaterialHomeChart from "../../components/chart/home/pie_material";
+import PieSuppliesHomeChart from "../../components/chart/home/pie_supplies";
 
 const cx = classNames.bind(styles);
 
@@ -392,7 +396,7 @@ const HomePage = () => {
                               option.name as string
                             }
                             noOptionsText="Không tìm thấy phường xã nào"
-                            onChange={() => {}}
+                            onChange={() => { }}
                             sx={{ width: "100%" }}
                             renderOption={(props, option) => (
                               <MenuItem {...props} divider>
@@ -639,11 +643,11 @@ const HomePage = () => {
             <span style={{ fontWeight: 600 }}>Nông nghiệp</span>
             <Grid
               style={{
-                height: "100%",
+                height: "80%",
               }}
             >
               {" "}
-              <ArgiPie />
+              <PieAgri />
             </Grid>
           </Grid>
         </Grid>
@@ -681,7 +685,7 @@ const HomePage = () => {
               }}
             >
               {" "}
-              <MyResponsivePie />
+              <PieSuppliesHomeChart />
             </Grid>
           </Grid>
         </Grid>
@@ -722,6 +726,7 @@ const HomePage = () => {
             </Grid>
           </Grid>
 
+
           <Grid
             lg={4.8}
             item
@@ -736,14 +741,13 @@ const HomePage = () => {
             <span style={{ fontWeight: 600 }}>Kho</span>
             <Grid
               style={{
-                height: "100%",
+                height: "85%",
               }}
             >
               {" "}
-              <MaterialChart />
+              <PieMaterialHomeChart />
             </Grid>
           </Grid>
-          
         </Grid>
       </Grid>
     </DefaultWebLayOut>
