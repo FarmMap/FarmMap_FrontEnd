@@ -100,7 +100,7 @@ export const SidebarData = [
         subnav: [
             {
                 title: "Gia súc",
-                path: "/nong-san/cay-trong"
+                path: "/nong-san/gia-suc"
             },
             {
                 title: "Đặc tính bệnh học",
@@ -119,7 +119,7 @@ export const SidebarData = [
         subnav: [
             {
                 title: "Quản lý vật tư",
-                path: "/kho/danh-sach-yeu-cau-vat-tu"
+                path: "/kho/quan-ly-vat-tu"
             },
             {
                 title: "Nguyên liệu",
@@ -127,11 +127,11 @@ export const SidebarData = [
             },
             {
                 title: "Hàng hóa",
-                path: "/kho/nguyen-lieu"
+                path: "/kho/hang-hoa"
             },
             {
                 title: "Thu hoạch",
-                path: "/kho/nguyen-lieu"
+                path: "/kho/thu-hoach"
             },
             {
                 title: "Nhập kho",
@@ -175,7 +175,7 @@ export const SidebarData = [
     },
     {
         title: "Công việc",
-        path: "/nong-san/cong-viec-trong-ngay",
+        path: "/nong-san/cong-viec",
         icon: <TaskRounded />,
         openIcon: <ArrowDropUpIcon />,
         closeIcon: <ArrowDropDownIcon />,
@@ -183,7 +183,7 @@ export const SidebarData = [
 
     {
         title: "Sổ tay",
-        path: "/lien-he",
+        path: "/so-tay",
         icon: <BookRounded />,
     },
     {
@@ -214,11 +214,15 @@ export const SidebarData = [
         subnav: [
             {
                 title: "Thu hoạch trực tiếp",
-                path: "/ban-hang"
+                path: "/banhang/thu-hoach-truc-tiep"
+            },
+            {
+                title: "Thống kê",
+                path: "/banhang/thong-ke"
             },
             {
                 title: "Bán từ kho",
-                path: "/ban-hang"
+                path: "/banhang/ban-tu-kho"
             },
 
         ]
@@ -230,12 +234,12 @@ export const SidebarData = [
     },
     {
         title: "Tư vấn",
-        path: "/tai-lieu",
+        path: "/tu-van",
         icon: <CallTwoTone />,
     },
     {
         title: "Cài đặt",
-        path: "/tai-lieu",
+        path: "/cai-dat",
         icon: <SettingsTwoTone />,
     },
 ];
