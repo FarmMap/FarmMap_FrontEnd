@@ -20,7 +20,11 @@ import MaterialPage from "./presentations/pages/material/MaterialPage";
 import BillRequestPage from "./presentations/pages/billRequest/BillRequestPage";
 import VisitorPage from "./presentations/pages/visitor/VisitorPage";
 import IngredientPage from "./presentations/pages/ingredient/IngredientPage";
+
 import SalePage from "./presentations/pages/sales/SalePage";
+
+
+
 //Style
 
 const App: React.FC = () => {
@@ -61,6 +65,7 @@ const App: React.FC = () => {
             path="/danh-sach-yeu-cau/khach-tham-quan"
             element={<VisitorPage />}
           />
+          
         </Route>
       </Routes>
     </div>

@@ -12,7 +12,7 @@ import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import ShopIcon from '@mui/icons-material/Shop';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
-import { BookOnline, BookRounded, CallMadeRounded, CallTwoTone, Pets, PetsTwoTone, SettingsTwoTone, Task, TaskRounded } from '@mui/icons-material';
+import { BookOnline, BookRounded, CallMadeRounded, CallTwoTone, Money, Pets, PetsTwoTone, SettingsTwoTone, Task, TaskRounded, Wallet } from '@mui/icons-material';
 
 export const SidebarData = [
     {
@@ -66,7 +66,7 @@ export const SidebarData = [
             },
             {
                 title: "Lịch bệnh tật",
-                path: "/nong-trai/lenh-benh-tat"
+                path: "/nong-trai/lich-benh"
             },
 
         ]
@@ -143,7 +143,36 @@ export const SidebarData = [
             },
         ]
     },
+    {
+        title: "Chi phí",
+        path: "",
+        icon: <Wallet />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+        subnav: [
+            {
+                title: "Nhân công",
+                path: ""
+            },
 
+            {
+                title: "Bảng lương",
+                path: ""
+            },
+            {
+                title: "Thu nhập",
+                path: ""
+            },
+            {
+                title: "Số quỹ",
+                path: ""
+            },
+            {
+                title: "Hóa đơn",
+                path: ""
+            },
+        ]
+    },
     {
         title: "Công việc",
         path: "/nong-san/cong-viec",
@@ -151,6 +180,7 @@ export const SidebarData = [
         openIcon: <ArrowDropUpIcon />,
         closeIcon: <ArrowDropDownIcon />,
     },
+
     {
         title: "Sổ tay",
         path: "/so-tay",

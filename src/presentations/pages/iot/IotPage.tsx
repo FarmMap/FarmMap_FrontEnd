@@ -31,25 +31,25 @@ const IotPage = () => {
 
   const boxTemps = [
     {
-      title: "Thứ sáu - 4/8/2023",
+      title: "Thứ tư - 15/11/2023",
       url: <CloudIcon />,
       temp: "22.06",
       status: "mây rải rác",
     },
     {
-      title: "Thứ bảy - 5/8/2023",
+      title: "Thứ năm - 16/11/2023",
       url: images.cloudRain,
       temp: "22.68",
       status: "mưa nhẹ",
     },
     {
-      title: "Chủ nhật - 5/8/2023",
+      title: "Thứ sáu - 17/8/2023",
       url: images.cloudSun,
       temp: "22.61",
       status: "mây thưa",
     },
     {
-      title: "Thứ hai - 6/8/2023",
+      title: "Thứ bảy - 6/8/2023",
       url: <CircleIcon />,
       temp: "22.24",
       status: "bầu trời quang đãng",
@@ -58,7 +58,7 @@ const IotPage = () => {
 
   const dataIOT = [
     {
-      thoiGian: "2023-11-14 15:20:00",
+      thoiGian: "2023-11-15 15:20:00",
       nhietDoKhongKhi: "40.68",
       doAmKhongKhi: "45.76",
       doSang: "2498",
@@ -75,7 +75,7 @@ const IotPage = () => {
       doMan: "",
     },
     {
-      thoiGian: "2023-11-14 15:15:00",
+      thoiGian: "2023-11-15 15:15:00",
       nhietDoKhongKhi: "40.15",
       doAmKhongKhi: "42.76",
       doSang: "",
@@ -92,7 +92,7 @@ const IotPage = () => {
       doMan: "",
     },
     {
-      thoiGian: "2023-11-14 15:5:00",
+      thoiGian: "2023-11-15 15:5:00",
       nhietDoKhongKhi: "",
       doAmKhongKhi: "",
       doSang: "",
@@ -109,7 +109,7 @@ const IotPage = () => {
       doMan: "",
     },
     {
-      thoiGian: "2023-11-14 15:00:00",
+      thoiGian: "2023-11-15 15:00:00",
       nhietDoKhongKhi: "",
       doAmKhongKhi: "",
       doSang: "",
@@ -126,7 +126,7 @@ const IotPage = () => {
       doMan: "",
     },
     {
-      thoiGian: "2023-11-14 15:10:58",
+      thoiGian: "2023-11-15 15:10:58",
       nhietDoKhongKhi: "40.68",
       doAmKhongKhi: "42.89",
       doSang: "",
