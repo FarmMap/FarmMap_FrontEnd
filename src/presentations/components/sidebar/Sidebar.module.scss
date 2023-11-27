@@ -38,7 +38,7 @@ $color-title: #a2a3b7;
   background-color: transparent;
   height: $btn-icon-size;
   cursor: pointer;
-  color: var(--text-color);
+  color: #7b8190;
 
   svg {
     width: 25px;
@@ -89,7 +89,7 @@ $color-title: #a2a3b7;
     white-space: nowrap;
 
     &:hover {
-      background-color: #23233e;
+      background-color: #f2f3fe;
     }
   }
 
@@ -101,7 +101,7 @@ $color-title: #a2a3b7;
     padding: 10px;
     line-height: 50px;
     background-color: transparent;
-    color: var(--white-color);
+    color: #7b819096 !important;
 
     cursor: pointer;
 
@@ -118,9 +118,9 @@ $color-title: #a2a3b7;
   .title {
     display: flex;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     width: 100%;
-    color: var(--white-color);
+    color: #7b8190;
     transition: all 0.5s ease;
   }
 
@@ -157,7 +157,7 @@ $color-title: #a2a3b7;
     cursor: pointer;
 
     &:hover {
-      background-color: #23233e;
+      background-color: #f2f3fe;
     }
   }
 
@@ -169,15 +169,11 @@ $color-title: #a2a3b7;
   }
 
   .dropdown-menu-title {
-    font-size: 1.2rem;
-    color: #eeef;
+    font-size: 1.4rem;
+    color: #7b8190;
     margin-left: 8px;
     white-space: nowrap;
     transition: all 0.5s ease;
-
-    &:hover {
-      color: var(--white-color);
-    }
   }
 }
 
@@ -231,7 +227,7 @@ $color-title: #a2a3b7;
     height: 32px;
     min-width: 42px;
     font-size: 2rem;
-    color: #a2a3b7;
+    color: #7b819096;
     border-radius: 4px;
     cursor: pointer;
     text-align: center;

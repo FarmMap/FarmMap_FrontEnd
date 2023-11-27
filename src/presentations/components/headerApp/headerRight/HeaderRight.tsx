@@ -1,7 +1,14 @@
 // External
 import React from "react";
 
+import { Link } from "react-router-dom";
 import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 
@@ -25,6 +32,47 @@ interface HeaderRightProps {
 const HeaderRight: React.FC<HeaderRightProps> = (props: HeaderRightProps) => {
   return (
     <div className={cx("wrapper")}>
+      <div className={cx("wrapper-icon")}>
+        <Tippy content={`Tìm kiếm`} theme="light">
+          <div className={cx("icon-item")}>
+            <span className={cx("span-icon")}>
+              <Link to="/notify/Notimonth-contract" className={cx("link-icon")}>
+                <SearchOutlinedIcon />
+              </Link>
+            </span>
+          </div>
+        </Tippy>
+
+        <Tippy content={`Cài đặt`} theme="light">
+          <div className={cx("icon-item")}>
+            <span className={cx("span-icon")}>
+              <Link to="/notify/Notiwarranty " className={cx("link-icon")}>
+                <GridViewOutlinedIcon />
+              </Link>
+            </span>
+          </div>
+        </Tippy>
+
+        <Tippy content={`Thông báo`} theme="light">
+          <div className={cx("icon-item")}>
+            <span className={cx("span-icon")}>
+              <Link to="/notify/Noticontract" className={cx("link-icon")}>
+                <NotificationsOutlinedIcon />
+              </Link>
+            </span>
+          </div>
+        </Tippy>
+
+        <Tippy content={`WebApps`} theme="light">
+          <div className={cx("icon-item")}>
+            <span className={cx("span-icon")}>
+              <Link to="/notify/Notimonth-contract" className={cx("link-icon")}>
+                <SettingsOutlinedIcon />
+              </Link>
+            </span>
+          </div>
+        </Tippy>
+      </div>
       <DefaultDropDown
         childrenRender={
           <AccountInfo

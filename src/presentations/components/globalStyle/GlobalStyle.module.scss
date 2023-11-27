@@ -1,65 +1,9 @@
-@import "normalize.css";
-// Embeded Font Verdana
-@font-face {
-  font-family: "Verdana";
-  src: url("../../../assets/fonts/Verdana.eot");
-  src: url("../../../assets/fonts/Verdana.eot?#iefix")
-      format("embedded-opentype"),
-    url("../../../assets/fonts/Verdana.woff2") format("woff2"),
-    url("../../../assets/fonts/Verdana.woff") format("woff"),
-    url("../../../assets/fonts/Verdana.ttf") format("truetype"),
-    url("../../../assets/fonts/Verdana.svg#Verdana") format("svg");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Verdana";
-  src: url("../../../assets/fonts/Verdana_1.eot");
-  src: url("../../../assets/fonts/Verdana_1.eot?#iefix")
-      format("embedded-opentype"),
-    url("../../../assets/fonts/Verdana_1.woff2") format("woff2"),
-    url("../../../assets/fonts/Verdana_1.woff") format("woff"),
-    url("../../../assets/fonts/Verdana_1.ttf") format("truetype"),
-    url("../../../assets/fonts/Verdana_1.svg#Verdana") format("svg");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Verdana";
-  src: url("../../../assets/fonts/Verdana-Bold.eot");
-  src: url("../../../assets/fonts/Verdana-Bold.eot?#iefix")
-      format("embedded-opentype"),
-    url("../../../assets/fonts/Verdana-Bold.woff2") format("woff2"),
-    url("../../../assets/fonts/Verdana-Bold.woff") format("woff"),
-    url("../../../assets/fonts/Verdana-Bold.ttf") format("truetype"),
-    url("../../../assets/fonts/Verdana-Bold.svg#Verdana-Bold") format("svg");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Verdana";
-  src: url("../../../assets/fonts/Verdana-Bold_1.eot");
-  src: url("../../../assets/fonts/Verdana-Bold_1.eot?#iefix")
-      format("embedded-opentype"),
-    url("../../../assets/fonts/Verdana-Bold_1.woff2") format("woff2"),
-    url("../../../assets/fonts/Verdana-Bold_1.woff") format("woff"),
-    url("../../../assets/fonts/Verdana-Bold_1.ttf") format("truetype"),
-    url("../../../assets/fonts/Verdana-Bold_1.svg#Verdana-Bold") format("svg");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap");
 
 :root {
   // --primary-color: ;
-  --text-color: #595d6e;
-  --black-color: #000;
+  --text-color: #74788d;
+  --black-color: #495057;
   --white-color: #fff;
   --second-color: #f93e3e;
   --orange-color: #c16802;
@@ -78,14 +22,14 @@
   --bgr-body-content-app: #f1f2f7;
   --border-color: #e2e5ec;
   --hover-black: #4d59950f;
-  --sidebar-color: #120d26;
+  --sidebar-color: #fff;
   --pink-color: rgba(255, 99, 132, 0.5);
 
   --primary-size: 1.6rem;
   --header-height: 75px;
   --width-sidebar-small: 80px;
   --width-sidebar-large: 242px;
-  --font-family: "Verdana";
+  --font-family: "Roboto", sans-serif;
 }
 
 * {

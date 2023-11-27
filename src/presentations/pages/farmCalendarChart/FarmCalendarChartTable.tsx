@@ -9,24 +9,25 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 // Internal imports
 import { ListIcon } from "../../components/sidebar/SidebarData";
-import BillRequest from "../../../data/types/BillRequest";
+import { toReadableDate } from "../../../utils/Utils";
+import FarmCalendar from "../../../data/types/FarmCalendar";
 
 // Style imports
 import classNames from "classnames/bind";
-import styles from "./BillRequest.module.scss";
-import { STATUSBILL } from "../../../constants/Constants";
+import styles from "./FarmCalendarChart.module.scss";
 const cx = classNames.bind(styles);
 
-interface BillRequestTableProps {
-  billRequests: BillRequest[];
-  handleDeleteBillRequest: (BillRequest: BillRequest) => void;
-  handleEditBillRequest: (BillRequest: BillRequest) => void;
+interface FarmCalendarChartTableProps {
+  farmCalendars: FarmCalendar[];
+  handleDeleteFarmCalendar: (farmCalendar: FarmCalendar) => void;
+  handleEditFarmCalendar: (farmCalendar: FarmCalendar) => void;
 }
 
-const BillRequestTable = (props: BillRequestTableProps) => {
+const FarmCalendarChartTable = (props: FarmCalendarChartTableProps) => {
   return (
     <Grid>
       {/* on PC */}
@@ -44,45 +45,68 @@ const BillRequestTable = (props: BillRequestTableProps) => {
           <thead>
             <tr>
               <th>#</th>
-              <th>Tên yêu cầu</th>
-              <th>Số lượng</th>
-              <th>Trạng thái</th>
-              <th>phiếu yêu cầu</th>
-              <th>Vật tư</th>
-              <th>Ghi chú</th>
+              <th>Vùng</th>
+              <th>Tên sản phẩm</th>
+              <th>Loại sản phẩm</th>
+              <th>Ngày bắt đầu- thu hoạch</th>
+              <th>Số lượng giống</th>
+              <th>Đơn vị cung cấp giống</th>
+              <th>Sản lượng dự kiến</th>
+              <th>Đơn vị</th>
+              <th>Người thực hiện</th>
               <th>Chức năng</th>
             </tr>
           </thead>
           <tbody>
-            {props.billRequests.map((billRequest, i) => (
+            {props.farmCalendars.map((farmCalendar, i) => (
               <tr key={i}>
                 <td>
                   <p>{i + 1}</p>
                 </td>
                 <td>
-                  <p>{billRequest.name}</p>
+                  <p>{farmCalendar.land?.name}</p>
                 </td>
                 <td>
-                  <p>{billRequest.quantity}</p>
+                  <p>{farmCalendar.product_name}</p>
                 </td>
                 <td>
-                  {STATUSBILL.map((item, i) => (
-                    <span key={i}>
-                      {item.value == billRequest.status && item.name}
-                    </span>
+                  <p>{farmCalendar.productType?.name}</p>
+                </td>
+                <td>
+                  <p>
+                    {toReadableDate(farmCalendar.startDay ?? "")} -{" "}
+                    {toReadableDate(farmCalendar.endDate ?? "")}
+                  </p>
+                </td>
+                <td>
+                  <p>{farmCalendar.numberOfVarites}</p>
+                </td>
+                <td>
+                  <p>{farmCalendar.seedProvider}</p>
+                </td>
+                <td>
+                  <p>{farmCalendar.expectOutput}</p>
+                </td>
+                <td>
+                  <p>{farmCalendar.unit}</p>
+                </td>
+                <td>
+                  {farmCalendar.users?.map((item: any, i: number) => (
+                    <p
+                      key={i}
+                      // style={{
+                      //   display: "flex",
+                      //   alignItems: "center",
+                      // }}
+                    >
+                      {/* <AccountCircleIcon style={{ marginRight: "8px" }} /> */}
+                      <span style={{ whiteSpace: "nowrap" }}>
+                        {" "}
+                        {item.fullName}
+                      </span>
+                    </p>
                   ))}
                 </td>
-
-                <td>
-                  <p>{billRequest.provider?.name}</p>
-                </td>
-                <td>
-                  <p>{billRequest.material?.name}</p>
-                </td>
-                <td>
-                  <p>{billRequest.description}</p>
-                </td>
-
                 <td
                   style={{
                     whiteSpace: "nowrap",
@@ -90,14 +114,14 @@ const BillRequestTable = (props: BillRequestTableProps) => {
                   }}
                 >
                   <Tippy
-                    content={`Sửa thông tin phiếu yêu cầu ${billRequest.name}`}
+                    content={`Sửa lịch ${farmCalendar.product_name}`}
                     theme="light"
                   >
                     <Button
                       className={cx("btn-edit")}
                       variant="contained"
                       onClick={() => {
-                        props.handleEditBillRequest(billRequest);
+                        props.handleEditFarmCalendar(farmCalendar);
                       }}
                       disableElevation={true}
                     >
@@ -106,7 +130,7 @@ const BillRequestTable = (props: BillRequestTableProps) => {
                   </Tippy>
 
                   <Tippy
-                    content={`Xóa phiếu yêu cầu ${billRequest.name}`}
+                    content={`Xóa lịch ${farmCalendar.product_name}`}
                     theme="light"
                   >
                     <Button
@@ -114,7 +138,7 @@ const BillRequestTable = (props: BillRequestTableProps) => {
                       variant="contained"
                       disableElevation={true}
                       onClick={() => {
-                        props.handleDeleteBillRequest(billRequest);
+                        props.handleDeleteFarmCalendar(farmCalendar);
                       }}
                     >
                       <Delete />
@@ -248,4 +272,4 @@ const BillRequestTable = (props: BillRequestTableProps) => {
   );
 };
 
-export default BillRequestTable;
+export default FarmCalendarChartTable;

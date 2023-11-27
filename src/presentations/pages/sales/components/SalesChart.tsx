@@ -7,6 +7,7 @@ import images from "../../../../assets/images";
 //Style
 import classNames from "classnames/bind";
 import styles from "./SalesChart.module.scss";
+import VerticalChart from "../../../components/chart/VerticalChart";
 
 const cx = classNames.bind(styles);
 
@@ -15,8 +16,12 @@ const SalesChart = () => {
 
   return (
     <Grid className={cx("wrapper")} mt={"20px"}>
-      <Grid className={cx("container")} container>
-        <Grid item lg={4}>
+      <Grid
+        className={cx("container")}
+        container
+        justifyContent={"space-between"}
+      >
+        <Grid item lg={4} className={cx("dashboard-item")}>
           <Grid className={cx("upgrade-wrapper")}>
             <Grid className={cx("upgrade-heading")}>
               <Alert severity="warning" className={cx("alert")}>
@@ -106,6 +111,35 @@ const SalesChart = () => {
                 </Grid>
               </Grid>
             </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item lg={7.8} className={cx("dashboard-wrapper")}>
+          <Grid>
+            <h4 style={{ fontSize: "1.5rem", fontWeight: "600" }}>
+              Phân tích bán hàng
+            </h4>
+          </Grid>
+          <Grid container padding={"20px 0"}>
+            <Grid item lg={4} className={cx("dashboard-right-item")}>
+              <p>
+                <span>$3,85K</span> Thu nhập
+              </p>
+            </Grid>
+            <Grid item lg={4} className={cx("dashboard-right-item")}>
+              <p>
+                <span>258</span> Việc bán hàng
+              </p>
+            </Grid>
+            <Grid item lg={4} className={cx("dashboard-right-item")}>
+              <p>
+                <span>52K</span> Người dùng
+              </p>
+            </Grid>
+          </Grid>
+          <Grid>
+            {" "}
+            <VerticalChart />
           </Grid>
         </Grid>
       </Grid>

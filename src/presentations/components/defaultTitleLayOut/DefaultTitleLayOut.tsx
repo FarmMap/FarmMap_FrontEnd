@@ -30,11 +30,16 @@ interface DefaultManagerLayOutProps {
 const DefaultTitleLayOut: React.FC<DefaultManagerLayOutProps> = (props) => {
   const [checkCooperator, setCheckCooperator] = useState(false);
 
-  // useEffect(() => {
-  //   if (window.location.href.indexOf("") !== 1) {
-  //     setShowHeading(false);
-  //   }
-  // }, [showHeading]);
+  useEffect(() => {
+    if (
+      window.location.href.indexOf("lich-canh-tac/thong-ke") !== -1 ||
+      window.location.href.indexOf("nong-trai/lich-canh-tac") !== -1
+    ) {
+      setCheckCooperator(true);
+    } else {
+      setCheckCooperator(false);
+    }
+  }, [checkCooperator]);
 
   return (
     <div className={cx("wrapper")}>

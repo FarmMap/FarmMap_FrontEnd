@@ -22,8 +22,7 @@ import VisitorPage from "./presentations/pages/visitor/VisitorPage";
 import IngredientPage from "./presentations/pages/ingredient/IngredientPage";
 
 import SalePage from "./presentations/pages/sales/SalePage";
-
-
+import FarmCalendarChartPage from "./presentations/pages/farmCalendarChart/FarmCalendarChartPage";
 
 //Style
 
@@ -46,6 +45,10 @@ const App: React.FC = () => {
             path="/nong-trai/lich-canh-tac"
             element={<FarmCalendarPage />}
           />
+          <Route
+            path="/lich-canh-tac/thong-ke"
+            element={<FarmCalendarChartPage />}
+          />
           <Route path="/thiet-bi-iot" element={<IotPage />} />
           <Route path="/danh-sach-yeu-cau/thu-chi" element={<ExpensePage />} />
           <Route path="/lien-he" element={<ProvidorPage />} />
@@ -65,7 +68,6 @@ const App: React.FC = () => {
             path="/danh-sach-yeu-cau/khach-tham-quan"
             element={<VisitorPage />}
           />
-          
         </Route>
       </Routes>
     </div>

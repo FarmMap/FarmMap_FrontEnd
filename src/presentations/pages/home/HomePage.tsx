@@ -37,9 +37,7 @@ import MaterialChart from "../../components/chart/home/pie_material";
 // Style
 import classNames from "classnames/bind";
 import styles from "./HomePage.module.scss";
-import { Schedule } from "@mui/icons-material";
-import PieWareHouse from "../../components/chart/home/pie_agri";
-import PieActiveArc from "../../components/chart/home/pie_agri";
+
 import PieAgri from "../../components/chart/home/pie_agri";
 import PieMaterialHomeChart from "../../components/chart/home/pie_material";
 import PieSuppliesHomeChart from "../../components/chart/home/pie_supplies";
@@ -396,7 +394,7 @@ const HomePage = () => {
                               option.name as string
                             }
                             noOptionsText="Không tìm thấy phường xã nào"
-                            onChange={() => { }}
+                            onChange={() => {}}
                             sx={{ width: "100%" }}
                             renderOption={(props, option) => (
                               <MenuItem {...props} divider>
@@ -725,7 +723,6 @@ const HomePage = () => {
               <XuatKhoDashBoard />
             </Grid>
           </Grid>
-
 
           <Grid
             lg={4.8}

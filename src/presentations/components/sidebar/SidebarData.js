@@ -9,10 +9,9 @@ import GrassIcon from '@mui/icons-material/Grass';
 import PropTypes from 'prop-types';
 import StoreIcon from '@mui/icons-material/Store';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import ShopIcon from '@mui/icons-material/Shop';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
-import { BookOnline, BookRounded, CallMadeRounded, CallTwoTone, Money, Pets, PetsTwoTone, SettingsTwoTone, Task, TaskRounded, Wallet } from '@mui/icons-material';
+import { BookRounded, CallTwoTone, PetsTwoTone, SettingsTwoTone, TaskRounded, Wallet } from '@mui/icons-material';
 
 export const SidebarData = [
     {
@@ -58,7 +57,7 @@ export const SidebarData = [
 
             {
                 title: "Lịch canh tác",
-                path: "/nong-trai/lich-canh-tac"
+                path: "/lich-canh-tac/thong-ke"
             },
             {
                 title: "Lịch chăm sóc",

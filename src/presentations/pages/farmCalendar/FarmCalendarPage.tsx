@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 // Ex
 import { Grid, MenuItem, Pagination, Select } from "@mui/material";
+
+import AddIcon from "@mui/icons-material/Add";
 // In
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
@@ -15,7 +17,8 @@ import FarmCalendar from "../../../data/types/FarmCalendar";
 import { toast } from "react-toastify";
 import KDialog from "../../components/kDialog/KDialog";
 import useDeleteFarmCalendar from "../../../api/FarmCalendar/useDeleteFarmCalendar";
-
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import { Button } from "antd";
 // Style imports
 import classNames from "classnames/bind";
 import styles from "./FarmCalendar.module.scss";
@@ -189,6 +192,27 @@ const FarmCalendarPage = () => {
           handleAddButtonClick={() => {
             setShowModal(true);
           }}
+          btnElement={
+            <Fragment>
+              <Button
+                type="primary"
+                size={"large"}
+                onClick={() =>
+                  (window.location.href = "/lich-canh-tac/thong-ke")
+                }
+                style={{ marginRight: "12px" }}
+              >
+                <ArrowBackOutlinedIcon style={{ height: "24px" }} />
+              </Button>
+              <Button
+                type="primary"
+                size={"large"}
+                onClick={() => setShowModal(true)}
+              >
+                <AddIcon style={{ height: "24px" }} />
+              </Button>
+            </Fragment>
+          }
         >
           <DefaultFilterLayOut
             searchs={[
@@ -211,13 +235,14 @@ const FarmCalendarPage = () => {
                   }}
                   value={""}
                   displayEmpty
-                  onChange={() => { }}
+                  onChange={() => {}}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
                   </MenuItem>
                 </Select>
               </Fragment>,
+
               <Fragment>
                 <label htmlFor="select">Đơn vị</label>
                 <Select
@@ -229,14 +254,13 @@ const FarmCalendarPage = () => {
                   }}
                   value={""}
                   displayEmpty
-                  onChange={() => { }}
+                  onChange={() => {}}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
                   </MenuItem>
                 </Select>
               </Fragment>,
-
             ]}
           ></DefaultFilterLayOut>
         </DefaultTitleLayOut>

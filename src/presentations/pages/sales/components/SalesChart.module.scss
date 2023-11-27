@@ -1,4 +1,5 @@
-.upgrade-wrapper {
+.upgrade-wrapper,
+.dashboard-wrapper {
   box-shadow: 0px 8px 32px rgba(51, 38, 174, 0.08);
   background-color: var(--white-color);
   padding: 20px;
@@ -79,13 +80,13 @@
   justify-content: space-between;
 
   .report-heading {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     font-weight: 600;
   }
 }
 
 .report-heading-reportBy {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 600;
 
   p {
@@ -103,7 +104,7 @@
 
 .month-content {
   h5 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 500;
     color: #74788d;
   }
@@ -118,19 +119,19 @@
     background-color: rgba(81, 210, 140, 0.1);
     padding: 4px 8px;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 }
 
 .percentLast-wrapper {
   p {
     display: flex;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: #74788d;
   }
   span {
     color: #51d28c;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     display: flex;
     margin-right: 8px;
     align-items: center;
@@ -145,7 +146,7 @@
     padding: 6px 10px !important;
     border-radius: 4px !important;
     box-shadow: none !important;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     text-transform: none;
     svg {
       width: 12px;
@@ -156,5 +157,21 @@
       color: #fff !important;
       background-color: #74788d !important;
     }
+  }
+}
+
+.dashboard-right-item {
+  text-align: center;
+  font-size: 1.4rem;
+  border-right: 1px solid var(--border-color);
+
+  &:first-child {
+    span {
+      color: #038edc;
+    }
+  }
+  span {
+    color: #495057;
+    font-size: 2.4rem;
   }
 }
