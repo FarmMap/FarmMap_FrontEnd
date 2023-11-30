@@ -4,8 +4,24 @@ import { toast } from "react-toastify";
 import UserAccount from "../data/types/UserAccount";
 import useAuth from "../api/Login/useAuth";
 import { UserContext } from "../api/Login/useContext";
+import { useEffect, useState } from "react";
+
 const PrivateRoute = () => {
   const [user, errorMessage] = useAuth();
+  const [showErrorToast, setShowErrorToast] = useState(false);
+
+  useEffect(() => {
+    if (errorMessage !== undefined && showErrorToast) {
+      toast.error(`${errorMessage}`);
+      setShowErrorToast(false);
+    }
+  }, [errorMessage, showErrorToast]);
+
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      setShowErrorToast(true);
+    }
+  }, [errorMessage]);
 
   if (user === undefined && errorMessage === undefined) {
     return (
@@ -17,13 +33,9 @@ const PrivateRoute = () => {
           height: "100vh",
         }}
       >
-        {" "}
         <CircularProgress />
       </div>
     );
-  }
-  if (errorMessage !== undefined) {
-    toast.error(`${errorMessage}`);
   }
 
   if (user !== undefined) {

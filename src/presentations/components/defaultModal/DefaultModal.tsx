@@ -15,7 +15,7 @@ const cx = classNames.bind(styles);
 
 interface DefaultModalProps {
   children: JSX.Element;
-  title: string;
+  title: string | JSX.Element;
   overrideMaxWidth?: SystemStyleObject<Theme>;
   onClose: () => void;
 }
