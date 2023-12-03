@@ -20,9 +20,9 @@ import MaterialPage from "./presentations/pages/material/MaterialPage";
 import BillRequestPage from "./presentations/pages/billRequest/BillRequestPage";
 import VisitorPage from "./presentations/pages/visitor/VisitorPage";
 import IngredientPage from "./presentations/pages/ingredient/IngredientPage";
-
 import SalePage from "./presentations/pages/sales/SalePage";
 import FarmCalendarChartPage from "./presentations/pages/farmCalendarChart/FarmCalendarChartPage";
+import ArgiProductPage from "./presentations/pages/argiProduct/ArgiProductPage";
 
 //Style
 
@@ -41,6 +41,7 @@ const App: React.FC = () => {
           <Route path="/nong-nghiep/trang-trai" element={<CompanyPage />} />
           <Route path="/nong-nghiep/khu-canh-tac" element={<InforPage />} />
           <Route path="/nong-nghiep/vung-canh-tac" element={<AreaPage />} />
+
           <Route
             path="/nong-trai/lich-canh-tac"
             element={<FarmCalendarPage />}
@@ -52,14 +53,18 @@ const App: React.FC = () => {
           <Route path="/thiet-bi-iot" element={<IotPage />} />
           <Route path="/danh-sach-yeu-cau/thu-chi" element={<ExpensePage />} />
           <Route path="/lien-he" element={<ProvidorPage />} />
+
           <Route path="/nong-san/cay-trong" element={<PlantPage />} />
-          <Route path="/nong-san/cong-viec-trong-ngay" element={<TodoPage />} />
           <Route
-            path="/kho/danh-sach-yeu-cau-vat-tu"
-            element={<MaterialPage />}
+            path="/nong-san/san-pham-nong-san"
+            element={<ArgiProductPage />}
           />
+          <Route path="/cong-viec" element={<TodoPage />} />
+
+          <Route path="/kho/quan-ly-vat-tu" element={<MaterialPage />} />
           <Route path="/kho/nguyen-lieu" element={<IngredientPage />} />
           <Route path="/banhang/thong-ke" element={<SalePage />} />
+
           <Route
             path="/danh-sach-yeu-cau/yeu-cau"
             element={<BillRequestPage />}

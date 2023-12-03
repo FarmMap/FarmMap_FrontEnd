@@ -80,12 +80,12 @@ export const SidebarData = [
 
         subnav: [
             {
-                title: "Cây trồng",
-                path: "/nong-san/cay-trong"
+                title: "Sản phẩm nông sản",
+                path: "/nong-san/san-pham-nong-san"
             },
             {
-                title: "Đặc tính bệnh học",
-                path: "/nong-san/dac-tinh-benh-hoc"
+                title: "Cây trồng",
+                path: "/nong-san/cay-trong"
             },
 
         ]
@@ -174,7 +174,7 @@ export const SidebarData = [
     },
     {
         title: "Công việc",
-        path: "/nong-san/cong-viec",
+        path: "/cong-viec",
         icon: <TaskRounded />,
         openIcon: <ArrowDropUpIcon />,
         closeIcon: <ArrowDropDownIcon />,

@@ -9,7 +9,6 @@ import {
   Grid,
   ListItemText,
   MenuItem,
-  Popper,
   TextField,
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
@@ -17,18 +16,12 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 // In
 import FormInput from "../../components/formInput/FormInput";
 import useFetchLandList from "../../../api/Land/useFetchLandList";
 import DefaultModal from "../../components/defaultModal";
 import Land from "../../../data/types/Land";
 import Todo from "../../../data/types/Todo";
-import FormDropdown, {
-  DropdownOption,
-} from "../../components/formDropDown/FormDropdown";
-import useFetchUserList from "../../../api/Login/useFetchUserList";
-import useFetchProductType from "../../../api/Land/useFetchProductType";
 
 // Style imports
 import classNames from "classnames/bind";
@@ -49,14 +42,6 @@ interface TodoModalProps {
   setCrop: React.Dispatch<React.SetStateAction<Plant>>;
   onSubmit: (todo: Todo | undefined) => void;
 }
-
-const inputStyle = {
-  "& .MuiOutlinedInput-root": {
-    "&.Mui-focused fieldset": {
-      borderColor: "#0abb87",
-    },
-  },
-};
 
 const TodoModal = (props: TodoModalProps) => {
   // fetch lands

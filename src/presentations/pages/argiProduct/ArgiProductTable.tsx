@@ -12,22 +12,22 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 // Internal imports
 import { ListIcon } from "../../components/sidebar/SidebarData";
-import Visitor from "../../../data/types/Visitor";
-
+import ImageIcon from "@mui/icons-material/Image";
+import ArgiProduct from "../../../data/types/ArgiProduct";
+import { toReadableDate } from "../../../utils/Utils";
 // Style imports
 import classNames from "classnames/bind";
-import styles from "./Visitor.module.scss";
-import { STATUSVISITOR } from "../../../constants/Constants";
-import { toReadableDate } from "../../../utils/Utils";
+import styles from "./ArgiProduct.module.scss";
 const cx = classNames.bind(styles);
 
-interface VisitorTableProps {
-  visitors: Visitor[];
-  handleDeleteVisitor: (visitor: Visitor) => void;
-  handleEditVisitor: (visitor: Visitor) => void;
+interface ArgiProductTableProps {
+  argiProducts: ArgiProduct[];
+  handleGetImgArgiProduct: (argiProduct: ArgiProduct) => void;
+  handleDeleteArgiProduct: (argiProduct: ArgiProduct) => void;
+  handleEditArgiProduct: (argiProduct: ArgiProduct) => void;
 }
 
-const VisitorTable = (props: VisitorTableProps) => {
+const ArgiProductTable = (props: ArgiProductTableProps) => {
   return (
     <Grid>
       {/* on PC */}
@@ -45,39 +45,38 @@ const VisitorTable = (props: VisitorTableProps) => {
           <thead>
             <tr>
               <th>#</th>
-              <th>Tên khách</th>
+              <th>Trang trại</th>
+              <th>Tên sản phẩm</th>
+              <th>Giá tiền</th>
               <th>Số lượng</th>
-              <th>Ngày tiếp đón</th>
-              <th>Trạng thái</th>
-              <th>Ghi chú</th>
+              <th>Trọng lượng</th>
+              <th>Thời gian</th>
               <th>Chức năng</th>
             </tr>
           </thead>
           <tbody>
-            {props.visitors.map((visitor, i) => (
+            {props.argiProducts.map((argiProduct, i) => (
               <tr key={i}>
                 <td>
                   <p>{i + 1}</p>
                 </td>
                 <td>
-                  <p>{visitor.name}</p>
+                  <p>{argiProduct.farm?.name}</p>
                 </td>
                 <td>
-                  <p>{visitor.quantity}</p>
+                  <p>{argiProduct.name}</p>
                 </td>
                 <td>
-                  <p>{toReadableDate(visitor.receptionDay ?? "")}</p>
+                  <p>{argiProduct.money}</p>
                 </td>
                 <td>
-                  {STATUSVISITOR.map((item, i) => (
-                    <span key={i}>
-                      {item.value == visitor.status && item.name}
-                    </span>
-                  ))}
+                  <p>{argiProduct.quantity}</p>
                 </td>
-
                 <td>
-                  <p>{visitor.description}</p>
+                  <p>{argiProduct.weight}</p>
+                </td>
+                <td>
+                  <p>{toReadableDate(argiProduct.time)}</p>
                 </td>
 
                 <td
@@ -87,14 +86,14 @@ const VisitorTable = (props: VisitorTableProps) => {
                   }}
                 >
                   <Tippy
-                    content={`Sửa thông tin phiếu yêu cầu ${visitor.name}`}
+                    content={`Sửa thông tin sản phẩm ${argiProduct.name}`}
                     theme="light"
                   >
                     <Button
                       className={cx("btn-edit")}
                       variant="contained"
                       onClick={() => {
-                        props.handleEditVisitor(visitor);
+                        props.handleEditArgiProduct(argiProduct);
                       }}
                       disableElevation={true}
                     >
@@ -103,7 +102,21 @@ const VisitorTable = (props: VisitorTableProps) => {
                   </Tippy>
 
                   <Tippy
-                    content={`Xóa phiếu yêu cầu ${visitor.name}`}
+                    content={`Xem ảnh sản phẩm ${argiProduct.name}`}
+                    theme="light"
+                  >
+                    <Button
+                      className={cx("btn-image")}
+                      variant="contained"
+                      onClick={() => props.handleGetImgArgiProduct(argiProduct)}
+                      disableElevation={true}
+                    >
+                      <ImageIcon />
+                    </Button>
+                  </Tippy>
+
+                  <Tippy
+                    content={`Xóa sản phẩm ${argiProduct.name}`}
                     theme="light"
                   >
                     <Button
@@ -111,7 +124,7 @@ const VisitorTable = (props: VisitorTableProps) => {
                       variant="contained"
                       disableElevation={true}
                       onClick={() => {
-                        props.handleDeleteVisitor(visitor);
+                        props.handleDeleteArgiProduct(argiProduct);
                       }}
                     >
                       <Delete />
@@ -245,4 +258,4 @@ const VisitorTable = (props: VisitorTableProps) => {
   );
 };
 
-export default VisitorTable;
+export default ArgiProductTable;
