@@ -11,6 +11,7 @@ const images = {
   cloudSun: require("../images/cloudSun.png"),
   phone: require("../images/phone.png"),
   coGaiVoTri: require("../images/coGaiVoTri.png"),
+  botChatLogo: require("../images/botChatLogo.jpg"),
 };
 
 export default images;

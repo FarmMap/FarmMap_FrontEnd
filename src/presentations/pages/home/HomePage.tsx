@@ -28,19 +28,16 @@ import { LatLngExpression } from "leaflet";
 import useFetchLandList from "../../../api/Land/useFetchLandList";
 
 import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
-import VerticalChart, { data } from "../../components/chart/VerticalChart";
+import VerticalChart from "../../components/chart/VerticalChart";
 
-import MyResponsivePie from "../../components/chart/home/pie_supplies";
 import KhoDashBoard from "./KhoDashBoard";
 import XuatKhoDashBoard from "./XuatKhoDashBoard";
-import MaterialChart from "../../components/chart/home/pie_material";
-// Style
-import classNames from "classnames/bind";
-import styles from "./HomePage.module.scss";
-
 import PieAgri from "../../components/chart/home/pie_agri";
 import PieMaterialHomeChart from "../../components/chart/home/pie_material";
 import PieSuppliesHomeChart from "../../components/chart/home/pie_supplies";
+// Style
+import classNames from "classnames/bind";
+import styles from "./HomePage.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -146,7 +143,14 @@ const HomePage = () => {
     <DefaultWebLayOut>
       <Grid>
         <Grid>
-          <h4>Bảng điều khiển</h4>
+          <h4
+            style={{
+              color: "var(--black-color)",
+              fontWeight: "500",
+            }}
+          >
+            Bảng điều khiển
+          </h4>
         </Grid>
         <Grid
           mt={"12px"}
@@ -168,7 +172,9 @@ const HomePage = () => {
               }}
             >
               <Grid display={"flex"} justifyContent={"space-between"}>
-                <span className={cx("title")}>{data.title}</span>
+                <span style={{ color: "#000" }} className={cx("title")}>
+                  {data.title}
+                </span>
                 <span
                   className={cx("percent")}
                   style={{ color: `${data.color}`, fontWeight: 600 }}
@@ -181,7 +187,12 @@ const HomePage = () => {
                 justifyContent={"space-between"}
                 mt={"5px"}
               >
-                <span className={cx("quality")}>{data.quality}</span>
+                <span
+                  className={cx("quality")}
+                  style={{ color: `${data.color}`, fontWeight: 600 }}
+                >
+                  {data.quality}
+                </span>
                 <img
                   className={cx("vector")}
                   alt="vector"
@@ -201,16 +212,26 @@ const HomePage = () => {
           <Grid
             item
             lg={7}
+            style={{ backgroundColor: "var(--white-color)" }}
             display={"flex"}
             height={"500px"}
             width={"100%"}
             flexDirection={"column"}
             justifyContent={"space-between"}
-            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            borderRadius={"4px"}
+            boxShadow={"0 2px 3px #eaedf2"}
+            border={"1px solid #eff0f2"}
             padding={"10px 12px 12px 12px"}
           >
             {" "}
-            <span style={{ fontWeight: 600 }}>Bản đồ tổng quát</span>
+            <span
+              style={{
+                color: "var(--black-color)",
+                fontWeight: "500",
+              }}
+            >
+              Bản đồ tổng quát
+            </span>
             <Grid>
               <Grid>
                 <DefaultTitleLayOut
@@ -635,10 +656,20 @@ const HomePage = () => {
             width={"100%"}
             flexDirection={"column"}
             justifyContent={"space-between"}
-            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
-            padding={"10px 12px 32px 12px"}
+            borderRadius={"4px"}
+            style={{ backgroundColor: "var(--white-color)" }}
+            boxShadow={"0 2px 3px #eaedf2"}
+            border={"1px solid #eff0f2"}
+            padding={"10px 12px 12px 12px"}
           >
-            <span style={{ fontWeight: 600 }}>Nông nghiệp</span>
+            <span
+              style={{
+                color: "var(--black-color)",
+                fontWeight: "500",
+              }}
+            >
+              Nông nghiệp
+            </span>
             <Grid
               style={{
                 height: "80%",
@@ -660,7 +691,9 @@ const HomePage = () => {
             item
             lg={7}
             padding={"10px 12px 12px 12px"}
-            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            style={{ backgroundColor: "var(--white-color)" }}
+            boxShadow={"0 2px 3px #eaedf2"}
+            border={"1px solid #eff0f2"}
           >
             <VerticalChart />
           </Grid>
@@ -673,10 +706,19 @@ const HomePage = () => {
             width={"100%"}
             flexDirection={"column"}
             justifyContent={"space-between"}
-            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            style={{ backgroundColor: "var(--white-color)" }}
+            boxShadow={"0 2px 3px #eaedf2"}
+            border={"1px solid #eff0f2"}
             padding={"10px 12px 32px 12px"}
           >
-            <span style={{ fontWeight: 600 }}>Vật tư</span>
+            <span
+              style={{
+                color: "var(--black-color)",
+                fontWeight: "500",
+              }}
+            >
+              Vật tư
+            </span>
             <Grid
               style={{
                 height: "100%",
@@ -702,7 +744,9 @@ const HomePage = () => {
             width={"100%"}
             flexDirection={"column"}
             justifyContent={"space-between"}
-            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            style={{ backgroundColor: "var(--white-color)" }}
+            boxShadow={"0 2px 3px #eaedf2"}
+            border={"1px solid #eff0f2"}
             padding={"10px 12px 32px 12px"}
           >
             <span style={{ fontWeight: 600 }}>Nhập hàng</span>
@@ -732,10 +776,19 @@ const HomePage = () => {
             width={"100%"}
             flexDirection={"column"}
             justifyContent={"space-between"}
-            boxShadow={"0px 8px 32px rgba(51, 38, 174, 0.08)"}
+            style={{ backgroundColor: "var(--white-color)" }}
+            boxShadow={"0 2px 3px #eaedf2"}
+            border={"1px solid #eff0f2"}
             padding={"10px 12px 32px 12px"}
           >
-            <span style={{ fontWeight: 600 }}>Kho</span>
+            <span
+              style={{
+                color: "var(--black-color)",
+                fontWeight: "500",
+              }}
+            >
+              Kho
+            </span>
             <Grid
               style={{
                 height: "85%",

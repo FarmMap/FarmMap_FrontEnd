@@ -1,0 +1,47 @@
+.cs-message__content,
+.cs-message-input__content-editor {
+  font-size: 1.4rem !important;
+}
+
+.cs-message__content {
+  margin: 8px 0;
+}
+
+.cs-message-list__scroll-wrapper {
+  padding: 8px 12px 0 8px !important
+  ;
+}
+
+.svg-inline--fa.fa-w-14,
+.svg-inline--fa.fa-w-16 {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.cs-chat-container .cs-message-input {
+  padding: 8px 4px !important;
+}
+
+.cs-message-input__content-editor-wrapper {
+  padding: 10px !important;
+}
+
+.cs-main-container {
+  border: none !important;
+}
+
+.cs-message-list__scroll-wrapper,
+.cs-message-input,
+.cs-typing-indicator {
+  background-color: var(--bgr-body-content-app) !important;
+}
+
+.message-wrap {
+  display: flex;
+
+  img {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+  }
+}

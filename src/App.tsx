@@ -23,7 +23,8 @@ import IngredientPage from "./presentations/pages/ingredient/IngredientPage";
 import SalePage from "./presentations/pages/sales/SalePage";
 import FarmCalendarChartPage from "./presentations/pages/farmCalendarChart/FarmCalendarChartPage";
 import ArgiProductPage from "./presentations/pages/argiProduct/ArgiProductPage";
-
+import SupportPage from "./presentations/pages/support/SupportPage";
+import ProfilePage from "./presentations/pages/proFile/ProfilePage";
 //Style
 
 const App: React.FC = () => {
@@ -69,10 +70,12 @@ const App: React.FC = () => {
             path="/danh-sach-yeu-cau/yeu-cau"
             element={<BillRequestPage />}
           />
+          <Route path="/tu-van" element={<SupportPage />} />
           <Route
             path="/danh-sach-yeu-cau/khach-tham-quan"
             element={<VisitorPage />}
           />
+          <Route path="/trang-ca-nhan" element={<ProfilePage />} />
         </Route>
       </Routes>
     </div>

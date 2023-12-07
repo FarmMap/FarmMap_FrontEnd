@@ -79,7 +79,7 @@ $green-color: #0abb87;
   cursor: pointer;
 
   &:hover {
-    background-color: var(--hover-black);
+    opacity: 0.9;
   }
 }
 
@@ -120,7 +120,7 @@ $green-color: #0abb87;
 }
 
 .account-dropdown-wrapper {
-  width: 380px;
+  width: 230px;
   max-width: 100%;
   min-height: 100px;
   background-color: var(--white-color);
@@ -141,7 +141,7 @@ $green-color: #0abb87;
   background-size: cover;
   background-repeat: no-repeat;
 
-  padding: 18px 24px;
+  padding: 8px 16px;
   background-color: #f9fafe;
 
   .user-cart-name {
@@ -152,8 +152,8 @@ $green-color: #0abb87;
 
     .accountinfo-username {
       font-weight: 600;
-      text-transform: uppercase;
       color: var(--blue-hover-color);
+      font-size: 1.4rem;
       cursor: pointer;
     }
 
@@ -162,7 +162,7 @@ $green-color: #0abb87;
       font-size: 1.2rem;
       font-weight: 500;
       text-transform: unset;
-      color: var(--white-color);
+      color: var(--black-color);
     }
   }
 
@@ -187,7 +187,6 @@ $green-color: #0abb87;
 .change-pass {
   @include d-flx-al-item;
   padding: 1.1rem 1.5rem;
-  border-bottom: 1px solid #e9eaed;
   transition: background-color 0.3s ease;
   cursor: pointer;
 
@@ -197,12 +196,16 @@ $green-color: #0abb87;
 
   .change-pass-icon {
     @include d-flx-al-item;
-    flex: 0 0 2.5rem;
+    justify-content: center;
+    background-color: var(--border-color);
+    margin-right: 12px;
+    border-radius: 50%;
+    padding: 4px;
 
     svg {
-      width: 20px;
+      width: 22px;
       height: 20px;
-      color: $green-color;
+      color: var(--black-color);
     }
   }
 
@@ -211,7 +214,7 @@ $green-color: #0abb87;
     height: 100%;
     flex-grow: 1;
     transition: color 0.3s ease;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 400;
     color: #595d6e;
   }
@@ -232,22 +235,6 @@ $green-color: #0abb87;
   display: flex;
   justify-content: flex-end;
   padding: 20px 18px;
-
-  button {
-    box-shadow: 0 8px 0 var(--blue-hover-color);
-    transition: 0.3s;
-
-    &:hover {
-      background-color: var(--blue-color);
-      box-shadow: 0 8px 0 var(--blue-hover-color);
-      opacity: 0.9;
-    }
-
-    &:active {
-      box-shadow: none;
-      transform: translateY(5px);
-    }
-  }
 }
 
 @keyframes topToDown {

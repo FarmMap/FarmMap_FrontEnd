@@ -1,5 +1,5 @@
 // External files
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 // Internal files
 import Sidebar from "../sidebar";
@@ -17,6 +17,18 @@ interface DefaultWebLayOutProps {
 const DefaultWebLayOut: React.FC<DefaultWebLayOutProps> = ({ children }) => {
   // Open sidebar
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
+  const [checkCooperator, setCheckCooperator] = useState(false);
+
+  useEffect(() => {
+    if (
+      window.location.pathname === "/" ||
+      window.location.pathname === "/tu-van"
+    ) {
+      setCheckCooperator(true);
+    } else {
+      setCheckCooperator(false);
+    }
+  }, [checkCooperator]);
 
   return (
     <Grid>
@@ -77,7 +89,13 @@ const DefaultWebLayOut: React.FC<DefaultWebLayOutProps> = ({ children }) => {
 
           {/* Content */}
           <Grid className={cx("content-body-wrapper")}>
-            <div className={cx("content-body")}>{children}</div>
+            <div
+              className={
+                !checkCooperator ? cx("content-body") : cx("content-body-gray")
+              }
+            >
+              {children}
+            </div>
           </Grid>
         </div>
       </Grid>

@@ -1,5 +1,5 @@
 // External
-import React from "react";
+import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 import Tippy from "@tippyjs/react";
@@ -30,6 +30,7 @@ interface HeaderRightProps {
 }
 
 const HeaderRight: React.FC<HeaderRightProps> = (props: HeaderRightProps) => {
+  const [showAccount, setShowAccount] = useState<boolean>(false);
   return (
     <div className={cx("wrapper")}>
       <div className={cx("wrapper-icon")}>
@@ -80,12 +81,12 @@ const HeaderRight: React.FC<HeaderRightProps> = (props: HeaderRightProps) => {
           // onChangePasswordClick={() => props.onChangePasswordClick()}
           />
         }
-        visible={false}
+        visible={showAccount}
       >
         <Tippy content={`thienan1804`} placement="bottom" theme="light">
           <div
             className={cx("accout-wrapper")}
-            // onClick={() => setShowAccount(!showAccount)}
+            onClick={() => setShowAccount(!showAccount)}
           >
             <div className={cx("username-wrapper")}>
               <span className={cx("username")}>Nguyễn Thiên Ân</span>
