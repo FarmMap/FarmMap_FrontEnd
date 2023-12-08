@@ -53,7 +53,6 @@ const App: React.FC = () => {
           />
           <Route path="/thiet-bi-iot" element={<IotPage />} />
           <Route path="/danh-sach-yeu-cau/thu-chi" element={<ExpensePage />} />
-          <Route path="/lien-he" element={<ProvidorPage />} />
 
           <Route path="/nong-san/cay-trong" element={<PlantPage />} />
           <Route
@@ -70,6 +69,7 @@ const App: React.FC = () => {
             path="/danh-sach-yeu-cau/yeu-cau"
             element={<BillRequestPage />}
           />
+          <Route path="/so-tay" element={<ProvidorPage />} />
           <Route path="/tu-van" element={<SupportPage />} />
           <Route
             path="/danh-sach-yeu-cau/khach-tham-quan"
