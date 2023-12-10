@@ -1,0 +1,25 @@
+.filter-dropdown {
+  display: block;
+  width: 100%;
+  min-width: 100px;
+  height: calc(1.5em + 1.3rem + 2px);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.filter-dropdown legend {
+  width: 0px;
+}
+
+.filter-dropdown fieldset {
+  border: none;
+}
+
+/*# sourceMappingURL=Schedule.module.css.map */

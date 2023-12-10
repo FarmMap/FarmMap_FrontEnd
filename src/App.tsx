@@ -25,6 +25,9 @@ import FarmCalendarChartPage from "./presentations/pages/farmCalendarChart/FarmC
 import ArgiProductPage from "./presentations/pages/argiProduct/ArgiProductPage";
 import SupportPage from "./presentations/pages/support/SupportPage";
 import ProfilePage from "./presentations/pages/proFile/ProfilePage";
+import SchedulePage from "./presentations/pages/careSchedule/SchedulePage";
+import FarmDiseasesPage from "./presentations/pages/farmDiseases/FarmDiseasesPage";
+import HouseGoodsPage from "./presentations/pages/goods/HouseGoodsPage";
 //Style
 
 const App: React.FC = () => {
@@ -48,6 +51,15 @@ const App: React.FC = () => {
             element={<FarmCalendarPage />}
           />
           <Route
+            path="/nong-trai/lich-benh"
+            element={<FarmDiseasesPage />}
+          />
+          <Route
+            path="/nong-trai/lich-cham-soc"
+            
+            element={<SchedulePage />}
+          />
+          <Route
             path="/lich-canh-tac/thong-ke"
             element={<FarmCalendarChartPage />}
           />
@@ -64,6 +76,7 @@ const App: React.FC = () => {
 
           <Route path="/kho/quan-ly-vat-tu" element={<MaterialPage />} />
           <Route path="/kho/nguyen-lieu" element={<IngredientPage />} />
+          <Route path="/kho/hang-hoa" element={<HouseGoodsPage />} />
           <Route path="/banhang/thong-ke" element={<SalePage />} />
 
           <Route
