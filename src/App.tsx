@@ -28,6 +28,8 @@ import ProfilePage from "./presentations/pages/proFile/ProfilePage";
 import SchedulePage from "./presentations/pages/careSchedule/SchedulePage";
 import FarmDiseasesPage from "./presentations/pages/farmDiseases/FarmDiseasesPage";
 import HouseGoodsPage from "./presentations/pages/goods/HouseGoodsPage";
+import ProductDeliveryPage from "./presentations/pages/productdelivery/ProductDeliveryPage";
+import FarmHarvestPage from "./presentations/pages/harvest/FarmHarvestPage";
 //Style
 
 const App: React.FC = () => {
@@ -45,7 +47,7 @@ const App: React.FC = () => {
           <Route path="/nong-nghiep/trang-trai" element={<CompanyPage />} />
           <Route path="/nong-nghiep/khu-canh-tac" element={<InforPage />} />
           <Route path="/nong-nghiep/vung-canh-tac" element={<AreaPage />} />
-
+          
           <Route
             path="/nong-trai/lich-canh-tac"
             element={<FarmCalendarPage />}
@@ -76,6 +78,8 @@ const App: React.FC = () => {
 
           <Route path="/kho/quan-ly-vat-tu" element={<MaterialPage />} />
           <Route path="/kho/nguyen-lieu" element={<IngredientPage />} />
+          <Route path="/kho/xuat-kho" element={<ProductDeliveryPage />} />
+          <Route path="/kho/thu-hoach" element={<FarmHarvestPage />}/>
           <Route path="/kho/hang-hoa" element={<HouseGoodsPage />} />
           <Route path="/banhang/thong-ke" element={<SalePage />} />
 
