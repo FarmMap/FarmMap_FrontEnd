@@ -37,19 +37,26 @@ const PlantModal = (props: PlantModalProps) => {
   });
 
   // Xử lý ảnh
+  const [isEdit, setIsEdit] = useState(false);
   const [imageURLs, setImageURLs] = useState<string[]>([]);
   const fileInputRef = useRef(null);
-  useEffect(() => {
-    const newAvatars = props.plant?.images;
-    if (newAvatars && newAvatars.length > 0) {
-      const urls = newAvatars.map((avatar) => URL.createObjectURL(avatar));
-      setImageURLs(urls);
 
-      return () => {
-        urls.forEach((url) => URL.revokeObjectURL(url));
-      };
+  useEffect(() => {
+    if (props.title == "Thêm cây trồng") {
+      setIsEdit(false);
+      const newAvatars = props.plant?.images;
+      if (newAvatars && newAvatars.length > 0) {
+        const urls = newAvatars.map((avatar) => URL.createObjectURL(avatar));
+        setImageURLs(urls);
+
+        return () => {
+          urls.forEach((url) => URL.revokeObjectURL(url));
+        };
+      }
+    } else {
+      setIsEdit(true);
     }
-  }, [props.plant?.images]);
+  }, [props.plant?.images, props.title]);
 
   return (
     <DefaultModal
@@ -194,38 +201,46 @@ const PlantModal = (props: PlantModalProps) => {
 
         <Grid item xs={3}></Grid>
         <Grid item xs={7}>
-          <input
-            style={{ display: "none" }}
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            id="file-input"
-            multiple // Cho phép chọn nhiều tệp
-            onChange={(e) => {
-              const fileInput = e.target;
-              if (fileInput && fileInput.files && fileInput.files.length > 0) {
-                const files = Array.from(fileInput.files); // Chuyển đổi FileList thành mảng các File objects
+          {!isEdit && (
+            <input
+              style={{ display: "none" }}
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              id="file-input"
+              multiple // Cho phép chọn nhiều tệp
+              onChange={(e) => {
+                const fileInput = e.target;
+                if (
+                  fileInput &&
+                  fileInput.files &&
+                  fileInput.files.length > 0
+                ) {
+                  const files = Array.from(fileInput.files); // Chuyển đổi FileList thành mảng các File objects
 
-                // Cập nhật state land.images với mảng chứa các File ảnh đã chọn
-                props.setPlant((prevPlant) => ({
-                  ...prevPlant,
-                  images: files, // Set to an array containing the selected File objects
-                }));
-              }
-            }}
-          />
+                  // Cập nhật state land.images với mảng chứa các File ảnh đã chọn
+                  props.setPlant((prevPlant) => ({
+                    ...prevPlant,
+                    images: files, // Set to an array containing the selected File objects
+                  }));
+                }
+              }}
+            />
+          )}
 
-          <label htmlFor="file-input">
-            <Button
-              style={{ marginRight: 12 }}
-              variant="outlined"
-              startIcon={<ImageIcon />}
-              disableElevation={true}
-              component="span"
-            >
-              Thêm ảnh
-            </Button>
-          </label>
+          {!isEdit && (
+            <label htmlFor="file-input">
+              <Button
+                style={{ marginRight: 12 }}
+                variant="outlined"
+                startIcon={<ImageIcon />}
+                disableElevation={true}
+                component="span"
+              >
+                Thêm ảnh
+              </Button>
+            </label>
+          )}
           <Button
             variant="contained"
             startIcon={<SaveIcon />}

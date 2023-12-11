@@ -17,8 +17,8 @@ import DefaultDropDown from "../../defaultDropDown";
 import AccountInfo from "./AccountInfo";
 import images from "../../../../assets/images";
 import DefaultAvatar from "../../defaultAvatar";
-// import { UserContext } from "../../../../shared/Context";
-// import { ROLES } from "../../../../constant/Constants";
+
+import useFetchMyAccount from "../../../../api/Account/useFetchMyAccount";
 
 // Styles
 import classNames from "classnames/bind";
@@ -26,11 +26,14 @@ import styles from "./HeaderRight.module.scss";
 const cx = classNames.bind(styles);
 
 interface HeaderRightProps {
-  //   onChangePasswordClick: () => void;
+  refresh?: boolean;
 }
 
 const HeaderRight: React.FC<HeaderRightProps> = (props: HeaderRightProps) => {
   const [showAccount, setShowAccount] = useState<boolean>(false);
+  const { user } = useFetchMyAccount({
+    shouldRefesh: props.refresh,
+  });
   return (
     <div className={cx("wrapper")}>
       <div className={cx("wrapper-icon")}>
@@ -89,10 +92,13 @@ const HeaderRight: React.FC<HeaderRightProps> = (props: HeaderRightProps) => {
             onClick={() => setShowAccount(!showAccount)}
           >
             <div className={cx("username-wrapper")}>
-              <span className={cx("username")}>Nguyễn Thiên Ân</span>
-              <p className={cx("role")}>Quản trị</p>
+              <span className={cx("username")}>{user.fullName}</span>
+              <p className={cx("role")}>{user.role}</p>
             </div>
-            <DefaultAvatar avatar={images.avatar} small />
+            <DefaultAvatar
+              avatar={`http://116.118.49.43:8878/${user.avatar}`}
+              small
+            />
           </div>
         </Tippy>
       </DefaultDropDown>
