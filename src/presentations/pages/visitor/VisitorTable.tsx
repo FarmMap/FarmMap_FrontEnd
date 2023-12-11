@@ -70,7 +70,9 @@ const VisitorTable = (props: VisitorTableProps) => {
                 </td>
                 <td>
                   {STATUSVISITOR.map((item, i) => (
-                    <p key={i}>{item.value == visitor.status && item.name}</p>
+                    <span key={i}>
+                      {item.value == visitor.status && item.name}
+                    </span>
                   ))}
                 </td>
 

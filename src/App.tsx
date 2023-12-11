@@ -21,6 +21,15 @@ import BillRequestPage from "./presentations/pages/billRequest/BillRequestPage";
 import VisitorPage from "./presentations/pages/visitor/VisitorPage";
 import IngredientPage from "./presentations/pages/ingredient/IngredientPage";
 import SalePage from "./presentations/pages/sales/SalePage";
+import FarmCalendarChartPage from "./presentations/pages/farmCalendarChart/FarmCalendarChartPage";
+import ArgiProductPage from "./presentations/pages/argiProduct/ArgiProductPage";
+import SupportPage from "./presentations/pages/support/SupportPage";
+import ProfilePage from "./presentations/pages/proFile/ProfilePage";
+import SchedulePage from "./presentations/pages/careSchedule/SchedulePage";
+import FarmDiseasesPage from "./presentations/pages/farmDiseases/FarmDiseasesPage";
+import HouseGoodsPage from "./presentations/pages/goods/HouseGoodsPage";
+import ProductDeliveryPage from "./presentations/pages/productdelivery/ProductDeliveryPage";
+import FarmHarvestPage from "./presentations/pages/harvest/FarmHarvestPage";
 //Style
 
 const App: React.FC = () => {
@@ -38,29 +47,52 @@ const App: React.FC = () => {
           <Route path="/nong-nghiep/trang-trai" element={<CompanyPage />} />
           <Route path="/nong-nghiep/khu-canh-tac" element={<InforPage />} />
           <Route path="/nong-nghiep/vung-canh-tac" element={<AreaPage />} />
+          
           <Route
             path="/nong-trai/lich-canh-tac"
             element={<FarmCalendarPage />}
           />
+          <Route
+            path="/nong-trai/lich-benh"
+            element={<FarmDiseasesPage />}
+          />
+          <Route
+            path="/nong-trai/lich-cham-soc"
+            
+            element={<SchedulePage />}
+          />
+          <Route
+            path="/lich-canh-tac/thong-ke"
+            element={<FarmCalendarChartPage />}
+          />
           <Route path="/thiet-bi-iot" element={<IotPage />} />
           <Route path="/danh-sach-yeu-cau/thu-chi" element={<ExpensePage />} />
-          <Route path="/lien-he" element={<ProvidorPage />} />
+
           <Route path="/nong-san/cay-trong" element={<PlantPage />} />
-          <Route path="/nong-san/cong-viec-trong-ngay" element={<TodoPage />} />
           <Route
-            path="/kho/danh-sach-yeu-cau-vat-tu"
-            element={<MaterialPage />}
+            path="/nong-san/san-pham-nong-san"
+            element={<ArgiProductPage />}
           />
+          <Route path="/cong-viec" element={<TodoPage />} />
+
+          <Route path="/kho/quan-ly-vat-tu" element={<MaterialPage />} />
           <Route path="/kho/nguyen-lieu" element={<IngredientPage />} />
+          <Route path="/kho/xuat-kho" element={<ProductDeliveryPage />} />
+          <Route path="/kho/thu-hoach" element={<FarmHarvestPage />}/>
+          <Route path="/kho/hang-hoa" element={<HouseGoodsPage />} />
           <Route path="/banhang/thong-ke" element={<SalePage />} />
+
           <Route
             path="/danh-sach-yeu-cau/yeu-cau"
             element={<BillRequestPage />}
           />
+          <Route path="/so-tay" element={<ProvidorPage />} />
+          <Route path="/tu-van" element={<SupportPage />} />
           <Route
             path="/danh-sach-yeu-cau/khach-tham-quan"
             element={<VisitorPage />}
           />
+          <Route path="/trang-ca-nhan" element={<ProfilePage />} />
         </Route>
       </Routes>
     </div>

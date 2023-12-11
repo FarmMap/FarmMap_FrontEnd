@@ -23,6 +23,8 @@ const cx = classNames.bind(styles);
 interface PlantTableProps {
   plants: Plant[];
   handleGetImgPlant: (plant: Plant) => void;
+  handleDeletePlant: (plant: Plant) => void;
+  handleEditPlant: (plant: Plant) => void;
 }
 
 const PlantTable = (props: PlantTableProps) => {
@@ -49,6 +51,7 @@ const PlantTable = (props: PlantTableProps) => {
               <th>Đặc tính sử dụng cây trồng</th>
               <th>Thu hoạch</th>
               <th>Giá bán giống cây trồng</th>
+              <th>Nhóm cây trồng</th>
               <th>Chức năng</th>
             </tr>
           </thead>
@@ -86,6 +89,7 @@ const PlantTable = (props: PlantTableProps) => {
                     }`}
                   </p>
                 </td>
+                <td>{plant.groupCrop.name}</td>
 
                 <td
                   style={{
@@ -93,6 +97,21 @@ const PlantTable = (props: PlantTableProps) => {
                     textAlign: "center",
                   }}
                 >
+                  <Tippy
+                    content={`Sửa thông tin nhà cung cấp ${plant.name}`}
+                    theme="light"
+                  >
+                    <Button
+                      className={cx("btn-edit")}
+                      variant="contained"
+                      onClick={() => {
+                        props.handleEditPlant(plant);
+                      }}
+                      disableElevation={true}
+                    >
+                      <Edit />
+                    </Button>
+                  </Tippy>
                   <Tippy content={`Xem ảnh ${plant.name}`} theme="light">
                     <Button
                       className={cx("btn-image")}
@@ -101,6 +120,22 @@ const PlantTable = (props: PlantTableProps) => {
                       disableElevation={true}
                     >
                       <ImageIcon />
+                    </Button>
+                  </Tippy>
+
+                  <Tippy
+                    content={`Xóa nhà cung cấp ${plant.name}`}
+                    theme="light"
+                  >
+                    <Button
+                      className={cx("btn-delete")}
+                      variant="contained"
+                      disableElevation={true}
+                      onClick={() => {
+                        props.handleDeletePlant(plant);
+                      }}
+                    >
+                      <Delete />
                     </Button>
                   </Tippy>
                 </td>

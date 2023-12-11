@@ -67,9 +67,9 @@ const BillRequestTable = (props: BillRequestTableProps) => {
                 </td>
                 <td>
                   {STATUSBILL.map((item, i) => (
-                    <p key={i}>
+                    <span key={i}>
                       {item.value == billRequest.status && item.name}
-                    </p>
+                    </span>
                   ))}
                 </td>
 
