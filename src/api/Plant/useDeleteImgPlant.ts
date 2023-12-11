@@ -1,9 +1,9 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useState } from "react";
-import UserAccount from "../../data/types/UserAccount";
+import Plant from "../../data/types/Plant";
 
-interface UpdateUserAccountParams {
-  userByField: UserAccount | undefined;
+interface UpdatePlantParams {
+  plant: Plant | undefined;
 }
 
 interface ResponseError {
@@ -11,40 +11,33 @@ interface ResponseError {
   message: string;
 }
 
-interface useUpdateUserAccountProps {
-  fullName?: string;
-  jobTitle?: string;
-  description?: string;
-  email?: string;
-  phoneNumber?: string;
-  homeTown?: string;
-  address?: string;
+interface useDeleteImgPlantProps {
+  id?: string;
+  removeImages?: File[];
 }
 
-const useUpdateUserAccount = (props: useUpdateUserAccountProps) => {
+const useDeleteImgPlant = (props: useDeleteImgPlantProps) => {
   const [isUpdated, setUpdated] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const updateUserAccount = useCallback(
-    (params: UpdateUserAccountParams) => {
+  const deleteImgPlant = useCallback(
+    (params: UpdatePlantParams) => {
       setUpdated(false);
       setError(null);
 
       var data = new FormData();
-      setLoading(true);
-      data.append("fullName", props.fullName ?? "");
-      data.append("jobTitle", props.jobTitle ?? "");
-      data.append("description", props.description ?? "");
-      data.append("email", props.email ?? "");
-      data.append("phoneNumber", props.phoneNumber ?? "");
-      data.append("homeTown", props.homeTown ?? "");
-      data.append("address", props.address ?? "");
+
+      if (props.removeImages && props.removeImages.length > 0) {
+        props.removeImages.forEach((image) => {
+          data.append("removeImages", image);
+        });
+      }
 
       let config = {
         method: "put",
         maxBodyLength: Infinity,
-        url: `${process.env.REACT_APP_API_BASE_URL}users`,
+        url: `${process.env.REACT_APP_API_BASE_URL}crops/images/delete?cropId=${props.id}`,
         headers: {
           accept: "*/*",
           Authorization: `Bearer ${window.localStorage.getItem("token")}`,
@@ -72,18 +65,10 @@ const useUpdateUserAccount = (props: useUpdateUserAccountProps) => {
           setLoading(false);
         });
     },
-    [
-      props.fullName,
-      props.jobTitle,
-      props.description,
-      props.email,
-      props.phoneNumber,
-      props.homeTown,
-      props.address,
-    ]
+    [props.removeImages, props.id]
   );
 
-  return { isUpdated, setUpdated, error, isLoading, updateUserAccount };
+  return { isUpdated, setUpdated, error, isLoading, deleteImgPlant };
 };
 
-export default useUpdateUserAccount;
+export default useDeleteImgPlant;

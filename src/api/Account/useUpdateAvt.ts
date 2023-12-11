@@ -11,35 +11,27 @@ interface ResponseError {
   message: string;
 }
 
-interface useUpdateUserAccountProps {
-  fullName?: string;
-  jobTitle?: string;
-  description?: string;
-  email?: string;
-  phoneNumber?: string;
-  homeTown?: string;
-  address?: string;
+interface useUpdateUserAvtProps {
+  avatar?: File;
 }
 
-const useUpdateUserAccount = (props: useUpdateUserAccountProps) => {
+const useUpdateUserAvt = (props: useUpdateUserAvtProps) => {
   const [isUpdated, setUpdated] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const updateUserAccount = useCallback(
+  const updateUserAvt = useCallback(
     (params: UpdateUserAccountParams) => {
       setUpdated(false);
       setError(null);
 
       var data = new FormData();
       setLoading(true);
-      data.append("fullName", props.fullName ?? "");
-      data.append("jobTitle", props.jobTitle ?? "");
-      data.append("description", props.description ?? "");
-      data.append("email", props.email ?? "");
-      data.append("phoneNumber", props.phoneNumber ?? "");
-      data.append("homeTown", props.homeTown ?? "");
-      data.append("address", props.address ?? "");
+
+      // Check if avatar is defined before appending to FormData
+      if (props.avatar) {
+        data.append("avatar", props.avatar, props.avatar?.name);
+      }
 
       let config = {
         method: "put",
@@ -72,18 +64,10 @@ const useUpdateUserAccount = (props: useUpdateUserAccountProps) => {
           setLoading(false);
         });
     },
-    [
-      props.fullName,
-      props.jobTitle,
-      props.description,
-      props.email,
-      props.phoneNumber,
-      props.homeTown,
-      props.address,
-    ]
+    [props.avatar]
   );
 
-  return { isUpdated, setUpdated, error, isLoading, updateUserAccount };
+  return { isUpdated, setUpdated, error, isLoading, updateUserAvt };
 };
 
-export default useUpdateUserAccount;
+export default useUpdateUserAvt;

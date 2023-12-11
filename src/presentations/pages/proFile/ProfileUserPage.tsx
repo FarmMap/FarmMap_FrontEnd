@@ -13,6 +13,8 @@ const cx = classNames.bind(styles);
 const ProfileUserPage = () => {
   const { user } = useFetchMyAccount({});
   const [isEdit, setIsEdit] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+
   const [userEdit, setUserEdit] = useState<UserAccount>({
     fullName: user.fullName || "",
     jobTitle: user.jobTitle || "",
@@ -77,8 +79,10 @@ const ProfileUserPage = () => {
     }
 
     if (isSuccess) {
-      toast.success("Cập nhật thành công!");
       setIsEdit(false);
+      toast.success("Cập nhật thành công!");
+      setRefresh((refresh) => !refresh);
+      window.location.href = "/";
     }
   }, [isUpdated, updateAccErr]);
 
@@ -157,7 +161,7 @@ const ProfileUserPage = () => {
             onChange={(e) => {
               let newUser: UserAccount = {
                 ...userEdit,
-                fullName: e.currentTarget.value,
+                email: e.currentTarget.value,
               };
               setUserEdit(newUser);
             }}
@@ -190,16 +194,9 @@ const ProfileUserPage = () => {
             type="text"
             id="email"
             value={userEdit.role ?? ""}
-            disabled={!isEdit}
+            disabled
             className={cx("userForm-input")}
             placeholder="Nhập vai trò"
-            onChange={(e) => {
-              let newUser: UserAccount = {
-                ...userEdit,
-                role: e.currentTarget.value,
-              };
-              setUserEdit(newUser);
-            }}
           />
         </Grid>
       </Grid>

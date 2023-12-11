@@ -8,6 +8,7 @@ import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
 // Internal
 import DefaultAvatar from "../../defaultAvatar";
 import images from "../../../../assets/images";
+import useFetchMyAccount from "../../../../api/Account/useFetchMyAccount";
 
 // Styles
 import classNames from "classnames/bind";
@@ -21,6 +22,7 @@ const AccountInfo = (props: AccountInfoProps) => {
     localStorage.removeItem("token");
     window.location.href = "/login";
   };
+  const { user } = useFetchMyAccount({});
   return (
     <div className={cx("account-dropdown-wrapper")}>
       <div className={cx("header-account")}>
@@ -31,9 +33,9 @@ const AccountInfo = (props: AccountInfoProps) => {
         </Tippy>
         <div className={cx("user-cart-name")}>
           <Tippy content={`thienan1804`} placement="right" theme="light">
-            <span className={cx("accountinfo-username")}>Nguyễn Thiên Ân</span>
+            <span className={cx("accountinfo-username")}>{user.fullName}</span>
           </Tippy>
-          <span className={cx("accountinfo-role")}>Quản trị</span>
+          <span className={cx("accountinfo-role")}>{user.role}</span>
         </div>
       </div>
       <div

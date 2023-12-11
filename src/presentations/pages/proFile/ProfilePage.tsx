@@ -17,12 +17,17 @@ import styles from "./Profile.module.scss";
 import useUpdateAccountByField from "../../../api/Account/useUpdateAccountByField";
 import { toast } from "react-toastify";
 import { toReadableDate } from "../../../utils/Utils";
+import useUpdateUserAvt from "../../../api/Account/useUpdateAvt";
 
 const cx = classNames.bind(styles);
 
 const ProfilePage = () => {
-  const { user } = useFetchMyAccount({});
+  const [refresh, setRefresh] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+
+  const { user } = useFetchMyAccount({
+    shouldRefesh: refresh,
+  });
 
   // Ref để tham chiếu tới input file
   const fileInputRef = useRef(null);
@@ -44,21 +49,14 @@ const ProfilePage = () => {
 
   // handleSaveImg
   const {
-    updateUserAccount,
+    updateUserAvt,
     error: updateAccErr,
     isUpdated,
-  } = useUpdateAccountByField({
-    fullName: userEdit.fullName,
-    jobTitle: userEdit.jobTitle,
-    description: userEdit.description,
+  } = useUpdateUserAvt({
     avatar: userEdit.avatar,
-    email: userEdit.email,
-    phoneNumber: userEdit.phoneNumber,
-    homeTown: userEdit.homeTown,
-    address: userEdit.address,
   });
   const handleSaveImg = (userEdit: UserAccount) => {
-    updateUserAccount({ userByField: userEdit });
+    updateUserAvt({ userByField: userEdit });
   };
 
   // Show Noti
@@ -73,6 +71,8 @@ const ProfilePage = () => {
     if (isSuccess) {
       toast.success("Cập nhật thành công!");
       setIsEdit(false);
+      setRefresh((refresh) => !refresh);
+      window.location.href = "/";
     }
   }, [isUpdated, updateAccErr]);
 
@@ -161,6 +161,7 @@ const ProfilePage = () => {
                 setIsEdit(false);
                 setUserEdit({
                   avatar: user.avatar || undefined,
+                  createdAt: user.createdAt || undefined,
                 });
               }}
               className={cx("remove-btn")}
