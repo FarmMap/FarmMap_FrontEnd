@@ -90,24 +90,24 @@ export const SidebarData = [
 
         ]
     },
-    {
-        title: "Vật nuôi",
-        path: "",
-        icon: <PetsTwoTone />,
-        openIcon: <ArrowDropUpIcon />,
-        closeIcon: <ArrowDropDownIcon />,
-        subnav: [
-            {
-                title: "Gia súc",
-                path: "/nong-san/gia-suc"
-            },
-            {
-                title: "Đặc tính bệnh học",
-                path: "/nong-san/dac-tinh-benh-hoc"
-            },
+    // {
+    //     title: "Vật nuôi",
+    //     path: "",
+    //     icon: <PetsTwoTone />,
+    //     openIcon: <ArrowDropUpIcon />,
+    //     closeIcon: <ArrowDropDownIcon />,
+    //     subnav: [
+    //         {
+    //             title: "Gia súc",
+    //             path: "/nong-san/gia-suc"
+    //         },
+    //         {
+    //             title: "Đặc tính bệnh học",
+    //             path: "/nong-san/dac-tinh-benh-hoc"
+    //         },
 
-        ]
-    },
+    //     ]
+    // },
     {
         title: "Kho",
         path: "",
@@ -131,10 +131,6 @@ export const SidebarData = [
             {
                 title: "Thu hoạch",
                 path: "/kho/thu-hoach"
-            },
-            {
-                title: "Nhập kho",
-                path: "/kho/nhap-kho"
             },
             {
                 title: "Xuất kho",
@@ -236,11 +232,11 @@ export const SidebarData = [
         path: "/tu-van",
         icon: <CallTwoTone />,
     },
-    {
-        title: "Cài đặt",
-        path: "/cai-dat",
-        icon: <SettingsTwoTone />,
-    },
+    // {
+    //     title: "Cài đặt",
+    //     path: "/cai-dat",
+    //     icon: <SettingsTwoTone />,
+    // },
 ];
 
 
