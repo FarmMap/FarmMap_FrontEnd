@@ -90,9 +90,13 @@ const IotPage = () => {
     },
   ];
 
-  const generateRandomDataIOT = () => {
+  const generateRandomDataIOT = (index: number) => {
+    // Lấy thời gian hiện tại và giảm đi 5 phút
+    const currentTime = new Date();
+    currentTime.setMinutes(currentTime.getMinutes() - index);
+
     return {
-      thoiGian: new Date().toLocaleString(),
+      thoiGian: currentTime.toLocaleString(),
       nhietDoKhongKhi: getRandomFloat(20, 30),
       doAmKhongKhi: getRandomInt(50, 90),
       doSang: getRandomInt(1000, 3000),
@@ -111,15 +115,8 @@ const IotPage = () => {
   };
 
   const updatedDataIOT = Array.from({ length: 5 }, (_, i) =>
-    generateRandomDataIOT()
+    generateRandomDataIOT(i)
   );
-  // Function to generate random temperature and humidity
-  const generateRandomData = () => {
-    return {
-      temp: `${getRandomFloat(20, 30)}`, // Change the range as needed
-      humidity: `${getRandomInt(50, 90)}%`, // Change the range as needed
-    };
-  };
 
   return (
     <DefaultWebLayOut>
