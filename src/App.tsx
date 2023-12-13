@@ -30,6 +30,8 @@ import FarmDiseasesPage from "./presentations/pages/farmDiseases/FarmDiseasesPag
 import HouseGoodsPage from "./presentations/pages/goods/HouseGoodsPage";
 import ProductDeliveryPage from "./presentations/pages/productdelivery/ProductDeliveryPage";
 import FarmHarvestPage from "./presentations/pages/harvest/FarmHarvestPage";
+import FarmDocumentPage from "./presentations/pages/document/FarmDocumentPage";
+import DocumentDetail from "./presentations/pages/document/DocumentDetail";
 //Style
 
 const App: React.FC = () => {
@@ -88,11 +90,14 @@ const App: React.FC = () => {
           />
           <Route path="/so-tay" element={<ProvidorPage />} />
           <Route path="/tu-van" element={<SupportPage />} />
+          <Route path="/tai-lieu" element={< FarmDocumentPage />} />
+          <Route path="/tai-lieu/chi-tiet" element={<DocumentDetail />} />
           <Route
             path="/danh-sach-yeu-cau/khach-tham-quan"
             element={<VisitorPage />}
           />
           <Route path="/trang-ca-nhan" element={<ProfilePage />} />
+          
         </Route>
       </Routes>
     </div>
