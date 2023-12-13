@@ -69,12 +69,12 @@ const SalesChart = () => {
                 <Grid className={cx("month-wrapper")}>
                   <Grid className={cx("month-content")}>
                     <h5>Tháng này</h5>
-                    <p>$12,582</p>
+                    <p>12,5 triệu</p>
                     <span className={cx("month-content-percent")}>+15%</span>
                   </Grid>
                   <Grid className={cx("month-content")}>
                     <h5>Tháng trước</h5>
-                    <p>$98,71</p>
+                    <p>10,1 triệu</p>
                   </Grid>
                 </Grid>
 
@@ -123,7 +123,7 @@ const SalesChart = () => {
           <Grid container padding={"20px 0"}>
             <Grid item lg={4} className={cx("dashboard-right-item")}>
               <p>
-                <span>$3,85K</span> Thu nhập
+                <span>20,8 triệu</span>{""} Thu nhập 
               </p>
             </Grid>
             <Grid item lg={4} className={cx("dashboard-right-item")}>
@@ -133,7 +133,7 @@ const SalesChart = () => {
             </Grid>
             <Grid item lg={4} className={cx("dashboard-right-item")}>
               <p>
-                <span>52K</span> Người dùng
+                <span>1000</span> Người dùng
               </p>
             </Grid>
           </Grid>

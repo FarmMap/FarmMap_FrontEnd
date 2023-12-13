@@ -30,6 +30,12 @@ import FarmDiseasesPage from "./presentations/pages/farmDiseases/FarmDiseasesPag
 import HouseGoodsPage from "./presentations/pages/goods/HouseGoodsPage";
 import ProductDeliveryPage from "./presentations/pages/productdelivery/ProductDeliveryPage";
 import FarmHarvestPage from "./presentations/pages/harvest/FarmHarvestPage";
+import FarmDocumentPage from "./presentations/pages/document/FarmDocumentPage";
+import DocumentDetail from "./presentations/pages/document/DocumentDetail";
+import FarmLaborPage from "./presentations/pages/labor/FarmLaborPage";
+import FarmPayrollPage from "./presentations/pages/payroll/FarmPayrollPage";
+import FarmFundPage from "./presentations/pages/fund/FarmFundPage";
+import FarmBillPage from "./presentations/pages/bill/FarmBillPage";
 //Style
 
 const App: React.FC = () => {
@@ -69,12 +75,15 @@ const App: React.FC = () => {
           <Route path="/danh-sach-yeu-cau/thu-chi" element={<ExpensePage />} />
 
           <Route path="/nong-san/cay-trong" element={<PlantPage />} />
+          <Route path="chi-phi/bang-luong" element={<FarmPayrollPage />} />
+          <Route path="chi-phi/so-quy" element={<FarmFundPage />} />
+          <Route path="chi-phi/hoa-don" element={<FarmBillPage />} />
           <Route
             path="/nong-san/san-pham-nong-san"
             element={<ArgiProductPage />}
           />
           <Route path="/cong-viec" element={<TodoPage />} />
-
+          <Route path="/chi-phi/nhan-cong" element={<FarmLaborPage />} />
           <Route path="/kho/quan-ly-vat-tu" element={<MaterialPage />} />
           <Route path="/kho/nguyen-lieu" element={<IngredientPage />} />
           <Route path="/kho/xuat-kho" element={<ProductDeliveryPage />} />
@@ -88,11 +97,14 @@ const App: React.FC = () => {
           />
           <Route path="/so-tay" element={<ProvidorPage />} />
           <Route path="/tu-van" element={<SupportPage />} />
+          <Route path="/tai-lieu" element={< FarmDocumentPage />} />
+          <Route path="/tai-lieu/chi-tiet" element={<DocumentDetail />} />
           <Route
             path="/danh-sach-yeu-cau/khach-tham-quan"
             element={<VisitorPage />}
           />
           <Route path="/trang-ca-nhan" element={<ProfilePage />} />
+          
         </Route>
       </Routes>
     </div>
