@@ -1,14 +1,15 @@
 // External
-import LockIcon from "@mui/icons-material/Lock";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import Button from "@mui/material/Button";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Tippy from "@tippyjs/react";
 import "tippy.js/themes/light.css";
+import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
+import NightsStayRoundedIcon from "@mui/icons-material/NightsStayRounded";
+import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
 // Internal
 import DefaultAvatar from "../../defaultAvatar";
 import images from "../../../../assets/images";
-// import { ROLES } from "../../../../constant/Constants";
-// import UserAccount from "../../../../data/types/UserAccount";
+import useFetchMyAccount from "../../../../api/Account/useFetchMyAccount";
+
 // Styles
 import classNames from "classnames/bind";
 import styles from "./HeaderRight.module.scss";
@@ -21,41 +22,63 @@ const AccountInfo = (props: AccountInfoProps) => {
     localStorage.removeItem("token");
     window.location.href = "/login";
   };
+  const { user } = useFetchMyAccount({});
   return (
     <div className={cx("account-dropdown-wrapper")}>
       <div className={cx("header-account")}>
         <Tippy content={`thienan1804`} placement="bottom" theme="light">
           <div className={cx("user-cart-avt")}>
-            <DefaultAvatar avatar={images.avatar} large />
+            <DefaultAvatar avatar={images.avatar} medium />
           </div>
         </Tippy>
         <div className={cx("user-cart-name")}>
           <Tippy content={`thienan1804`} placement="right" theme="light">
-            <span className={cx("accountinfo-username")}>Nguyễn Thiên Ân</span>
+            <span className={cx("accountinfo-username")}>{user.fullName}</span>
           </Tippy>
-          <span className={cx("accountinfo-role")}>Quản trị</span>
+          <span className={cx("accountinfo-role")}>{user.role}</span>
+        </div>
+      </div>
+      <div
+        className={cx("change-pass")}
+        onClick={() => {
+          window.location.href = "/trang-ca-nhan";
+        }}
+      >
+        <div className={cx("change-pass-icon")}>
+          <PersonRoundedIcon />
+        </div>
+        <div className={cx("change-pass-title")}>
+          <p>Trang cá nhân</p>
         </div>
       </div>
       <div className={cx("change-pass")}>
         <div className={cx("change-pass-icon")}>
-          <LockIcon />
+          <NightsStayRoundedIcon />
         </div>
         <div className={cx("change-pass-title")}>
-          <p>Đổi mật khẩu</p>
+          <p>Màn hình và trợ năng</p>
         </div>
-        <span className={cx("change-nav-pass-icon")}>
-          <KeyboardArrowRightIcon />
-        </span>
       </div>
-      <div className={cx("log-out-wrapper")}>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          onClick={handleLogOut}
-        >
-          Đăng xuất
-        </Button>
+      <div
+        className={cx("change-pass")}
+        onClick={() => {
+          window.location.href = "/tu-van";
+        }}
+      >
+        <div className={cx("change-pass-icon")}>
+          <RecordVoiceOverIcon />
+        </div>
+        <div className={cx("change-pass-title")}>
+          <p>Trợ giúp và tư vấn</p>
+        </div>
+      </div>
+      <div className={cx("change-pass")} onClick={handleLogOut}>
+        <div className={cx("change-pass-icon")}>
+          <LogoutIcon />
+        </div>
+        <div className={cx("change-pass-title")}>
+          <p>Đăng xuất</p>
+        </div>
       </div>
     </div>
   );

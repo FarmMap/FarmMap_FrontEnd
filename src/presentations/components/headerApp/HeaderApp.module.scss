@@ -11,6 +11,9 @@
   max-width: 100%;
   height: calc(var(--header-height));
   width: auto !important;
+  box-shadow: 0 2px 3px #eaedf2;
+  border: 1px solid #eff0f2;
+
   // z-index: 100000;
   transition: all 0.5s ease;
 }

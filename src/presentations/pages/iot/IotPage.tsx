@@ -1,5 +1,5 @@
 //ex
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import { Grid } from "@mui/material";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
@@ -12,6 +12,14 @@ import styles from "./IotPage.module.scss";
 import images from "../../../assets/images";
 
 const cx = classNames.bind(styles);
+
+const getRandomFloat = (min: number, max: number) => {
+  return (Math.random() * (max - min) + min).toFixed(2);
+};
+
+const getRandomInt = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
 
 const IotPage = () => {
   const dataTemp = [
@@ -29,120 +37,86 @@ const IotPage = () => {
     },
   ];
 
+  const getDayOfWeek = () => {
+    const today = new Date();
+    const dayOfWeek = today.getDay() + 1; // Tăng thêm 1 để bắt đầu từ 1
+    return dayOfWeek;
+  };
+
+  // Sử dụng hàm để lấy thứ hôm nay
+  const today = getDayOfWeek();
+  console.log(today); // In ra số thứ hiện tại (1 - 7)
+
   const boxTemps = [
     {
-      title: "Thứ sáu - 4/8/2023",
+      title: `${today + 1 !== 8 ? "Thứ" : ""} ${
+        today + 1 == 8 ? "Chủ nhật" : today + 1
+      } - ${new Date().getDate() + 0 + 1}/${
+        new Date().getMonth() + 1
+      }/${new Date().getFullYear()}`,
       url: <CloudIcon />,
       temp: "22.06",
-      status: "mây rải rác",
+      status: "Mây rải rác",
     },
     {
-      title: "Thứ bảy - 5/8/2023",
+      title: `${today + 2 !== 8 ? "Thứ" : ""} ${
+        today + 2 == 8 ? "Chủ nhật" : today + 2
+      } - ${new Date().getDate() + 1 + 1}/${
+        new Date().getMonth() + 1
+      }/${new Date().getFullYear()}`,
       url: images.cloudRain,
       temp: "22.68",
-      status: "mưa nhẹ",
+      status: "Mưa nhẹ",
     },
     {
-      title: "Chủ nhật - 5/8/2023",
+      title: `${today + 3 !== 8 ? "Thứ" : ""} ${
+        today + 3 == 8 ? "Chủ nhật" : today + 3
+      } - ${new Date().getDate() + 2 + 1}/${
+        new Date().getMonth() + 1
+      }/${new Date().getFullYear()}`,
       url: images.cloudSun,
       temp: "22.61",
-      status: "mây thưa",
+      status: "Mây thưa",
     },
     {
-      title: "Thứ hai - 6/8/2023",
+      title: `${today + 4 !== 8 ? "Thứ" : ""} ${
+        today + 4 == 8 ? "Chủ nhật" : today + 4
+      } - ${new Date().getDate() + 3 + 1}/${
+        new Date().getMonth() + 1
+      }/${new Date().getFullYear()}`,
       url: <CircleIcon />,
       temp: "22.24",
-      status: "bầu trời quang đãng",
+      status: "Bầu trời quang đãng",
     },
   ];
 
-  const dataIOT = [
-    {
-      thoiGian: "2023-11-14 15:20:00",
-      nhietDoKhongKhi: "40.68",
-      doAmKhongKhi: "45.76",
-      doSang: "2498",
-      cO2: "",
-      nH3: "",
-      doAmDat: "",
-      ec: "",
-      nhietDoDat: "",
-      danDienDat: "",
-      pHdat: "",
-      danDienNuoc: "",
-      pHnuoc: "",
-      nhietDoNuoc: "",
-      doMan: "",
-    },
-    {
-      thoiGian: "2023-11-14 15:15:00",
-      nhietDoKhongKhi: "40.15",
-      doAmKhongKhi: "42.76",
-      doSang: "",
-      cO2: "",
-      nH3: "",
-      doAmDat: "",
-      ec: "",
-      nhietDoDat: "",
-      danDienDat: "",
-      pHdat: "",
-      danDienNuoc: "",
-      pHnuoc: "",
-      nhietDoNuoc: "",
-      doMan: "",
-    },
-    {
-      thoiGian: "2023-11-14 15:5:00",
-      nhietDoKhongKhi: "",
-      doAmKhongKhi: "",
-      doSang: "",
-      cO2: "",
-      nH3: "",
-      doAmDat: "",
-      ec: "",
-      nhietDoDat: "",
-      danDienDat: "",
-      pHdat: "",
-      danDienNuoc: "143",
-      pHnuoc: "6.89",
-      nhietDoNuoc: "23.26",
-      doMan: "",
-    },
-    {
-      thoiGian: "2023-11-14 15:00:00",
-      nhietDoKhongKhi: "",
-      doAmKhongKhi: "",
-      doSang: "",
-      cO2: "",
-      nH3: "",
-      doAmDat: "",
-      ec: "",
-      nhietDoDat: "",
-      danDienDat: "",
-      pHdat: "",
-      danDienNuoc: "",
-      pHnuoc: "",
-      nhietDoNuoc: "",
-      doMan: "",
-    },
-    {
-      thoiGian: "2023-11-14 15:10:58",
-      nhietDoKhongKhi: "40.68",
-      doAmKhongKhi: "42.89",
-      doSang: "",
-      cO2: "",
-      nH3: "",
-      doAmDat: "",
-      ec: "",
-      nhietDoDat: "29",
-      danDienDat: "43",
-      pHdat: "",
-      danDienNuoc: "",
-      pHnuoc: "",
-      nhietDoNuoc: "",
-      doMan: "",
-    },
-  ];
+  const generateRandomDataIOT = (index: number) => {
+    // Lấy thời gian hiện tại và giảm đi 5 phút
+    const currentTime = new Date();
+    currentTime.setMinutes(currentTime.getMinutes() - index);
+
+    return {
+      thoiGian: currentTime.toLocaleString(),
+      nhietDoKhongKhi: getRandomFloat(20, 30),
+      doAmKhongKhi: getRandomInt(50, 90),
+      doSang: getRandomInt(1000, 3000),
+      cO2: getRandomInt(300, 500),
+      nH3: getRandomInt(10, 50),
+      doAmDat: getRandomInt(30, 60),
+      ec: getRandomFloat(1, 3),
+      nhietDoDat: getRandomFloat(20, 30),
+      danDienDat: getRandomInt(30, 50),
+      pHdat: getRandomFloat(5, 7),
+      danDienNuoc: getRandomInt(100, 200),
+      pHnuoc: getRandomFloat(6, 8),
+      nhietDoNuoc: getRandomFloat(20, 30),
+      doMan: getRandomFloat(5, 15),
+    };
+  };
+
+  const updatedDataIOT = Array.from({ length: 5 }, (_, i) =>
+    generateRandomDataIOT(i)
+  );
 
   return (
     <DefaultWebLayOut>
@@ -172,7 +146,7 @@ const IotPage = () => {
             <Grid className={cx("box-footer")}>
               {dataTemp.map((data, i) => (
                 <Grid key={i} className={cx("box-footer-row")}>
-                  {i == 0 ? (
+                  {i === 0 ? (
                     <>
                       <span>{data.title}: </span>
                       <span className={cx("strong")}>
@@ -217,7 +191,6 @@ const IotPage = () => {
             </Grid>
           ))}
         </Grid>
-
         <Grid>
           <table className={cx("table")}>
             <thead>
@@ -277,7 +250,7 @@ const IotPage = () => {
               </tr>
             </thead>
             <tbody>
-              {dataIOT.map((data, i) => (
+              {updatedDataIOT.map((data, i) => (
                 <tr key={i}>
                   <td>
                     <p>{data.thoiGian}</p>

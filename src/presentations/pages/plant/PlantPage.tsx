@@ -17,6 +17,10 @@ import PlantModal from "./PlantModal";
 // Style imports
 import classNames from "classnames/bind";
 import styles from "./Plant.module.scss";
+import useDeletePlant from "../../../api/Plant/useDeletePlant";
+import useUpdatePlant from "../../../api/Plant/useUpdatePlant";
+import KDialog from "../../components/kDialog/KDialog";
+import PlantImageModal from "./PlantImgModal";
 
 const cx = classNames.bind(styles);
 
@@ -85,14 +89,49 @@ const PlantPage = () => {
     setImgPlant({ open: true, plant: plant });
   };
 
+  // Delete plant
+
+  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState<{
+    open: boolean;
+    plant: undefined | Plant;
+  }>({ open: false, plant: undefined });
+  const { isDeleted, deletePlant, error: deletePlantErr } = useDeletePlant();
+
+  const handleDeletePlantButton = (plant: Plant) => {
+    setShowConfirmDeleteModal({ open: true, plant: plant });
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirmDeleteModal({ open: false, plant: undefined });
+  };
+
+  const handleConfirmDelete = () => {
+    deletePlant({ plant: showConfirmDeleteModal.plant as Plant });
+    setShowConfirmDeleteModal({ open: false, plant: undefined });
+  };
+
+  // Update plant
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const { isUpdated, updatePlant, error: updatePlantErr } = useUpdatePlant();
+
+  const handleEditPlantButton = (plant: Plant) => {
+    setShowUpdateModal(true);
+    setPlants(plant);
+  };
+
+  const handleEditPlant = (plant: Plant | undefined) => {
+    updatePlant({ plant: plant });
+  };
+
   useEffect(() => {
-    let error = fetchPlantsErr ?? createPlantErr;
+    let error =
+      fetchPlantsErr ?? createPlantErr ?? deletePlantErr ?? updatePlantErr;
 
     if (error != null) {
       toast.error(error);
     }
 
-    if (isCreated) {
+    if (isCreated || isDeleted || isUpdated) {
       toast.success("Thao tác thành công!");
       setRefresh((refresh) => !refresh);
       setTimeout(() => {
@@ -109,8 +148,18 @@ const PlantPage = () => {
         setCrop({ name: "", id: "" });
         setShowModal(false);
       }, 3000);
+      setShowModal(false);
+      setShowUpdateModal(false);
     }
-  }, [createPlantErr, fetchPlantsErr, isCreated]);
+  }, [
+    createPlantErr,
+    deletePlantErr,
+    fetchPlantsErr,
+    isCreated,
+    isDeleted,
+    isUpdated,
+    updatePlantErr,
+  ]);
 
   return (
     <DefaultWebLayOut>
@@ -136,6 +185,8 @@ const PlantPage = () => {
         <FarmCalendarTable
           plants={plants}
           handleGetImgPlant={handleGetImgPlant}
+          handleDeletePlant={handleDeletePlantButton}
+          handleEditPlant={handleEditPlantButton}
         />
 
         {!isLoading && (
@@ -162,7 +213,19 @@ const PlantPage = () => {
         {showModal && (
           <PlantModal
             title="Thêm cây trồng"
-            handleCloseModal={() => setShowModal(false)}
+            handleCloseModal={() => {
+              setShowModal(false);
+              setPlants({
+                name: "",
+                disease: "",
+                growth: "",
+                use: "",
+                harvest: "",
+                price: 0,
+                images: undefined,
+                groupCrop: "",
+              });
+            }}
             submitButtonLabel="Xác nhận"
             plant={plant}
             setPlant={setPlants}
@@ -170,31 +233,61 @@ const PlantPage = () => {
           />
         )}
 
+        {/* Update modal */}
+        {showUpdateModal && (
+          <PlantModal
+            title="Cập nhật cây trồng"
+            handleCloseModal={() => {
+              setShowUpdateModal(false);
+              setPlants({
+                name: "",
+                disease: "",
+                growth: "",
+                use: "",
+                harvest: "",
+                price: 0,
+                images: undefined,
+                groupCrop: "",
+              });
+            }}
+            submitButtonLabel="Xác nhận"
+            plant={plant}
+            setPlant={setPlants}
+            onSubmit={handleEditPlant}
+          />
+        )}
+
         {/* Img modal */}
         {imgPlant.open && (
-          <DefaultModal
-            title={`Ảnh ${imgPlant.plant?.name}`}
-            onClose={() => {
-              setImgPlant({ open: false, plant: undefined });
+          <PlantImageModal
+            title="Danh sách ảnh cây trồng"
+            plant={imgPlant.plant as Plant}
+            handleCloseModal={() => setImgPlant({ open: false })}
+            onUploadSuccess={() => {
+              setImgPlant({ open: false });
+              setRefresh((refresh) => !refresh);
             }}
-          >
-            <Carousel>
-              {imgPlant.plant?.images?.map((image, i) => (
-                <img
-                  key={i}
-                  style={{
-                    width: "100%",
-                    height: "70vh",
-                    objectFit: "cover",
-                    margin: "5px",
-                  }}
-                  src={`http://116.118.49.43:8878/${image}`}
-                  alt="FITPRO Farm"
-                />
-              ))}
-            </Carousel>
-          </DefaultModal>
+          />
         )}
+
+        {/* Confirm delete modal */}
+        <KDialog
+          open={showConfirmDeleteModal.open}
+          title="Xác nhận xóa"
+          bckColor="var(--second-color)"
+          content={
+            <p>
+              Cây trồng{" "}
+              <span style={{ color: "var(--blue-color2)" }}>
+                {showConfirmDeleteModal.plant?.name}
+              </span>{" "}
+              sẽ bị xóa khỏi hệ thống. <br />
+              Bạn có muốn xóa cây trồng này không?
+            </p>
+          }
+          onCancel={handleCancelDelete}
+          onConfirm={handleConfirmDelete}
+        />
       </Grid>
     </DefaultWebLayOut>
   );

@@ -9,19 +9,16 @@ import "leaflet-draw/dist/leaflet.draw.js";
 import { Fragment, useEffect, useState } from "react";
 import {
   Autocomplete,
-  Button,
   Grid,
   ListItemText,
   MenuItem,
   Pagination,
-  Select,
   SelectChangeEvent,
   TextField,
 } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 // Internal
 
-import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
 import "./Map.css";
@@ -794,7 +791,22 @@ function InforFarmPage() {
                 lg: "100vh",
               },
             }}
-            title={`${showImgFarmModal.farmImg.name}, ${showImgFarmModal.farmImg.address}`}
+            title={
+              <div>
+                <div>- Tên: {showImgFarmModal.farmImg.name}</div>
+                <div>- Địa chỉ: {showImgFarmModal.farmImg.address}</div>
+                <div>
+                  - Khu đất:
+                  {areas.map((area, i) => (
+                    <span key={i}>
+                      {" "}
+                      {area.farm?.name == showImgFarmModal.farmImg?.name &&
+                        area.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            }
             onClose={() => {
               setShowImgFarmModal({ open: false, farmImg: undefined });
             }}

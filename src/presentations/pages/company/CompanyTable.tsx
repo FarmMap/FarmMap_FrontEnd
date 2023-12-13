@@ -10,7 +10,8 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 // Internal imports
 import { ListIcon } from "../../components/sidebar/SidebarData";
 import ImageIcon from "@mui/icons-material/Image";
@@ -23,6 +24,9 @@ const cx = classNames.bind(styles);
 interface CompanyTableProps {
   farms: Farm[];
   handleGetInforFarm: (farm: Farm) => void;
+  seeLocation: boolean;
+  handleSeeLocationFarm: (area: Farm) => void;
+  farmProps?: Farm;
 }
 
 const CompanyTable = (props: CompanyTableProps) => {
@@ -94,6 +98,30 @@ const CompanyTable = (props: CompanyTableProps) => {
                       disableElevation={true}
                     >
                       <ImageIcon />
+                    </Button>
+                  </Tippy>
+                  <Tippy
+                    content={
+                      !props.seeLocation
+                        ? `Xem vị trí ${farm.name} (từng vị trí)`
+                        : `Ẩn vị trí ${farm.name} (từng vị trí)`
+                    }
+                    theme="light"
+                  >
+                    <Button
+                      className={cx("btn-edit")}
+                      style={{ marginLeft: "8px" }}
+                      variant="contained"
+                      onClick={() => props.handleSeeLocationFarm(farm)}
+                      disableElevation={true}
+                    >
+                      {props.seeLocation &&
+                      props.farmProps?.id !== undefined &&
+                      props.farmProps?.id === farm.id ? (
+                        <VisibilityOffIcon />
+                      ) : (
+                        <VisibilityIcon />
+                      )}
                     </Button>
                   </Tippy>
                 </td>

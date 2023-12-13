@@ -1,0 +1,72 @@
+.wapper{
+    display:flex;
+    
+}
+.filter-dropdown {
+    display: block;
+    width: 100%;
+    min-width: 100px;
+    height: calc(1.5em + 1.3rem + 2px);
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  
+    legend {
+      width: 0px;
+    }
+  
+    fieldset {
+      border: none;
+    }
+  }
+.container{
+    display:flex;
+}
+.document{
+    cursor: pointer;
+    width:35%;
+    border : 1px solid var(--border-color);
+    border-radius : 2px;
+    margin-left:10px !important;
+    img{
+        height: 200px;
+        width: 100%;
+    }    
+    .btn-details{
+        display:flex;
+        align-items: flex-end !important;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        padding : 12px;
+    }
+    h4{
+        color : #000;
+        padding-left :6px;
+        font-size : 1.4rem;
+    }
+}
+.details{
+    margin-top: auto !important; 
+    align-items : center;
+    svg{
+        font-size : 1rem;
+        color : green;
+    }
+}
+.btn-download{
+    background-color : #8ca832 !important;
+    border-radius : 3px;
+    color : #fff;
+    &:hover{
+        opacity: 0.8 !important;
+        background-color : #8ca832 !important;
+        color : #fff !important;
+        border: none !important;
+    }
+}

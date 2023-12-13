@@ -2,7 +2,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
 import { Grid, MenuItem, Select } from "@mui/material";
-import FormInput from "../../components/formInput/FormInput";
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut/DefaultTitleLayOut";
 import DefaultFilterLayOut from "../../components/defaultTitleLayOut/DefaultFilterLayOut";
 // Internal
@@ -17,12 +16,41 @@ import useFetchFarmList from "../../../api/Farm/useFetchFarmList";
 import CompanyModal from "./CompanyModal";
 import DefaultModal from "../../components/defaultModal/DefaultModal";
 import Province from "../../../data/types/Province";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import LeafletGeocoder from "../../components/maps/LeafletGeocoder";
+import SearchLocationByLatLng from "../../components/maps/SearchLocationByLatLng";
+import useFetchAreaList from "../../../api/PlaneArea/useFetchAreaList";
 const cx = classNames.bind(styles);
 
 const CompanyPage = () => {
+  const position = { lat: 10.964112, lng: 106.856461 };
   const [query, setQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showImgModal, setShowImgModal] = useState<{
+    open: boolean;
+    farmImg?: Farm;
+  }>({
+    open: false,
+  });
+
+  // fetch area
+  const { areas } = useFetchAreaList({});
+
+  // Show location Farm
+  const [showLocationFarm, setShowLocationFarm] = useState<{
+    open: boolean;
+    farm?: Farm;
+  }>({ open: false });
+
+  const handleSeeLocationFarm = (farm: Farm) => {
+    setShowLocationFarm((prev) => ({
+      open: !prev.open,
+      farm: prev.farm === farm ? undefined : farm,
+    }));
+  };
+
+  // showImgFarmModal
+  const [showImgFarmModal, setShowImgFarmModal] = useState<{
     open: boolean;
     farmImg?: Farm;
   }>({
@@ -88,7 +116,7 @@ const CompanyPage = () => {
   };
   const [refresh, setRefresh] = useState(false);
 
-  // Fetch
+  // Fetch farm
   const {
     farms,
     error: fetchFarmErr,
@@ -159,7 +187,7 @@ const CompanyPage = () => {
                   }}
                   value={""}
                   displayEmpty
-                  onChange={() => { }}
+                  onChange={() => {}}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
@@ -177,7 +205,7 @@ const CompanyPage = () => {
                   }}
                   value={""}
                   displayEmpty
-                  onChange={() => { }}
+                  onChange={() => {}}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
@@ -195,7 +223,7 @@ const CompanyPage = () => {
                   }}
                   value={""}
                   displayEmpty
-                  onChange={() => { }}
+                  onChange={() => {}}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
@@ -213,7 +241,7 @@ const CompanyPage = () => {
                   }}
                   value={""}
                   displayEmpty
-                  onChange={() => { }}
+                  onChange={() => {}}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
@@ -231,7 +259,7 @@ const CompanyPage = () => {
                   }}
                   value={""}
                   displayEmpty
-                  onChange={() => { }}
+                  onChange={() => {}}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
@@ -242,7 +270,99 @@ const CompanyPage = () => {
           ></DefaultFilterLayOut>
         </DefaultTitleLayOut>
 
-        <AreaTable farms={farms} handleGetInforFarm={handleGetInforFarm} />
+        {/* Map */}
+        <Grid className="leaflet-container">
+          <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {/* Render your map layers, markers, etc. */}
+            {/* {viewLocation && <LocationMarker />} */}
+            <LeafletGeocoder />
+            {showLocationFarm.farm?.location && showLocationFarm.open && (
+              <SearchLocationByLatLng
+                showPopUp={false}
+                lat={showLocationFarm.farm.location.latitude}
+                lng={showLocationFarm.farm.location.longitude}
+              />
+            )}
+
+            {/* Farm */}
+            {farms.length > 0 &&
+              showLocationFarm.open &&
+              farms.map((farm, i) => {
+                // Check if the farm has a valid location property
+                if (
+                  farm.location &&
+                  farm.location.latitude !== undefined &&
+                  farm.location.longitude !== undefined
+                ) {
+                  return (
+                    <Marker
+                      key={i}
+                      position={{
+                        lat: farm.location.latitude,
+                        lng: farm.location.longitude,
+                      }}
+                      eventHandlers={{
+                        click: () =>
+                          setShowImgFarmModal({ open: true, farmImg: farm }),
+                      }}
+                    ></Marker>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+
+            {showImgFarmModal.farmImg?.image && (
+              <DefaultModal
+                overrideMaxWidth={{
+                  height: {
+                    lg: "100vh",
+                  },
+                }}
+                title={
+                  <div>
+                    <div>- Tên: {showImgFarmModal.farmImg.name}</div>
+                    <div>- Địa chỉ: {showImgFarmModal.farmImg.address}</div>
+                    <div>
+                      - Khu đất:
+                      {areas.map((area, i) => (
+                        <span key={i}>
+                          {" "}
+                          {area.farm?.name == showImgFarmModal.farmImg?.name &&
+                            area.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                }
+                onClose={() => {
+                  setShowImgFarmModal({ open: false, farmImg: undefined });
+                }}
+              >
+                <img
+                  style={{
+                    width: "100%",
+                    height: "90vh",
+                    objectFit: "cover",
+                    margin: "5px",
+                  }}
+                  src={`http://116.118.49.43:8878/${showImgFarmModal.farmImg.image}`}
+                  alt="FITPRO Farm"
+                />
+              </DefaultModal>
+            )}
+          </MapContainer>
+          {/* <Map /> */}
+        </Grid>
+
+        <AreaTable
+          farms={farms}
+          handleGetInforFarm={handleGetInforFarm}
+          handleSeeLocationFarm={handleSeeLocationFarm}
+          seeLocation={showLocationFarm.open}
+          farmProps={showLocationFarm.farm}
+        />
 
         {showModal && (
           <CompanyModal
