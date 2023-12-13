@@ -147,24 +147,24 @@ export const SidebarData = [
         subnav: [
             {
                 title: "Nhân công",
-                path: ""
+                path: "chi-phi/nhan-cong"
             },
 
             {
                 title: "Bảng lương",
-                path: ""
+                path: "chi-phi/bang-luong"
             },
             {
                 title: "Thu nhập",
-                path: ""
+                path: "chi-phi/thu-nhap"
             },
             {
                 title: "Số quỹ",
-                path: ""
+                path: "chi-phi/so-quy"
             },
             {
                 title: "Hóa đơn",
-                path: ""
+                path: "chi-phi/hoa-don"
             },
         ]
     },

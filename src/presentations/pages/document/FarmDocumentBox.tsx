@@ -16,7 +16,6 @@ const FarmDocumentBox = () => {
     const navigate = useNavigate(); 
 
   const handleDocumentClick = (documentId  :number) => {
-   
     navigate(`/tai-lieu/${documentId}`);
   };
   return (
