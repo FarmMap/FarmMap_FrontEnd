@@ -15,7 +15,7 @@ const SalePage = () => {
   const headerData = [
     {
       title: "Tổng doanh thu",
-      quality: "$46,34k",
+      quality: "46,34 triệu",
       percent: 22,
       srcVector: images.vector1,
       isIncrease: true,
@@ -23,7 +23,7 @@ const SalePage = () => {
     },
     {
       title: "Tổng số tiền hoàn lại",
-      quality: "$895,02",
+      quality: "13,5 triệu",
       percent: 5.7,
       srcVector: images.vector2,
       isIncrease: true,
@@ -33,7 +33,7 @@ const SalePage = () => {
       title: "Người truy cập",
       percent: 18,
       srcVector: images.vector3,
-      quality: "6,985",
+      quality: "1085",
       isIncrease: false,
       color: "#25a150",
     },
