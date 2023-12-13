@@ -95,7 +95,7 @@ const App: React.FC = () => {
 
 
           <Route path="/tai-lieu" element={< FarmDocumentPage />} />
-          <Route path="/tai-lieu/chi-tiet" element={< DocumentDetail />} />
+         
           
 
           <Route
