@@ -122,8 +122,13 @@ const SalesChart = () => {
           </Grid>
           <Grid container padding={"20px 0"}>
             <Grid item lg={4} className={cx("dashboard-right-item")}>
+
+              <p>Thu nhập {""}
+                <span>20,8 triệu đồng</span> 
+
               <p>
                 <span>20,8 triệu</span>{""} Thu nhập 
+
               </p>
             </Grid>
             <Grid item lg={4} className={cx("dashboard-right-item")}>
