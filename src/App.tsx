@@ -32,7 +32,6 @@ import ProductDeliveryPage from "./presentations/pages/productdelivery/ProductDe
 import FarmHarvestPage from "./presentations/pages/harvest/FarmHarvestPage";
 import FarmDocumentPage from "./presentations/pages/document/FarmDocumentPage";
 import DocumentDetail from "./presentations/pages/document/DocumentDetail";
-
 import FarmLaborPage from "./presentations/pages/labor/FarmLaborPage";
 import FarmPayrollPage from "./presentations/pages/payroll/FarmPayrollPage";
 import FarmFundPage from "./presentations/pages/fund/FarmFundPage";
@@ -96,7 +95,8 @@ const App: React.FC = () => {
 
 
           <Route path="/tai-lieu" element={< FarmDocumentPage />} />
-          <Route path="/tai-lieu/chi-tiet" element={<DocumentDetail />} />
+          <Route path="/tai-lieu/chi-tiet" element={< DocumentDetail />} />
+          
 
           <Route
             path="/danh-sach-yeu-cau/khach-tham-quan"
