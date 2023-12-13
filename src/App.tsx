@@ -32,6 +32,7 @@ import ProductDeliveryPage from "./presentations/pages/productdelivery/ProductDe
 import FarmHarvestPage from "./presentations/pages/harvest/FarmHarvestPage";
 import FarmDocumentPage from "./presentations/pages/document/FarmDocumentPage";
 import DocumentDetail from "./presentations/pages/document/DocumentDetail";
+
 import FarmLaborPage from "./presentations/pages/labor/FarmLaborPage";
 import FarmPayrollPage from "./presentations/pages/payroll/FarmPayrollPage";
 import FarmFundPage from "./presentations/pages/fund/FarmFundPage";
@@ -53,20 +54,13 @@ const App: React.FC = () => {
           <Route path="/nong-nghiep/trang-trai" element={<CompanyPage />} />
           <Route path="/nong-nghiep/khu-canh-tac" element={<InforPage />} />
           <Route path="/nong-nghiep/vung-canh-tac" element={<AreaPage />} />
-          
+
           <Route
             path="/nong-trai/lich-canh-tac"
             element={<FarmCalendarPage />}
           />
-          <Route
-            path="/nong-trai/lich-benh"
-            element={<FarmDiseasesPage />}
-          />
-          <Route
-            path="/nong-trai/lich-cham-soc"
-            
-            element={<SchedulePage />}
-          />
+          <Route path="/nong-trai/lich-benh" element={<FarmDiseasesPage />} />
+          <Route path="/nong-trai/lich-cham-soc" element={<SchedulePage />} />
           <Route
             path="/lich-canh-tac/thong-ke"
             element={<FarmCalendarChartPage />}
@@ -87,7 +81,7 @@ const App: React.FC = () => {
           <Route path="/kho/quan-ly-vat-tu" element={<MaterialPage />} />
           <Route path="/kho/nguyen-lieu" element={<IngredientPage />} />
           <Route path="/kho/xuat-kho" element={<ProductDeliveryPage />} />
-          <Route path="/kho/thu-hoach" element={<FarmHarvestPage />}/>
+          <Route path="/kho/thu-hoach" element={<FarmHarvestPage />} />
           <Route path="/kho/hang-hoa" element={<HouseGoodsPage />} />
           <Route path="/banhang/thong-ke" element={<SalePage />} />
 
@@ -97,8 +91,13 @@ const App: React.FC = () => {
           />
           <Route path="/so-tay" element={<ProvidorPage />} />
           <Route path="/tu-van" element={<SupportPage />} />
+
+          <Route path="/tai-lieu" element={<FarmDocumentPage />} />
+
+
           <Route path="/tai-lieu" element={< FarmDocumentPage />} />
           <Route path="/tai-lieu/chi-tiet" element={<DocumentDetail />} />
+
           <Route
             path="/danh-sach-yeu-cau/khach-tham-quan"
             element={<VisitorPage />}

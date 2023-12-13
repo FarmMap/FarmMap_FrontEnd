@@ -25,6 +25,8 @@ export interface PlantImageModalProps {
   onUploadSuccess: () => void;
 }
 
+// ... (other imports)
+
 const PlantImageModal = (props: PlantImageModalProps) => {
   // Map File objects to Blob objects
   const fileBlobs: Blob[] = (props.plant.images || []).map(
@@ -52,10 +54,7 @@ const PlantImageModal = (props: PlantImageModalProps) => {
     error: deleteError,
     isLoading: isDeleting,
     deleteImgPlant,
-  } = useDeleteImgPlant({
-    id: props.plant.id,
-    removeImages: props.plant.images,
-  });
+  } = useDeleteImgPlant();
 
   const handleFileInputChanged = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -115,7 +114,7 @@ const PlantImageModal = (props: PlantImageModalProps) => {
               />
               <ImageListItemBar
                 title={`Ảnh cây ${props.plant.name}`}
-                subtitle={props.plant.groupCrop.name}
+                subtitle={props.plant.groupCrop?.name || ""}
                 style={{ fontSize: "1.5rem" }}
                 sx={{ fontSize: "2.5rem" }}
                 actionIcon={

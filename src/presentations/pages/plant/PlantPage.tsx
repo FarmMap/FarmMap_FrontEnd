@@ -263,7 +263,10 @@ const PlantPage = () => {
             title="Danh sách ảnh cây trồng"
             plant={imgPlant.plant as Plant}
             handleCloseModal={() => setImgPlant({ open: false })}
-            onUploadSuccess={() => setImgPlant({ open: false })}
+            onUploadSuccess={() => {
+              setImgPlant({ open: false });
+              setRefresh((refresh) => !refresh);
+            }}
           />
         )}
 

@@ -1,9 +1,10 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useState } from "react";
+
 import Plant from "../../data/types/Plant";
 
-interface UpdatePlantParams {
-  plant: Plant | undefined;
+interface UpdatePlantPrarams {
+  plant: Plant;
 }
 
 interface ResponseError {
@@ -11,64 +12,51 @@ interface ResponseError {
   message: string;
 }
 
-interface useDeleteImgPlantProps {
-  id?: string;
-  removeImages?: File[];
-}
-
-const useDeleteImgPlant = (props: useDeleteImgPlantProps) => {
+const useDeleteImgPlant = () => {
   const [isUpdated, setUpdated] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const deleteImgPlant = useCallback(
-    (params: UpdatePlantParams) => {
-      setUpdated(false);
-      setError(null);
+  const deleteImgPlant = useCallback((params: UpdatePlantPrarams) => {
+    setUpdated(false);
+    setError(null);
+    setLoading(true);
 
-      var data = new FormData();
+    let data = JSON.stringify({
+      removeImages: params.plant.images,
+    });
+    const config = {
+      method: "put",
+      url: `${
+        process.env.REACT_APP_API_BASE_URL
+      }crops/images/delete?cropId=${encodeURIComponent(`${params.plant.id}`)}`,
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
 
-      if (props.removeImages && props.removeImages.length > 0) {
-        props.removeImages.forEach((image) => {
-          data.append("removeImages", image);
-        });
-      }
+    axios(config)
+      .then((response: AxiosResponse) => {
+        setUpdated(true);
+        setLoading(false);
+      })
+      .catch((error: AxiosError) => {
+        if (error.response) {
+          let responseError: ResponseError = error.response
+            .data as ResponseError;
+          setError(responseError.message);
+        } else {
+          let requestError = error.request;
+          setError(requestError);
+        }
 
-      let config = {
-        method: "put",
-        maxBodyLength: Infinity,
-        url: `${process.env.REACT_APP_API_BASE_URL}crops/images/delete?cropId=${props.id}`,
-        headers: {
-          accept: "*/*",
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-          "Content-Type": "multipart/form-data",
-        },
-        data: data,
-      };
+        setLoading(false);
+      });
+  }, []);
 
-      axios(config)
-        .then((response: AxiosResponse) => {
-          setUpdated(true);
-          setLoading(false);
-        })
-        .catch((error: AxiosError) => {
-          if (error.response) {
-            let responseError: ResponseError = error.response
-              .data as ResponseError;
-            setError(responseError.message);
-          } else {
-            let requestError = error.request;
-
-            setError(requestError);
-          }
-
-          setLoading(false);
-        });
-    },
-    [props.removeImages, props.id]
-  );
-
-  return { isUpdated, setUpdated, error, isLoading, deleteImgPlant };
+  return { isUpdated, error, isLoading, deleteImgPlant };
 };
 
 export default useDeleteImgPlant;
