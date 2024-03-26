@@ -1,6 +1,7 @@
 import images from "../../../assets/images";
 
 const data = [
+
   {
     id: 1,
     image: images.anhdocument,
@@ -58,3 +59,5 @@ const data = [
 ];
 
 export default data;
+
+    

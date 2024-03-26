@@ -9,16 +9,13 @@ interface DocumentDetailProps {
   download?: string;
   setShowDetail: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
 const DocumentDetail = (props: DocumentDetailProps) => {
   return (
     <div>
       {props.id}
       <button onClick={() => props.setShowDetail(false)}>quay ve</button>
     </div>
-
-    // get props.field ra
   );
+  
 };
-
-export default DocumentDetail;
+export default DocumentDetail
