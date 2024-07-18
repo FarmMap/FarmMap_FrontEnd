@@ -39,7 +39,7 @@ const IngredientModal = (props: IngredientModalProps) => {
   const [imageURLs, setImageURLs] = useState<string[]>([]);
   const fileInputRef = useRef(null);
   const [isEdit, setIsEdit] = useState(false);
-  const BASE_URL = "http://116.118.49.43:8878/";
+  const BASE_URL = "http://118.69.126.49:8878/";
 
   // useEffect(() => {
   //   if (props.title == "Cập nhật nguyên liệu") setIsEdit(true);

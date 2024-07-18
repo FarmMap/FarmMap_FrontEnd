@@ -8,7 +8,7 @@ import DefaultFilterLayOut from "../../components/defaultTitleLayOut/DefaultFilt
 // Style imports
 import classNames from "classnames/bind";
 import styles from "./Company.module.scss";
-import AreaTable from "./CompanyTable";
+import CompanyTable from "./CompanyTable";
 import { toast } from "react-toastify";
 import Farm from "../../../data/types/Farm";
 import useCreateFarm from "../../../api/Farm/useCreateFarm";
@@ -123,6 +123,7 @@ const CompanyPage = () => {
     isLoading,
   } = useFetchFarmList({
     shouldRefesh: refresh,
+    page: 1,
   });
 
   const handleGetInforFarm = (farm: Farm) => {
@@ -157,6 +158,7 @@ const CompanyPage = () => {
       setRefresh((refresh) => !refresh);
     }
   }, [isCreated, createFarmError]);
+
   return (
     <DefaultWebLayOut>
       <Grid>
@@ -347,7 +349,7 @@ const CompanyPage = () => {
                     objectFit: "cover",
                     margin: "5px",
                   }}
-                  src={`http://116.118.49.43:8878/${showImgFarmModal.farmImg.image}`}
+                  src={`http://118.69.126.49:8878/${showImgFarmModal.farmImg.image}`}
                   alt="FITPRO Farm"
                 />
               </DefaultModal>
@@ -356,7 +358,7 @@ const CompanyPage = () => {
           {/* <Map /> */}
         </Grid>
 
-        <AreaTable
+        <CompanyTable
           farms={farms}
           handleGetInforFarm={handleGetInforFarm}
           handleSeeLocationFarm={handleSeeLocationFarm}
@@ -401,7 +403,7 @@ const CompanyPage = () => {
                     objectFit: "cover",
                     margin: "5px",
                   }}
-                  src={`http://116.118.49.43:8878/${showImgModal.farmImg.image}`}
+                  src={`http://118.69.126.49:8878/${showImgModal.farmImg.image}`}
                   alt="FITPRO Farm"
                 />
               )}

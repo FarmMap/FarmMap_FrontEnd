@@ -95,14 +95,14 @@ const ProfilePage = () => {
                 avatar={
                   userEdit.avatar instanceof File
                     ? URL.createObjectURL(userEdit.avatar)
-                    : `http://116.118.49.43:8878/${userEdit.avatar}` || "" // Use an empty string if userEdit.avatar is null
+                    : `http://118.69.126.49:8878/${userEdit.avatar}` || "" // Use an empty string if userEdit.avatar is null
                 }
                 large
               />
             ) : (
               <DefaultAvatar
                 avatar={
-                  `http://116.118.49.43:8878/${userEdit.avatar}` ||
+                  `http://118.69.126.49:8878/${userEdit.avatar}` ||
                   images.avatar
                 }
                 large

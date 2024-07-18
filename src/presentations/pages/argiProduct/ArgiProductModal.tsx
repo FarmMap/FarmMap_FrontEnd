@@ -46,10 +46,12 @@ const ArgiProductModal = (props: ArgiProductModalProps) => {
   const [imageURLs, setImageURLs] = useState<string[]>([]);
   const fileInputRef = useRef(null);
   const [isEdit, setIsEdit] = useState(false);
-  const BASE_URL = "http://116.118.49.43:8878/";
+  const BASE_URL = "http://118.69.126.49:8878/";
 
   //Fetch Farm
-  const { farms } = useFetchFarmList({});
+  const { farms } = useFetchFarmList({
+    page: 1,
+  });
 
   useEffect(() => {
     const newAvatars = props.argiProduct?.images;

@@ -39,7 +39,7 @@ const ProductDeliveryModal = (props: IngredientModalProps) => {
   const [imageURLs, setImageURLs] = useState<string[]>([]);
   const fileInputRef = useRef(null);
   const [isEdit, setIsEdit] = useState(false);
-  const BASE_URL = "http://116.118.49.43:8878/";
+  const BASE_URL = "http://118.69.126.49:8878/";
 
   // useEffect(() => {
   //   if (props.title == "Cập nhật nguyên liệu") setIsEdit(true);
@@ -126,8 +126,6 @@ const ProductDeliveryModal = (props: IngredientModalProps) => {
           }}
         />
 
-        
-
         <FormDropdown
           label="Trạng thái"
           value={props.ingredient?.status ?? ""}
@@ -196,52 +194,51 @@ const ProductDeliveryModal = (props: IngredientModalProps) => {
                 />
               </DemoContainer>
             </LocalizationProvider>
-            
           </Grid>
           <FormInput
-          label={`Nơi nhận`}
-          placeholder={`Thêm nơi nhận`}
-          type="text"
-          required
-          value={props.ingredient?.quantity ?? ""}
-          onChange={(event) => {
-            let newIngredient: Ingredient = {
-              ...props.ingredient,
-            };
-            newIngredient.quantity = event.currentTarget.value;
-            props.setIngredient(newIngredient);
-          }}
-        /><FormInput
-        label={`Thành tiền`}
-        placeholder={`Thêm đơn giá`}
-        type="text"
-        required
-        value={props.ingredient?.quantity ?? ""}
-        onChange={(event) => {
-          let newIngredient: Ingredient = {
-            ...props.ingredient,
-          };
-          newIngredient.quantity = event.currentTarget.value;
-          props.setIngredient(newIngredient);
-        }}
-      />
+            label={`Nơi nhận`}
+            placeholder={`Thêm nơi nhận`}
+            type="text"
+            required
+            value={props.ingredient?.quantity ?? ""}
+            onChange={(event) => {
+              let newIngredient: Ingredient = {
+                ...props.ingredient,
+              };
+              newIngredient.quantity = event.currentTarget.value;
+              props.setIngredient(newIngredient);
+            }}
+          />
           <FormInput
-          label={`Ghi chú`}
-          placeholder={`Ghi chú`}
-          type="text"
-          required
-          value={props.ingredient?.quantity ?? ""}
-          onChange={(event) => {
-            let newIngredient: Ingredient = {
-              ...props.ingredient,
-            };
-            newIngredient.quantity = event.currentTarget.value;
-            props.setIngredient(newIngredient);
-          }}
-        />
+            label={`Thành tiền`}
+            placeholder={`Thêm đơn giá`}
+            type="text"
+            required
+            value={props.ingredient?.quantity ?? ""}
+            onChange={(event) => {
+              let newIngredient: Ingredient = {
+                ...props.ingredient,
+              };
+              newIngredient.quantity = event.currentTarget.value;
+              props.setIngredient(newIngredient);
+            }}
+          />
+          <FormInput
+            label={`Ghi chú`}
+            placeholder={`Ghi chú`}
+            type="text"
+            required
+            value={props.ingredient?.quantity ?? ""}
+            onChange={(event) => {
+              let newIngredient: Ingredient = {
+                ...props.ingredient,
+              };
+              newIngredient.quantity = event.currentTarget.value;
+              props.setIngredient(newIngredient);
+            }}
+          />
         </Fragment>
 
-        
         <Grid item xs={3}></Grid>
         <Grid item xs={7}>
           <input
@@ -266,7 +263,6 @@ const ProductDeliveryModal = (props: IngredientModalProps) => {
             }}
           />
 
-         
           <Button
             variant="contained"
             startIcon={<SaveIcon />}

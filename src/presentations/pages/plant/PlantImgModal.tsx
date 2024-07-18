@@ -108,7 +108,7 @@ const PlantImageModal = (props: PlantImageModalProps) => {
               onClick={() => openImageViewer(index)}
             >
               <img
-                src={`http://116.118.49.43:8878/${image}`}
+                src={`http://118.69.126.49:8878/${image}`}
                 alt={`${image}`}
                 loading="lazy"
               />
@@ -154,7 +154,7 @@ const PlantImageModal = (props: PlantImageModalProps) => {
             src={
               props.plant.images !== undefined
                 ? props.plant.images.map(
-                    (image) => `http://116.118.49.43:8878/${image}`
+                    (image) => `http://118.69.126.49:8878/${image}`
                   )
                 : []
             }

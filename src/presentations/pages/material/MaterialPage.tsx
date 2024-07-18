@@ -196,14 +196,13 @@ const MaterialPage = () => {
                   }}
                   value={""}
                   displayEmpty
-                  onChange={() => { }}
+                  onChange={() => {}}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
                   </MenuItem>
                 </Select>
               </Fragment>,
-
             ]}
           ></DefaultFilterLayOut>
         </DefaultTitleLayOut>
@@ -283,7 +282,7 @@ const MaterialPage = () => {
                     objectFit: "cover",
                     margin: "5px",
                   }}
-                  src={`http://116.118.49.43:8878/${image}`}
+                  src={`http://118.69.126.49:8878/${image}`}
                   alt="FITPRO Farm"
                 />
               ))}

@@ -91,6 +91,7 @@ const HomePage = () => {
     isLoading,
   } = useFetchFarmList({
     shouldRefesh: refresh,
+    page: 1,
   });
 
   const { areas } = useFetchAreaList({});
