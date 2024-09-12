@@ -4,14 +4,16 @@
   // --primary-color: ;
   --text-color: #74788d;
   --black-color: #495057;
-  --white-color: #fff;
+  --white-color: #fffffff0;
   --second-color: #f93e3e;
   --orange-color: #c16802;
   --pink-hover-color: #e53670;
+  --yellow-green-color: #e5fd99;
   --yellow-color: #ffc107;
   --gray-color: #ebecf08a;
   --gray-color2: #ebecf0;
   --primary-color: #f2f2f2;
+  --green-color: #1d4c43;
   // --primary-color: #ec94fb;
   --green-hover-color: #018b7e;
   // --green-hover-color: #ec94fb;
@@ -47,17 +49,18 @@ body {
   font-size: var(--primary-size);
   line-height: 1.5;
   text-rendering: optimizespeed;
-  color: var(--text-color);
+  color: var(--black-color);
 }
 
 a {
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--black-color);
 }
 
 button,
 input,
 [tabindex] {
+  padding: 0;
   outline: none;
   border: none;
 }

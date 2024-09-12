@@ -2,7 +2,7 @@ $header-sidebar-height: 102px;
 $bckgrColor-header-sidebar: #1a1a27;
 $btn-icon-size: 22px;
 $color-iconArr: #494b74;
-$color-iconArr-hover: #5d78ff;
+$color-iconArr-hover: #e5fd99;
 $color-title: #a2a3b7;
 
 // Header
@@ -15,7 +15,7 @@ $color-title: #a2a3b7;
   flex-direction: row;
   position: relative;
 
-  background-color: var(--sidebar-color);
+  background-color: var(--green-color);
   // background-color: red;
 }
 
@@ -26,7 +26,8 @@ $color-title: #a2a3b7;
 }
 
 .btn-header-active {
-  padding: 25px 2px;
+  top: unset !important;
+  right: unset !important;
 }
 
 .btn-header {
@@ -34,11 +35,12 @@ $color-title: #a2a3b7;
   top: 0;
   right: 0;
   display: flex;
+  // justify-content: center;
   align-items: center;
   background-color: transparent;
   height: $btn-icon-size;
   cursor: pointer;
-  color: #7b8190;
+  color: var(--white-color);
 
   svg {
     width: 25px;
@@ -89,7 +91,12 @@ $color-title: #a2a3b7;
     white-space: nowrap;
 
     &:hover {
-      background-color: #f2f3fe;
+      background-color: $color-iconArr-hover;
+    }
+
+    &:hover .btn-list svg,
+    &:hover .title {
+      color: var(--green-color);
     }
   }
 
@@ -101,7 +108,7 @@ $color-title: #a2a3b7;
     padding: 10px;
     line-height: 50px;
     background-color: transparent;
-    color: #7b819096 !important;
+    color: var(--white-color) !important;
 
     cursor: pointer;
 
@@ -120,7 +127,7 @@ $color-title: #a2a3b7;
     align-items: center;
     font-size: 1.4rem;
     width: 100%;
-    color: #7b8190;
+    color: var(--white-color);
     transition: all 0.5s ease;
   }
 
@@ -157,7 +164,11 @@ $color-title: #a2a3b7;
     cursor: pointer;
 
     &:hover {
-      background-color: #f2f3fe;
+      background-color: $color-iconArr-hover;
+    }
+    &:hover .dropdown-menu-icon svg,
+    &:hover .dropdown-menu-title {
+      color: var(--green-color);
     }
   }
 
@@ -165,12 +176,12 @@ $color-title: #a2a3b7;
     display: flex;
     align-items: center;
 
-    color: $color-title;
+    color: var(--white-color);
   }
 
   .dropdown-menu-title {
     font-size: 1.4rem;
-    color: #7b8190;
+    color: var(--white-color);
     margin-left: 8px;
     white-space: nowrap;
     transition: all 0.5s ease;
@@ -234,8 +245,7 @@ $color-title: #a2a3b7;
     transition: all 0.4s ease;
 
     &:hover {
-      background-color: var(--white-color);
-      color: var(--black-color);
+      background-color: $color-iconArr-hover;
     }
   }
 

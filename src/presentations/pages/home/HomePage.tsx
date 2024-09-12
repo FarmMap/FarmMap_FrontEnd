@@ -165,7 +165,7 @@ const HomePage = () => {
               key={i}
               item
               lg={2.8}
-              md={5.7}
+              md={5.9}
               sm={5.7}
               xs={12}
               sx={{
@@ -212,10 +212,9 @@ const HomePage = () => {
         >
           <Grid
             item
-            lg={7}
+            lg={12}
             style={{ backgroundColor: "var(--white-color)" }}
             display={"flex"}
-            height={"500px"}
             width={"100%"}
             flexDirection={"column"}
             justifyContent={"space-between"}
@@ -649,37 +648,6 @@ const HomePage = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid
-            lg={4.8}
-            item
-            height={"500px"}
-            display={"flex"}
-            width={"100%"}
-            flexDirection={"column"}
-            justifyContent={"space-between"}
-            borderRadius={"4px"}
-            style={{ backgroundColor: "var(--white-color)" }}
-            boxShadow={"0 2px 3px #eaedf2"}
-            border={"1px solid #eff0f2"}
-            padding={"10px 12px 12px 12px"}
-          >
-            <span
-              style={{
-                color: "var(--black-color)",
-                fontWeight: "500",
-              }}
-            >
-              Nông nghiệp
-            </span>
-            <Grid
-              style={{
-                height: "80%",
-              }}
-            >
-              {" "}
-              <PieAgri />
-            </Grid>
-          </Grid>
         </Grid>
 
         <Grid
@@ -691,6 +659,9 @@ const HomePage = () => {
           <Grid
             item
             lg={7}
+            md={7}
+            height={"300px"}
+            textAlign={"center"}
             padding={"10px 12px 12px 12px"}
             style={{ backgroundColor: "var(--white-color)" }}
             boxShadow={"0 2px 3px #eaedf2"}
@@ -701,12 +672,9 @@ const HomePage = () => {
 
           <Grid
             lg={4.8}
+            md={4.8}
             item
-            height={"400px"}
-            display={"flex"}
-            width={"100%"}
-            flexDirection={"column"}
-            justifyContent={"space-between"}
+            height={"300px"}
             style={{ backgroundColor: "var(--white-color)" }}
             boxShadow={"0 2px 3px #eaedf2"}
             border={"1px solid #eff0f2"}
@@ -739,40 +707,31 @@ const HomePage = () => {
         >
           <Grid
             lg={7}
+            md={7}
             item
-            height={"400px"}
-            display={"flex"}
+            height={"300px"}
             width={"100%"}
-            flexDirection={"column"}
-            justifyContent={"space-between"}
             style={{ backgroundColor: "var(--white-color)" }}
             boxShadow={"0 2px 3px #eaedf2"}
             border={"1px solid #eff0f2"}
             padding={"10px 12px 32px 12px"}
           >
             <span style={{ fontWeight: 600 }}>Nhập hàng</span>
-            <Grid
-              style={{
-                height: "100%",
-              }}
-            >
+            <Grid>
               <KhoDashBoard />
             </Grid>
 
             <span style={{ fontWeight: 600 }}>Xuất hàng</span>
-            <Grid
-              style={{
-                height: "100%",
-              }}
-            >
+            <Grid>
               <XuatKhoDashBoard />
             </Grid>
           </Grid>
 
           <Grid
             lg={4.8}
+            md={4.8}
             item
-            height={"400px"}
+            height={"300px"}
             display={"flex"}
             width={"100%"}
             flexDirection={"column"}
