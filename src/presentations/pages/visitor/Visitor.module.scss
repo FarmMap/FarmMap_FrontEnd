@@ -92,7 +92,7 @@
 
 .btn-image {
   margin-left: 8px !important;
-  background-color: var(--blue-hover-color) !important;
+  background-color: var(--green-color) !important;
 }
 
 .btn-delete {
@@ -146,7 +146,7 @@
 
 .label-container {
   display: flex;
-  color: #646c9a;
+  color: var(--yellow-green-color);
   font-weight: 600;
 
   .label {
@@ -160,7 +160,7 @@
 }
 
 .link {
-  color: #646c9a;
+  color: var(--yellow-green-color);
 
   &:hover {
     text-decoration: underline;
@@ -246,7 +246,7 @@
   vertical-align: middle;
   width: 100%;
   font-weight: bold;
-  color: #646c9a;
+  color: var(--yellow-green-color);
 
   span {
     color: red;
@@ -294,7 +294,7 @@
   vertical-align: middle;
   width: 100%;
   font-weight: bold;
-  color: #646c9a;
+  color: var(--yellow-green-color);
 }
 
 .see-icon {
@@ -349,7 +349,7 @@
   vertical-align: middle;
   width: 100%;
   font-weight: bold;
-  color: #646c9a;
+  color: var(--yellow-green-color);
 
   span {
     color: red;
@@ -397,7 +397,7 @@
   vertical-align: middle;
   width: 100%;
   font-weight: bold;
-  color: #646c9a;
+  color: var(--yellow-green-color);
 }
 
 .delete-icon {

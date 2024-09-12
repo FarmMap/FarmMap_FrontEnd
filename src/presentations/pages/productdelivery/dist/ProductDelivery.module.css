@@ -27,7 +27,8 @@
   text-align: center;
 }
 
-.table thead th:first-child, .table thead th:last-child {
+.table thead th:first-child,
+.table thead th:last-child {
   text-align: center;
 }
 
@@ -85,7 +86,7 @@
 
 .btn-image {
   margin-left: 8px !important;
-  background-color: var(--blue-hover-color) !important;
+  background-color: var(--green-color) !important;
 }
 
 .btn-delete {
@@ -137,7 +138,7 @@
 
 .label-container {
   display: flex;
-  color: #646c9a;
+  color: var(--yellow-green-color);
   font-weight: 600;
 }
 
@@ -151,7 +152,7 @@
 }
 
 .link {
-  color: #646c9a;
+  color: var(--yellow-green-color);
 }
 
 .link:hover {
@@ -236,7 +237,7 @@
   vertical-align: middle;
   width: 100%;
   font-weight: bold;
-  color: #646c9a;
+  color: var(--yellow-green-color);
 }
 
 .label-company span {
@@ -283,7 +284,7 @@
   vertical-align: middle;
   width: 100%;
   font-weight: bold;
-  color: #646c9a;
+  color: var(--yellow-green-color);
 }
 
 .see-icon {
@@ -338,7 +339,7 @@
   vertical-align: middle;
   width: 100%;
   font-weight: bold;
-  color: #646c9a;
+  color: var(--yellow-green-color);
 }
 
 .label-area span {
@@ -385,7 +386,7 @@
   vertical-align: middle;
   width: 100%;
   font-weight: bold;
-  color: #646c9a;
+  color: var(--yellow-green-color);
 }
 
 .delete-icon {

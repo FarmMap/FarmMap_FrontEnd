@@ -4,7 +4,7 @@
 }
 
 $color-title: #48465b;
-$color-label: #646c9a;
+$color-label: var(--black-color);
 
 .wrapper {
   width: 100%;
@@ -23,7 +23,7 @@ $color-label: #646c9a;
     .heading-wrapper-icon {
       width: 20px;
       height: 20px;
-      color: var(--blue-hover-color);
+      color: var(--green-color);
     }
 
     .heading-title {
@@ -38,14 +38,13 @@ $color-label: #646c9a;
   .add-btn-wrapper {
     button {
       color: var(--white-color);
-      background-color: var(--blue-hover-color);
+      background-color: var(--green-hover-color);
       opacity: 1;
       transition: 0.3s;
       box-shadow: none !important;
 
       &:hover {
-        opacity: 0.8;
-        background-color: var(--blue-hover-color);
+        opacity: 0.9;
       }
 
       &:active {
@@ -129,12 +128,11 @@ $color-label: #646c9a;
     border-top-right-radius: 4px !important;
     border-bottom-right-radius: 4px !important;
     color: var(--white-color);
-    background-color: var(--blue-hover-color);
+    background-color: var(--green-hover-color);
     cursor: pointer;
 
     &:hover {
       opacity: 0.9;
-      background-color: var(--blue-hover-color);
     }
 
     svg {

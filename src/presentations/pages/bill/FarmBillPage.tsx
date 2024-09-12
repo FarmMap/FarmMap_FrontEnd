@@ -8,7 +8,7 @@ import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
 import DefaultFilterLayOut from "../../components/defaultTitleLayOut/DefaultFilterLayOut";
 import useFetchFarmCalendarList from "../../../api/FarmCalendar/useFetchFarmCalendar";
-import FarmBillTable  from "./FarmBillTable"
+import FarmBillTable from "./FarmBillTable";
 import Land from "../../../data/types/Land";
 import useCreateFarmCalendar from "../../../api/FarmCalendar/useCreateFarmCalendar";
 import UserAccount from "../../../data/types/UserAccount";
@@ -222,7 +222,6 @@ const FarmBillPage = () => {
                 setQuery: setQuery,
               },
             ]}
-            
           ></DefaultFilterLayOut>
         </DefaultTitleLayOut>
 
@@ -252,11 +251,10 @@ const FarmBillPage = () => {
           />
         )}
 
-        
         {/* Confirm delete modal */}
         <KDialog
           open={showConfirmDeleteModal.open}
-          bckColor="var(--blue-hover-color)"
+          bckColor="var(--green-color)"
           title="Xác nhận xóa"
           content={
             <p>

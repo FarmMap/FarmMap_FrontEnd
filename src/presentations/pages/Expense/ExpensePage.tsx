@@ -190,7 +190,6 @@ const ExpensePage = () => {
               },
             ]}
           ></DefaultFilterLayOut>
-          
         </DefaultTitleLayOut>
 
         <FarmCalendarTable
@@ -234,7 +233,7 @@ const ExpensePage = () => {
         {/* Confirm delete modal */}
         <KDialog
           open={showConfirmDeleteModal.open}
-          bckColor="var(--blue-hover-color)"
+          bckColor="var(--green-color)"
           title="Xác nhận xóa"
           content={
             <p>

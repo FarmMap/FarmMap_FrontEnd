@@ -13,7 +13,7 @@ import useCreateFarmCalendar from "../../../api/FarmCalendar/useCreateFarmCalend
 import UserAccount from "../../../data/types/UserAccount";
 import FarmCalendar from "../../../data/types/FarmCalendar";
 import { toast } from "react-toastify";
-import FarmLaborTable from "./FarmLaborTable"
+import FarmLaborTable from "./FarmLaborTable";
 import KDialog from "../../components/kDialog/KDialog";
 import useDeleteFarmCalendar from "../../../api/FarmCalendar/useDeleteFarmCalendar";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
@@ -193,7 +193,6 @@ const FarmLaborPage = () => {
           }}
           btnElement={
             <Fragment>
-              
               <Button
                 type="primary"
                 size={"large"}
@@ -215,13 +214,13 @@ const FarmLaborPage = () => {
         {/* Confirm delete modal */}
         <KDialog
           open={showConfirmDeleteModal.open}
-          bckColor="var(--blue-hover-color)"
+          bckColor="var(--green-color)"
           title="Xác nhận xóa"
           content={
             <p>
               Bạn có muốn xóa{" "}
-              <span>{showConfirmDeleteModal.farmCalendar?.land?.name}</span> 
-             ra khỏi hệ thống. <br />
+              <span>{showConfirmDeleteModal.farmCalendar?.land?.name}</span>
+              ra khỏi hệ thống. <br />
               Bạn có muốn xóa không?
             </p>
           }
@@ -230,7 +229,6 @@ const FarmLaborPage = () => {
         />
       </Grid>
     </DefaultWebLayOut>
-    
   );
 };
 
