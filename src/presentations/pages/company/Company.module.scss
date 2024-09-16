@@ -144,7 +144,7 @@
 
 .label-container {
   display: flex;
-  color: var(--yellow-green-color);
+  color: var(--purple-color);
   font-weight: 600;
 
   .label {
@@ -158,7 +158,7 @@
 }
 
 .link {
-  color: var(--yellow-green-color);
+  color: var(--purple-color);
 
   &:hover {
     text-decoration: underline;
@@ -244,7 +244,7 @@
   vertical-align: middle;
   width: 100%;
   font-weight: bold;
-  color: var(--yellow-green-color);
+  color: var(--purple-color);
 
   span {
     color: red;
@@ -292,7 +292,7 @@
   vertical-align: middle;
   width: 100%;
   font-weight: bold;
-  color: var(--yellow-green-color);
+  color: var(--purple-color);
 }
 
 .see-icon {

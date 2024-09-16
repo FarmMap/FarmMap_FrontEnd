@@ -1,5 +1,5 @@
 // External
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DefaultModal from "../../components/defaultModal/DefaultModal";
 import { Autocomplete, Button, Grid, TextField } from "@mui/material";
 import { MapContainer, TileLayer } from "react-leaflet";
@@ -11,12 +11,7 @@ import ImageIcon from "@mui/icons-material/Image";
 import FormInput from "../../components/formInput/FormInput";
 import FloatingLabelInput from "../../components/floatingLabelInput/FloatingLabelInput";
 import SearchLocationByLatLng from "../../components/maps/SearchLocationByLatLng";
-import {
-  business_models,
-  business_types,
-  districts,
-  wards,
-} from "./LocalDataCompany";
+
 // Style
 import classNames from "classnames/bind";
 import styles from "./Company.module.scss";
@@ -287,6 +282,7 @@ const CompanyModal = (props: CompanyModalProps) => {
               disablePortal
               id="combo-box-demo"
               options={districts}
+              // eslint-disable-next-line eqeqeq
               disabled={province.name == undefined || province.key == undefined}
               getOptionLabel={(option: Province) => option.name as string}
               noOptionsText="Không tìm thấy quận huyện nào"
@@ -333,6 +329,7 @@ const CompanyModal = (props: CompanyModalProps) => {
               disablePortal
               id="combo-box-demo"
               options={wards}
+              // eslint-disable-next-line eqeqeq
               disabled={district.name == undefined || district.key == undefined}
               getOptionLabel={(option: Province) => option.name as string}
               noOptionsText="Không tìm thấy phường xã nào"
@@ -369,7 +366,7 @@ const CompanyModal = (props: CompanyModalProps) => {
             <Grid
               item
               lg={3}
-              md={4}
+              md={3}
               sm={4}
               xs={12}
               className={cx("form-control-wrapper")}
@@ -381,7 +378,7 @@ const CompanyModal = (props: CompanyModalProps) => {
             <Grid
               item
               lg={3}
-              md={4}
+              md={3}
               sm={4}
               xs={6}
               className={cx("form-control-wrapper")}
@@ -407,7 +404,7 @@ const CompanyModal = (props: CompanyModalProps) => {
             <Grid
               item
               lg={3}
-              md={4}
+              md={3}
               sm={4}
               xs={6}
               className={cx("form-control-wrapper")}
@@ -436,7 +433,7 @@ const CompanyModal = (props: CompanyModalProps) => {
               height={"54px"}
               item
               lg={2}
-              md={4}
+              md={2}
               sm={4}
               xs={6}
             >
@@ -515,6 +512,7 @@ const CompanyModal = (props: CompanyModalProps) => {
               <Button
                 style={{ marginRight: 12 }}
                 variant="outlined"
+                color="success"
                 startIcon={<ImageIcon />}
                 disableElevation={true}
                 component="span"
@@ -525,10 +523,15 @@ const CompanyModal = (props: CompanyModalProps) => {
             <Button
               variant="contained"
               disabled={
+                // eslint-disable-next-line eqeqeq
                 props.farm.name == "" ||
+                // eslint-disable-next-line eqeqeq
                 props.districtList.name == "" ||
+                // eslint-disable-next-line eqeqeq
                 props.provinceList.name == "" ||
+                // eslint-disable-next-line eqeqeq
                 props.wardList.name == "" ||
+                // eslint-disable-next-line eqeqeq
                 props.farm.image == undefined
               }
               disableElevation={true}

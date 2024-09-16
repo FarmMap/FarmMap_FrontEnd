@@ -260,6 +260,7 @@ const HouseGoodsModal = (props: IngredientModalProps) => {
               variant="outlined"
               startIcon={<ImageIcon />}
               disableElevation={true}
+              color="success"
               component="span"
             >
               Thêm ảnh
@@ -268,6 +269,7 @@ const HouseGoodsModal = (props: IngredientModalProps) => {
           <Button
             variant="contained"
             startIcon={<SaveIcon />}
+            color="success"
             onClick={() => props.onSubmit(props.ingredient)}
           >
             {props.submitButtonLabel}

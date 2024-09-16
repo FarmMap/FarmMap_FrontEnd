@@ -284,6 +284,7 @@ const ArgiProductModal = (props: ArgiProductModalProps) => {
               <Button
                 style={{ marginRight: 12 }}
                 variant="outlined"
+                color="success"
                 startIcon={<ImageIcon />}
                 disableElevation={true}
                 component="span"
@@ -294,6 +295,7 @@ const ArgiProductModal = (props: ArgiProductModalProps) => {
             <Button
               variant="contained"
               startIcon={<SaveIcon />}
+              color="success"
               onClick={() => props.onSubmit(props.argiProduct)}
             >
               {props.submitButtonLabel}

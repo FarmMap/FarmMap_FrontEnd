@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // External
 import { MapContainer, Marker, Popup, TileLayer, Polygon } from "react-leaflet";
 import "leaflet-control-geocoder/dist/Control.Geocoder.css";

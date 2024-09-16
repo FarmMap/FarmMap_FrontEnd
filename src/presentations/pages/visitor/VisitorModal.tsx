@@ -155,6 +155,7 @@ const VisitorModal = (props: VisitorModalProps) => {
           <Button
             variant="contained"
             startIcon={<SaveIcon />}
+            color="success"
             onClick={() => props.onSubmit(visitor)}
           >
             {props.submitButtonLabel}

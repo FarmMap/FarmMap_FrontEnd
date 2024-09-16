@@ -193,6 +193,7 @@ const MaterialModal = (props: MaterialModalProps) => {
               variant="outlined"
               startIcon={<ImageIcon />}
               disableElevation={true}
+              color="success"
               component="span"
             >
               Thêm ảnh
@@ -201,6 +202,7 @@ const MaterialModal = (props: MaterialModalProps) => {
           <Button
             variant="contained"
             startIcon={<SaveIcon />}
+            color="success"
             onClick={() => props.onSubmit(props.material)}
           >
             {props.submitButtonLabel}

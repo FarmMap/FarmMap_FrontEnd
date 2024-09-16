@@ -123,7 +123,7 @@ function SupportPage() {
                 }
               >
                 {messages.map((message, i) => (
-                  <Grid className="message-wrap">
+                  <Grid key={i} className="message-wrap">
                     {message.sender == "ChatGPT" && (
                       <img src={images.botChatLogo} alt="" />
                     )}

@@ -78,6 +78,7 @@ const PlaneModal = (props: PlaneModalProps) => {
     });
 
     props.setArea(newArea);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countLocal, props.area, props.setArea]);
 
   // Ref để tham chiếu tới input file
@@ -325,12 +326,13 @@ const PlaneModal = (props: PlaneModalProps) => {
           </Grid>
 
           <Grid item xs={3}></Grid>
-          <Grid item xs={7}>
+          <Grid item xs={7} paddingTop={"0 !important"}>
             <Button
               style={{ marginRight: 12 }}
               variant="outlined"
               disableElevation={true}
               startIcon={<AddCircleIcon />}
+              color="success"
               onClick={handleAddPlace}
             >
               thêm điểm mới
@@ -364,6 +366,7 @@ const PlaneModal = (props: PlaneModalProps) => {
               <Button
                 style={{ marginRight: 12 }}
                 variant="outlined"
+                color="success"
                 startIcon={<ImageIcon />}
                 disableElevation={true}
                 component="span"
@@ -375,6 +378,7 @@ const PlaneModal = (props: PlaneModalProps) => {
               variant="contained"
               disableElevation={true}
               startIcon={<SaveIcon />}
+              color="success"
               onClick={() => props.handleSubmitArea(props.area)}
             >
               {props.submitButtonLabel}

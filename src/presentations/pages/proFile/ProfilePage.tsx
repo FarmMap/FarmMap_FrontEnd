@@ -14,7 +14,6 @@ import UserAccount from "../../../data/types/UserAccount";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Profile.module.scss";
-import useUpdateAccountByField from "../../../api/Account/useUpdateAccountByField";
 import { toast } from "react-toastify";
 import { toReadableDate } from "../../../utils/Utils";
 import useUpdateUserAvt from "../../../api/Account/useUpdateAvt";

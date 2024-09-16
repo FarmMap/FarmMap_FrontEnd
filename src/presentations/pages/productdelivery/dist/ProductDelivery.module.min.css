@@ -96,7 +96,7 @@
 }
 .label-container {
   display: flex;
-  color: var(--yellow-green-color);
+  color: var(--purple-color);
   font-weight: 600;
 }
 .label-container .label {
@@ -107,7 +107,7 @@
   width: 15px;
 }
 .link {
-  color: var(--yellow-green-color);
+  color: var(--purple-color);
 }
 .add-btn-wrapper .addBtn,
 .add-btn-wrapper .addBtn .add-icon {
@@ -162,7 +162,7 @@
   vertical-align: middle;
   width: 100%;
   font-weight: 700;
-  color: var(--yellow-green-color);
+  color: var(--purple-color);
 }
 .label-company span {
   color: red;
@@ -209,7 +209,7 @@
   text-align: right;
   vertical-align: middle;
   font-weight: 700;
-  color: var(--yellow-green-color);
+  color: var(--purple-color);
 }
 .label-area span {
   color: red;
@@ -244,7 +244,7 @@
   height: 100%;
   vertical-align: middle;
   font-weight: 700;
-  color: var(--yellow-green-color);
+  color: var(--purple-color);
 }
 .delete-icon {
   width: 20px !important;

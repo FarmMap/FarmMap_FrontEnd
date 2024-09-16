@@ -266,6 +266,7 @@ const ProductDeliveryModal = (props: IngredientModalProps) => {
           <Button
             variant="contained"
             startIcon={<SaveIcon />}
+            color="success"
             onClick={() => props.onSubmit(props.ingredient)}
           >
             {props.submitButtonLabel}

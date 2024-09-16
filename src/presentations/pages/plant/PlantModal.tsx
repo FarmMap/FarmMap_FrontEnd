@@ -233,6 +233,7 @@ const PlantModal = (props: PlantModalProps) => {
               <Button
                 style={{ marginRight: 12 }}
                 variant="outlined"
+                color="success"
                 startIcon={<ImageIcon />}
                 disableElevation={true}
                 component="span"
@@ -244,6 +245,7 @@ const PlantModal = (props: PlantModalProps) => {
           <Button
             variant="contained"
             startIcon={<SaveIcon />}
+            color="success"
             onClick={() => props.onSubmit(props.plant)}
           >
             {props.submitButtonLabel}

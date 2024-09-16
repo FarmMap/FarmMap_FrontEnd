@@ -132,7 +132,7 @@ const FarmDiseasesModal = (props: FarmCalendarModalProps) => {
           </Grid>
           <Grid item lg={3} md={4} xs={4} sm={12}>
             <label className={cx("label-area")} htmlFor="khu-dat">
-             Tên cây trồng <span>*</span>
+              Tên cây trồng <span>*</span>
             </label>
           </Grid>
           <Grid
@@ -201,8 +201,6 @@ const FarmDiseasesModal = (props: FarmCalendarModalProps) => {
             }}
           />
 
-          
-
           {/* <FormInput
             label="Số lượng giống"
             placeholder="Nhập số lượng giống"
@@ -252,8 +250,6 @@ const FarmDiseasesModal = (props: FarmCalendarModalProps) => {
                       });
                     }}
                   />
-
-                  
                 </DemoContainer>
               </LocalizationProvider>
             </Grid>
@@ -328,6 +324,7 @@ const FarmDiseasesModal = (props: FarmCalendarModalProps) => {
               variant="contained"
               disableElevation={true}
               startIcon={<SaveIcon />}
+              color="success"
               onClick={() => props.onSubmit(farmCalendar)}
             >
               {props.submitButtonLabel}

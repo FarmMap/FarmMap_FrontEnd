@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 // External
 import React, { Fragment, useEffect, useState } from "react";
 import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut";
@@ -96,6 +97,7 @@ const CompanyPage = () => {
   const {
     isCreated,
     error: createFarmError,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     isLoading: isCreating,
     createFarm,
   } = useCreateFarm({
@@ -120,6 +122,7 @@ const CompanyPage = () => {
   const {
     farms,
     error: fetchFarmErr,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     isLoading,
   } = useFetchFarmList({
     shouldRefesh: refresh,
@@ -157,6 +160,7 @@ const CompanyPage = () => {
       });
       setRefresh((refresh) => !refresh);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCreated, createFarmError]);
 
   return (
