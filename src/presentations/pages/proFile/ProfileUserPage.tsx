@@ -242,6 +242,7 @@ const ProfileUserPage = () => {
 
       <Grid className={cx("button-wrapper")}>
         <Button
+          color="success"
           onClick={() => {
             setIsEdit(false);
             setUserEdit({
@@ -261,11 +262,19 @@ const ProfileUserPage = () => {
           Hủy
         </Button>
         {!isEdit ? (
-          <Button onClick={() => setIsEdit(true)} variant="contained">
+          <Button
+            color="success"
+            onClick={() => setIsEdit(true)}
+            variant="contained"
+          >
             Cập nhật
           </Button>
         ) : (
-          <Button onClick={() => handleSaveUser(userEdit)} variant="contained">
+          <Button
+            color="success"
+            onClick={() => handleSaveUser(userEdit)}
+            variant="contained"
+          >
             Lưu
           </Button>
         )}

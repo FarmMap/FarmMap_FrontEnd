@@ -266,6 +266,7 @@ const TodoModal = (props: TodoModalProps) => {
               variant="contained"
               disableElevation={true}
               startIcon={<SaveIcon />}
+              color="success"
               onClick={() => props.onSubmit(todo)}
             >
               {props.submitButtonLabel}

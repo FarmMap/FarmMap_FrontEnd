@@ -14,7 +14,6 @@ import UserAccount from "../../../data/types/UserAccount";
 // Styles
 import classNames from "classnames/bind";
 import styles from "./Profile.module.scss";
-import useUpdateAccountByField from "../../../api/Account/useUpdateAccountByField";
 import { toast } from "react-toastify";
 import { toReadableDate } from "../../../utils/Utils";
 import useUpdateUserAvt from "../../../api/Account/useUpdateAvt";
@@ -95,14 +94,14 @@ const ProfilePage = () => {
                 avatar={
                   userEdit.avatar instanceof File
                     ? URL.createObjectURL(userEdit.avatar)
-                    : `http://116.118.49.43:8878/${userEdit.avatar}` || "" // Use an empty string if userEdit.avatar is null
+                    : `http://118.69.126.49:8878/${userEdit.avatar}` || "" // Use an empty string if userEdit.avatar is null
                 }
                 large
               />
             ) : (
               <DefaultAvatar
                 avatar={
-                  `http://116.118.49.43:8878/${userEdit.avatar}` ||
+                  `http://118.69.126.49:8878/${userEdit.avatar}` ||
                   images.avatar
                 }
                 large

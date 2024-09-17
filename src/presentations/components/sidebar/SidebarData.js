@@ -138,36 +138,36 @@ export const SidebarData = [
             },
         ]
     },
-    {
-        title: "Chi phí",
-        path: "",
-        icon: <Wallet />,
-        openIcon: <ArrowDropUpIcon />,
-        closeIcon: <ArrowDropDownIcon />,
-        subnav: [
-            {
-                title: "Nhân công",
-                path: ""
-            },
+    // {
+    //     title: "Chi phí",
+    //     path: "",
+    //     icon: <Wallet />,
+    //     openIcon: <ArrowDropUpIcon />,
+    //     closeIcon: <ArrowDropDownIcon />,
+    //     subnav: [
+    //         {
+    //             title: "Nhân công",
+    //             path: "/chi-phi/nhan-cong"
+    //         },
 
-            {
-                title: "Bảng lương",
-                path: ""
-            },
-            {
-                title: "Thu nhập",
-                path: ""
-            },
-            {
-                title: "Số quỹ",
-                path: ""
-            },
-            {
-                title: "Hóa đơn",
-                path: ""
-            },
-        ]
-    },
+    //         {
+    //             title: "Bảng lương",
+    //             path: "/chi-phi/bang-luong"
+    //         },
+    //         {
+    //             title: "Thu nhập",
+    //             path: "/chi-phi/thu-nhap"
+    //         },
+    //         {
+    //             title: "Số quỹ",
+    //             path: "/chi-phi/so-quy"
+    //         },
+    //         {
+    //             title: "Hóa đơn",
+    //             path: "/chi-phi/hoa-don"
+    //         },
+    //     ]
+    // },
     {
         title: "Công việc",
         path: "/cong-viec",
@@ -176,57 +176,53 @@ export const SidebarData = [
         closeIcon: <ArrowDropDownIcon />,
     },
 
-    {
-        title: "Sổ tay",
-        path: "/so-tay",
-        icon: <BookRounded />,
-    },
-    {
-        title: "Danh sách yêu cầu",
-        path: "",
-        icon: <ReceiptLongIcon />,
-        openIcon: <ArrowDropUpIcon />,
-        closeIcon: <ArrowDropDownIcon />,
 
-        subnav: [
-            {
-                title: "Yêu cầu",
-                path: "/danh-sach-yeu-cau/yeu-cau"
-            },
-            {
-                title: "Khách tham quan",
-                path: "/danh-sach-yeu-cau/khach-tham-quan"
-            },
+    // {
+    //     title: "Danh sách yêu cầu",
+    //     path: "",
+    //     icon: <ReceiptLongIcon />,
+    //     openIcon: <ArrowDropUpIcon />,
+    //     closeIcon: <ArrowDropDownIcon />,
 
-        ]
-    },
-    {
-        title: "Bán hàng",
-        path: "",
-        icon: <ShopIcon />,
-        openIcon: <ArrowDropUpIcon />,
-        closeIcon: <ArrowDropDownIcon />,
-        subnav: [
-            {
-                title: "Thu hoạch trực tiếp",
-                path: "/banhang/thu-hoach-truc-tiep"
-            },
-            {
-                title: "Thống kê",
-                path: "/banhang/thong-ke"
-            },
-            {
-                title: "Bán từ kho",
-                path: "/banhang/ban-tu-kho"
-            },
+    //     subnav: [
+    //         {
+    //             title: "Yêu cầu",
+    //             path: "/danh-sach-yeu-cau/yeu-cau"
+    //         },
+    //         {
+    //             title: "Khách tham quan",
+    //             path: "/danh-sach-yeu-cau/khach-tham-quan"
+    //         },
 
-        ]
-    },
-    {
-        title: "Tài liệu",
-        path: "/tai-lieu",
-        icon: <DocumentScannerIcon />,
-    },
+    //     ]
+    // },
+    // {
+    //     title: "Bán hàng",
+    //     path: "",
+    //     icon: <ShopIcon />,
+    //     openIcon: <ArrowDropUpIcon />,
+    //     closeIcon: <ArrowDropDownIcon />,
+    //     subnav: [
+    //         {
+    //             title: "Thu hoạch trực tiếp",
+    //             path: "/banhang/thu-hoach-truc-tiep"
+    //         },
+    //         {
+    //             title: "Thống kê",
+    //             path: "/banhang/thong-ke"
+    //         },
+    //         {
+    //             title: "Bán từ kho",
+    //             path: "/banhang/ban-tu-kho"
+    //         },
+
+    //     ]
+    // },
+    // {
+    //     title: "Tài liệu",
+    //     path: "/tai-lieu",
+    //     icon: <DocumentScannerIcon />,
+    // },
     {
         title: "Tư vấn",
         path: "/tu-van",

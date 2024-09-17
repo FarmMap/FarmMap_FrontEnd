@@ -121,6 +121,7 @@ const ProvidorModal = (props: ProvidorModalProps) => {
           <Button
             variant="contained"
             startIcon={<SaveIcon />}
+            color="success"
             onClick={() => props.onSubmit(providor)}
           >
             {props.submitButtonLabel}

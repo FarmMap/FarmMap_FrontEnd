@@ -39,7 +39,7 @@ const IngredientModal = (props: IngredientModalProps) => {
   const [imageURLs, setImageURLs] = useState<string[]>([]);
   const fileInputRef = useRef(null);
   const [isEdit, setIsEdit] = useState(false);
-  const BASE_URL = "http://116.118.49.43:8878/";
+  const BASE_URL = "http://118.69.126.49:8878/";
 
   // useEffect(() => {
   //   if (props.title == "Cập nhật nguyên liệu") setIsEdit(true);
@@ -261,6 +261,7 @@ const IngredientModal = (props: IngredientModalProps) => {
               variant="outlined"
               startIcon={<ImageIcon />}
               disableElevation={true}
+              color="success"
               component="span"
             >
               Thêm ảnh
@@ -269,6 +270,7 @@ const IngredientModal = (props: IngredientModalProps) => {
           <Button
             variant="contained"
             startIcon={<SaveIcon />}
+            color="success"
             onClick={() => props.onSubmit(props.ingredient)}
           >
             {props.submitButtonLabel}

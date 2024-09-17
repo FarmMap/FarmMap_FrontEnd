@@ -521,7 +521,7 @@ const AreaModal = (props: AreaModalProps) => {
                 {/* Confirm delete modal */}
                 <KDialog
                   open={showConfirmDeletePoint}
-                  bckColor="var(--blue-hover-color)"
+                  bckColor="var(--green-color)"
                   title="Xác nhận xóa"
                   content={
                     <p>
@@ -664,7 +664,7 @@ const AreaModal = (props: AreaModalProps) => {
                 <KDialog
                   open={showConfirmDeletePoint}
                   title="Xác nhận xóa"
-                  bckColor="var(--blue-hover-color)"
+                  bckColor="var(--green-color)"
                   content={
                     <p>
                       Điểm này sẽ được xóa khỏi hệ thống cho đến khi bạn thay
@@ -726,12 +726,7 @@ const AreaModal = (props: AreaModalProps) => {
           </Carousel>
         </Grid>
 
-        <Grid
-          container
-          columns={12}
-          justifyContent={"flex-end"}
-          marginTop={"20px"}
-        >
+        <Grid container columns={12} justifyContent={"flex-end"}>
           <Grid item xs={3}></Grid>
           <Grid item xs={7}>
             <Button
@@ -739,6 +734,7 @@ const AreaModal = (props: AreaModalProps) => {
               variant="outlined"
               disableElevation={true}
               startIcon={<AddCircleIcon />}
+              color="success"
               onClick={handleAddPlace}
             >
               thêm điểm mới
@@ -772,6 +768,7 @@ const AreaModal = (props: AreaModalProps) => {
               <Button
                 style={{ marginRight: 12 }}
                 variant="outlined"
+                color="success"
                 startIcon={<ImageIcon />}
                 disableElevation={true}
                 component="span"
@@ -784,6 +781,7 @@ const AreaModal = (props: AreaModalProps) => {
               variant="contained"
               disableElevation={true}
               startIcon={<SaveIcon />}
+              color="success"
               onClick={() => props.handleSubmitCreateLand(props.land)}
             >
               {props.submitButtonLabel}

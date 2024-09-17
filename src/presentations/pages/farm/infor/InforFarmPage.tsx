@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // External
 import { MapContainer, Marker, Popup, TileLayer, Polygon } from "react-leaflet";
 import "leaflet-control-geocoder/dist/Control.Geocoder.css";
@@ -121,6 +123,7 @@ function InforFarmPage() {
     isLoading,
   } = useFetchFarmList({
     shouldRefesh: refresh,
+    page: 1,
   });
 
   const handleSubmitArea = (area: Area) => {
@@ -776,7 +779,7 @@ function InforFarmPage() {
                     objectFit: "cover",
                     margin: "5px",
                   }}
-                  src={`http://116.118.49.43:8878/${avatar}`}
+                  src={`http://118.69.126.49:8878/${avatar}`}
                   alt="FITPRO Farm"
                 />
               ))}
@@ -818,7 +821,7 @@ function InforFarmPage() {
                 objectFit: "cover",
                 margin: "5px",
               }}
-              src={`http://116.118.49.43:8878/${showImgFarmModal.farmImg.image}`}
+              src={`http://118.69.126.49:8878/${showImgFarmModal.farmImg.image}`}
               alt="FITPRO Farm"
             />
           </DefaultModal>

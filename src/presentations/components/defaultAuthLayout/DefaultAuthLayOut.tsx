@@ -29,7 +29,7 @@ const DefaultAuthLayout: React.FC<DefaultAuthLayoutProps> = (props) => {
         <Grid
           item
           lg={3.5}
-          md={5}
+          md={3.5}
           sm={5}
           xs={10}
           className={cx("form-wrapper")}
