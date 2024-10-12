@@ -348,6 +348,7 @@ const HomePage = () => {
                             disablePortal
                             id="combo-box-demo"
                             options={districts}
+                            disabled={!provinces.length}
                             getOptionLabel={(option: Province) =>
                               option.name as string
                             }

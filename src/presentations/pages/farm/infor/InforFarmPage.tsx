@@ -77,13 +77,7 @@ function InforFarmPage() {
     name: "",
     acreage: 0,
     description: "",
-    locations: [
-      {
-        point: 0,
-        latitude: 0,
-        longitude: 0,
-      },
-    ],
+    locations: [],
     avatars: undefined,
   });
 

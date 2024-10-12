@@ -38,6 +38,7 @@ const LoginForm = () => {
       setDisable(true);
       let api = new UseLogin();
       let signInResult = await api.signInWithUsernameAndPassword(credentials);
+      console.log(signInResult);
       // Handle login failed
       if (signInResult instanceof Left) {
         let errorMessage = signInResult.value;
@@ -45,8 +46,10 @@ const LoginForm = () => {
       }
       // Handle login succeed
       if (signInResult instanceof Right) {
-        let token = signInResult.value;
+        let token = signInResult.value.accessToken;
+        let refreshToken = signInResult.value.refreshToken;
         localStorage.setItem("token", token);
+        localStorage.setItem("refreshToken", refreshToken);
         window.location.href = "/";
       }
       setDisable(false);

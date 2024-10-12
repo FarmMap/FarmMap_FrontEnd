@@ -20,6 +20,10 @@ import useFetchMaterials from "../../../api/Material/useFetchMaterials";
 import KDialog from "../../components/kDialog/KDialog";
 import useDeleteMaterial from "../../../api/Material/useDeleteMaterial";
 import useUpdateMaterial from "../../../api/Material/useUpdateMaterial";
+import {
+  showErrorToast,
+  showSuccessToast,
+} from "../../components/toast/globalToast";
 
 const cx = classNames.bind(styles);
 
@@ -144,27 +148,24 @@ const MaterialPage = () => {
       updateMaterialErr;
 
     if (error != null) {
-      toast.error(error);
-    }
-
-    if (isCreated || isDeleted || isUpdated) {
-      toast.success("Thao tác thành công!");
-      setRefresh((refresh) => !refresh);
-      setTimeout(() => {
-        setMaterials({} as Material);
-        setCrop({ name: "", id: "" });
-        setShowModal(false);
-      }, 3000);
+      showErrorToast(error);
     }
   }, [
+    fetchmaterialsErr,
     creatematerialErr,
     deleteMaterialErr,
-    fetchmaterialsErr,
-    isCreated,
-    isDeleted,
-    isUpdated,
     updateMaterialErr,
   ]);
+
+  useEffect(() => {
+    if (isCreated || isDeleted || isUpdated) {
+      showSuccessToast("Thao tác thành công!");
+      setRefresh((refresh) => !refresh);
+      setMaterials({} as Material);
+      setCrop({ name: "", id: "" });
+      setShowModal(false);
+    }
+  }, [isCreated, isDeleted, isUpdated]);
 
   return (
     <DefaultWebLayOut>

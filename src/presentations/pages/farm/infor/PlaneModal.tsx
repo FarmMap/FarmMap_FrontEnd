@@ -23,6 +23,9 @@ import FloatingLabelInput from "../../../components/floatingLabelInput/FloatingL
 import Farm from "../../../../data/types/Farm";
 import { Area } from "../../../../data/types/Area";
 import Carousel from "react-material-ui-carousel";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import SearchLocationByLatLng from "../../../components/maps/SearchLocationByLatLng";
+import LeafletGecoderPlane from "./LeafletGecoderPlane";
 const cx = classNames.bind(styles);
 
 export interface PlaneModalProps {
@@ -39,19 +42,23 @@ export interface PlaneModalProps {
 
 const PlaneModal = (props: PlaneModalProps) => {
   const [countLocal, setCountLocal] = useState<number[]>([]);
+  const position = { lat: 10.964112, lng: 106.856461 };
   useEffect(() => {
     const storedCount = localStorage.getItem("count");
     if (storedCount) {
       setCountLocal(JSON.parse(storedCount));
     } else {
-      setCountLocal([1, 2, 3, 4]);
+      const existingPoints = props.area.locations.map(
+        (location) => location.point
+      );
+      setCountLocal(existingPoints);
     }
-  }, []);
+  }, [props.area.locations]);
 
   const handleAddPlace = () => {
     const newCountLocal = [
       ...countLocal,
-      countLocal[countLocal.length - 1] + 1,
+      (countLocal[countLocal.length - 1] || 0) + 1,
     ];
     setCountLocal(newCountLocal);
   };
@@ -96,10 +103,42 @@ const PlaneModal = (props: PlaneModalProps) => {
       };
     }
   }, [props.area.avatars]);
+
+  useEffect(() => {
+    console.log(props.area.locations);
+  }, [props.area.locations]);
+
   return (
     <DefaultModal title={props.title} onClose={props.handleCloseModal}>
       <Fragment>
-        <Grid className={cx("company-wrapper")} container columns={12}>
+        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <LeafletGecoderPlane setArea={props.setArea} />
+
+          {/* Farm */}
+          {props.farm?.location && (
+            <SearchLocationByLatLng
+              showPopUp={false}
+              lat={props.farm.location.latitude}
+              lng={props.farm.location.longitude}
+            />
+          )}
+
+          {props.farm.location && (
+            <Marker
+              position={{
+                lat: props.farm.location.latitude,
+                lng: props.farm.location.longitude,
+              }}
+            ></Marker>
+          )}
+        </MapContainer>
+        <Grid
+          mt={"12px"}
+          className={cx("company-wrapper")}
+          container
+          columns={12}
+        >
           <Grid item lg={2.6} md={4} xs={4} sm={12}>
             <label className={cx("label-company")} htmlFor="mo-hinh-kd">
               Trang trại
@@ -126,7 +165,11 @@ const PlaneModal = (props: PlaneModalProps) => {
               noOptionsText="Không tìm thấy trang trại nào"
               onChange={(event, value: Farm | null) => {
                 if (value == null) return;
-                props.setFarm({ ...props.farm, id: value.id });
+                props.setFarm({
+                  ...props.farm,
+                  id: value.id,
+                  location: value.location,
+                });
               }}
               sx={{ width: "100%" }}
               renderOption={(props, option) => (
@@ -324,7 +367,15 @@ const PlaneModal = (props: PlaneModalProps) => {
                 ))}
             </Carousel>
           </Grid>
-
+          <Grid container columns={12}>
+            <Grid item xs={3.5}></Grid>
+            <Grid item xs={7.5}>
+              <p className={cx("description")}>
+                Bạn có thể thêm điểm mới bằng cách thủ công hoặc tìm kiếm trên
+                bản đồ
+              </p>
+            </Grid>
+          </Grid>
           <Grid item xs={3}></Grid>
           <Grid item xs={7} paddingTop={"0 !important"}>
             <Button

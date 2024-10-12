@@ -49,7 +49,7 @@ const useUpdateArgiProduct = (props: useUpdateArgiProductProps) => {
       let config = {
         method: "patch",
         maxBodyLength: Infinity,
-        url: `${process.env.REACT_APP_API_BASE_URL}agricultural-products/${props.id}`,
+        url: `${process.env.REACT_APP_API_BASE_URL}agricultural-products/update/${props.id}`,
         headers: {
           accept: "*/*",
           Authorization: `Bearer ${window.localStorage.getItem("token")}`,

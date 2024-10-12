@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import DefaultModal from "../../components/defaultModal/DefaultModal";
 import { Autocomplete, Button, Grid, TextField } from "@mui/material";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import SaveIcon from "@mui/icons-material/Save";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Tippy from "@tippyjs/react";
@@ -19,6 +19,10 @@ import Farm from "../../../data/types/Farm";
 import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
 import Province from "../../../data/types/Province";
 import useFetchCategoryDetail from "../../../api/Category-detail/useFetchCategoryDetail";
+import LeafletGeocoder from "../../components/maps/LeafletGeocoder";
+import L from "leaflet";
+import "leaflet-control-geocoder/dist/Control.Geocoder.css";
+import "leaflet-control-geocoder/dist/Control.Geocoder.js";
 
 const cx = classNames.bind(styles);
 
@@ -110,7 +114,7 @@ const CompanyModal = (props: CompanyModalProps) => {
         <Grid>
           <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            {/* Render your map layers, markers, etc. */}
+            <LeafletGeocoder />
             {lat && lng && (
               <SearchLocationByLatLng showPopUp={true} lat={lat} lng={lng} />
             )}
@@ -121,8 +125,8 @@ const CompanyModal = (props: CompanyModalProps) => {
 
         <Grid container spacing={3} style={{ margin: "30px 0 0 0" }}>
           <FormInput
-            label="Tên doanh nghiệp"
-            placeholder="Nhập tên doanh nghiệp"
+            label="Tên trang trại"
+            placeholder="Nhập tên trang trại"
             type="text"
             value={props.farm.name ?? ""}
             onChange={(e) => {

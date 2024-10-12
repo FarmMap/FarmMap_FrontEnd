@@ -90,24 +90,7 @@ export const SidebarData = [
 
         ]
     },
-    // {
-    //     title: "Vật nuôi",
-    //     path: "",
-    //     icon: <PetsTwoTone />,
-    //     openIcon: <ArrowDropUpIcon />,
-    //     closeIcon: <ArrowDropDownIcon />,
-    //     subnav: [
-    //         {
-    //             title: "Gia súc",
-    //             path: "/nong-san/gia-suc"
-    //         },
-    //         {
-    //             title: "Đặc tính bệnh học",
-    //             path: "/nong-san/dac-tinh-benh-hoc"
-    //         },
 
-    //     ]
-    // },
     {
         title: "Kho",
         path: "",
@@ -138,36 +121,7 @@ export const SidebarData = [
             },
         ]
     },
-    // {
-    //     title: "Chi phí",
-    //     path: "",
-    //     icon: <Wallet />,
-    //     openIcon: <ArrowDropUpIcon />,
-    //     closeIcon: <ArrowDropDownIcon />,
-    //     subnav: [
-    //         {
-    //             title: "Nhân công",
-    //             path: "/chi-phi/nhan-cong"
-    //         },
 
-    //         {
-    //             title: "Bảng lương",
-    //             path: "/chi-phi/bang-luong"
-    //         },
-    //         {
-    //             title: "Thu nhập",
-    //             path: "/chi-phi/thu-nhap"
-    //         },
-    //         {
-    //             title: "Số quỹ",
-    //             path: "/chi-phi/so-quy"
-    //         },
-    //         {
-    //             title: "Hóa đơn",
-    //             path: "/chi-phi/hoa-don"
-    //         },
-    //     ]
-    // },
     {
         title: "Công việc",
         path: "/cong-viec",
@@ -177,25 +131,25 @@ export const SidebarData = [
     },
 
 
-    // {
-    //     title: "Danh sách yêu cầu",
-    //     path: "",
-    //     icon: <ReceiptLongIcon />,
-    //     openIcon: <ArrowDropUpIcon />,
-    //     closeIcon: <ArrowDropDownIcon />,
+    {
+        title: "Danh sách yêu cầu",
+        path: "",
+        icon: <ReceiptLongIcon />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
 
-    //     subnav: [
-    //         {
-    //             title: "Yêu cầu",
-    //             path: "/danh-sach-yeu-cau/yeu-cau"
-    //         },
-    //         {
-    //             title: "Khách tham quan",
-    //             path: "/danh-sach-yeu-cau/khach-tham-quan"
-    //         },
+        subnav: [
+            {
+                title: "Yêu cầu",
+                path: "/danh-sach-yeu-cau/yeu-cau"
+            },
+            {
+                title: "Khách tham quan",
+                path: "/danh-sach-yeu-cau/khach-tham-quan"
+            },
 
-    //     ]
-    // },
+        ]
+    },
     // {
     //     title: "Bán hàng",
     //     path: "",

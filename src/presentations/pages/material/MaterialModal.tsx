@@ -1,7 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 
 // Ex
-import { Button, Grid } from "@mui/material";
+import {
+  Autocomplete,
+  Button,
+  Grid,
+  ListItemText,
+  MenuItem,
+  TextField,
+} from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 
 // In
@@ -14,6 +21,7 @@ import FormDropdown, {
 import ImageIcon from "@mui/icons-material/Image";
 import Material from "../../../data/types/Material";
 import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
+import Providor from "../../../data/types/Providor";
 import Carousel from "react-material-ui-carousel";
 // Style imports
 import classNames from "classnames/bind";
@@ -42,11 +50,9 @@ const MaterialModal = (props: MaterialModalProps) => {
   const [isEdit, setIsEdit] = useState(false);
   const BASE_URL = "http://118.69.126.49:8878/";
 
-  // useEffect(() => {
-  //   if (props.title == "Cập nhật vật tư") setIsEdit(true);
-  //   else setIsEdit(false);
-  //   console.log(isEdit);
-  // }, [props.title]);
+  useEffect(() => {
+    console.log(props.material);
+  }, [props.material]);
 
   useEffect(() => {
     const newAvatars = props.material?.images;
@@ -112,24 +118,55 @@ const MaterialModal = (props: MaterialModalProps) => {
           }}
         />
 
-        <FormDropdown
-          label="Nhóm vật tư"
-          value={props.material?.materialGroupId ?? ""}
-          required
-          options={materialGr.map((u) => {
-            return {
-              name: u.name,
-              value: u.id,
-            } as DropdownOption;
-          })}
-          onChange={(event) => {
-            let newMaterial: Material = {
-              ...props.material,
-              materialGroupId: event.target.value,
-            };
-            props.setMaterial(newMaterial);
-          }}
-        />
+        <Grid margin={"10px 0"} container spacing={3}>
+          <Grid pt={"0 !important"} item lg={3} md={4} xs={4} sm={12}>
+            <label className={cx("label-area")} htmlFor="nhom-vat-tu">
+              Nhóm vật tư <span>*</span>
+            </label>
+          </Grid>
+          <Grid pt={"0 !important"} item lg={7} md={7} xs={12} sm={12}>
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              defaultValue={
+                props.material?.materialGroup?.name !== undefined &&
+                props.material?.materialGroup?.name !== null
+                  ? props.material.materialGroup?.name
+                  : null
+              }
+              options={materialGr.map((group) => group.name)}
+              getOptionLabel={(option: string) => option}
+              noOptionsText="Không tìm thấy nhóm vật tư nào"
+              onChange={(event, value: string | null) => {
+                event.preventDefault();
+                if (value == null) return;
+                const selectedGroup = materialGr.find(
+                  (group) => group.name === value
+                );
+                if (selectedGroup) {
+                  props.setMaterial((prevMaterial) => ({
+                    ...prevMaterial,
+                    materialGroup: selectedGroup,
+                    materialGroupId: selectedGroup.id,
+                  }));
+                }
+              }}
+              sx={{ width: "100%" }}
+              renderOption={(props, option) => (
+                <MenuItem {...props} divider>
+                  <ListItemText
+                    primaryTypographyProps={{ fontSize: "1.3rem" }}
+                    secondaryTypographyProps={{ fontSize: "1.2rem" }}
+                    primary={option}
+                  />
+                </MenuItem>
+              )}
+              renderInput={(params) => (
+                <TextField {...params} label="Chọn nhóm vật tư" />
+              )}
+            />
+          </Grid>
+        </Grid>
 
         <FormInput
           label={`Ghi chú`}

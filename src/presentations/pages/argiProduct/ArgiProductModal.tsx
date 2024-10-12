@@ -84,7 +84,7 @@ const ArgiProductModal = (props: ArgiProductModalProps) => {
       <Grid className={cx("area-wrapper")} container columns={12}>
         <Grid item lg={3} md={4} xs={4} sm={12}>
           <label className={cx("label-area")} htmlFor="khu-dat">
-            Vùng canh tác <span>*</span>
+            Trang trại canh tác <span>*</span>
           </label>
         </Grid>
         <Grid
@@ -103,18 +103,22 @@ const ArgiProductModal = (props: ArgiProductModalProps) => {
           <Autocomplete
             disablePortal
             id="combo-box-demo"
+            defaultValue={
+              props.argiProduct?.farm !== undefined &&
+              props.argiProduct?.farm !== null
+                ? props.argiProduct.farm
+                : null
+            }
             options={farms}
-            defaultValue={props.argiProduct?.farm ?? ""}
             getOptionLabel={(option: ArgiProduct) => option.name as string}
             noOptionsText="Không tìm thấy trang trại nào"
             onChange={(event, value: ArgiProduct | null) => {
+              event.preventDefault();
               if (value == null) return;
-              if (props.argiProduct?.farm !== undefined) {
-                props.setArgiProduct({
-                  ...props.argiProduct,
-                  farm: value.id,
-                });
-              }
+              props.setArgiProduct((prevArgiProduct) => ({
+                ...prevArgiProduct,
+                farm: value.id,
+              }));
             }}
             sx={{ width: "100%" }}
             renderOption={(props, option) => (

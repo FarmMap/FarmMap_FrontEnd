@@ -335,8 +335,9 @@ const CompanyPage = () => {
                       {areas.map((area, i) => (
                         <span key={i}>
                           {" "}
-                          {area.farm?.name == showImgFarmModal.farmImg?.name &&
-                            area.name}
+                          {area.farm?.name == showImgFarmModal.farmImg?.name
+                            ? area.name
+                            : "Trang trại chưa có khu đất"}
                         </span>
                       ))}
                     </div>

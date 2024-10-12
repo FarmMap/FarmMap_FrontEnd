@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import L from "leaflet";
 import { useMap } from "react-leaflet";
+import { Area } from "../../../../data/types/Area";
 
 declare module "leaflet" {
   namespace Control {
@@ -18,7 +19,11 @@ declare module "leaflet" {
   }
 }
 
-const LeafletGeocoder = () => {
+interface LeafletGeocoderProps {
+  setArea: React.Dispatch<React.SetStateAction<Area>>;
+}
+
+const LeafletGeocoder: React.FC<LeafletGeocoderProps> = ({ setArea }) => {
   const map = useMap();
   const geocoderRef = useRef<L.Control | null>(null);
 
@@ -29,12 +34,28 @@ const LeafletGeocoder = () => {
       }).on("markgeocode", function (e: L.Geocoder.ResultEvent) {
         const { center, name } = e.geocode;
         const latlng = center;
-        L.marker(latlng)
+
+        const marker = L.marker(latlng)
           .addTo(map)
           .bindPopup(
             `Name: ${name}<br/>Lat: ${latlng.lat}<br/>Long: ${latlng.lng}`
           )
           .openPopup();
+
+        marker.on("click", () => {
+          setArea((prevArea: Area) => ({
+            ...prevArea,
+            locations: [
+              ...prevArea.locations,
+              {
+                point: prevArea.locations.length + 1,
+                latitude: latlng.lat,
+                longitude: latlng.lng,
+              },
+            ],
+          }));
+        });
+
         map.fitBounds(e.geocode.bbox);
       });
 
@@ -48,7 +69,7 @@ const LeafletGeocoder = () => {
         geocoderRef.current = null;
       }
     };
-  }, [map]);
+  }, [map, setArea]);
 
   return null;
 };
