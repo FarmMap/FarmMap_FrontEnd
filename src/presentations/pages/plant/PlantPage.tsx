@@ -120,7 +120,13 @@ const PlantPage = () => {
   };
 
   const handleEditPlant = (plant: Plant | undefined) => {
-    updatePlant({ plant: plant });
+    if (typeof plant?.groupCrop === "object") {
+      const updatedPlant = { ...plant, groupCrop: plant.groupCrop.id };
+      setPlants(updatedPlant);
+      updatePlant({ plant: updatedPlant });
+    } else {
+      updatePlant({ plant: plant });
+    }
   };
 
   useEffect(() => {

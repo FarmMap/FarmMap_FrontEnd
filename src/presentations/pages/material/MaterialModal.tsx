@@ -15,13 +15,10 @@ import SaveIcon from "@mui/icons-material/Save";
 import FormInput from "../../components/formInput/FormInput";
 import DefaultModal from "../../components/defaultModal";
 
-import FormDropdown, {
-  DropdownOption,
-} from "../../components/formDropDown/FormDropdown";
 import ImageIcon from "@mui/icons-material/Image";
 import Material from "../../../data/types/Material";
 import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
-import Providor from "../../../data/types/Providor";
+
 import Carousel from "react-material-ui-carousel";
 // Style imports
 import classNames from "classnames/bind";
@@ -49,10 +46,6 @@ const MaterialModal = (props: MaterialModalProps) => {
   const fileInputRef = useRef(null);
   const [isEdit, setIsEdit] = useState(false);
   const BASE_URL = "http://118.69.126.49:8878/";
-
-  useEffect(() => {
-    console.log(props.material);
-  }, [props.material]);
 
   useEffect(() => {
     const newAvatars = props.material?.images;
@@ -146,7 +139,6 @@ const MaterialModal = (props: MaterialModalProps) => {
                 if (selectedGroup) {
                   props.setMaterial((prevMaterial) => ({
                     ...prevMaterial,
-                    materialGroup: selectedGroup,
                     materialGroupId: selectedGroup.id,
                   }));
                 }

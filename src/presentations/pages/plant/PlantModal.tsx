@@ -1,7 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 
 // Ex
-import { Button, Grid } from "@mui/material";
+import {
+  Autocomplete,
+  Button,
+  Grid,
+  ListItemText,
+  MenuItem,
+  TextField,
+} from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 
 // In
@@ -57,6 +64,10 @@ const PlantModal = (props: PlantModalProps) => {
       setIsEdit(true);
     }
   }, [props.plant?.images, props.title]);
+
+  useEffect(() => {
+    console.log(props.plant);
+  }, [props.plant]);
 
   return (
     <DefaultModal
@@ -160,25 +171,54 @@ const PlantModal = (props: PlantModalProps) => {
           }}
         />
 
-        <FormDropdown
-          label="Nhóm cây trồng"
-          value={props.plant?.groupCrop ?? ""}
-          defaultValue={""}
-          required
-          options={cropGr.map((u) => {
-            return {
-              name: u.name,
-              value: u.id,
-            } as DropdownOption;
-          })}
-          onChange={(event) => {
-            let newPlant: Plant = {
-              ...props.plant,
-              groupCrop: event.target.value,
-            };
-            props.setPlant(newPlant);
-          }}
-        />
+        <Grid margin={"2px 0"} container spacing={3}>
+          <Grid pt={"0 !important"} item lg={3} md={4} xs={4} sm={12}>
+            <label className={cx("label-area")} htmlFor="nhom-cay-trong">
+              Nhóm cây trồng <span>*</span>
+            </label>
+          </Grid>
+          <Grid pt={"0 !important"} item lg={7} md={7} xs={12} sm={12}>
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              defaultValue={
+                props.plant?.groupCrop.name !== undefined &&
+                props.plant?.groupCrop.name !== null
+                  ? props.plant.groupCrop.name
+                  : null
+              }
+              options={cropGr.map((group) => group.name)}
+              getOptionLabel={(option: string) => option}
+              noOptionsText="Không tìm thấy nhóm cây trồng nào"
+              onChange={(event, value: string | null) => {
+                event.preventDefault();
+                if (value == null) return;
+                const selectedGroup = cropGr.find(
+                  (group) => group.name === value
+                );
+                if (selectedGroup) {
+                  props.setPlant((prevPlant) => ({
+                    ...prevPlant,
+                    groupCrop: selectedGroup.id,
+                  }));
+                }
+              }}
+              sx={{ width: "100%" }}
+              renderOption={(props, option) => (
+                <MenuItem {...props} divider>
+                  <ListItemText
+                    primaryTypographyProps={{ fontSize: "1.3rem" }}
+                    secondaryTypographyProps={{ fontSize: "1.2rem" }}
+                    primary={option}
+                  />
+                </MenuItem>
+              )}
+              renderInput={(params) => (
+                <TextField {...params} label="Chọn nhóm cây trồng" />
+              )}
+            />
+          </Grid>
+        </Grid>
 
         <Grid style={{ width: "100%" }}>
           <Carousel>
