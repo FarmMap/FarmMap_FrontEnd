@@ -23,7 +23,7 @@ const useFetchUserList = (props: useFetchUserListProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}user/gets?order=ASC&page=1take=10`,
+      url: `${process.env.REACT_APP_API_BASE_URL}users?order=ASC&page=1&take=10`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },

@@ -124,7 +124,9 @@ function InforFarmPage() {
     createArea({ area: area });
   };
 
-  const { areas } = useFetchAreaList({});
+  const { areas } = useFetchAreaList({
+    shouldRefesh: refresh,
+  });
 
   const convertLatLngObjectToLatLngExpression = (
     locations: LatLngObject[]
@@ -749,6 +751,19 @@ function InforFarmPage() {
             submitButtonLabel="Xác nhận"
             handleCloseModal={() => {
               setAddPlace(false);
+              setArea({
+                name: "",
+                acreage: 0,
+                description: "",
+                locations: [
+                  {
+                    point: 0,
+                    latitude: 0,
+                    longitude: 0,
+                  },
+                ],
+                avatars: undefined,
+              });
             }}
             area={area}
             setArea={setArea}

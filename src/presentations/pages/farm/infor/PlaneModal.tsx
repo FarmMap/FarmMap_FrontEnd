@@ -23,7 +23,7 @@ import FloatingLabelInput from "../../../components/floatingLabelInput/FloatingL
 import Farm from "../../../../data/types/Farm";
 import { Area } from "../../../../data/types/Area";
 import Carousel from "react-material-ui-carousel";
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, TileLayer, useMapEvent } from "react-leaflet";
 import SearchLocationByLatLng from "../../../components/maps/SearchLocationByLatLng";
 import LeafletGecoderPlane from "./LeafletGecoderPlane";
 const cx = classNames.bind(styles);
@@ -56,11 +56,18 @@ const PlaneModal = (props: PlaneModalProps) => {
   }, [props.area.locations]);
 
   const handleAddPlace = () => {
-    const newCountLocal = [
-      ...countLocal,
-      (countLocal[countLocal.length - 1] || 0) + 1,
-    ];
-    setCountLocal(newCountLocal);
+    const newCount = (countLocal[countLocal.length - 1] || 0) + 1;
+
+    // Thêm điểm mới vào danh sách locations
+    const newArea = { ...props.area };
+    newArea.locations.push({
+      point: newCount,
+      latitude: 0,
+      longitude: 0,
+    });
+
+    setCountLocal([...countLocal, newCount]); // Cập nhật state điểm
+    props.setArea(newArea); // Cập nhật area với điểm mới
   };
 
   useEffect(() => {
@@ -108,29 +115,62 @@ const PlaneModal = (props: PlaneModalProps) => {
     console.log(props.area.locations);
   }, [props.area.locations]);
 
+  // Map get lat long when click
+  const MapWithClickHandler = ({
+    setArea,
+  }: {
+    setArea: (area: any) => void;
+  }) => {
+    const [markerPosition, setMarkerPosition] = useState<{
+      lat: number;
+      lng: number;
+    } | null>(null);
+
+    useMapEvent("click", (e) => {
+      const { lat, lng } = e.latlng;
+      setMarkerPosition({ lat, lng });
+
+      setArea((prevArea: any) => {
+        const newPoint =
+          prevArea.locations.length > 0
+            ? prevArea.locations[prevArea.locations.length - 1].point + 1
+            : 1;
+
+        const newLocations = [
+          ...prevArea.locations,
+          { point: newPoint, latitude: lat, longitude: lng },
+        ];
+
+        return { ...prevArea, locations: newLocations };
+      });
+    });
+
+    return markerPosition ? <Marker position={markerPosition} /> : null;
+  };
+
   return (
     <DefaultModal title={props.title} onClose={props.handleCloseModal}>
       <Fragment>
         <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <LeafletGecoderPlane setArea={props.setArea} />
-
-          {/* Farm */}
-          {props.farm?.location && (
-            <SearchLocationByLatLng
-              showPopUp={false}
-              lat={props.farm.location.latitude}
-              lng={props.farm.location.longitude}
+          <MapWithClickHandler setArea={props.setArea} />
+          {/* Hiển thị điểm của các location */}
+          {props.area.locations.map((location, index) => (
+            <Marker
+              key={index}
+              position={{ lat: location.latitude, lng: location.longitude }}
             />
-          )}
+          ))}
 
+          {/* Hiển thị trang trại nếu tồn tại */}
           {props.farm.location && (
             <Marker
               position={{
                 lat: props.farm.location.latitude,
                 lng: props.farm.location.longitude,
               }}
-            ></Marker>
+            />
           )}
         </MapContainer>
         <Grid

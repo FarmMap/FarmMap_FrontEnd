@@ -66,6 +66,7 @@ const HouseGoodsPage = () => {
     money: ingredient.money,
     information: ingredient.information,
     time: ingredient.time,
+    description: ingredient.description,
     status: ingredient.status,
     images: ingredient.images,
   });

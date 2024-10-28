@@ -9,9 +9,8 @@ import GrassIcon from '@mui/icons-material/Grass';
 import PropTypes from 'prop-types';
 import StoreIcon from '@mui/icons-material/Store';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-import ShopIcon from '@mui/icons-material/Shop';
-import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
-import { BookRounded, CallTwoTone, PetsTwoTone, SettingsTwoTone, TaskRounded, Wallet } from '@mui/icons-material';
+
+import { CallTwoTone, TaskRounded } from '@mui/icons-material';
 
 export const SidebarData = [
     {
@@ -59,14 +58,14 @@ export const SidebarData = [
                 title: "Lịch canh tác",
                 path: "/lich-canh-tac/thong-ke"
             },
-            {
-                title: "Lịch chăm sóc",
-                path: "/nong-trai/lich-cham-soc"
-            },
-            {
-                title: "Lịch bệnh tật",
-                path: "/nong-trai/lich-benh"
-            },
+            // {
+            //     title: "Lịch chăm sóc",
+            //     path: "/nong-trai/lich-cham-soc"
+            // },
+            // {
+            //     title: "Lịch bệnh tật",
+            //     path: "/nong-trai/lich-benh"
+            // },
 
         ]
     },
@@ -107,14 +106,14 @@ export const SidebarData = [
                 title: "Nguyên liệu",
                 path: "/kho/nguyen-lieu"
             },
-            {
-                title: "Hàng hóa",
-                path: "/kho/hang-hoa"
-            },
-            {
-                title: "Thu hoạch",
-                path: "/kho/thu-hoach"
-            },
+            // {
+            //     title: "Hàng hóa",
+            //     path: "/kho/hang-hoa"
+            // },
+            // {
+            //     title: "Thu hoạch",
+            //     path: "/kho/thu-hoach"
+            // },
             {
                 title: "Xuất kho",
                 path: "/kho/xuat-kho"
@@ -130,6 +129,14 @@ export const SidebarData = [
         closeIcon: <ArrowDropDownIcon />,
     },
 
+
+    {
+        title: "Đối tác",
+        path: "/doi-tac",
+        icon: <TaskRounded />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
+    },
 
     {
         title: "Danh sách yêu cầu",

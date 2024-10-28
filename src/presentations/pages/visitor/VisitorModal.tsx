@@ -41,7 +41,7 @@ const VisitorModal = (props: VisitorModalProps) => {
       {/* Modal body */}
       <Grid container spacing={3} className={cx("form-body-wrapper")}>
         <FormInput
-          label={`Tên khách tham quan`}
+          label={`Tên khách đại diện`}
           placeholder={`Nhập tên...`}
           type="text"
           required
@@ -123,10 +123,10 @@ const VisitorModal = (props: VisitorModalProps) => {
                   label="Ngày tiếp đón"
                   value={dayjs(visitor.receptionDay)}
                   onChange={(date: Dayjs | null) => {
-                    // Convert the selected Dayjs date to an ISO string and update the state
+                    // Convert the selected Dayjs date to the desired format (dd-mm-yyyy) and update the state
                     setVisitor({
                       ...visitor,
-                      receptionDay: date?.toISOString() ?? "",
+                      receptionDay: date ? date.format("DD-MM-YYYY") : "",
                     });
                   }}
                 />

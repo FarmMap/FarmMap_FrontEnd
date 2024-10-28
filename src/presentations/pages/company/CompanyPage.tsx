@@ -373,7 +373,7 @@ const CompanyPage = () => {
 
         {showModal && (
           <CompanyModal
-            title="Thêm doanh nghiệp"
+            title="Thêm trang trại"
             submitButtonLabel="Xác nhận"
             farm={farm}
             setFarm={setFarm}

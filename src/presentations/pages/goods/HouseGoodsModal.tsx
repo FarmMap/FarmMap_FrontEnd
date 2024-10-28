@@ -116,12 +116,12 @@ const HouseGoodsModal = (props: IngredientModalProps) => {
           placeholder={`Đơn vị tính`}
           type="text"
           required
-          value={props.ingredient?.quantity ?? ""}
+          value={props.ingredient?.weight ?? ""}
           onChange={(event) => {
             let newIngredient: Ingredient = {
               ...props.ingredient,
             };
-            newIngredient.quantity = event.currentTarget.value;
+            newIngredient.weight = event.currentTarget.value;
             props.setIngredient(newIngredient);
           }}
         />
@@ -200,12 +200,12 @@ const HouseGoodsModal = (props: IngredientModalProps) => {
             placeholder={`Ghi chú`}
             type="text"
             required
-            value={props.ingredient?.quantity ?? ""}
+            value={props.ingredient?.description ?? ""}
             onChange={(event) => {
               let newIngredient: Ingredient = {
                 ...props.ingredient,
               };
-              newIngredient.quantity = event.currentTarget.value;
+              newIngredient.description = event.currentTarget.value;
               props.setIngredient(newIngredient);
             }}
           />

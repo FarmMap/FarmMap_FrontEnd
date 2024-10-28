@@ -88,21 +88,18 @@ const App: React.FC = () => {
             path="/danh-sach-yeu-cau/yeu-cau"
             element={<BillRequestPage />}
           />
-          <Route path="/so-tay" element={<ProvidorPage />} />
+          <Route path="/doi-tac" element={<ProvidorPage />} />
           <Route path="/tu-van" element={<SupportPage />} />
 
           <Route path="/tai-lieu" element={<FarmDocumentPage />} />
 
-
-          <Route path="/tai-lieu" element={< FarmDocumentPage />} />
-          
+          <Route path="/tai-lieu" element={<FarmDocumentPage />} />
 
           <Route
             path="/danh-sach-yeu-cau/khach-tham-quan"
             element={<VisitorPage />}
           />
           <Route path="/trang-ca-nhan" element={<ProfilePage />} />
-          
         </Route>
       </Routes>
     </div>

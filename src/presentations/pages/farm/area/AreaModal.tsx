@@ -9,7 +9,14 @@ import {
   MenuItem,
   TextField,
 } from "@mui/material";
-import { MapContainer, Marker, Polygon, Popup, TileLayer } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Polygon,
+  Popup,
+  TileLayer,
+  useMapEvent,
+} from "react-leaflet";
 import LeafletGeocoder from "../../../components/maps/LeafletGeocoder";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import SaveIcon from "@mui/icons-material/Save";
@@ -159,6 +166,33 @@ const AreaModal = (props: AreaModalProps) => {
   // product type
   const { productTypes } = useFetchProductType({});
 
+  // Map get lat long when click
+  const MapWithClickHandler = ({
+    setArea,
+  }: {
+    setArea: (area: any) => void;
+  }) => {
+    const [markerPosition, setMarkerPosition] = useState<{
+      lat: number;
+      lng: number;
+    } | null>(null);
+
+    useMapEvent("click", (e) => {
+      const { lat, lng } = e.latlng;
+      setMarkerPosition({ lat, lng });
+    });
+
+    return markerPosition ? (
+      <Marker position={markerPosition}>
+        <Popup>
+          Lat:{markerPosition.lat}
+          <br />
+          Long: {markerPosition.lng}
+        </Popup>
+      </Marker>
+    ) : null;
+  };
+
   return (
     <DefaultModal
       overrideMaxWidth={{
@@ -174,6 +208,7 @@ const AreaModal = (props: AreaModalProps) => {
             {/* Render your map layers, markers, etc. */}
             {/* {viewLocation && <LocationMarker />} */}
             <LeafletGeocoder />
+            <MapWithClickHandler setArea={props.setArea} />
             {props.area.locations && (
               <SearchLocationByLatLng
                 showPopUp={false}

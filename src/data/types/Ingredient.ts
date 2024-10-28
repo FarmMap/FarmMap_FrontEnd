@@ -8,6 +8,7 @@ export default interface Ingredient {
   money?: number;
   information?: string;
   time?: string;
+  description?: string;
   status?: number;
   images?: File[];
 }

@@ -67,8 +67,8 @@ const ProvidorModal = (props: ProvidorModalProps) => {
         />
 
         <FormInput
-          label="Dư nợ"
-          placeholder="Nhập số tiền dư nợ "
+          label="Số tiền"
+          placeholder="Nhập số tiền"
           type="text"
           required
           value={`${String(providor.debt ?? "").replace(

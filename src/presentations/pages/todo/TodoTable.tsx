@@ -69,7 +69,7 @@ const TodoTable = (props: TodoTableProps) => {
                   <p>{toReadableDate(todo.implement_at ?? "")}</p>
                 </td>
                 <td>
-                  <p>{todo.completed_at}</p>
+                  <p>{toReadableDate(todo.completed_at ?? "")}</p>
                 </td>
                 <td>
                   <p>{todo.job}</p>

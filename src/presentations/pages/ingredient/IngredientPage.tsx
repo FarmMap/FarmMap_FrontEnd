@@ -186,18 +186,6 @@ const IngredientPage = () => {
                 query: query,
                 setQuery: setQuery,
               },
-              {
-                searchLabel: "Giá tiền",
-                searchPlaceholder: "Nhập tên giá tiền",
-                query: query,
-                setQuery: setQuery,
-              },
-              {
-                searchLabel: "Số lượng",
-                searchPlaceholder: "Nhập số lượng",
-                query: query,
-                setQuery: setQuery,
-              },
             ]}
             filters={[
               <Fragment>

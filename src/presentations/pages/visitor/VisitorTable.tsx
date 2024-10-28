@@ -66,7 +66,7 @@ const VisitorTable = (props: VisitorTableProps) => {
                   <p>{visitor.quantity}</p>
                 </td>
                 <td>
-                  <p>{toReadableDate(visitor.receptionDay ?? "")}</p>
+                  <p>{visitor.receptionDay}</p>
                 </td>
                 <td>
                   {STATUSVISITOR.map((item, i) => (

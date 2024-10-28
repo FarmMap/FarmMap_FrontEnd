@@ -33,6 +33,7 @@ import useFetchProductType from "../../../api/Land/useFetchProductType";
 // Style imports
 import classNames from "classnames/bind";
 import styles from "./FarmHarvest.module.scss";
+import useFetchPlants from "../../../api/Plant/useFetchPlants";
 
 const cx = classNames.bind(styles);
 
@@ -59,6 +60,10 @@ const inputStyle = {
 const FarmHarvestModal = (props: FarmCalendarModalProps) => {
   // fetch lands
   const { lands } = useFetchLandList({});
+
+  const { plants } = useFetchPlants({
+    page: 1,
+  });
 
   const { users } = useFetchUserList({});
 
