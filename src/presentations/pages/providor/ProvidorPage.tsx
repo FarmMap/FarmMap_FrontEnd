@@ -267,7 +267,7 @@ const ProvidorPage = () => {
         <KDialog
           open={showTypeModal}
           title="Chọn loại"
-          bckColor="var(--blue-hover-color)"
+          bckColor="var(--green-color)"
           content={
             <Grid className={cx("type-wrapper")}>
               {TYPEPERSON.map((type, i) => (
@@ -277,12 +277,12 @@ const ProvidorPage = () => {
                   style={{
                     backgroundColor:
                       selectedType === i
-                        ? "var(--blue-hover-color)"
+                        ? "var(--green-color)"
                         : "var(--white-color)", // Set red background for selectedType
                     color:
                       selectedType === i
                         ? "var(--white-color)"
-                        : "var(--blue-hover-color)", // Set red background for selectedType
+                        : "var(--green-color)", // Set red background for selectedType
                   }}
                   onClick={() => handleTypeClick(i)}
                 >

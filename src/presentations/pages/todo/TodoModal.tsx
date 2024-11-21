@@ -216,20 +216,44 @@ const TodoModal = (props: TodoModalProps) => {
             </Grid>
           </Fragment>
 
-          <FormInput
-            label="Thời gian hoàn thành"
-            required
-            placeholder="Nhập thời gian hoàn thành"
-            type="text"
-            value={todo.completed_at ?? ""}
-            onChange={(event) => {
-              let newTodo: Todo = {
-                ...todo,
-                completed_at: event.currentTarget.value,
-              };
-              setTodo(newTodo);
-            }}
-          />
+          <Fragment>
+            <Grid
+              item
+              lg={3}
+              md={4}
+              sm={4}
+              xs={12}
+              className={cx("form-control-wrapper")}
+            >
+              <label className={cx("form-input-label")} htmlFor={"Dientich"}>
+                Ngày hoàn thành<span style={{ color: "red" }}>*</span>
+              </label>
+            </Grid>
+            <Grid
+              item
+              lg={7}
+              md={7}
+              sm={7}
+              xs={12}
+              className={cx("form-control-wrapper")}
+            >
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={["DatePicker"]}>
+                  <DatePicker
+                    label="Ngày kết thúc"
+                    value={dayjs(todo.completed_at)}
+                    onChange={(date: Dayjs | null) => {
+                      // Convert the selected Dayjs date to an ISO string and update the state
+                      setTodo({
+                        ...todo,
+                        completed_at: date?.toISOString() ?? "",
+                      });
+                    }}
+                  />
+                </DemoContainer>
+              </LocalizationProvider>
+            </Grid>
+          </Fragment>
 
           <FormInput
             label="Công việc"
@@ -266,6 +290,7 @@ const TodoModal = (props: TodoModalProps) => {
               variant="contained"
               disableElevation={true}
               startIcon={<SaveIcon />}
+              color="success"
               onClick={() => props.onSubmit(todo)}
             >
               {props.submitButtonLabel}

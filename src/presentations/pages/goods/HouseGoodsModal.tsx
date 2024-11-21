@@ -39,7 +39,7 @@ const HouseGoodsModal = (props: IngredientModalProps) => {
   const [imageURLs, setImageURLs] = useState<string[]>([]);
   const fileInputRef = useRef(null);
   const [isEdit, setIsEdit] = useState(false);
-  const BASE_URL = "http://116.118.49.43:8878/";
+  const BASE_URL = "http://118.69.126.49:8878/";
 
   // useEffect(() => {
   //   if (props.title == "Cập nhật nguyên liệu") setIsEdit(true);
@@ -116,17 +116,15 @@ const HouseGoodsModal = (props: IngredientModalProps) => {
           placeholder={`Đơn vị tính`}
           type="text"
           required
-          value={props.ingredient?.quantity ?? ""}
+          value={props.ingredient?.weight ?? ""}
           onChange={(event) => {
             let newIngredient: Ingredient = {
               ...props.ingredient,
             };
-            newIngredient.quantity = event.currentTarget.value;
+            newIngredient.weight = event.currentTarget.value;
             props.setIngredient(newIngredient);
           }}
         />
-
-        
 
         <FormDropdown
           label="Trạng thái"
@@ -196,22 +194,21 @@ const HouseGoodsModal = (props: IngredientModalProps) => {
                 />
               </DemoContainer>
             </LocalizationProvider>
-            
           </Grid>
           <FormInput
-          label={`Ghi chú`}
-          placeholder={`Ghi chú`}
-          type="text"
-          required
-          value={props.ingredient?.quantity ?? ""}
-          onChange={(event) => {
-            let newIngredient: Ingredient = {
-              ...props.ingredient,
-            };
-            newIngredient.quantity = event.currentTarget.value;
-            props.setIngredient(newIngredient);
-          }}
-        />
+            label={`Ghi chú`}
+            placeholder={`Ghi chú`}
+            type="text"
+            required
+            value={props.ingredient?.description ?? ""}
+            onChange={(event) => {
+              let newIngredient: Ingredient = {
+                ...props.ingredient,
+              };
+              newIngredient.description = event.currentTarget.value;
+              props.setIngredient(newIngredient);
+            }}
+          />
         </Fragment>
 
         <Grid style={{ width: "100%" }}>
@@ -263,6 +260,7 @@ const HouseGoodsModal = (props: IngredientModalProps) => {
               variant="outlined"
               startIcon={<ImageIcon />}
               disableElevation={true}
+              color="success"
               component="span"
             >
               Thêm ảnh
@@ -271,6 +269,7 @@ const HouseGoodsModal = (props: IngredientModalProps) => {
           <Button
             variant="contained"
             startIcon={<SaveIcon />}
+            color="success"
             onClick={() => props.onSubmit(props.ingredient)}
           >
             {props.submitButtonLabel}

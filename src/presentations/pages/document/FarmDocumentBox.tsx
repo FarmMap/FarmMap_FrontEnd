@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import { Button } from "antd";
@@ -71,7 +72,8 @@ const FarmDocumentBox = () => {
         </Grid>
       </Grid>
     </Grid>
-  );
-};
 
-export default FarmDocumentBox;
+)}
+
+export default FarmDocumentBox
+

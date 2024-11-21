@@ -9,9 +9,8 @@ import GrassIcon from '@mui/icons-material/Grass';
 import PropTypes from 'prop-types';
 import StoreIcon from '@mui/icons-material/Store';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-import ShopIcon from '@mui/icons-material/Shop';
-import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
-import { BookRounded, CallTwoTone, PetsTwoTone, SettingsTwoTone, TaskRounded, Wallet } from '@mui/icons-material';
+
+import { CallTwoTone, TaskRounded } from '@mui/icons-material';
 
 export const SidebarData = [
     {
@@ -59,14 +58,14 @@ export const SidebarData = [
                 title: "Lịch canh tác",
                 path: "/lich-canh-tac/thong-ke"
             },
-            {
-                title: "Lịch chăm sóc",
-                path: "/nong-trai/lich-cham-soc"
-            },
-            {
-                title: "Lịch bệnh tật",
-                path: "/nong-trai/lich-benh"
-            },
+            // {
+            //     title: "Lịch chăm sóc",
+            //     path: "/nong-trai/lich-cham-soc"
+            // },
+            // {
+            //     title: "Lịch bệnh tật",
+            //     path: "/nong-trai/lich-benh"
+            // },
 
         ]
     },
@@ -90,24 +89,7 @@ export const SidebarData = [
 
         ]
     },
-    // {
-    //     title: "Vật nuôi",
-    //     path: "",
-    //     icon: <PetsTwoTone />,
-    //     openIcon: <ArrowDropUpIcon />,
-    //     closeIcon: <ArrowDropDownIcon />,
-    //     subnav: [
-    //         {
-    //             title: "Gia súc",
-    //             path: "/nong-san/gia-suc"
-    //         },
-    //         {
-    //             title: "Đặc tính bệnh học",
-    //             path: "/nong-san/dac-tinh-benh-hoc"
-    //         },
 
-    //     ]
-    // },
     {
         title: "Kho",
         path: "",
@@ -124,50 +106,21 @@ export const SidebarData = [
                 title: "Nguyên liệu",
                 path: "/kho/nguyen-lieu"
             },
-            {
-                title: "Hàng hóa",
-                path: "/kho/hang-hoa"
-            },
-            {
-                title: "Thu hoạch",
-                path: "/kho/thu-hoach"
-            },
+            // {
+            //     title: "Hàng hóa",
+            //     path: "/kho/hang-hoa"
+            // },
+            // {
+            //     title: "Thu hoạch",
+            //     path: "/kho/thu-hoach"
+            // },
             {
                 title: "Xuất kho",
                 path: "/kho/xuat-kho"
             },
         ]
     },
-    {
-        title: "Chi phí",
-        path: "",
-        icon: <Wallet />,
-        openIcon: <ArrowDropUpIcon />,
-        closeIcon: <ArrowDropDownIcon />,
-        subnav: [
-            {
-                title: "Nhân công",
-                path: ""
-            },
 
-            {
-                title: "Bảng lương",
-                path: ""
-            },
-            {
-                title: "Thu nhập",
-                path: ""
-            },
-            {
-                title: "Số quỹ",
-                path: ""
-            },
-            {
-                title: "Hóa đơn",
-                path: ""
-            },
-        ]
-    },
     {
         title: "Công việc",
         path: "/cong-viec",
@@ -176,11 +129,15 @@ export const SidebarData = [
         closeIcon: <ArrowDropDownIcon />,
     },
 
+
     {
-        title: "Sổ tay",
-        path: "/so-tay",
-        icon: <BookRounded />,
+        title: "Đối tác",
+        path: "/doi-tac",
+        icon: <TaskRounded />,
+        openIcon: <ArrowDropUpIcon />,
+        closeIcon: <ArrowDropDownIcon />,
     },
+
     {
         title: "Danh sách yêu cầu",
         path: "",
@@ -200,33 +157,33 @@ export const SidebarData = [
 
         ]
     },
-    {
-        title: "Bán hàng",
-        path: "",
-        icon: <ShopIcon />,
-        openIcon: <ArrowDropUpIcon />,
-        closeIcon: <ArrowDropDownIcon />,
-        subnav: [
-            {
-                title: "Thu hoạch trực tiếp",
-                path: "/banhang/thu-hoach-truc-tiep"
-            },
-            {
-                title: "Thống kê",
-                path: "/banhang/thong-ke"
-            },
-            {
-                title: "Bán từ kho",
-                path: "/banhang/ban-tu-kho"
-            },
+    // {
+    //     title: "Bán hàng",
+    //     path: "",
+    //     icon: <ShopIcon />,
+    //     openIcon: <ArrowDropUpIcon />,
+    //     closeIcon: <ArrowDropDownIcon />,
+    //     subnav: [
+    //         {
+    //             title: "Thu hoạch trực tiếp",
+    //             path: "/banhang/thu-hoach-truc-tiep"
+    //         },
+    //         {
+    //             title: "Thống kê",
+    //             path: "/banhang/thong-ke"
+    //         },
+    //         {
+    //             title: "Bán từ kho",
+    //             path: "/banhang/ban-tu-kho"
+    //         },
 
-        ]
-    },
-    {
-        title: "Tài liệu",
-        path: "/tai-lieu",
-        icon: <DocumentScannerIcon />,
-    },
+    //     ]
+    // },
+    // {
+    //     title: "Tài liệu",
+    //     path: "/tai-lieu",
+    //     icon: <DocumentScannerIcon />,
+    // },
     {
         title: "Tư vấn",
         path: "/tu-van",

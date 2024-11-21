@@ -151,6 +151,7 @@ const BillRequestModal = (props: BillRequestModalProps) => {
           <Button
             variant="contained"
             startIcon={<SaveIcon />}
+            color="success"
             onClick={() => props.onSubmit(billRequest)}
           >
             {props.submitButtonLabel}

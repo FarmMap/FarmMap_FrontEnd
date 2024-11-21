@@ -66,6 +66,7 @@ const HouseGoodsPage = () => {
     money: ingredient.money,
     information: ingredient.information,
     time: ingredient.time,
+    description: ingredient.description,
     status: ingredient.status,
     images: ingredient.images,
   });
@@ -213,23 +214,23 @@ const HouseGoodsPage = () => {
                 </Select>
               </Fragment>,
               <Fragment>
-              <label htmlFor="select">Trạng thái</label>
-              <Select
-                className={cx("filter-dropdown")}
-                sx={{
-                  fontSize: "1.2rem",
-                  boxShadow: "none",
-                  minWidth: "150px",
-                }}
-                value={""}
-                displayEmpty
-                onChange={() => {}}
-              >
-                <MenuItem sx={{ fontSize: "1.2rem" }} value="">
-                  Tất cả
-                </MenuItem>
-              </Select>
-            </Fragment>,
+                <label htmlFor="select">Trạng thái</label>
+                <Select
+                  className={cx("filter-dropdown")}
+                  sx={{
+                    fontSize: "1.2rem",
+                    boxShadow: "none",
+                    minWidth: "150px",
+                  }}
+                  value={""}
+                  displayEmpty
+                  onChange={() => {}}
+                >
+                  <MenuItem sx={{ fontSize: "1.2rem" }} value="">
+                    Tất cả
+                  </MenuItem>
+                </Select>
+              </Fragment>,
             ]}
             onSearchSubmit={() => {}}
           ></DefaultFilterLayOut>
@@ -310,7 +311,7 @@ const HouseGoodsPage = () => {
                     objectFit: "cover",
                     margin: "5px",
                   }}
-                  src={`http://116.118.49.43:8878/${image}`}
+                  src={`http://118.69.126.49:8878/${image}`}
                   alt="FITPRO Farm"
                 />
               ))}

@@ -47,11 +47,14 @@ const IotPage = () => {
   const today = getDayOfWeek();
   console.log(today); // In ra số thứ hiện tại (1 - 7)
 
+  const getDayLabel = (dayOffset: number) => {
+    const newDay = (today + dayOffset) % 7; // reset to 1 after 7
+    return newDay === 0 ? "Chủ nhật" : `Thứ ${newDay + 1}`;
+  };
+
   const boxTemps = [
     {
-      title: `${today + 1 !== 8 ? "Thứ" : ""} ${
-        today + 1 == 8 ? "Chủ nhật" : today + 1
-      } - ${new Date().getDate() + 0 + 1}/${
+      title: `${getDayLabel(0)} - ${new Date().getDate() + 1}/${
         new Date().getMonth() + 1
       }/${new Date().getFullYear()}`,
       url: <CloudIcon />,
@@ -59,9 +62,7 @@ const IotPage = () => {
       status: "Mây rải rác",
     },
     {
-      title: `${today + 2 !== 8 ? "Thứ" : ""} ${
-        today + 2 == 8 ? "Chủ nhật" : today + 2
-      } - ${new Date().getDate() + 1 + 1}/${
+      title: `${getDayLabel(1)} - ${new Date().getDate() + 2}/${
         new Date().getMonth() + 1
       }/${new Date().getFullYear()}`,
       url: images.cloudRain,
@@ -69,9 +70,7 @@ const IotPage = () => {
       status: "Mưa nhẹ",
     },
     {
-      title: `${today + 3 !== 8 ? "Thứ" : ""} ${
-        today + 3 == 8 ? "Chủ nhật" : today + 3
-      } - ${new Date().getDate() + 2 + 1}/${
+      title: `${getDayLabel(2)} - ${new Date().getDate() + 3}/${
         new Date().getMonth() + 1
       }/${new Date().getFullYear()}`,
       url: images.cloudSun,
@@ -79,9 +78,7 @@ const IotPage = () => {
       status: "Mây thưa",
     },
     {
-      title: `${today + 4 !== 8 ? "Thứ" : ""} ${
-        today + 4 == 8 ? "Chủ nhật" : today + 4
-      } - ${new Date().getDate() + 3 + 1}/${
+      title: `${getDayLabel(3)} - ${new Date().getDate() + 4}/${
         new Date().getMonth() + 1
       }/${new Date().getFullYear()}`,
       url: <CircleIcon />,
@@ -127,7 +124,7 @@ const IotPage = () => {
         </Grid>
 
         <Grid className={cx("body")} columns={12} container>
-          <Grid item className={cx("box")} lg={3.7}>
+          <Grid item className={cx("box")} lg={3.7} md={3.7}>
             <Grid className={cx("title")}>
               <p>Thời tiết - Hôm nay</p>
             </Grid>
@@ -164,7 +161,7 @@ const IotPage = () => {
             </Grid>
           </Grid>
           {boxTemps.map((boxTemp, i) => (
-            <Grid item className={cx("box")} lg={2} key={i}>
+            <Grid item className={cx("box")} lg={2} md={2} key={i}>
               <Grid className={cx("title")} fontSize={"1.8rem"}>
                 <p>{boxTemp.title}</p>
               </Grid>

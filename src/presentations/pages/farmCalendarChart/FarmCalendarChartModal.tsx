@@ -348,6 +348,7 @@ const FarmCalendarChartModal = (props: FarmCalendarChartModalProps) => {
               variant="contained"
               disableElevation={true}
               startIcon={<SaveIcon />}
+              color="success"
               onClick={() => props.onSubmit(farmCalendar)}
             >
               {props.submitButtonLabel}

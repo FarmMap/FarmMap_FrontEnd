@@ -347,6 +347,7 @@ const FarmCalendarModal = (props: FarmCalendarModalProps) => {
               variant="contained"
               disableElevation={true}
               startIcon={<SaveIcon />}
+              color="success"
               onClick={() => props.onSubmit(farmCalendar)}
             >
               {props.submitButtonLabel}

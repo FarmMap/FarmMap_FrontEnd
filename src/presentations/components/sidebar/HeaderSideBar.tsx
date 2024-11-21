@@ -32,8 +32,8 @@ const HeaderSideBar: React.FC<HeaderSideBarProps> = (props) => {
         <button
           className={
             !openSidebar
-              ? cx("btn-header")
-              : cx("btn-header", "btn-header-active")
+              ? cx("btn-header", "btn-header-active")
+              : cx("btn-header")
           }
           // Toggle sidebar
           onClick={() => setOpenSidebar(!openSidebar)}

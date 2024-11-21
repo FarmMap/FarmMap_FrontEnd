@@ -6,7 +6,6 @@ import DefaultWebLayOut from "../../components/defaultWebLayOut/DefaultWebLayOut
 import DefaultTitleLayOut from "../../components/defaultTitleLayOut";
 import DefaultFilterLayOut from "../../components/defaultTitleLayOut/DefaultFilterLayOut";
 import ArgiProductTable from "./ArgiProductTable";
-import { toast } from "react-toastify";
 import DefaultModal from "../../components/defaultModal";
 import Carousel from "react-material-ui-carousel";
 
@@ -21,6 +20,10 @@ import useDeleteArgiProduct from "../../../api/ArgiProduct/useDeleteArgiProduct"
 import useUpdateArgiProduct from "../../../api/ArgiProduct/useUpdateArgiProduct";
 import useCreateArgiProduct from "../../../api/ArgiProduct/useCreateArgiProduct";
 import KDialog from "../../components/kDialog/KDialog";
+import {
+  showErrorToast,
+  showSuccessToast,
+} from "../../components/toast/globalToast";
 
 const cx = classNames.bind(styles);
 
@@ -73,7 +76,7 @@ const ArgiProductPage = () => {
     images: argiProduct.images,
   });
   const handleCreateMaterial = (argiProduct: ArgiProduct | undefined) => {
-    createArgiProduct({ argiProduct: argiProduct });
+    createArgiProduct();
   };
   // Get img
   const [imgArgiProduct, setImgArgiProduct] = useState<{
@@ -149,26 +152,23 @@ const ArgiProductPage = () => {
       updateMaterialErr;
 
     if (error != null) {
-      toast.error(error);
-    }
-
-    if (isCreated || isDeleted || isUpdated) {
-      toast.success("Thao tác thành công!");
-      setRefresh((refresh) => !refresh);
-      setTimeout(() => {
-        setArgiProducts({} as ArgiProduct);
-        setShowModal(false);
-      }, 3000);
+      showErrorToast(error);
     }
   }, [
+    fetchargiProductsErr,
     createargiProductErr,
     deleteArgiProductErr,
-    fetchargiProductsErr,
-    isCreated,
-    isDeleted,
-    isUpdated,
     updateMaterialErr,
   ]);
+
+  useEffect(() => {
+    if (isCreated || isDeleted || isUpdated) {
+      showSuccessToast("Thao tác thành công!");
+      setRefresh((refresh) => !refresh);
+      setArgiProducts({} as ArgiProduct);
+      setShowModal(false);
+    }
+  }, [isCreated, isDeleted, isUpdated]);
 
   return (
     <DefaultWebLayOut>
@@ -286,7 +286,7 @@ const ArgiProductPage = () => {
                     objectFit: "cover",
                     margin: "5px",
                   }}
-                  src={`http://116.118.49.43:8878/${image}`}
+                  src={`http://118.69.126.49:8878/${image}`}
                   alt="FITPRO Farm"
                 />
               ))}

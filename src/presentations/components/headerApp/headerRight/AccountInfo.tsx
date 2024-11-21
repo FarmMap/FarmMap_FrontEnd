@@ -28,7 +28,14 @@ const AccountInfo = (props: AccountInfoProps) => {
       <div className={cx("header-account")}>
         <Tippy content={`thienan1804`} placement="bottom" theme="light">
           <div className={cx("user-cart-avt")}>
-            <DefaultAvatar avatar={images.avatar} medium />
+            <DefaultAvatar
+              avatar={
+                user.avatar
+                  ? `http://118.69.126.49:8878/${user.avatar}`
+                  : `${images.avatar}`
+              }
+              medium
+            />
           </div>
         </Tippy>
         <div className={cx("user-cart-name")}>

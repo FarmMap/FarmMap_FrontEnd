@@ -20,6 +20,7 @@ interface useCreateIngredientProps {
   time?: string;
   status?: number;
   images?: File[];
+  description?: string;
 }
 
 const useCreateIngredient = (props: useCreateIngredientProps) => {
@@ -40,6 +41,7 @@ const useCreateIngredient = (props: useCreateIngredientProps) => {
       data.append("money", props.money?.toString() ?? "");
       data.append("information", props.information ?? "");
       data.append("time", props.time ?? "");
+      data.append("description", props.description ?? "");
       data.append("status", props.status?.toString() ?? "");
       if (props.images && props.images.length > 0) {
         props.images.forEach((image) => {

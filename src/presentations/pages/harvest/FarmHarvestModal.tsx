@@ -33,6 +33,7 @@ import useFetchProductType from "../../../api/Land/useFetchProductType";
 // Style imports
 import classNames from "classnames/bind";
 import styles from "./FarmHarvest.module.scss";
+import useFetchPlants from "../../../api/Plant/useFetchPlants";
 
 const cx = classNames.bind(styles);
 
@@ -59,6 +60,10 @@ const inputStyle = {
 const FarmHarvestModal = (props: FarmCalendarModalProps) => {
   // fetch lands
   const { lands } = useFetchLandList({});
+
+  const { plants } = useFetchPlants({
+    page: 1,
+  });
 
   const { users } = useFetchUserList({});
 
@@ -132,7 +137,7 @@ const FarmHarvestModal = (props: FarmCalendarModalProps) => {
           </Grid>
           <Grid item lg={3} md={4} xs={4} sm={12}>
             <label className={cx("label-area")} htmlFor="khu-dat">
-             Tên cây trồng <span>*</span>
+              Tên cây trồng <span>*</span>
             </label>
           </Grid>
           <Grid
@@ -200,8 +205,6 @@ const FarmHarvestModal = (props: FarmCalendarModalProps) => {
               setFarmCalendar(newFarmCalendar);
             }}
           />
-
-          
 
           {/* <FormInput
             label="Số lượng giống"
@@ -338,6 +341,7 @@ const FarmHarvestModal = (props: FarmCalendarModalProps) => {
               variant="contained"
               disableElevation={true}
               startIcon={<SaveIcon />}
+              color="success"
               onClick={() => props.onSubmit(farmCalendar)}
             >
               {props.submitButtonLabel}

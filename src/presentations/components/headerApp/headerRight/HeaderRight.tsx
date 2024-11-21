@@ -96,7 +96,11 @@ const HeaderRight: React.FC<HeaderRightProps> = (props: HeaderRightProps) => {
               <p className={cx("role")}>{user.role}</p>
             </div>
             <DefaultAvatar
-              avatar={`http://116.118.49.43:8878/${user.avatar}`}
+              avatar={
+                user.avatar
+                  ? `http://118.69.126.49:8878/${user.avatar}`
+                  : `${images.avatar}`
+              }
               small
             />
           </div>

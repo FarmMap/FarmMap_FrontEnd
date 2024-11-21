@@ -1,19 +1,21 @@
 import { Result, Left, Right } from "./Result";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import UserAccount from "../../data/types/UserAccount";
+
 type RequestError = {
   code: string;
   message: string;
 };
 
-type LoginSuccess = {
+type RefreshTokenResponse = {
   accessToken: string;
+  refreshToken: string;
 };
 
 class UseLogin {
   async signInWithUsernameAndPassword(
     credentials: UserAccount
-  ): Promise<Result<String, String>> {
+  ): Promise<Result<String, UserAccount>> {
     try {
       var requestBody = JSON.stringify({
         username: credentials.username,
@@ -29,9 +31,9 @@ class UseLogin {
 
       let response: AxiosResponse = await axios(config);
 
-      let data: LoginSuccess = response.data;
+      let data: UserAccount = response.data;
 
-      return new Right(data.accessToken);
+      return new Right(data);
     } catch (error) {
       return new Left(
         ((error as AxiosError).response?.data as RequestError).message
@@ -58,6 +60,38 @@ class UseLogin {
       let response: AxiosResponse = await axios(config);
 
       let data: UserAccount = response.data;
+
+      return new Right(data);
+    } catch (error) {
+      return new Left(
+        ((error as AxiosError).response?.data as RequestError).message
+      );
+    }
+  }
+
+  // Hàm mới để refresh token
+  async refreshToken(): Promise<Result<String, RefreshTokenResponse>> {
+    try {
+      let refreshToken: string | null =
+        window.localStorage.getItem("refreshToken");
+
+      if (refreshToken == null) {
+        return new Left("Không có refresh token, vui lòng đăng nhập lại");
+      }
+
+      var config = {
+        method: "post",
+        url: process.env.REACT_APP_API_BASE_URL + "auth/refresh-token",
+        headers: { "Content-Type": "application/json" },
+        data: { refreshToken: refreshToken },
+      };
+
+      let response: AxiosResponse = await axios(config);
+
+      let data: RefreshTokenResponse = response.data;
+
+      // Lưu lại token mới vào localStorage
+      window.localStorage.setItem("token", data.accessToken);
 
       return new Right(data);
     } catch (error) {

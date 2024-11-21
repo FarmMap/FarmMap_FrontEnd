@@ -26,7 +26,9 @@ const useDeleteArgiProduct = () => {
       method: "delete",
       url: `${
         process.env.REACT_APP_API_BASE_URL
-      }agricultural-products/${encodeURIComponent(`${params.argiProduct.id}`)}`,
+      }agricultural-products/delete/${encodeURIComponent(
+        `${params.argiProduct.id}`
+      )}`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },

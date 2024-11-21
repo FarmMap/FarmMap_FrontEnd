@@ -1,8 +1,8 @@
 // External
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DefaultModal from "../../components/defaultModal/DefaultModal";
 import { Autocomplete, Button, Grid, TextField } from "@mui/material";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import SaveIcon from "@mui/icons-material/Save";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Tippy from "@tippyjs/react";
@@ -11,12 +11,7 @@ import ImageIcon from "@mui/icons-material/Image";
 import FormInput from "../../components/formInput/FormInput";
 import FloatingLabelInput from "../../components/floatingLabelInput/FloatingLabelInput";
 import SearchLocationByLatLng from "../../components/maps/SearchLocationByLatLng";
-import {
-  business_models,
-  business_types,
-  districts,
-  wards,
-} from "./LocalDataCompany";
+
 // Style
 import classNames from "classnames/bind";
 import styles from "./Company.module.scss";
@@ -24,6 +19,10 @@ import Farm from "../../../data/types/Farm";
 import useFetchProvinceList from "../../../api/Farm/useFetchCategoryList";
 import Province from "../../../data/types/Province";
 import useFetchCategoryDetail from "../../../api/Category-detail/useFetchCategoryDetail";
+import LeafletGeocoder from "../../components/maps/LeafletGeocoder";
+import L from "leaflet";
+import "leaflet-control-geocoder/dist/Control.Geocoder.css";
+import "leaflet-control-geocoder/dist/Control.Geocoder.js";
 
 const cx = classNames.bind(styles);
 
@@ -115,7 +114,7 @@ const CompanyModal = (props: CompanyModalProps) => {
         <Grid>
           <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            {/* Render your map layers, markers, etc. */}
+            <LeafletGeocoder />
             {lat && lng && (
               <SearchLocationByLatLng showPopUp={true} lat={lat} lng={lng} />
             )}
@@ -126,8 +125,8 @@ const CompanyModal = (props: CompanyModalProps) => {
 
         <Grid container spacing={3} style={{ margin: "30px 0 0 0" }}>
           <FormInput
-            label="Tên doanh nghiệp"
-            placeholder="Nhập tên doanh nghiệp"
+            label="Tên trang trại"
+            placeholder="Nhập tên trang trại"
             type="text"
             value={props.farm.name ?? ""}
             onChange={(e) => {
@@ -287,6 +286,7 @@ const CompanyModal = (props: CompanyModalProps) => {
               disablePortal
               id="combo-box-demo"
               options={districts}
+              // eslint-disable-next-line eqeqeq
               disabled={province.name == undefined || province.key == undefined}
               getOptionLabel={(option: Province) => option.name as string}
               noOptionsText="Không tìm thấy quận huyện nào"
@@ -333,6 +333,7 @@ const CompanyModal = (props: CompanyModalProps) => {
               disablePortal
               id="combo-box-demo"
               options={wards}
+              // eslint-disable-next-line eqeqeq
               disabled={district.name == undefined || district.key == undefined}
               getOptionLabel={(option: Province) => option.name as string}
               noOptionsText="Không tìm thấy phường xã nào"
@@ -369,7 +370,7 @@ const CompanyModal = (props: CompanyModalProps) => {
             <Grid
               item
               lg={3}
-              md={4}
+              md={3}
               sm={4}
               xs={12}
               className={cx("form-control-wrapper")}
@@ -381,7 +382,7 @@ const CompanyModal = (props: CompanyModalProps) => {
             <Grid
               item
               lg={3}
-              md={4}
+              md={3}
               sm={4}
               xs={6}
               className={cx("form-control-wrapper")}
@@ -407,7 +408,7 @@ const CompanyModal = (props: CompanyModalProps) => {
             <Grid
               item
               lg={3}
-              md={4}
+              md={3}
               sm={4}
               xs={6}
               className={cx("form-control-wrapper")}
@@ -436,7 +437,7 @@ const CompanyModal = (props: CompanyModalProps) => {
               height={"54px"}
               item
               lg={2}
-              md={4}
+              md={2}
               sm={4}
               xs={6}
             >
@@ -515,6 +516,7 @@ const CompanyModal = (props: CompanyModalProps) => {
               <Button
                 style={{ marginRight: 12 }}
                 variant="outlined"
+                color="success"
                 startIcon={<ImageIcon />}
                 disableElevation={true}
                 component="span"
@@ -525,10 +527,15 @@ const CompanyModal = (props: CompanyModalProps) => {
             <Button
               variant="contained"
               disabled={
+                // eslint-disable-next-line eqeqeq
                 props.farm.name == "" ||
+                // eslint-disable-next-line eqeqeq
                 props.districtList.name == "" ||
+                // eslint-disable-next-line eqeqeq
                 props.provinceList.name == "" ||
+                // eslint-disable-next-line eqeqeq
                 props.wardList.name == "" ||
+                // eslint-disable-next-line eqeqeq
                 props.farm.image == undefined
               }
               disableElevation={true}

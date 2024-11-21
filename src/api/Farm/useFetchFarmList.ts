@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
 import Farm from "../../data/types/Farm";
+import Meta from "../../data/types/Meta";
 
 interface ResponseError {
   code: string;
@@ -10,10 +11,17 @@ interface ResponseError {
 
 interface useFetchFarmListProps {
   shouldRefesh?: boolean;
+  page: number;
+}
+
+interface ProvidorResponse {
+  meta: Meta;
+  data: Farm[];
 }
 
 const useFetchFarmList = (props: useFetchFarmListProps) => {
   let [farms, setFarms] = useState<Farm[]>([]);
+  let [pages, setPages] = useState(1);
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
 
@@ -23,7 +31,7 @@ const useFetchFarmList = (props: useFetchFarmListProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}farm/all`,
+      url: `${process.env.REACT_APP_API_BASE_URL}farm/all?order=ASC&page=${props.page}&take=10`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -31,8 +39,9 @@ const useFetchFarmList = (props: useFetchFarmListProps) => {
 
     axios(config)
       .then((response: AxiosResponse) => {
-        let data = response.data;
-        setFarms(data);
+        let data: ProvidorResponse = response.data;
+        setFarms(data.data);
+        setPages(data.meta.pageCount ?? 0);
 
         setLoading(false);
       })

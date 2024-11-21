@@ -23,6 +23,9 @@ import FloatingLabelInput from "../../../components/floatingLabelInput/FloatingL
 import Farm from "../../../../data/types/Farm";
 import { Area } from "../../../../data/types/Area";
 import Carousel from "react-material-ui-carousel";
+import { MapContainer, Marker, TileLayer, useMapEvent } from "react-leaflet";
+import SearchLocationByLatLng from "../../../components/maps/SearchLocationByLatLng";
+import LeafletGecoderPlane from "./LeafletGecoderPlane";
 const cx = classNames.bind(styles);
 
 export interface PlaneModalProps {
@@ -39,21 +42,32 @@ export interface PlaneModalProps {
 
 const PlaneModal = (props: PlaneModalProps) => {
   const [countLocal, setCountLocal] = useState<number[]>([]);
+  const position = { lat: 10.964112, lng: 106.856461 };
   useEffect(() => {
     const storedCount = localStorage.getItem("count");
     if (storedCount) {
       setCountLocal(JSON.parse(storedCount));
     } else {
-      setCountLocal([1, 2, 3, 4]);
+      const existingPoints = props.area.locations.map(
+        (location) => location.point
+      );
+      setCountLocal(existingPoints);
     }
-  }, []);
+  }, [props.area.locations]);
 
   const handleAddPlace = () => {
-    const newCountLocal = [
-      ...countLocal,
-      countLocal[countLocal.length - 1] + 1,
-    ];
-    setCountLocal(newCountLocal);
+    const newCount = (countLocal[countLocal.length - 1] || 0) + 1;
+
+    // Thêm điểm mới vào danh sách locations
+    const newArea = { ...props.area };
+    newArea.locations.push({
+      point: newCount,
+      latitude: 0,
+      longitude: 0,
+    });
+
+    setCountLocal([...countLocal, newCount]); // Cập nhật state điểm
+    props.setArea(newArea); // Cập nhật area với điểm mới
   };
 
   useEffect(() => {
@@ -78,6 +92,7 @@ const PlaneModal = (props: PlaneModalProps) => {
     });
 
     props.setArea(newArea);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countLocal, props.area, props.setArea]);
 
   // Ref để tham chiếu tới input file
@@ -95,10 +110,75 @@ const PlaneModal = (props: PlaneModalProps) => {
       };
     }
   }, [props.area.avatars]);
+
+  useEffect(() => {
+    console.log(props.area.locations);
+  }, [props.area.locations]);
+
+  // Map get lat long when click
+  const MapWithClickHandler = ({
+    setArea,
+  }: {
+    setArea: (area: any) => void;
+  }) => {
+    const [markerPosition, setMarkerPosition] = useState<{
+      lat: number;
+      lng: number;
+    } | null>(null);
+
+    useMapEvent("click", (e) => {
+      const { lat, lng } = e.latlng;
+      setMarkerPosition({ lat, lng });
+
+      setArea((prevArea: any) => {
+        const newPoint =
+          prevArea.locations.length > 0
+            ? prevArea.locations[prevArea.locations.length - 1].point + 1
+            : 1;
+
+        const newLocations = [
+          ...prevArea.locations,
+          { point: newPoint, latitude: lat, longitude: lng },
+        ];
+
+        return { ...prevArea, locations: newLocations };
+      });
+    });
+
+    return markerPosition ? <Marker position={markerPosition} /> : null;
+  };
+
   return (
     <DefaultModal title={props.title} onClose={props.handleCloseModal}>
       <Fragment>
-        <Grid className={cx("company-wrapper")} container columns={12}>
+        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <LeafletGecoderPlane setArea={props.setArea} />
+          <MapWithClickHandler setArea={props.setArea} />
+          {/* Hiển thị điểm của các location */}
+          {props.area.locations.map((location, index) => (
+            <Marker
+              key={index}
+              position={{ lat: location.latitude, lng: location.longitude }}
+            />
+          ))}
+
+          {/* Hiển thị trang trại nếu tồn tại */}
+          {props.farm.location && (
+            <Marker
+              position={{
+                lat: props.farm.location.latitude,
+                lng: props.farm.location.longitude,
+              }}
+            />
+          )}
+        </MapContainer>
+        <Grid
+          mt={"12px"}
+          className={cx("company-wrapper")}
+          container
+          columns={12}
+        >
           <Grid item lg={2.6} md={4} xs={4} sm={12}>
             <label className={cx("label-company")} htmlFor="mo-hinh-kd">
               Trang trại
@@ -125,7 +205,11 @@ const PlaneModal = (props: PlaneModalProps) => {
               noOptionsText="Không tìm thấy trang trại nào"
               onChange={(event, value: Farm | null) => {
                 if (value == null) return;
-                props.setFarm({ ...props.farm, id: value.id });
+                props.setFarm({
+                  ...props.farm,
+                  id: value.id,
+                  location: value.location,
+                });
               }}
               sx={{ width: "100%" }}
               renderOption={(props, option) => (
@@ -323,14 +407,23 @@ const PlaneModal = (props: PlaneModalProps) => {
                 ))}
             </Carousel>
           </Grid>
-
+          <Grid container columns={12}>
+            <Grid item xs={3.5}></Grid>
+            <Grid item xs={7.5}>
+              <p className={cx("description")}>
+                Bạn có thể thêm điểm mới bằng cách thủ công hoặc tìm kiếm trên
+                bản đồ
+              </p>
+            </Grid>
+          </Grid>
           <Grid item xs={3}></Grid>
-          <Grid item xs={7}>
+          <Grid item xs={7} paddingTop={"0 !important"}>
             <Button
               style={{ marginRight: 12 }}
               variant="outlined"
               disableElevation={true}
               startIcon={<AddCircleIcon />}
+              color="success"
               onClick={handleAddPlace}
             >
               thêm điểm mới
@@ -364,6 +457,7 @@ const PlaneModal = (props: PlaneModalProps) => {
               <Button
                 style={{ marginRight: 12 }}
                 variant="outlined"
+                color="success"
                 startIcon={<ImageIcon />}
                 disableElevation={true}
                 component="span"
@@ -375,6 +469,7 @@ const PlaneModal = (props: PlaneModalProps) => {
               variant="contained"
               disableElevation={true}
               startIcon={<SaveIcon />}
+              color="success"
               onClick={() => props.handleSubmitArea(props.area)}
             >
               {props.submitButtonLabel}

@@ -20,6 +20,10 @@ import useFetchMaterials from "../../../api/Material/useFetchMaterials";
 import KDialog from "../../components/kDialog/KDialog";
 import useDeleteMaterial from "../../../api/Material/useDeleteMaterial";
 import useUpdateMaterial from "../../../api/Material/useUpdateMaterial";
+import {
+  showErrorToast,
+  showSuccessToast,
+} from "../../components/toast/globalToast";
 
 const cx = classNames.bind(styles);
 
@@ -144,27 +148,24 @@ const MaterialPage = () => {
       updateMaterialErr;
 
     if (error != null) {
-      toast.error(error);
-    }
-
-    if (isCreated || isDeleted || isUpdated) {
-      toast.success("Thao tác thành công!");
-      setRefresh((refresh) => !refresh);
-      setTimeout(() => {
-        setMaterials({} as Material);
-        setCrop({ name: "", id: "" });
-        setShowModal(false);
-      }, 3000);
+      showErrorToast(error);
     }
   }, [
+    fetchmaterialsErr,
     creatematerialErr,
     deleteMaterialErr,
-    fetchmaterialsErr,
-    isCreated,
-    isDeleted,
-    isUpdated,
     updateMaterialErr,
   ]);
+
+  useEffect(() => {
+    if (isCreated || isDeleted || isUpdated) {
+      showSuccessToast("Thao tác thành công!");
+      setRefresh((refresh) => !refresh);
+      setMaterials({} as Material);
+      setCrop({ name: "", id: "" });
+      setShowModal(false);
+    }
+  }, [isCreated, isDeleted, isUpdated]);
 
   return (
     <DefaultWebLayOut>
@@ -196,14 +197,13 @@ const MaterialPage = () => {
                   }}
                   value={""}
                   displayEmpty
-                  onChange={() => { }}
+                  onChange={() => {}}
                 >
                   <MenuItem sx={{ fontSize: "1.2rem" }} value="">
                     Tất cả
                   </MenuItem>
                 </Select>
               </Fragment>,
-
             ]}
           ></DefaultFilterLayOut>
         </DefaultTitleLayOut>
@@ -283,7 +283,7 @@ const MaterialPage = () => {
                     objectFit: "cover",
                     margin: "5px",
                   }}
-                  src={`http://116.118.49.43:8878/${image}`}
+                  src={`http://118.69.126.49:8878/${image}`}
                   alt="FITPRO Farm"
                 />
               ))}

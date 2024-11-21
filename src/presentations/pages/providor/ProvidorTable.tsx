@@ -47,7 +47,7 @@ const ProvidorTable = (props: ProvidorTableProps) => {
               <th>Họ và tên</th>
               <th>Địa chỉ</th>
               <th>Số điện thoại</th>
-              <th>Dư nợ</th>
+              <th>Số tiền</th>
               <th>Ghi chú</th>
               <th>Chức năng</th>
             </tr>
