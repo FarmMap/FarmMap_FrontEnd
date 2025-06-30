@@ -6,14 +6,16 @@ import Sidebar from "../sidebar";
 import HeaderApp from "../headerApp";
 // Styles
 import classNames from "classnames/bind";
-import styles from "./DefaultWebLayOut.module.scss";
+import styles from "./DefaultAdminLayOut.module.scss";
 const cx = classNames.bind(styles);
 
-interface DefaultWebLayOutProps {
+interface DefaultAdminLayOutProps {
   children: React.ReactElement;
 }
 
-const DefaultWebLayOut: React.FC<DefaultWebLayOutProps> = ({ children }) => {
+const DefaultAdminLayOut: React.FC<DefaultAdminLayOutProps> = ({
+  children,
+}) => {
   // Open sidebar
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
 
@@ -72,4 +74,4 @@ const DefaultWebLayOut: React.FC<DefaultWebLayOutProps> = ({ children }) => {
   );
 };
 
-export default DefaultWebLayOut;
+export default DefaultAdminLayOut;

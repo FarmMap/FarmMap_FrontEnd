@@ -86,7 +86,7 @@ const Login: React.FC = () => {
         const token = `token_${Date.now()}_${credentials.username}`;
         setCredentials((prev) => ({ ...prev, token }));
         localStorage.setItem("authToken", token); // Lưu token vào localStorage
-        navigate("/"); // Chuyển hướng đến trang chính (private route)
+        navigate("/admin"); // Chuyển hướng đến trang chính (private route)
         setError(""); // Reset error khi thành công
       } else {
         setError("Tài khoản hoặc mật khẩu không đúng");
