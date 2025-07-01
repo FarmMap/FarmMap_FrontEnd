@@ -1,0 +1,192 @@
+/* --- Wrapper và Title --- */
+.wrapper {
+  padding: 38px 0 130px 0;
+  background-image: url("https://xaydungduanphat.com/assets/images/bg_quytrinh.jpg"); // << THAY ẢNH NỀN CỦA BẠN
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0000003b; // Tăng độ tối của lớp phủ
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.title-block {
+  text-align: center;
+  margin-bottom: 124px;
+}
+
+.title {
+  font-size: 30px;
+  color: #f7c531;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.decorator {
+  font-family: "UTMAvoBold";
+  font-size: 30px;
+  color: var(--main-color);
+  text-transform: uppercase;
+  display: block;
+  background: url("https://xaydungduanphat.com/assets/images/thanh_tit1.png")
+    no-repeat bottom center;
+  padding-bottom: 25px;
+}
+
+/* --- Timeline Layout Chính Xác --- */
+.timeline-wrapper {
+  display: flex;
+  position: relative;
+
+  // Đường timeline chính nằm ngang
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%);
+  }
+}
+
+.timeline-item {
+  flex: 1; // Chia đều không gian cho các item
+  position: relative;
+  padding: 50px 0; // Thêm padding để không bị cắt xén
+
+  // Dấu chấm tròn trên timeline
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    background-color: #333;
+    border: 3px solid #f7c531;
+    border-radius: 50%;
+    z-index: 2;
+  }
+}
+
+/* Khối nội dung chính của mỗi bước */
+.timeline-content {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px; // Đặt chiều rộng cố định
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  // Đường nối dọc
+  &::before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    // Vị trí của đường nối sẽ được xác định bên dưới
+  }
+}
+
+/* Sắp xếp zic-zac */
+.timeline-item:nth-child(odd) .timeline-content {
+  bottom: calc(50% + 25px); // Đẩy lên trên, cách đường line 25px
+}
+.timeline-item:nth-child(even) .timeline-content {
+  top: calc(50% + 25px); // Đẩy xuống dưới, cách đường line 25px
+}
+
+/* Đường nối cho các item ở trên */
+.timeline-item:nth-child(odd) .timeline-content::before {
+  top: 100%; // Bắt đầu từ đáy của content
+  left: 50px; // Căn vào giữa hexagon (100px / 2)
+  height: 25px; // Chiều dài bằng khoảng cách đẩy
+}
+/* Đường nối cho các item ở dưới */
+.timeline-item:nth-child(even) .timeline-content::before {
+  bottom: 100%; // Bắt đầu từ đỉnh của content
+  left: 50px; // Căn vào giữa hexagon
+  height: 25px; // Chiều dài bằng khoảng cách đẩy
+}
+
+/* --- Style cho các phần tử bên trong --- */
+.hexagon {
+  width: 100px;
+  height: 115px;
+  background-color: rgba(45, 53, 62, 0.5); // Màu nền tối mờ
+  border: 1px solid rgba(247, 197, 49, 0.7); // Border vàng mờ
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.text-wrapper {
+  text-align: left;
+}
+
+.step-title {
+  font-size: 14px;
+  color: #f7c531;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.step-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1200px) {
+  // Với layout phức tạp này, cách tốt nhất là chuyển sang layout dọc đơn giản hơn
+  .timeline-wrapper {
+    flex-direction: column;
+    height: auto; // Bỏ chiều cao cố định
+  }
+
+  .timeline-item {
+    padding: 20px 0;
+  }
+
+  // Chuyển toàn bộ item sang bên trái timeline
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    position: static; // Bỏ định vị tuyệt đối
+    transform: none;
+    width: 100%;
+    padding-left: 30px;
+  }
+
+  // Ẩn đường timeline và các đường nối
+  .timeline-wrapper::before,
+  .timeline-item::after,
+  .timeline-content::before {
+    display: none;
+  }
+}

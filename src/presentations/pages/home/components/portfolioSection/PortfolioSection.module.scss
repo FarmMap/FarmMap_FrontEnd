@@ -1,0 +1,118 @@
+.wrapper {
+  padding: 80px 0;
+  background-color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Khối tiêu đề */
+.title-block {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 30px;
+  color: #0d47a1;
+  text-transform: uppercase;
+  display: block;
+  background: url("https://xaydungduanphat.com/assets/images/thanh_tit.png")
+    no-repeat bottom center;
+  padding-bottom: 25px;
+}
+
+/* Bộ lọc */
+.filter-nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 40px;
+  flex-wrap: wrap; // Cho phép xuống dòng trên màn hình nhỏ
+}
+
+.filter-btn {
+  padding: 8px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background-color: transparent;
+  color: #555;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #0d47a1;
+    color: white;
+    border-color: #0d47a1;
+  }
+
+  &.active {
+    background-color: #0d47a1;
+    color: white;
+    border-color: #0d47a1;
+  }
+}
+
+/* Lưới dự án */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); // 4 cột trên desktop
+  gap: 20px;
+}
+
+.project-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.caption-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+  text-align: center;
+  padding: 30px 15px 15px 15px;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 992px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr); // 2 cột trên tablet
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 50px 0;
+  }
+  .project-grid {
+    grid-template-columns: 1fr; // 1 cột trên mobile
+  }
+  .title {
+    font-size: 28px;
+  }
+}

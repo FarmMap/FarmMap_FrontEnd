@@ -1,0 +1,39 @@
+/* carousel.module.scss */
+
+.carousel-wrapper {
+  // Ghi đè style của thư viện bằng :global
+  // Điều này cần thiết vì các class .slick-arrow, .slick-dots được tạo ra bởi thư viện
+  :global(.slick-dots li button:before) {
+    font-size: 12px;
+    color: #0d47a1; // Màu của dấu chấm
+  }
+
+  :global(.slick-dots li.slick-active button:before) {
+    color: #1976d2; // Màu của dấu chấm đang được chọn
+  }
+
+  :global(.slick-arrow) {
+    z-index: 1;
+    &:before {
+      font-size: 30px; // Kích thước mũi tên
+      color: white; // Màu mũi tên
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); // Thêm bóng để dễ nhìn hơn
+    }
+  }
+
+  :global(.slick-prev) {
+    left: 25px; // Khoảng cách mũi tên trái
+  }
+
+  :global(.slick-next) {
+    right: 25px; // Khoảng cách mũi tên phải
+  }
+
+  // Style cho ảnh bên trong slide
+  img {
+    width: 100%;
+    height: auto; // Giữ đúng tỷ lệ ảnh
+    max-height: 600px; // Giới hạn chiều cao tối đa
+    object-fit: cover; // Đảm bảo ảnh lấp đầy khung mà không bị méo
+  }
+}

@@ -1,0 +1,157 @@
+.wrapper {
+  padding: 80px 0;
+  background-color: white;
+  overflow: hidden; // Tránh các phần tử bị tràn ra ngoài
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Cột trái: Cụm hình ảnh */
+.image-collage {
+  flex: 1;
+  position: relative; // Làm mốc cho các ảnh bên trong
+  min-height: 550px; // Đặt chiều cao tối thiểu để các ảnh có không gian
+}
+
+.image-collage img {
+  position: absolute;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+
+.img-1 {
+  width: 55%;
+  height: 90%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.img-2 {
+  width: 65%;
+  height: 60%;
+  top: 10%;
+  right: 0;
+  z-index: 1;
+}
+
+.img-3 {
+  width: 50%;
+  height: 65%;
+  bottom: 0;
+  left: 25%;
+  z-index: 3;
+}
+
+/* Cột phải: Nội dung văn bản */
+.text-content {
+  flex: 1;
+}
+
+.subtitle {
+  color: #888;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+.decorator {
+  width: 40px;
+  height: 2px;
+  background-color: #f7c531; // Màu vàng
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 32px;
+  color: #0d47a1; // Màu xanh đậm
+  margin-bottom: 20px;
+}
+
+.description {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  display: flex;
+  width: 36%;
+  align-items: center;
+  background-color: #f7c531;
+  color: #333;
+  padding: 12px 25px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #e6b420;
+  }
+
+  svg {
+    margin-left: 8px;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* --- Responsive Styles --- */
+
+// Tablet và các thiết bị nhỏ hơn
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column; // Xếp chồng các cột
+    gap: 40px;
+  }
+
+  .image-collage {
+    width: 100%;
+    max-width: 500px; // Giới hạn chiều rộng trên tablet
+    margin-bottom: 20px; // Thêm khoảng cách với text
+  }
+
+  .text-content {
+    text-align: center; // Căn giữa text trên mobile
+  }
+
+  .decorator {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Mobile
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 50px 0;
+  }
+
+  .image-collage {
+    min-height: 450px; // Giảm chiều cao cho màn hình nhỏ hơn
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .cta-button {
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+  }
+}

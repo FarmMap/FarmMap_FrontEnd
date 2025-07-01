@@ -7,6 +7,7 @@ const images = {
   logoCty: require("../images/logoCty.png"),
   messengerIcon: require("../images/messengerIcon.png"),
   zaloIcon: require("../images/zaloIcon.webp"),
+  slider: require("../images/slider.png"),
 };
 
 export default images;

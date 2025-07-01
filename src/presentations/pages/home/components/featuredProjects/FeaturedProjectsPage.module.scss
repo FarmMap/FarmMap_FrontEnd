@@ -1,0 +1,136 @@
+.wrapper {
+  padding: 80px 0;
+  background-color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Khối tiêu đề */
+.title-block {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 30px;
+  color: #0d47a1;
+  text-transform: uppercase;
+  display: block;
+  background: url("https://xaydungduanphat.com/assets/images/thanh_tit.png")
+    no-repeat bottom center;
+  padding-bottom: 25px;
+}
+
+/* Lưới dự án */
+.projects-grid {
+  display: grid;
+  // Sử dụng grid 6 cột để dễ dàng chia layout
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+.project-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  // Các item nhỏ chiếm 2/6 cột (tức là 1/3)
+  grid-column: span 2;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.large-item {
+  // Các item lớn chiếm 3/6 cột (tức là 1/2)
+  grid-column: span 3;
+}
+
+/* Hiệu ứng vát chéo */
+.clipped-left {
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+}
+.clipped-right {
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+/* Lớp phủ khi hover */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(13, 71, 161, 0.6); // Màu xanh đậm trong suốt
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-item:hover .overlay {
+  opacity: 1;
+}
+
+/* Nút CTA */
+.cta-wrapper {
+  text-align: center;
+  margin-top: 40px;
+}
+.cta-button {
+  display: inline-block;
+  background-color: #f7c531;
+  color: #333;
+  padding: 12px 30px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #e6b420;
+  }
+}
+
+/* --- Responsive Styles --- */
+
+@media (max-width: 992px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr); // 2 cột
+  }
+  .project-item,
+  .large-item {
+    grid-column: span 1; // Mỗi item chiếm 1 cột
+  }
+
+  // Bỏ hiệu ứng vát chéo trên tablet và mobile để layout đơn giản hơn
+  .clipped-left,
+  .clipped-right {
+    clip-path: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr; // 1 cột
+  }
+  .title {
+    font-size: 28px;
+  }
+}
