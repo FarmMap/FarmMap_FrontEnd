@@ -1,0 +1,190 @@
+.wrapper {
+  background-color: #0d47a1; // Màu xanh đậm nền
+  color: #cce0ff;
+  padding: 40px 0;
+  font-size: 14px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  gap: 30px;
+}
+
+.footer-col {
+  flex: 1;
+}
+
+.footer-heading {
+  color: white;
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Cột 1: Thông tin liên hệ */
+.contact-info {
+  .logo img {
+    max-width: 150px;
+    margin-bottom: 20px;
+  }
+  p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    strong {
+      color: white;
+    }
+    svg {
+      margin-right: 8px;
+    }
+  }
+}
+
+.social-links {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #1976d2;
+    }
+  }
+}
+
+/* Cột 2: Chính sách */
+.policy-links {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    column-count: 2; // Tạo 2 cột
+    column-gap: 20px;
+  }
+  li {
+    margin-bottom: 12px;
+  }
+  a {
+    color: #cce0ff;
+    font-size: 13px;
+    text-decoration: none;
+    &::before {
+      content: "•";
+      margin-right: 8px;
+    }
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+/* Cột 3: Embed */
+.embed-section {
+  iframe {
+    border-radius: 5px;
+    max-width: 100%;
+  }
+  .facebook-embed {
+    margin-top: 20px;
+  }
+}
+
+/* Thanh Copyright */
+.copyright-bar {
+  background-color: #0b3c8a; // Màu đậm hơn một chút
+  color: #a3c4f3;
+  text-align: center;
+  padding: 15px;
+  font-size: 13px;
+}
+
+/* Nút cố định */
+.fixed-buttons {
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  a,
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #1976d2;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+
+    img {
+      width: 28px;
+      height: 28px;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* --- Responsive Styles --- */
+
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column; // Xếp các cột theo chiều dọc
+  }
+
+  .policy-links ul {
+    column-count: 1; // Chỉ còn 1 cột
+  }
+}
+
+@media (max-width: 768px) {
+  .fixed-buttons {
+    right: 15px;
+    bottom: 20px;
+
+    a,
+    button {
+      width: 45px;
+      height: 45px;
+      font-size: 20px;
+    }
+  }
+
+  .footer-col {
+    text-align: center;
+  }
+
+  .contact-info .logo {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}

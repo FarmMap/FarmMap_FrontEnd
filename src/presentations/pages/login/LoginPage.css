@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
-body {
+.login-wrapper {
   margin: 0;
   font-family: "Roboto", sans-serif;
-  background-color: #f0f2f5;
   display: flex;
+  background: "#f0f2f5";
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -12,7 +12,8 @@ body {
 }
 
 .login-container {
-  width: 100%;
+  width: 24%;
+
   min-height: 100vh;
   text-align: center;
   margin: 20px 0;

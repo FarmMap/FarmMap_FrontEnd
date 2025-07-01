@@ -100,92 +100,98 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <div className="website-link">
-          <LanguageIcon />
-          Xem website
-        </div>
-        <div className="logo-container">
-          <img src={images.loginIcon} alt="Log In Logo" className="logo" />
-        </div>
-        <h1 className="title">HỆ THỐNG QUẢN TRỊ</h1>
-        <p className="subtitle">Vui lòng đăng nhập vào tài khoản của bạn !</p>
-
-        <form id="loginForm" onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label htmlFor="username">Tài khoản</label>
-            <div className="input-wrapper">
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={credentials.username}
-                onChange={handleInputChange}
-                placeholder="Tài khoản"
-                required
-              />
-              <EmailOutlinedIcon className="input-icon" />
-            </div>
+    <div className="login-wrapper">
+      <div className="login-container">
+        <div className="login-box">
+          <div className="website-link">
+            <LanguageIcon />
+            Xem website
           </div>
+          <div className="logo-container">
+            <img src={images.loginIcon} alt="Log In Logo" className="logo" />
+          </div>
+          <h1 className="title">HỆ THỐNG QUẢN TRỊ</h1>
+          <p className="subtitle">Vui lòng đăng nhập vào tài khoản của bạn !</p>
 
-          <div className="input-group">
-            <label htmlFor="password">Mật khẩu</label>
-            <div className="input-wrapper">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                value={credentials.password}
-                onChange={handleInputChange}
-                placeholder="••••••••••••"
-                required
-              />
-              {showPassword ? (
-                <VisibilityOutlinedIcon
-                  className="input-icon"
-                  onClick={togglePasswordVisibility}
+          <form id="loginForm" onSubmit={handleSubmit}>
+            <div className="input-group">
+              <label htmlFor="username">Tài khoản</label>
+              <div className="input-wrapper">
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={credentials.username}
+                  onChange={handleInputChange}
+                  placeholder="Tài khoản"
+                  required
                 />
-              ) : (
-                <VisibilityOffOutlinedIcon
-                  className="input-icon"
-                  onClick={togglePasswordVisibility}
+                <EmailOutlinedIcon className="input-icon" />
+              </div>
+            </div>
+
+            <div className="input-group">
+              <label htmlFor="password">Mật khẩu</label>
+              <div className="input-wrapper">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  value={credentials.password}
+                  onChange={handleInputChange}
+                  placeholder="••••••••••••"
+                  required
                 />
-              )}
+                {showPassword ? (
+                  <VisibilityOutlinedIcon
+                    className="input-icon"
+                    onClick={togglePasswordVisibility}
+                  />
+                ) : (
+                  <VisibilityOffOutlinedIcon
+                    className="input-icon"
+                    onClick={togglePasswordVisibility}
+                  />
+                )}
+              </div>
             </div>
-          </div>
 
-          <div className="options">
-            <input
-              type="checkbox"
-              id="rememberMe"
-              name="remember"
-              style={{ cursor: "pointer" }}
-            />
-            <label htmlFor="rememberMe">Ghi nhớ đăng nhập</label>
-          </div>
-
-          <button type="submit" className="login-button" disabled={isLoading}>
-            {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
-          </button>
-
-          {error && (
-            <div className="message" style={{ color: "red" }}>
-              {error}
+            <div className="options">
+              <input
+                type="checkbox"
+                id="rememberMe"
+                name="remember"
+                style={{ cursor: "pointer" }}
+              />
+              <label htmlFor="rememberMe">Ghi nhớ đăng nhập</label>
             </div>
-          )}
 
-          <div className="hotline">
-            <img src={images.loginNina} alt="Nina Logo" className="nina-logo" />
-            <span>
-              Hotline: <strong>028.3715.4879</strong>
-            </span>
-          </div>
-        </form>
+            <button type="submit" className="login-button" disabled={isLoading}>
+              {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
+            </button>
+
+            {error && (
+              <div className="message" style={{ color: "red" }}>
+                {error}
+              </div>
+            )}
+
+            <div className="hotline">
+              <img
+                src={images.loginNina}
+                alt="Nina Logo"
+                className="nina-logo"
+              />
+              <span>
+                Hotline: <strong>028.3715.4879</strong>
+              </span>
+            </div>
+          </form>
+        </div>
+        <footer className="footer">
+          CÔNG TY TNHH TM & DV NINA. ALL rights reserved
+        </footer>
       </div>
-      <footer className="footer">
-        CÔNG TY TNHH TM & DV NINA. ALL rights reserved
-      </footer>
     </div>
   );
 };

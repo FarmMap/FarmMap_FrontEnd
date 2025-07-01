@@ -1,13 +1,15 @@
 // External files
 
+import DefaultWebLayOutPage from "../../components/defautWebLayOut/DefaultWebLayOutPage";
+
 // Internal files
 //Style
 
 const HomePage = () => {
   return (
-    <div className="">
-      <h2>Home Page</h2>
-    </div>
+    <DefaultWebLayOutPage>
+      <p>hi</p>
+    </DefaultWebLayOutPage>
   );
 };
 
