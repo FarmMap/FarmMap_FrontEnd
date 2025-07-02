@@ -178,18 +178,18 @@ const Login: React.FC = () => {
 
             <div className="hotline">
               <img
-                src={images.loginNina}
-                alt="Nina Logo"
-                className="nina-logo"
+                src={images.logoCty}
+                alt="ThienAn Logo"
+                className="thienan-logo"
               />
               <span>
-                Hotline: <strong>028.3715.4879</strong>
+                Hotline: <strong>0336.844.690</strong>
               </span>
             </div>
           </form>
         </div>
         <footer className="footer">
-          CÔNG TY TNHH TM & DV NINA. ALL rights reserved
+          CÔNG TY TNHH TMDV THIÊN ÂN. ALL rights reserved
         </footer>
       </div>
     </div>
