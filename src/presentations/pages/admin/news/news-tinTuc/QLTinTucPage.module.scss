@@ -1,0 +1,224 @@
+/* --- Biến và Nút chung --- */
+$primary-color: #0d6efd;
+$danger-color: #dc3545;
+$gray-border: #dee2e6;
+
+.wrapper {
+  padding: 20px;
+  background-color: #f8f9fa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+.main-actions {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  transition: opacity 0.3s;
+
+  &.btn-primary {
+    background-color: $primary-color;
+  }
+  &.btn-danger {
+    background-color: $danger-color;
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+}
+
+/* --- Layout Bảng --- */
+.list-container {
+  background-color: white;
+  border: 1px solid $gray-border;
+  border-radius: 5px;
+}
+
+// Dùng CSS variables để định nghĩa grid và tái sử dụng
+$grid-columns: 40px 60px minmax(300px, 2fr) 120px 100px 100px 100px;
+
+.list-header,
+.list-row {
+  display: grid;
+  grid-template-columns: $grid-columns;
+  align-items: center;
+  border-bottom: 1px solid $gray-border;
+}
+
+.list-header {
+  padding: 12px 15px;
+  font-weight: bold;
+  color: #495057;
+  font-size: 14px;
+}
+
+.list-row {
+  padding: 15px;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.cell {
+  padding: 0 5px;
+}
+
+/* --- Style cho các ô --- */
+.cell-check input {
+  width: 16px;
+  height: 16px;
+}
+
+.stt-input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid $gray-border;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.post-title {
+  font-weight: 500;
+  color: #212529;
+  margin: 0 0 8px 0;
+}
+
+.post-actions {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+  a {
+    color: #6c757d;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.cell-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #6c757d;
+  padding: 5px;
+  &.danger:hover {
+    color: $danger-color;
+  }
+  &:not(.danger):hover {
+    color: $primary-color;
+  }
+}
+
+/* --- Toggle Switch --- */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+
+    &::before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+  }
+
+  input:checked + .slider {
+    background-color: #28a745; // Màu xanh lá
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+  .list-header {
+    display: none; // Ẩn header trên mobile
+  }
+
+  .list-row {
+    grid-template-columns: 40px 1fr; // Chỉ còn checkbox và nội dung
+    gap: 15px;
+
+    .cell {
+      // Hiển thị tiêu đề cột bằng pseudo-element
+      display: flex;
+      flex-direction: column;
+      &::before {
+        content: attr(data-label);
+        font-weight: bold;
+        font-size: 12px;
+        color: #6c757d;
+        margin-bottom: 5px;
+      }
+    }
+
+    // Xếp các ô vào cột thứ 2
+    .cell-stt,
+    .cell-title,
+    .cell-image,
+    .cell-featured,
+    .cell-visible,
+    .cell-actions {
+      grid-column: 2 / 3;
+    }
+    .cell-check {
+      grid-row: 1 / 4; // Checkbox chiếm vài hàng
+      align-self: start;
+    }
+  }
+
+  // Để thêm data-label, bạn cần thêm nó vào JSX
+  // Ví dụ: <div className={cx('cell', 'cell-stt')} data-label="STT">...</div>
+  // Vì đây là CSS-only nên tôi không thêm vào JSX, nhưng đó là cách làm chuẩn
+}

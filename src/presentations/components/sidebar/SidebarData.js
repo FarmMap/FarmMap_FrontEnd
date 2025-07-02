@@ -8,12 +8,7 @@ import PropTypes from 'prop-types';
 
 export const SidebarData = [
     {
-        title: "Trang chủ",
-        path: "/",
-        icon: <HomeIcon />,
-    },
-    {
-        title: "Nông trại",
+        title: "Quản lý bài viết",
         path: "",
         icon: <HomeWorkIcon />,
         openIcon: <ArrowDropUpIcon />,
@@ -21,16 +16,16 @@ export const SidebarData = [
 
         subnav: [
             {
-                title: "Thông tin",
-                path: "/nong-trai/thong-tin"
+                title: "Trang chủ",
+                path: "/admin/news/trang-chủ"
             },
             {
-                title: "Vùng trồng",
-                path: "/nong-trai/vung-trong"
+                title: "Tin tức",
+                path: "/admin/news/tin-tuc"
             },
             {
-                title: "Phân lô - Tách thửa",
-                path: "/nong-trai/phan-lo-tach-thua"
+                title: "Dịch vụ",
+                path: "/admin/news/dich-vu"
             },
         ]
     },
