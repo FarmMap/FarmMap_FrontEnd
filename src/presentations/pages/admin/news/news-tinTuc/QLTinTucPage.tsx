@@ -232,3 +232,4 @@ const QLTinTucPage: React.FC = () => {
 };
 
 export default QLTinTucPage;
+// XÓA KÝ TỰ 's' HOẶC BẤT KỲ DÒNG NÀO THỪA Ở ĐÂY

@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
-import EditorToolbar, {
-  modules,
-  formats,
-} from "./EditorToolbar";
+import EditorToolbar, { modules, formats } from "./EditorToolbar";
 import "react-quill/dist/quill.snow.css";
 import { Input } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, Grid } from "@mui/material";
-import useCreateBlog from "../../../../data/api/Blog/useCreateBlog";
+
 import { Upload, Dropdown, Space } from "antd";
 import { toast } from "react-toastify";
 import { DownOutlined } from "@ant-design/icons";
-import useFetchBlogCategories from "../../../../data/api/BlogCategory/useFetchBlogCategories";
-
+import useCreateBlog from "../../../../../../data/api/Blog/useCreateBlog";
+import useFetchBlogCategories from "../../../../../../data/api/BlogCategory/useFetchBlogCategories";
 // Styles
 import classNames from "classnames/bind";
-import styles from "./BlogShop.module.scss";
+import styles from "./QLThemTinTuc.module.scss";
+import DefaultAdminLayOut from "../../../../../components/defaultAdminLayOut";
 const cx = classNames.bind(styles);
 
-const QLThemTinTuc = ({ onClose, setRefresh }) => {
+const QLThemTinTuc = () => {
   const props = {
     action: "http://localhost:3000/",
     listType: "picture",
@@ -32,8 +30,11 @@ const QLThemTinTuc = ({ onClose, setRefresh }) => {
 
   const { isCreated, error, createBlog } = useCreateBlog({});
 
+  const [refresh, setRefresh] = useState(false);
+
   // menuprops
   const { blogCategories } = useFetchBlogCategories({});
+  console.log(blogCategories);
   // dropdown danh mục bài viết
   const [selectedCategoryName, setSelectedCategoryName] = useState("");
 
@@ -75,15 +76,14 @@ const QLThemTinTuc = ({ onClose, setRefresh }) => {
     if (isCreated) {
       toast.success("Thêm bài viết thành công");
       setBlog({});
-      setRefresh((refresh)=>!refresh)
-      onClose();
+      setRefresh((refresh) => !refresh);
     } else if (error) {
       toast.error(error);
     }
-  }, [isCreated, error, setRefresh, onClose]);
+  }, [isCreated, error, setRefresh]);
 
   return (
-    <>
+    <DefaultAdminLayOut>
       <div className="App">
         <div className="container">
           <div className="row">
@@ -157,7 +157,7 @@ const QLThemTinTuc = ({ onClose, setRefresh }) => {
                     style={{ marginRight: "0.8rem" }}
                     variant="outlined"
                     type="submit"
-                    onClick={() => onClose()}
+                    onClick={() => ({})}
                   >
                     {" "}
                     Quay lại
@@ -177,9 +177,8 @@ const QLThemTinTuc = ({ onClose, setRefresh }) => {
           </div>
         </div>
       </div>
-    </>
+    </DefaultAdminLayOut>
   );
 };
 
 export default QLThemTinTuc;
-s
