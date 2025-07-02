@@ -1,0 +1,135 @@
+.header {
+  display: flex;
+  align-items: center;
+  p {
+    padding-left: 8px;
+  }
+}
+.login-header {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  align-items: center;
+  p {
+    font-size: 20px;
+    color: var(--black-color);
+  }
+  a {
+    color: var(--blue-color);
+  }
+}
+.login-main {
+  background-image: url(../../../assets/images/slider.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: end;
+}
+.login-main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.162
+  ); /* Điều chỉnh giá trị alpha để làm cho ảnh tối màu hơn */
+  z-index: 1; /* Đảm bảo pseudo-element ở trên ảnh */
+}
+.login-table {
+  width: 28%;
+  margin-top: 100px;
+  margin-right: 100px;
+  margin-bottom: 79px;
+  background-color: #ffff;
+  border: 1px solid #ffff;
+  border-radius: 5px;
+  position: relative; /* Thêm thuộc tính này để sử dụng z-index */
+  z-index: 2;
+  p {
+    color: var(--black-color);
+    font-size: 20px;
+  }
+}
+.form-login {
+  margin: 30px;
+}
+.btnlogin {
+  width: 100% !important;
+  margin-top: 20px !important;
+  border-radius: 0px !important;
+  background-color: var(--blue-color) !important;
+  height: 40px !important;
+  &:hover {
+    background-color: var(--blue-color) !important;
+    opacity: 0.8 !important;
+  }
+  span {
+    font-size: 13px !important;
+  }
+}
+.form-login .input-user,
+.input-password {
+  margin-top: 30px;
+  border-radius: 3px;
+  height: 40px;
+}
+.forget-pass {
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+  a {
+    font-weight: 200;
+    font-size: 12px;
+    color: #05a;
+  }
+}
+.or-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    padding: 0px 8px;
+    font-size: 15px;
+    color: #acb0ad;
+    text-transform: uppercase;
+  }
+}
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: #acb0ad;
+  flex: 1;
+}
+.btn-google {
+  margin-top: 20px;
+  align-items: center;
+  display: flex;
+
+  justify-content: center;
+  button {
+    padding: 5px 30px;
+    font-size: 15px;
+    text-transform: lowercase;
+    border: 1px solid var(--black-color);
+    color: var(--black-color);
+    &:hover {
+      border: 1px solid var(--black-color);
+    }
+  }
+}
+.btn-register {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  color: #acb0ad;
+  span {
+    color: var(--blue-color);
+  }
+}

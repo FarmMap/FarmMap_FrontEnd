@@ -23,7 +23,7 @@ const useFetchBlogCategories = (props: useFetchBlogCategoriesProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}article-categories`,
+      url: `http://118.69.126.49:3998/article-categories`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },

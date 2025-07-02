@@ -35,7 +35,7 @@ const useCreateBlog = () => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: `${process.env.REACT_APP_API_BASE_URL}articles`,
+      url: `http://118.69.126.49:3998/articles`,
       headers: {
         accept: "*/*",
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,

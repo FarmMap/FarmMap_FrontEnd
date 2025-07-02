@@ -1,7 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useState } from "react";
 
-
 interface UseDeleteBlogProps {
   blogId?: number;
 }
@@ -11,7 +10,7 @@ interface ResponseError {
   message: string;
 }
 
-const useDeleteBlog = (props:UseDeleteBlogProps) => {
+const useDeleteBlog = (props: UseDeleteBlogProps) => {
   const [isDeleted, setDeleted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
@@ -23,9 +22,7 @@ const useDeleteBlog = (props:UseDeleteBlogProps) => {
 
     let config = {
       method: "delete",
-      url: `${
-        process.env.REACT_APP_API_BASE_URL
-      }articles/${props.blogId}`,
+      url: `http://118.69.126.49:3998/articles/${props.blogId}`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },

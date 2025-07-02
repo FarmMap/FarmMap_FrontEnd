@@ -32,7 +32,7 @@ const useFetchBlogs = (props: UseFetchBlogsProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}articles?order=ASC&page=${
+      url: `http://118.69.126.49:3998/articles?order=ASC&page=${
         props.page
       }&take=10&search=${props.search ?? ""}&`,
       headers: {

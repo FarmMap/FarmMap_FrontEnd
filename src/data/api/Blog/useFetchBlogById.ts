@@ -6,7 +6,7 @@ import BlogType from "../../types/Blog/BlogType";
 interface useFetchBlogByIdProps {
   page?: number;
   shouldRefesh?: boolean;
-  blogId?:number;
+  blogId?: number;
 }
 
 interface ResponseError {
@@ -25,7 +25,7 @@ const useFetchBlogById = (props: useFetchBlogByIdProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}articles/article/${props.blogId}`,
+      url: `http://118.69.126.49:3998/articles/article/${props.blogId}`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },

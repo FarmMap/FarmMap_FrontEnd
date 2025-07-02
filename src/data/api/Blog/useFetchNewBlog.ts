@@ -30,7 +30,7 @@ const useFetchNewBlogs = (props: UseFetchNewBlogsProps) => {
 
     var config = {
       method: "GET",
-      url: `${process.env.REACT_APP_API_BASE_URL}articles?order=ASC&page=1&take=5`,
+      url: `http://118.69.126.49:3998/articles?order=ASC&page=1&take=5`,
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
