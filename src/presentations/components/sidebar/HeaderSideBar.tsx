@@ -25,7 +25,7 @@ const HeaderSideBar: React.FC<HeaderSideBarProps> = (props) => {
         {/* Sidebar Large => Show Logo */}
         {openSidebar && (
           <Link to="/">
-            <img src={images.logoAgri} alt="AgriLogo" className={cx("logo")} />
+            <img src={images.logoCty} alt="AgriLogo" className={cx("logo")} />
           </Link>
         )}
 

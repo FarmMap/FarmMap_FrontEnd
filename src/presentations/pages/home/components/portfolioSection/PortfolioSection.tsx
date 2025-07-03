@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 import styles from "./PortfolioSection.module.scss";
+import images from "../../../../../assets/images";
 
 const cx = classNames.bind(styles);
 
@@ -8,68 +9,65 @@ const cx = classNames.bind(styles);
 const allProjects = [
   {
     id: 1,
-    title: "Nhà Anh Thọ Hồng Ngự",
-    category: "Thiết kế",
-    imgUrl:
-      "https://xaydungduanphat.com/watermark/news/279x295x1/upload/news/anh-man-hinh-2025-02-14-luc-085322-5015.png",
+    title: "Tấm alu ngoài trời Viva Crema­ Valencia VA905­",
+    category: "Vật liệu ốp tường",
+    imgUrl: "https://vlxdgiatot.com/wp-content/uploads/2025/03/VA905.jpg",
   },
   {
     id: 2,
-    title: "Nhà Chị Phương Cao Lãnh",
-    category: "Thi công",
-    imgUrl:
-      "https://xaydungduanphat.com/watermark/news/279x295x1/upload/news/anh-man-hinh-2025-02-14-luc-085231-5831.png",
+    title: "Tấm alu ngoài trời Viva ­elZinc­ GoldV Z9907",
+    category: "Vật liệu ốp tường",
+    // imgUrl: images.portfolio,
+    imgUrl: "https://vlxdgiatot.com/wp-content/uploads/2025/03/product_977.jpg",
   },
   {
     id: 3,
-    title: "Nhà Dì Thơ Cao Lãnh",
-    category: "Sửa nhà",
+    title: "GẠCH VIETCERAMICS SUPER STONE ALCHEMY 600PXALC1",
+    category: "Gạch ốp lát",
     imgUrl:
-      "https://xaydungduanphat.com/watermark/news/279x295x1/upload/news/anh-man-hinh-2025-02-14-luc-085047-9885.png",
+      "https://vlxdgiatot.com/wp-content/uploads/2024/12/GACH-VIETCERAMICS-SUPER-STONE-ALCHEMY-600PXALC1.jpg",
   },
   {
     id: 4,
-    title: "Nhà Chú Hiền Vĩnh Long",
-    category: "Thi công",
-    imgUrl:
-      "https://xaydungduanphat.com/watermark/news/279x295x1/upload/news/anh-man-hinh-2025-02-14-luc-084940-3517.png",
+    title: "Tấm alu ngoài trời Viva Cork­ Wood VA402­",
+    category: "Vật liệu ốp trần",
+    imgUrl: "https://vlxdgiatot.com/wp-content/uploads/2025/03/VA402.jpg",
   },
   {
     id: 5,
-    title: "Cải tạo Loteria Nguyễn Huệ",
-    category: "Sửa nhà",
+    title: "GẠCH VIETCERAMICS SUPER STONE AKOYA 612AKSI",
+    category: "Gạch ốp lát",
     imgUrl:
-      "https://xaydungduanphat.com/watermark/news/279x295x1/upload/news/anh-man-hinh-2025-02-14-luc-084836-6516.png",
+      "https://vlxdgiatot.com/wp-content/uploads/2024/12/GACH-VIETCERAMICS-SUPER-STONE-AKOYA-612AKSI-612AKSIKRY.jpg",
   },
   {
     id: 6,
-    title: "Nhà Anh Công Cao Lãnh",
-    category: "Cầu đường",
+    title: "Giường Ngủ Cao Cấp Melamine",
+    category: "Nội thất",
     imgUrl:
-      "https://xaydungduanphat.com/watermark/news/279x295x1/upload/news/anh-man-hinh-2025-02-14-luc-084601-4105.png",
+      "https://vlxdgiatot.com/wp-content/uploads/2025/01/snapedit_1732866639346-1.png",
   },
   {
     id: 7,
-    title: "Nhà bác 7 Thành",
-    category: "Thiết kế",
+    title: "Giường Ngủ Gỗ MDF ",
+    category: "Nội thất",
     imgUrl:
-      "https://xaydungduanphat.com/watermark/news/279x295x1/upload/news/anh-man-hinh-2025-02-13-luc-141808-4863.png",
+      "https://vlxdgiatot.com/wp-content/uploads/2025/01/snapedit_1732863543219-1.png",
   },
   {
     id: 8,
-    title: "Nhà chị Nguyên",
-    category: "Thi công",
-    imgUrl:
-      "https://xaydungduanphat.com/watermark/news/279x295x1/upload/news/anh-man-hinh-2025-02-13-luc-140615-2561.png",
+    title: "Tấm alu ngoài trời Viva Corten­ Steel­2 VA8016­",
+    category: "Vật liệu ốp trần",
+    imgUrl: "https://vlxdgiatot.com/wp-content/uploads/2025/03/VA8016.jpg",
   },
 ];
 
 const filterCategories = [
   "Tất cả",
-  "Thiết kế",
-  "Thi công",
-  "Sửa nhà",
-  "Cầu đường",
+  "Vật liệu ốp tường",
+  "Vật liệu ốp trần",
+  "Gạch ốp lát",
+  "Nội thất",
 ];
 
 function PortfolioSection() {
@@ -92,7 +90,7 @@ function PortfolioSection() {
       <div className={cx("container")}>
         {/* Tiêu đề */}
         <div className={cx("title-block")}>
-          <h2 className={cx("title")}>LĨNH VỰC HOẠT ĐỘNG</h2>
+          <h2 className={cx("title")}>VẬT LIỆU XÂY DỰNG</h2>
           <div className={cx("decorator")}></div>
         </div>
 
@@ -118,6 +116,7 @@ function PortfolioSection() {
               <img src={project.imgUrl} alt={project.title} />
               <div className={cx("caption-overlay")}>
                 <p>{project.title}</p>
+                <p style={{ color: "var(--yellow-color)" }}>Liên hệ</p>
               </div>
             </div>
           ))}

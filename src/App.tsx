@@ -10,6 +10,8 @@ import PrivateRoute from "./routes/PrivateRoute";
 import HomePage from "./presentations/pages/home/HomePage";
 import QLTinTucPage from "./presentations/pages/admin/news/news-tinTuc/QLTinTucPage";
 import QLThemTinTuc from "./presentations/pages/admin/news/news-tinTuc/QLThemTinTuc/QLThemTinTuc";
+import NewsPage from "./presentations/pages/news/NewsPage";
+import NewsPageDetail from "./presentations/pages/news/NewsPageDetail";
 //Style
 
 const App: React.FC = () => {
@@ -18,6 +20,8 @@ const App: React.FC = () => {
       <Routes>
         {/* Public Route */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/tin-tuc" element={<NewsPage />} />
+        <Route path="/tin-tuc/:id" element={<NewsPageDetail />} />
         <Route element={<PublicRoute />}>
           <Route path="/admin/login" element={<LoginPage />} />
         </Route>

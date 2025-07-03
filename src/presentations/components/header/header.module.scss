@@ -14,7 +14,7 @@
 
 /* Top Bar */
 .top-bar {
-  background-color: #0056b3;
+  background-color: var(--blue-color);
   color: white;
   padding: 10px 0;
   font-size: 14px;
@@ -64,7 +64,7 @@
 
   a {
     text-decoration: none;
-    color: #0056b3;
+    color: var(--blue-color);
     font-weight: 500;
     font-size: 14px;
     padding: 10px 0;
@@ -72,13 +72,13 @@
     transition: color 0.3s ease;
 
     &:hover {
-      color: #0056b3;
+      color: var(--blue-color);
     }
   }
 }
 
 .home-icon {
-  color: #55a2f6;
+  color: var(--blue-color);
   font-size: 20px;
 }
 

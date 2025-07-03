@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames/bind";
 import styles from "./AboutPage.module.scss";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import images from "../../../../../assets/images";
 const cx = classNames.bind(styles);
 
 function AboutPage() {
@@ -10,21 +11,9 @@ function AboutPage() {
       <div className={cx("container")}>
         {/* Cột trái: Cụm hình ảnh */}
         <div className={cx("image-collage")}>
-          <img
-            src="https://xaydungduanphat.com/thumbs/351x456x1/upload/photo/nha-pho-5-tang-ket-hop-kinh-doanh-anh-bia-400x267-58890.jpg"
-            alt="Tòa nhà 1"
-            className={cx("img-1")}
-          />
-          <img
-            src="https://xaydungduanphat.com/thumbs/810x336x1/upload/photo/thiet-ke-nha-pho-3-tang-23261.jpg"
-            alt="Tòa nhà 2"
-            className={cx("img-2")}
-          />
-          <img
-            src="https://xaydungduanphat.com/thumbs/290x380x1/upload/photo/nha-pho-hien-dai-5-84430.jpg"
-            alt="Tòa nhà 3"
-            className={cx("img-3")}
-          />
+          <img src={images.about1} alt="Tòa nhà 1" className={cx("img-1")} />
+          <img src={images.about2} alt="Tòa nhà 2" className={cx("img-2")} />
+          <img src={images.about3} alt="Tòa nhà 3" className={cx("img-3")} />
         </div>
 
         {/* Cột phải: Nội dung giới thiệu */}

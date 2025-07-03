@@ -1,0 +1,174 @@
+/* --- Wrapper và Tiêu đề (Giữ nguyên) --- */
+.wrapper {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.title-block {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--blue-color);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #0d6efd;
+  }
+}
+
+/* --- Lưới Tin tức (Khi <= 4 bài) --- */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+/* --- Wrapper cho thẻ tin tức (Dùng cho cả grid và slider) --- */
+.news-card-wrapper {
+  // Thêm padding để tạo khoảng cách trong slider
+  padding: 0 15px;
+}
+
+/* --- Thẻ Tin tức (Giữ nguyên) --- */
+.news-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; // Giúp các thẻ trong slide có chiều cao bằng nhau
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+}
+
+// ... Các style khác cho .card-image, .card-content, .card-title, v.v. giữ nguyên ...
+.image-link {
+  display: block;
+  overflow: hidden;
+}
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+  .news-card:hover & {
+    transform: scale(1.05);
+  }
+}
+.card-content {
+  padding: 20px;
+}
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 10px 0;
+  height: 45px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  a {
+    color: #212529;
+    text-decoration: none;
+    transition: color 0.3s;
+    &:hover {
+      color: #0d6efd;
+    }
+  }
+}
+.card-description {
+  font-size: 14px;
+  color: #6c757d;
+  line-height: 1.6;
+  margin: 0 0 15px 0;
+  height: 67px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.read-more {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0d6efd;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  .arrow {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+  }
+  &:hover .arrow {
+    transform: translateX(5px);
+  }
+}
+
+/* --- TÙY CHỈNH STYLE CHO SLIDER --- */
+.news-slider {
+  // Ghi đè style mặc định của react-slick
+  // Dùng :global() để tác động vào class của thư viện
+  :global(.slick-slide) {
+    // Đảm bảo các slide hiển thị đúng cách
+    display: inline-block;
+  }
+  :global(.slick-prev),
+  :global(.slick-next) {
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  :global(.slick-prev) {
+    left: -20px;
+  }
+  :global(.slick-next) {
+    right: -20px;
+  }
+  :global(.slick-prev:before),
+  :global(.slick-next:before) {
+    color: #0d6efd; // Màu mũi tên
+    font-size: 24px;
+  }
+  :global(.slick-dots) {
+    bottom: -30px; // Đẩy dấu chấm xuống dưới
+  }
+}
+
+/* --- Responsive (Giữ nguyên) --- */
+@media (max-width: 1024px) {
+  .news-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 576px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+}

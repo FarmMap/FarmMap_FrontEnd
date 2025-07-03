@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons"; // Thêm faBars và faTimes
 import images from "../../../assets/images";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import { NavLink } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -34,18 +35,21 @@ function Header() {
             CHÀO MỪNG QUÝ KHÁCH ĐẾN VỚI XÂY DỰNG DƯ AN PHÁT VỚI TIÊU CHÍ ĐẶT UY
             TÍN VÀ CHẤT LƯỢNG LÊN HÀNG ĐẦU .
           </p>
-          <a href="mailto:tranduanxddd@gmail.com" className={cx("email-link")}>
+          <NavLink
+            to="mailto:tranduanxddd@gmail.com"
+            className={cx("email-link")}
+          >
             <FontAwesomeIcon icon={faEnvelope} className={cx("icon")} />
             <span>Email: tranduanxddd@gmail.com</span>
-          </a>
+          </NavLink>
         </div>
       </div>
       {/* Thêm class 'menu-open' khi state là true */}
       <nav className={cx("main-nav", { "menu-open": isMenuOpen })}>
         <div className={cx("container")}>
-          <a href="#" className={cx("logo")}>
+          <NavLink to="#" className={cx("logo")}>
             <img src={images.logoCty} alt="Logo Xây dựng An Phát" />
-          </a>
+          </NavLink>
 
           {/* Thêm nút hamburger, chỉ hiển thị trên mobile */}
           <div className={cx("menu-toggle")} onClick={toggleMenu}>
@@ -54,44 +58,44 @@ function Header() {
 
           <ul className={cx("nav-links")}>
             <li>
-              <a href="#">
+              <NavLink to="/">
                 <FontAwesomeIcon icon={faHomeLg} className={cx("home-icon")} />
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#">GIỚI THIỆU</a>
+              <NavLink to="#">GIỚI THIỆU</NavLink>
             </li>
             <li className={cx("dropdown")}>
-              <a href="#">
+              <NavLink to="#">
                 XÂY DỰNG{" "}
                 <FontAwesomeIcon
                   icon={faCaretDown}
                   className={cx("caret-icon")}
                 />
-              </a>
+              </NavLink>
               <ul className={cx("dropdown-content")}>
                 <li>
-                  <a href="#">Mục 1</a>
+                  <NavLink to="#">Mục 1</NavLink>
                 </li>
                 <li>
-                  <a href="#">Mục 2</a>
+                  <NavLink to="#">Mục 2</NavLink>
                 </li>
                 <li>
-                  <a href="#">Mục 3</a>
+                  <NavLink to="#">Mục 3</NavLink>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#">THIẾT KẾ NỘI THẤT</a>
+              <NavLink to="#">THIẾT KẾ NỘI THẤT</NavLink>
             </li>
             <li>
-              <a href="#">BẢNG GIÁ</a>
+              <NavLink to="#">VẬT LIỆU XÂY DỰNG</NavLink>
             </li>
             <li>
-              <a href="#">TIN TỨC</a>
+              <NavLink to="/tin-tuc">TIN TỨC</NavLink>
             </li>
             <li>
-              <a href="#">LIÊN HỆ</a>
+              <NavLink to="#">LIÊN HỆ</NavLink>
             </li>
           </ul>
 

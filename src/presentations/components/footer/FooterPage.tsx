@@ -34,20 +34,19 @@ function FooterPage() {
               <img src={images.logoCty} alt="Logo Xây Dựng Dự An Phát" />
             </a>
             <p className={cx("address")}>
-              Địa chỉ: ĐT 848, TỔ 1, ẤP 3, XÃ TÂN NGHĨA, H. CAO LÃNH, T. ĐỒNG
-              THÁP
+              Võ Văn Kiệt, khóm 4, phường Long Đức, Vĩnh Long
             </p>
             <p>
               <PhoneIcon />
-              <strong>Hotline:</strong> 09xxxxxxx
+              <strong>Hotline:</strong> 0939 076 567
             </p>
             <p>
               <FontAwesomeIcon icon={faEnvelope} />
-              <strong> Email:</strong> tranduanxddd@gmail.com
+              <strong> Email:</strong> anphuckhangcompany@gmail.com
             </p>
             <p>
               <FontAwesomeIcon icon={faGlobe} />
-              <strong> Website:</strong> xaydungduanphat.com
+              <strong> Website:</strong> anphuckhang.com
             </p>
             <div className={cx("social-links")}>
               <span>Mạng xã hội:</span>
@@ -140,19 +139,19 @@ function FooterPage() {
 
       {/* Thanh Copyright */}
       <div className={cx("copyright-bar")}>
-        2025 Copyright © XÂY DỰNG DỰ AN PHÁT. Designed by Thiên Ân
+        2025 Copyright © XÂY DỰNG AN PHÚC KHANG.
       </div>
 
       {/* Các nút liên hệ cố định */}
       <div className={cx("fixed-buttons")}>
         <a
-          href="https://zalo.me/your-zalo-number"
+          href="https://zalo.me/0939076567"
           target="_blank"
           rel="noopener noreferrer"
         >
           <img src={images.zaloIcon} alt="Zalo" />
         </a>
-        <a href="tel:your-phone-number">
+        <a href="tel:0939076567">
           <FontAwesomeIcon icon={faPhone} />
         </a>
         <a

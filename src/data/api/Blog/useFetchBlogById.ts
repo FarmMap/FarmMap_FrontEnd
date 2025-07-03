@@ -15,7 +15,7 @@ interface ResponseError {
 }
 
 const useFetchBlogById = (props: useFetchBlogByIdProps) => {
-  let [blogById, setBlogId] = useState<BlogType>({});
+  let [blogById, setBlogId] = useState<BlogType>();
   let [error, setError] = useState<string | null>(null);
   let [isLoading, setLoading] = useState(false);
 

@@ -1,0 +1,140 @@
+.wrapper {
+  padding: 40px 0;
+  background-color: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* --- Cột nội dung chính (bên trái) --- */
+.main-content {
+  width: 100%;
+}
+
+.article-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.table-of-contents {
+  background-color: #f8f8f8;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 15px 20px;
+  margin-bottom: 30px;
+}
+
+.toc-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.article-body {
+  line-height: 1.8;
+  color: #444;
+
+  // Định dạng cho các thẻ HTML được render từ API
+  h1,
+  h2,
+  h3 {
+    font-weight: bold;
+    margin: 25px 0 15px 0;
+  }
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin: 20px 0;
+  }
+
+  ul,
+  ol {
+    padding-left: 20px;
+    margin-bottom: 15px;
+  }
+}
+
+/* --- Thanh bên (Sidebar) --- */
+.sidebar {
+  position: sticky;
+  top: 20px; // Dính lại khi cuộn
+}
+
+.sidebar-title {
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 20px;
+}
+
+.related-post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.related-post-item {
+  display: flex;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Số dòng tối đa bạn muốn hiển thị */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  gap: 15px;
+  text-decoration: none;
+  color: #333;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.post-image {
+  flex-shrink: 0;
+  width: 100px;
+  height: 70px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+}
+
+.post-info {
+  flex: 1;
+}
+
+.post-title {
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.5;
+  margin: 0;
+
+  // Giới hạn 3 dòng chữ
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-description {
+  color: var(--black-color);
+}
