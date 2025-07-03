@@ -32,15 +32,15 @@ function Header() {
         {/* ...Nội dung top-bar không đổi... */}
         <div className={cx("container")}>
           <p>
-            CHÀO MỪNG QUÝ KHÁCH ĐẾN VỚI XÂY DỰNG DƯ AN PHÁT VỚI TIÊU CHÍ ĐẶT UY
-            TÍN VÀ CHẤT LƯỢNG LÊN HÀNG ĐẦU .
+            CHÀO MỪNG QUÝ KHÁCH ĐẾN VỚI XÂY DỰNG AN PHÚC KHANG VỚI UY TÍN VÀ
+            CHẤT LƯỢNG ĐẶT LÊN HÀNG ĐẦU .
           </p>
           <NavLink
-            to="mailto:tranduanxddd@gmail.com"
+            to="mailto:anphuckhangcompany@gmail.com"
             className={cx("email-link")}
           >
             <FontAwesomeIcon icon={faEnvelope} className={cx("icon")} />
-            <span>Email: tranduanxddd@gmail.com</span>
+            <span>Email: anphuckhangcompany@gmail.com</span>
           </NavLink>
         </div>
       </div>

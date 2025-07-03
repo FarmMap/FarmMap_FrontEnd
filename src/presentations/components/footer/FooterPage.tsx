@@ -31,7 +31,7 @@ function FooterPage() {
           {/* Cột 1: Thông tin liên hệ */}
           <div className={cx("footer-col", "contact-info")}>
             <a href="/" className={cx("logo")}>
-              <img src={images.logoCty} alt="Logo Xây Dựng Dự An Phát" />
+              <img src={images.logoCty} alt="Logo Xây Dựng An Phúc Khang" />
             </a>
             <p className={cx("address")}>
               Võ Văn Kiệt, khóm 4, phường Long Đức, Vĩnh Long
@@ -85,25 +85,25 @@ function FooterPage() {
             </ul>
             <br />
             <br />
-            <h3 className={cx("footer-heading")}>Chính sách</h3>
+            <h3 className={cx("footer-heading")}>Giới thiệu & Thông tin</h3>
             <ul>
               <li>
-                <a href="#">Chính Sách Bảo Mật</a>
+                <a href="#">Giới Thiệu</a>
               </li>
               <li>
-                <a href="#">Chính Sách Đổi Trả</a>
+                <a href="#">Xây Dựng</a>
               </li>
               <li>
-                <a href="#">Khách Hàng</a>
+                <a href="#">Nội Thất</a>
               </li>
               <li>
-                <a href="#">Chính Sách Thanh Toán</a>
+                <a href="#">Vật Liệu Xây Dựng</a>
               </li>
               <li>
-                <a href="#">Chính Sách Đặt Hàng</a>
+                <a href="#">Tin Tức</a>
               </li>
               <li>
-                <a href="#">Chăm Sóc</a>
+                <a href="#">Liên Hệ</a>
               </li>
             </ul>
           </div>

@@ -21,10 +21,10 @@ function AboutPage() {
           <p className={cx("subtitle")}>WELCOME TO</p>
           <div className={cx("decorator")}></div>
           <h2 className={cx("title")}>
-            XÂY DỰNG <span style={{ color: "#FF0000" }}>DỰ AN PHÁT</span>
+            XÂY DỰNG <span style={{ color: "#FF0000" }}>AN PHÚC KHANG</span>
           </h2>
           <p className={cx("description")}>
-            <strong>XÂY DỰNG DỰ AN PHÁT</strong> chắc chắn rằng: Sau khi đọc
+            <strong>XÂY DỰNG AN PHÚC KHANG</strong> chắc chắn rằng: Sau khi đọc
             xong bài viết này Quý vị sẽ hiểu hơn về chúng tôi, biết được lý do
             chúng tôi thành lập, biết được những giá trị mà chúng tôi mang tới
             cho Quý Khách hàng sản phẩm tốt, chất lượng cao mà còn mang lại giá
